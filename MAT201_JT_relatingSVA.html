@@ -311,8 +311,7 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="displacement-velocity-and-acceleration-by-integration-differentiation">
 <h1>Displacement, Velocity and Acceleration by Integration &amp; Differentiation<a class="headerlink" href="#displacement-velocity-and-acceleration-by-integration-differentiation" title="Permalink to this headline">¶</a></h1>
-<p>Interactive code to illustrate concepts from MAT201 at Abertay University (JT 2022).</p>
-<p>Using Python’s symbolic computation library, we will explore how displacement, velocity and acceleration are related, first in the case of uniform acceleration.</p>
+<p>Using Python’s symbolic computation library, we will explore how displacement, velocity and acceleration are related, particularly in the case of uniform acceleration.</p>
 <p>If you have not already done so, please check out the MAT201 Python introduction notebook to better understand the content shown here.</p>
 <p>In Lecture 1 of our Dynamics component of MAT201, we saw how to relate velocity, displacement and acceleration mathematically. Lecture two also focusses on expanding on these ideas, using Newton’s Second Law to relate forces acting on objects with non-constant acceleration. The ultimate goal of both lectures is the same: given some information about an object, can you determine other related properties/behaviour using mathematics?</p>
 <p>We’ll repeat some of the examples we carried out in Lectures 1 and 2, with the help of Python. To do this, we’ll require a library for symbolic computation called <em>sympy</em>. This library lets Python play with symbols, rather than numbers, and even solve algebraic equations. The first section in this worksheet will briefly demonstrate some key features of sympy (though more extensive documentation can easily be found online). Section 2 will explore applying these tools to uniform acceleration (Lecture 1) while Section 3 will focus on the behaviour of an object subject to a resistive force (non-constant acceleration, Lecture 2).</p>
@@ -349,7 +348,8 @@ Alternatively, if we know an expression describing the displacement as a functio
 </div>
 </div>
 </div>
-<p>To evaluate the time when the velocity is zero, we need to recognise <span class="math notranslate nohighlight">\(v={\rm{d}}s/{\rm{d}}t\)</span>, so we require the time when the first derivative equals zero:</p>
+<p>Now we can tackle Part 1.
+The object will be at rest when the velocity <span class="math notranslate nohighlight">\(=0\)</span>. To evaluate the time when this occurs, we first need to see how the velocity changes in time, by differentiating <span class="math notranslate nohighlight">\(s(t)\)</span>: <span class="math notranslate nohighlight">\(v={\rm{d}}s/{\rm{d}}t\)</span>. We then need to solve when this equals zero, for time <span class="math notranslate nohighlight">\(t\)</span>. We can ask Python to differentiate our expression for <span class="math notranslate nohighlight">\(s\)</span> (giving us velocity) <em>and</em> solve when <span class="math notranslate nohighlight">\(v=0\)</span>, all in one line:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_whenatrest</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">)</span>
@@ -363,7 +363,7 @@ Alternatively, if we know an expression describing the displacement as a functio
 </div>
 </div>
 </div>
-<p>We can similarly solve for the initial velocity when <span class="math notranslate nohighlight">\(t=0\)</span>:</p>
+<p>Part 2 requires the initial velocity. The initial velocity occurs when <span class="math notranslate nohighlight">\(t=0\)</span>, so we can ask Python to substitute the expression “t=0” into the velocity and solve:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
@@ -378,7 +378,7 @@ Alternatively, if we know an expression describing the displacement as a functio
 </div>
 </div>
 </div>
-<p>The distance when the velocity is half of the initial value</p>
+<p>Part 3 requires us to find the distance when the velocity has decreased to approximately half of its original value. This one is more complicated to set up, as we first have to calculate how long it will take for the velocity to drop by 0.5, and then substitute that value of <span class="math notranslate nohighlight">\(t\)</span> into the expression we have for distance:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_halfinitial</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">v_initial</span>
@@ -394,9 +394,9 @@ Alternatively, if we know an expression describing the displacement as a functio
 </div>
 </div>
 </div>
-<p>The final part of the question requires calculation of velocity. Again from the lectures, we learned \begin{equation} \int_u^v ~{\rm{d}}v = \int_0^ta~{\rm{d}}t.\end{equation}
-This means that find an acceleration from a velocity, we differentiate velocity in time <span class="math notranslate nohighlight">\(a={\rm{d}}v/{\rm{d}}t\)</span>. If instead we know acceleration and require velocity, we must integrate.</p>
-<p>For part four, we must differentiate our expression for velocity, which is the second derivative of the expression for position:</p>
+<p>Part 4 requires an acceleration, something we haven’t yet mentioned. Again from the lectures, we learned \begin{equation} \int_u^v ~{\rm{d}}v = \int_0^ta~{\rm{d}}t.\end{equation}
+This means that, to find an acceleration from a velocity, we differentiate velocity in time <span class="math notranslate nohighlight">\(a={\rm{d}}v/{\rm{d}}t\)</span>. If instead we know acceleration and require velocity, we must integrate.</p>
+<p>So to solve Part 4, we will differentiate the velocity in time. But our velocity expression is <em>already</em> a differential: we can calculate the acceleration by differentiating the displacement <em>twice</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accel</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
@@ -416,7 +416,7 @@ v &amp;=&amp; u + at, \
 v^2 &amp;=&amp; u^2 + 2as, \
 s &amp;=&amp; ut + \frac{1}{2}at^2.
 \end{eqnarray}</p>
-<p>Note that these expressions also differentiate or integrate to return each other, for example differentiating the expression for displacement returns:</p>
+<p>You should be able to show that hese expressions also differentiate or integrate to return each other, for example differentiating the expression for displacement returns:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
@@ -435,12 +435,12 @@ ds/dt= 1.0*a*t + u
 </div>
 </div>
 </div>
-<p>Python has rearranged the equations to that the highest power of t is first: this is because mathematicians usually arrange their equations in order of powers, with the highest power of the primary variable at the beginning.</p>
+<p>Python akways rearranges the equations so that the highest power of the variable (in this case <span class="math notranslate nohighlight">\(t\)</span>) is first: this is because mathematicians usually arrange their equations in order of powers, with the highest power of the primary variable at the beginning.</p>
 </div>
 <div class="section" id="variable-acceleration">
 <h2>Variable acceleration<a class="headerlink" href="#variable-acceleration" title="Permalink to this headline">¶</a></h2>
 <p>We’ve now seen an example of how Python can be used to tackle problems of integration and differentiation in the case where the acceleration is constant. Many problems we will encounter involving motion of bodies will contain forces (and hence accelerations) which vary in time.</p>
-<p>We can use exactly the same tricks to try to solve these problems using <em>sympy</em>. To illustrate this, we’ll work through a video example we saw in Lecture 2. NB: Python is great at solving symbolic maths problems but <strong>you have to set up the problem correctly yourself first</strong>: Python will try to solve any problem set before it, even if it is different to the problem you are actually trying to solve! You will see this in this example: we have to arrange the problem in a specific way for Python to solve.</p>
+<p>We can use exactly the same tricks to try to solve these problems using <em>sympy</em>. To illustrate this, we’ll work through a video example we saw in Lecture 2. NB: Python is great at solving symbolic maths problems but <strong>you have to set up the problem correctly yourself first</strong>: Python will try to solve any problem set before it, even if it is different to the problem you are actually trying to solve! You will see this in this example: we have to arrange the problem in a specific way in order that Python will solve it correctly.</p>
 <p>Q: A body of mass <span class="math notranslate nohighlight">\(2~{\rm{kg}}\)</span> is projected on a rough horizontal table which exerts a resistance given by <span class="math notranslate nohighlight">\(5v/2\)</span> Newtons for velocity <span class="math notranslate nohighlight">\(v\)</span>. The initial velocity of the mass is <span class="math notranslate nohighlight">\(8~{\rm{ms}}^{-1}\)</span>. Find the time taken for the velocity to equal <span class="math notranslate nohighlight">\(4~{\rm{ms}}^{-1}\)</span> and find the distance travelled in this time.</p>
 <p>We’ll start by defining variables and functions, and convert the force in the question into an acceleration through Newton’s Second Law:</p>
 <div class="cell docutils container">

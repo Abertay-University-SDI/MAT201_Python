@@ -1,0 +1,919 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2D Oblique Sphere Collisions &#8212; MAT201 Dynamics with Python</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="2D Oblique Wall Collisions" href="MAT201_JT_2DSphereWallCollisions.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/Abertay_Uni_Black.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MAT201 Dynamics with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to MAT201 Dynamics with Python
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201_JT_Python_Intro.html">
+   Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201_JT_relatingSVA.html">
+   Displacement, Velocity and Acceleration by Integration &amp; Differentiation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201_ADChapter20_1Dmotion.html">
+   Vertical Motion (1D)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201_ADChapter21_1DmotionwithDrag.html">
+   Drag
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201_ADChapter22_2Dmotion.html">
+   Motion in 2D
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201_JT_SHM.html">
+   Harmonic Motion of A Spring
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201_JT_2DSphereWallCollisions.html">
+   2D Oblique Wall Collisions
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2D Oblique Sphere Collisions
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/MAT201_JT_2DSphereSphereCollisions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FMAT201_JT_2DSphereSphereCollisions.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/MAT201_JT_2DSphereSphereCollisions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>2D Oblique Sphere Collisions</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="d-oblique-sphere-collisions">
+<h1>2D Oblique Sphere Collisions<a class="headerlink" href="#d-oblique-sphere-collisions" title="Permalink to this headline">¶</a></h1>
+<p>Interactive code to illustrate concepts from MAT201 at Abertay University (JT 2022).</p>
+<p>Visualisation of ball collision with another ball.
+Post impact trajectories determined by solving simultaneous equations subject to conditions outlined in lectures. Impact takes place at origin.</p>
+<p>As always, we need to load in the Python libraries that we need to carry out the plotting, animation and (in this case) solve a set of simultaneous equations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="k">as</span> <span class="nn">animation</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">math</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the libraries ready, we can set up some of the initial conditions for our collision. We’ll have two balls, labelled A and B, and each is associated with a mass, an initial speed and at some initial angle to the line of centers created when the two spheres meet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># angle of incidence</span>
+<span class="n">alpha_A</span> <span class="o">=</span> <span class="mf">45.0</span>
+<span class="n">alpha_B</span> <span class="o">=</span> <span class="mf">45.0</span><span class="o">-</span><span class="mf">180.0</span>
+<span class="c1">#initial velocity (m/s)</span>
+<span class="n">u_A</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">u_B</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="c1"># masses (kg)</span>
+<span class="n">m_A</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">m_B</span> <span class="o">=</span> <span class="mf">2.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We should also set up the coefficient of restitution and the step size in time of the simulation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The coefficient of restitution for bounces (-v_up/v_down).</span>
+<span class="n">e</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="c1"># The time step for the animation (s)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.05</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will once again be solving two equations of motion, one in the horizontal (<span class="math notranslate nohighlight">\(x\)</span>) direction and one in the vertical (<span class="math notranslate nohighlight">\(y\)</span>) direction.
+With our initial conditions, this means calculating initial components of velocity using trig functions (again noting that Python trig functions work in radians). The total velocity is therefore also the sum of each of these components squared.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vx0_A</span> <span class="o">=</span> <span class="n">u_A</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha_A</span><span class="p">))</span>
+<span class="n">vy0_A</span> <span class="o">=</span> <span class="n">u_A</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha_A</span><span class="p">))</span>
+<span class="n">vx0_B</span> <span class="o">=</span> <span class="n">u_B</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha_B</span><span class="p">))</span>
+<span class="n">vy0_B</span> <span class="o">=</span> <span class="n">u_B</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha_B</span><span class="p">))</span>
+<span class="n">vA</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vx0_A</span> <span class="o">*</span> <span class="n">vx0_A</span> <span class="o">+</span> <span class="n">vy0_A</span> <span class="o">*</span> <span class="n">vy0_A</span><span class="p">)</span> 
+<span class="n">vB</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vx0_B</span> <span class="o">*</span> <span class="n">vx0_B</span> <span class="o">+</span> <span class="n">vy0_B</span> <span class="o">*</span> <span class="n">vy0_B</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>The initial position is trickier; the balls are travelling at different speeds and angles.</p>
+<p>Our tactic is to fix the collision to take place at <span class="math notranslate nohighlight">\(\left(x=0,y=0\right)\)</span>.  We know the velocity the balls travel at, and they are not accelerating; our first year CGT maths lets us work out a displacement through <span class="math notranslate nohighlight">\(s=ut+1/2at^2\)</span>, which reduces to <span class="math notranslate nohighlight">\(s=ut\)</span> if <span class="math notranslate nohighlight">\(a=0\)</span>.</p>
+<p>So our <span class="math notranslate nohighlight">\(x\)</span>  and <span class="math notranslate nohighlight">\(y\)</span> positions will behave like <span class="math notranslate nohighlight">\((x,y)=(u_x t,u_y t)\)</span> before the collision, which will take place at <span class="math notranslate nohighlight">\(t=0\)</span>.</p>
+<p>Our neat trick here is to pick a time <em>before</em> <span class="math notranslate nohighlight">\(t=0\)</span> and see where the ball would be. I fix <span class="math notranslate nohighlight">\(t=-1\)</span>, and hence <span class="math notranslate nohighlight">\((x,y)=(-u_x,-u_y)\)</span> as our initial positions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial position and velocity vectors.</span>
+<span class="n">x0_A</span><span class="p">,</span> <span class="n">y0_A</span> <span class="o">=</span> <span class="o">-</span><span class="n">vx0_A</span><span class="p">,</span> <span class="o">-</span><span class="n">vy0_A</span>
+<span class="n">x0_B</span><span class="p">,</span> <span class="n">y0_B</span> <span class="o">=</span> <span class="o">-</span><span class="n">vx0_B</span><span class="p">,</span> <span class="o">-</span><span class="n">vy0_B</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that our initial positions are fixed, this will essentially also fix the size of our plotting area. We’ll fix the extent of our plot to be twice as big as the largest initial displacement in x or y, in order to prevent either ball beginning off-screen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lval</span> <span class="o">=</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x0_A</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x0_B</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y0_A</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y0_B</span><span class="p">)))</span>
+<span class="n">extent</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">lval</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now have to deal with what happens when the balls collide.
+In MAT201 we learned that 2D sphere collisions essentially boil down to:</p>
+<ol class="simple">
+<li><p>perpendicular velocities remain unchanged</p></li>
+<li><p>conservation of momentum (parallel to LOC)</p></li>
+<li><p>Newton’s Law of Restitution (parallel to LOC).</p></li>
+</ol>
+<p>The first item fixes the <span class="math notranslate nohighlight">\(y\)</span>-components of velocity; the final two equations reduce to a set of simultaneous equations to solve for <span class="math notranslate nohighlight">\(v_x\)</span> of each particle.</p>
+<p>When we tackle these problems by hand, we usually use substitution or row operations. Python is excellent at solving simultaneous equations (as we will see), provided we format the simultaneous equations in matrix form <span class="math notranslate nohighlight">\(Ax=B\)</span>. This then means that the solutions are given by inverting matrix <span class="math notranslate nohighlight">\(A\)</span> and multiplying it to the coefficients in <span class="math notranslate nohighlight">\(B\)</span>; mathematically, <span class="math notranslate nohighlight">\(A^{-1}Ax=Ix=A^{-1}B\)</span> for identity matrix <span class="math notranslate nohighlight">\(I\)</span>. We’ll therefore arrange some of the coefficients in the final two equations to be in the form of a matrix:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># matrix of coeffs (to use to solve simultaneous equations)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">m_B</span><span class="p">,</span> <span class="n">m_A</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We know that the collisions will take place at the origin. However, we’re moving in time using discreet timesteps; depending on the size of dt, we might not actually hit the origin exactly, but potentially miss it by a small amount.</p>
+<p>We’lll model each ball as a circle. Another way to detect a collision (without relying on it taking place at the origin) is to check if one of the circles overlaps the other. To do this, we’ll make a function to check the distance between the centres of the circles. If the distance is less than the radius of each circle added together, then the circles have overlapped.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">overlap</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">):</span>
+<span class="c1"># subroutine to check if circles overlap  </span>
+    <span class="n">distSq</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y2</span><span class="p">);</span>
+    <span class="n">radSumSq</span> <span class="o">=</span> <span class="p">(</span><span class="n">r1</span> <span class="o">+</span> <span class="n">r2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">r1</span> <span class="o">+</span> <span class="n">r2</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">distSq</span> <span class="o">==</span> <span class="n">radSumSq</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">distSq</span> <span class="o">&gt;</span> <span class="n">radSumSq</span><span class="p">):</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now need a function that returns the position of each ball over time.</p>
+<p>We need this function iterate in time (by dt), and with each iteration, we need to check if the balls have overlapped using the overlap function we just created. If an overlap is detected, then we need to calculate the remaining coefficients in the simultaneous equations, and have Pythons linear algebra package (“linalg”) solve the simultaneous equations and return the new velocities parallel to LoC.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_pos</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">vA</span><span class="p">,</span> <span class="n">vB</span>
+<span class="c1"># position generation  </span>
+    <span class="sd">&quot;&quot;&quot;A generator yielding ball positions at time t.&quot;&quot;&quot;</span>
+    <span class="n">x_A</span><span class="p">,</span> <span class="n">y_A</span><span class="p">,</span> <span class="n">vx_A</span><span class="p">,</span> <span class="n">vy_A</span> <span class="o">=</span> <span class="n">x0_A</span><span class="p">,</span> <span class="n">y0_A</span><span class="p">,</span> <span class="n">vx0_A</span><span class="p">,</span> <span class="n">vy0_A</span>
+    <span class="n">x_B</span><span class="p">,</span> <span class="n">y_B</span><span class="p">,</span> <span class="n">vx_B</span><span class="p">,</span> <span class="n">vy_B</span> <span class="o">=</span> <span class="n">x0_B</span><span class="p">,</span> <span class="n">y0_B</span><span class="p">,</span> <span class="n">vx0_B</span><span class="p">,</span> <span class="n">vy0_B</span>
+    <span class="n">xpos</span> <span class="o">=</span> <span class="p">[</span><span class="n">x_A</span><span class="p">,</span> <span class="n">x_B</span><span class="p">]</span>
+    <span class="n">vA</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vx_A</span> <span class="o">*</span> <span class="n">vx_A</span> <span class="o">+</span> <span class="n">vy_A</span> <span class="o">*</span> <span class="n">vy_A</span><span class="p">)</span> 
+    <span class="n">vB</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vx_B</span> <span class="o">*</span> <span class="n">vx_B</span> <span class="o">+</span> <span class="n">vy_B</span> <span class="o">*</span> <span class="n">vy_B</span><span class="p">)</span>
+    <span class="n">ol</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="nb">all</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">extent</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xpos</span><span class="p">):</span>
+    <span class="c1"># iterate while within bounds  </span>
+        <span class="n">t</span> <span class="o">+=</span> <span class="n">dt</span>
+        <span class="n">x_A</span> <span class="o">+=</span> <span class="n">vx_A</span> <span class="o">*</span> <span class="n">dt</span>
+        <span class="n">y_A</span> <span class="o">+=</span> <span class="n">vy_A</span> <span class="o">*</span> <span class="n">dt</span>
+        <span class="n">x_B</span> <span class="o">+=</span> <span class="n">vx_B</span> <span class="o">*</span> <span class="n">dt</span>
+        <span class="n">y_B</span> <span class="o">+=</span> <span class="n">vy_B</span> <span class="o">*</span> <span class="n">dt</span>        
+        <span class="k">if</span> <span class="p">(</span><span class="n">overlap</span><span class="p">(</span><span class="n">x_A</span><span class="p">,</span><span class="n">y_A</span><span class="p">,</span><span class="n">x_B</span><span class="p">,</span><span class="n">y_B</span><span class="p">,</span><span class="mf">0.08</span><span class="p">,</span><span class="mf">0.08</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">ol</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">:</span>
+             <span class="c1"># if impact detected, solve for new vx values</span>
+             <span class="n">ol</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># prevent repeated bounces</span>
+             <span class="n">Y</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span> <span class="o">*</span> <span class="p">(</span><span class="n">vx_A</span> <span class="o">-</span> <span class="n">vx_B</span><span class="p">),</span> <span class="n">m_A</span> <span class="o">*</span> <span class="n">vx_A</span> <span class="o">+</span> <span class="n">m_B</span> <span class="o">*</span> <span class="n">vx_B</span><span class="p">]</span>
+             <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>  <span class="c1">#solve simultaneous equations</span>
+             <span class="n">vx_B</span><span class="p">,</span> <span class="n">vx_A</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>    <span class="c1">#new velocities</span>
+             <span class="n">vA</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vx_A</span> <span class="o">*</span> <span class="n">vx_A</span> <span class="o">+</span> <span class="n">vy_A</span> <span class="o">*</span> <span class="n">vy_A</span><span class="p">)</span> 
+             <span class="n">vB</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vx_B</span> <span class="o">*</span> <span class="n">vx_B</span> <span class="o">+</span> <span class="n">vy_B</span> <span class="o">*</span> <span class="n">vy_B</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">x_A</span><span class="p">,</span> <span class="n">y_A</span><span class="p">,</span> <span class="n">x_B</span><span class="p">,</span> <span class="n">y_B</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to animate, we need to set up aspects of the figure and some initial parameters</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">init</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Initialize the animation figure.&quot;&quot;&quot;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="n">extent</span><span class="p">,</span> <span class="n">extent</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="n">extent</span><span class="p">,</span> <span class="n">extent</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$ (m)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$ (m)&#39;</span><span class="p">)</span>
+    <span class="n">lineA</span><span class="o">.</span><span class="n">set_data</span><span class="p">([],[])</span>
+    <span class="n">lineB</span><span class="o">.</span><span class="n">set_data</span><span class="p">([],[])</span>
+    <span class="n">lineA</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">xdata_A</span><span class="p">,</span> <span class="n">ydata_A</span><span class="p">)</span>
+    <span class="n">lineB</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">xdata_B</span><span class="p">,</span> <span class="n">ydata_B</span><span class="p">)</span>
+    <span class="n">ballA</span><span class="o">.</span><span class="n">set_center</span><span class="p">((</span><span class="n">x0_A</span><span class="p">,</span> <span class="n">y0_A</span><span class="p">))</span>
+    <span class="n">ballB</span><span class="o">.</span><span class="n">set_center</span><span class="p">((</span><span class="n">x0_B</span><span class="p">,</span> <span class="n">y0_B</span><span class="p">))</span>
+    <span class="n">v1_text</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;initial&#39;</span><span class="p">)</span>
+    <span class="n">v2_text</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;initial&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lineA</span><span class="p">,</span> <span class="n">ballA</span><span class="p">,</span> <span class="n">lineB</span><span class="p">,</span> <span class="n">ballB</span><span class="p">,</span> <span class="n">v1_text</span><span class="p">,</span> <span class="n">v2_text</span><span class="p">,</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The animation appends the position information (so that we can plot the trajectory of each ball), and also includes info on the total velocity of each ball to be printed as text on the figure in each frame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;For each frame, advance the animation to the new position, pos.&quot;&quot;&quot;</span>
+    <span class="n">x_A</span><span class="p">,</span> <span class="n">y_A</span><span class="p">,</span> <span class="n">x_B</span><span class="p">,</span> <span class="n">y_B</span> <span class="o">=</span> <span class="n">pos</span>
+    <span class="n">xdata_A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_A</span><span class="p">)</span>
+    <span class="n">ydata_A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_A</span><span class="p">)</span>
+    <span class="n">lineA</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">xdata_A</span><span class="p">,</span> <span class="n">ydata_A</span><span class="p">)</span>
+    <span class="n">xdata_B</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_B</span><span class="p">)</span>
+    <span class="n">ydata_B</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_B</span><span class="p">)</span>
+    <span class="n">lineB</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">xdata_B</span><span class="p">,</span> <span class="n">ydata_B</span><span class="p">)</span>
+    <span class="n">ballA</span><span class="o">.</span><span class="n">set_center</span><span class="p">((</span><span class="n">x_A</span><span class="p">,</span> <span class="n">y_A</span><span class="p">))</span>
+    <span class="n">ballB</span><span class="o">.</span><span class="n">set_center</span><span class="p">((</span><span class="n">x_B</span><span class="p">,</span> <span class="n">y_B</span><span class="p">))</span>
+    <span class="n">v1_text</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$v= </span><span class="si">{</span><span class="n">vA</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> m/s$&quot;</span><span class="p">)</span>
+    <span class="n">v2_text</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$v= </span><span class="si">{</span><span class="n">vB</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> m/s$&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lineA</span><span class="p">,</span> <span class="n">ballA</span><span class="p">,</span> <span class="n">lineB</span><span class="p">,</span> <span class="n">ballB</span><span class="p">,</span> <span class="n">v1_text</span><span class="p">,</span> <span class="n">v2_text</span><span class="p">,</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’re nearly there! Lets set up a figure, fix the size (using the extent variable from earlier), and plot a dashed line where the LoC should be.</p>
+<p>Note that, this LoC is simply for context, and is approximate: the collision actually takes place when an overlap is detected in the code, and so there may be a small offset between the plotted LoC and the true LoC location.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a new figure, with equal aspect ratio.</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="n">extent</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="n">extent</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=-</span><span class="n">extent</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x11866e6d0&gt;
+</pre></div>
+</div>
+<img alt="_images/MAT201_JT_2DSphereSphereCollisions_24_1.png" src="_images/MAT201_JT_2DSphereSphereCollisions_24_1.png" />
+</div>
+</div>
+<p>We also need to set up plot objects, like lines representing the trajectories and the circles representing the current location of each ball.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These are the objects we need to keep track of.</span>
+<span class="n">lineA</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dotted&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">lineB</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dotted&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ballA</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="n">x0_A</span><span class="p">,</span> <span class="n">y0_A</span><span class="p">),</span> <span class="mf">0.08</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ballB</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="n">x0_B</span><span class="p">,</span> <span class="n">y0_B</span><span class="p">),</span> <span class="mf">0.08</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">v1_text</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.9</span> <span class="o">*</span> <span class="n">extent</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9</span> <span class="o">*</span> <span class="n">extent</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">v2_text</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">extent</span><span class="p">,</span> <span class="mf">0.9</span> <span class="o">*</span> <span class="n">extent</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">ballA</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">ballB</span><span class="p">)</span>
+<span class="n">xdata_A</span><span class="p">,</span> <span class="n">ydata_A</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="n">xdata_B</span><span class="p">,</span> <span class="n">ydata_B</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Final step is to create the animation. The length of the simulation in time is the interval, and will impact the length of time the animation will take to create.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interval</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">*</span><span class="n">dt</span>
+<span class="n">ani</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">get_pos</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="n">interval</span><span class="o">=</span><span class="n">interval</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">init_func</span><span class="o">=</span><span class="n">init</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">ani</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><video width="432" height="432" controls autoplay>
+  <source type="video/mp4" src="data:video/mp4;base64,AAAAIGZ0eXBNNFYgAAACAE00ViBpc29taXNvMmF2YzEAAAAIZnJlZQAAQuNtZGF0AAACoQYF//+d
+3EXpvebZSLeWLNgg2SPu73gyNjQgLSBjb3JlIDE1NyAtIEguMjY0L01QRUctNCBBVkMgY29kZWMg
+LSBDb3B5bGVmdCAyMDAzLTIwMTggLSBodHRwOi8vd3d3LnZpZGVvbGFuLm9yZy94MjY0Lmh0bWwg
+LSBvcHRpb25zOiBjYWJhYz0xIHJlZj0zIGRlYmxvY2s9MTowOjAgYW5hbHlzZT0weDM6MHgxMTMg
+bWU9aGV4IHN1Ym1lPTcgcHN5PTEgcHN5X3JkPTEuMDA6MC4wMCBtaXhlZF9yZWY9MSBtZV9yYW5n
+ZT0xNiBjaHJvbWFfbWU9MSB0cmVsbGlzPTEgOHg4ZGN0PTEgY3FtPTAgZGVhZHpvbmU9MjEsMTEg
+ZmFzdF9wc2tpcD0xIGNocm9tYV9xcF9vZmZzZXQ9LTIgdGhyZWFkcz0xMiBsb29rYWhlYWRfdGhy
+ZWFkcz0yIHNsaWNlZF90aHJlYWRzPTAgbnI9MCBkZWNpbWF0ZT0xIGludGVybGFjZWQ9MCBibHVy
+YXlfY29tcGF0PTAgY29uc3RyYWluZWRfaW50cmE9MCBiZnJhbWVzPTMgYl9weXJhbWlkPTIgYl9h
+ZGFwdD0xIGJfYmlhcz0wIGRpcmVjdD0xIHdlaWdodGI9MSBvcGVuX2dvcD0wIHdlaWdodHA9MiBr
+ZXlpbnQ9MjUwIGtleWludF9taW49MjAgc2NlbmVjdXQ9NDAgaW50cmFfcmVmcmVzaD0wIHJjX2xv
+b2thaGVhZD00MCByYz1jcmYgbWJ0cmVlPTEgY3JmPTIzLjAgcWNvbXA9MC42MCBxcG1pbj0wIHFw
+bWF4PTY5IHFwc3RlcD00IGlwX3JhdGlvPTEuNDAgYXE9MToxLjAwAIAAABGkZYiEADf//vbw/gU2
+O5jQlxHN6J0zH78VuLo0N73OAAADAAA33OZE/sqTBubAAALgAArD0+Bo/8wHdvHqQrPVtclEl8Re
+v5Auh1RJdUI/3VVpb0rRlA6CysIQzouuLtXRGg5rxEcvIniU/LttDlYjqLJLMIaB8YApgWWfhu3y
+VaJbGYXPvnoUd0QFOS9P2km8k9kcOu7UjjbiE/Nvs7VAklk+HPmPHgPyN77wAC0ihI3byPDjRpwb
+Ju3/2qLhfZlQWtBRwVPJCBedoYR1YTXmuohrjdMsS/D6vGj9NBePu57/w6kk3DCrjanibDvZC2Di
+iqprhjWk944wi4N40y1I6nkiSTn/2N21DODO9r5GEd20xAqOrwUgkXBtK6WNQADdZz/m0o3/O5TD
+kPVsC9MNfT2FU2O1ncTecKr8JKQzTf234n10zvNMMdjkf7t/6YQViquXVLejtshLPIdfEl59gUtA
+v0fZVl4ZJAi62ymdustZbnw/r16A2N7zEunoNnQ47T5jmsm8TDS/b+fyxWaDLfBCvWHCcCKlyIk8
+nD+kC5dz4AFEFSyUXIzgdMVbXEQEspW0y5Qp99idwCDSXk2ejQhfpzdEm7cYysW95WLqL3diMWzd
+3ncZR9RUcS7yPD8D0y5Ey1ISF/Pb1JfaY0ki71pMSd71lJm94T0XA85J5W5jycA3jin+1ZC3jOFU
+6WjXAONSo27i/eEIbO7yCavmqeR97u9eGGnbSPuQIqGjPu3uOMkq9mCUtY62ATK9H1UuurIAi6H1
+JiTj1t5HX/aLpWzIk1gtPabeqhUStzwPZs6Y/y+8VZgrpIOSkq+CWVr/BqumNQGY2UnUshggHTC3
+XCGza8KIZBohaxhI6CbaUAcniCK0/A33EgoN0JKM5sespkjyGsnGL51ahSOvcRbv9AzHVleBk6Zm
+zmC+PdEyNGkle6zmX8IWP9D5tSEw26T/PMaAdUvDH+gPASTYKTw88sdo8IkkLr4DPZdcbkP9e0tc
+CLjhVb501gEwwRGnBdutn9c3Ue2TVsu7jGbCEFGfXpxQmIO8lrxKn8oP60BWRB4DywQP4P6JBHAE
+1AABu68hsCiG8GbL5OwZOdK0gPDJMG36PYhH3VxpaBCFH1Ndu/0sIABGcLChQwmwIj25JJKbrus4
+bTXuOw0Eqcbx0WncBvG5k2KR8ofSZ8rTdfFMoNVt7sr2Y0nsxPv/NERqZBRBR99UJsDC0xDzO5Y4
+vbUjYcJ5IXyQexdKCxhvRau0YwgybdUIXaH1lHTH8pLfKDWa/xK8ZtfL2+GvfyNefMODnxDmc+pF
+zW4QKU5TTYaLiHVcVRYbP7FCad6b8XEejIjF3Obp3V8xTWxuSKb69zpMNjJzwpA3GbE4fZQ/g2cN
+lsOnK6/EmQ/8Z0akqJIHNVhT0bg3D6pGbulnVMm+4t1QJ994/OianZkR6w17ILiWNZXa7UHWxwjy
+8IJcU9l7LWNjibjxka/0LnTeEJUVfAVlZXhvr20InlnCKpAgvcSucu4pAt5198Xl/ne2U0raoJM7
+3hO3puERLD8u66QN7a4KQBOmXzLwjfgEGx/Yoh6H1+t9TwkUfNGUzz8+5vURtM66D/+oLnOBiYMt
+mLcMfZ2gQTWbl61ka1eQRKit/CrYVO0KibFAzLz8lOnSyDtnwpuJ7spZRQznxN7TK5ABlga3fSOF
+sJDGZ/dZlfIkaCOjA4Bv9aI5gISGA8N4n8o0ksaaJ8VeZdbGNZbeViOnd5abUXDd73mEkfdDR8lV
+YOa93+U0MaWq+H4QEoAdQA69BBaVPDvsjRxIEh47BRzb8At0iOnfKPNAptwTTtrS4xw5AshZYU6j
+Lzl/TBj5ch5V9VLHvcKa/imjHr9duUtPgvE1oA8R2kBaa2mWvxIOM+Mf44xPmzNugjvdZ1qgVsne
+48vtpP4A05YVMfKjd3RQ0z+YhJa3m1XPT0sEpeaQZnF9KdgzFyN02BkhfDe+DDZgvd1mvFl2skku
+GoO41VvlLK5jliyKtmSETZTF+gtnLhYOiyzQnPqHlrYaImimyInGp4TDfu+9UMzsRZRpypC3n2Gr
+ES1EuaXSKjToIw3R5DE/r70PyD7gRNA5zw3Fp15hT0uAdYuycDhYcc4Cdv1zxZs3Bus0VqsDn1+g
+mqqJ0EIDzy8nsfly64SBiKp+ggHOz/XdmJDUX6Uh7OiD77ZCFvykr5bPavnCWkUKGRwtRu4KZ1LJ
+ilNVPOQgERnJ4yJL5wwDn0eL/vaQ0nITzGPIOOMZ7SM1vBJkIoFnphBh/5pOygCYfVWuNeJy0y5d
+jR37vVz9mnCBXgNljOQ4L9Ga/QtYzYF4oWyV1HuBdgkMfJyED3IjrQ/fel0HyiV1cEX574FYPxVu
+wTK8w2QpilRZvZUaKk4Zl/mQL0OzPchGTjEyDsbquXpr4dBhjfYpzcbsVwu/ts242TgW3FRmRmw3
+0wEkm4RyEWeoUbJYk1fxvKpJVZ0CbXUYMndYthGajSY3ssLplowlZDNNDZ0ry3PJ61JsYZjdlO2x
+xFlDguaVTZ1Kgs7b9EjR2UCUQoTPPSpKVdATDN2c0V1Rwi2wSd6I0fhaN9jtRsYsZGsIBHVxy2BT
+QgNN5UhlZs7VVfKFYWBFf5XfBfVtV5OfsqSfJdo6Vun2vtmDq2Dr/NVDEaHIPeRejQjbITeDKY8x
+TQurO2N4VPJfpE2sroqhueTVp0H6qxVAv+4s/ZwFBpDF9GZZZ6c6oX8SoZFnOd3+rpTQO2Vp12rn
+xjzgj6I7dD/AOdFZiw/MAYy9qSe2b6qu3fR6Jo0oOVg9V0yiPOkvIy9Rg0GqMh1+nteN8i8ObL87
+xea9pk6kov6RU1b+eA0rO7f81aLtu8g0wzp/SBJcArGTWCRVewfuYnbngmhbd+0mh5n6XkrW/y/6
+MEPfKRMlIm6V6h/8tdyBhSdONXf0Zsi/efzBjtPvgbqSqTkDx0F8K6ZHjSWfSy5q8MsUUrM4Y6GF
+f0zgcEf1Vxtw3ho36sVudTwSvUmcQQqQreo37pTenMXWnRfVNwU4yYes+CwGOzuVL9fEM0fZVj1l
+fO7JNSxFwuhl+4fyVa56Z0lSrBYOwrhHmkIUEFmeics+M+sgB2tAxWMOaON7Y77SU3+Hco9Tc5SM
+DfF4/+OiFxE0JsEGihGerZhCjxUcvpd64AHTwJkXtN/Xf/fOKbQ4B6376Ej9X3gSGSyQ7AXbgsDs
+K254pbYqBzn/Wtp8ijP/QzZm4+jGBtN4gdjQLwDwb12vz2JKSTW2RDoiCvIl2Tjl2cTgoR70gkcC
+e6xOKPNyGV6f8Ijq6mXndhDIJW6frH4cn8tRzgykj+QLbyKvtZOHp7UhjHEMIuihjvJWZKCzeVD6
+Z3cbuz8dtTlztOj6dKQTQFF6haCX5Qsf2DnJc4mHx/D3HPnAABw5dltror5/YcgPpIeqsAFidqkA
+en3La0Sn406cO7YKyHhZZ7UWAE3i8MxyCczo0YV5vm6f9oAHFfgx0Gxn9uDA8Z424iy3dib27sxQ
+lwNfzcEMwqTEYXYtlGVyFcV3bxRMBki4DbIgDy6O35htuymzNEeMlxYin7a07QpT5nYBeWD02yxy
+pPIt83T1hkUC4h4JaozRtKbuEhL4TfelKIrt6C4uKZEJV1OMnZGJWEd2F/YOTS5Dfv9b4P9ADmZP
+X4VB/hP5Mfjl4HJWFrhvV8sxfMCkrETPGu6L5+AJku+BNMxaEEohkei4GmMJ7M5NpALWkIrRoJ1C
+W8zM92aFkLFl++yZnSsEv6HJkZq3SdIyKu9TpX46xnLfBZv2//cagbhY5gQQaaoKMPlk8eHtZXHT
+mo78yDJ7A9c91G3rBr8ik7mlCr7lt5u5MDWEYqyf3bCG/e33uPSJjqnujjuA7ow+Gdg0RQLV7EXV
+rVDTi9/qdBWXfeTuGPv70Nt1+w6LTHb8eJH7t6goVwb+NFckEwiEgE5CRjuf89auDTor/i6/7KvY
+CaditRQS1WjEdqaIMp8rvZ4Nck0L7vzlLPnxQfj5ECBWeoICru9pJ7cXb8oQ2FvO9qRI22KE/Z4E
+5EkCztTBwlJzqsVSYzN+ciRgnbeIcACDoER2SJIdDX58jwzbuwieVHzWo2NYp933Y+PDjNU7Rbcw
+UK+Qa43b5P83CGR7sO7/c1kAhfdpmCsDnvPZMgmeOlbi/uxxejDRQ/77/WH2kIkhow1WKs7hEZN4
+l5glJWqq8yeEkQGlARqxEmC2/h/GoGMrzgtzu6S6WfMZyyZWn+FbKiIZlDlrwwk/0FpVS7oX/uPB
+XcrfFtKKfaJW2qLHs1IESI3WGAUV+w3YzJbW35uFgFeJ68HgtCsTUE1E9HbApbK32S15JlCZFOwT
+08RgP2AZaqXhAyIF5pNOEW1LzqEjUEZOLTnM9gcBGtMYxi4TgIA3VT+AKhiPbGmMo5rFiJsBHAhG
+QQsfiN2y4meFC2KzdTa5EJIiwkv2HlnjFSEU1w8PtdHwusj6FHFMA7T2ZN5FDq3D4bJiv/ao40Pq
+G6zfjBX1tKfaR01QgtpYX0/e0/qRS8OUqGhf+u9/kysQmucwIo8W6JOHk7c5Pl11rTT765BiSJS/
+bt3K6PA67Zrhw7Hrf/GGGbD6aD8z4Umhp9aTxedOnCmsjduj3CgsFHetn8Q2ooctFgjSA9JQbRaP
+AZk8PEbf6ZsJEBgU5DWCFWJoHQEPYUyCnSDHQZPbDvOC0E6yWUcC8whLKcqtgoJGqC6Vaytop5QK
+1flJQoVTd19xkg79t/khkW+ws8W8O+poJQFivIjtXdEctDt9aTxeYR1N6veH/9sw64/VAKzKEma2
+7l3CgsFHetoF92hHKh7GhwnFjC5zfx8f0IfVRhnszHGS8oB9YIHS6ZBslb/x/llpopj96V37AM5I
+PR5953/XrjiiXE7TeKU/WZRCTYDBk2MIi0zEj3MCN9MA7lUMS+9689rdFIUO1esoPTomp+gZ34/P
+ewa8uQDCHC6hCYe4L7o6nqTph2RH0ZKwm/fopsvC+AJrPW7CbS7djPb3Kg8OQNAf9c1t74Lt8VRi
+TBId3/6Z5jyA1cQPQ898/YqNpNq8jrhe9lOaJt1q6kbgmI5mAzU8SyA0WV7did/YI5IG7t7OhoCe
+qadjudDFwOs5kbiIYeaQJQuAaUoOmrVMhjjVgj9LIX0jpBOIFZtyURsXrrmhe0xFvUiIpN4qNpXL
+7+T/S4spm2r9etQLi3X58MBn9LVucaqoXS5vgD7Lp++aTQABJ5uMnBmFSXTIYJVTfbFePdXmT+ob
+OxYWEwDEu69/XtyIEdVVStnSO322q7LF+20esODYtFyQo8gloUcb9Ix6yI3E22wMKsh7soffbM+9
+bW20Iprm/VXUAG9x+/RkDFeIdd+y4neiGVWqouOEi5P/Qbct0L3iC1goRiNfsxi343/c6GzFr0Ri
+HO8/YwEzCwULzgACAkmYbspqRcCS5WrEX+qBKR2H972gu3ByGDKgiyrnJd/x8/NNfHI3w1egmcw9
+yaA7BDojJ16PBe9v360IbrksvFCWbqyLCT6i4uhiukD/lJCRGPfqK8cL4CXKv3QW7f3MLsBbKQ5K
+kJoXp1JnQkxhPujiV3j37EMQvPBkArP5vdB3iut3BpecLkQHdhLV9LzDWgFd9hLQLQxMVi2HJixi
+oWQXtNYqqWUv5aOSUdqjJ78/cEkumfeNNsw7Sh4I3UAud+zhK/C8FB1NEaXgAoqbNxbylE+PlBPr
+QAPKGg1Hwut3LEfml22JQrpRT6ztV7KrCguNX2rcVWc/yqk2cEAMAsLm86Gsq6EBFRPGHMXZIdHV
+I4dWIohEJPCeTwBXpgx9CxhFKmMrD+sQhgixPrB6mAapyrqpNbYwE019ZLjrrH6osh+9d0Mnc8bh
+AG54gYXD5/lUjHu0bii96G7wNv3kO29hBATHrXgIAL3dHhdOTnvk4ZlQjhdc4R1UAfAsVNl9Cck4
+DpARYmDIMVL585TuZ4vOCdo4u3SaHZajx0MZQiYOp0rGJ8zFirYyZ8RmA5uoYJT+TzMW4AAABDQO
+qQAAASBBmiJsQ3/+p4QAQ1N8QHuObZdZEVmv6hfpmoqT2/2sy2d8gGX5vzvsu39Ko7O2LRGKo5Jh
+wxsZ1gE5EcOPYD/2kDkcdtRxDNUOpjNQisVD70hC2cl517T+GHPFMKDUaQIbTluc0g3ZVmpuP/Ll
+ZFWItfU1qnTgwmE/HbOh7lKqE74r3N2KePjBRKrR9wMNWhQUG5l+0+nzI8POlieyqroBX4PdpEoW
+VSNBkEat0xDV49wUvVyahsgRgDK8H80O138g8T6msxVb7CFWLHYFaO2rQEc7yi+a6tHxnNdpSNQO
+OwGEMNGOXEd/w5ThNTIv2pFKk4Ajwow8zHRPqQJZ9FfBMh8xzSEDyBnNFfoBciBWns8o4BYIBXpe
+jGva2VW3f8AAAAA/AZ5BeQr/ABa2n1wfpC1eq9gbHAAz/pBc4XJ1Pxliw6m7iPb+eXxAQu1iEBvj
+vSlfjNtfUrrNLqddYCdkoDmhAAAAyUGaQzwhkymEN//+p4QAAn/Muv/YwIF2Td4oNsoMy/PXJIEh
+NCbgakMnvUOAKQppraOJQMMDKoyMxsLsPXhhlbxSF6HLzNQEUldY9n6Z1pevVwnExnePKc1xQD8E
+FIZHs3w2D4Gl/wGkeyYsV0L8N1mbLU/QDS2Mqdrca3eM/ovvsWs5FfyFnExFE3FTklqcWDfRoSNF
+AQr0LmccCj/VYl3xwpwACOp4Z09jNQrfK3E+Y0dzlHP7kDmrRvjID4YRQdJSM02K25Yd0AAAALVB
+mmRJ4Q8mUwIb//6nhAABPcKOyvJABEEBGG0LnN91dPvKKMZBW2awQOm3rs8UJcNub2cDGAYYGGjH
+IPif21B4oDwiBA/dte8WmVJ6WpFphPbntS/SPwkQQDlM0sRhEsCdkCV492KsoDP4JNipIYkijvAM
+3ccq/UFZ9pKwTEoJuW9ddICsz/j7rfGJnCeaxIcXq/xcFnlDmKX2zPM/jhNjGdqw9qmqEI4mQ2FI
+HQeLJ6X0kmhBAAAAx0GahknhDyZTBRE8N//+p4QAAn/Mu1HUolmAVRCM5XDyyeGXXhZUUEccFw0y
++VFMj8bceTDmA/r3SGx9EGd5/zdKantvmSv3v7Y+7ysI9ypXEWLfsfA94f5HpGYs0FVOmYu+jYNe
+QN4C6tdfGcSEu1+J1Pqux3ZufhWpjaNegEdJ1RtsRzsvZSzwU4DkKfvPqFN3kmZl/59am3ty6sMF
+CDJ2XXVVZvtO/jggMjq8d/F+ViJr+HhTCyvHb4sEHfNPxxD8LG/gFTEAAABFAZ6lakK/AAH8A5jV
+GA6mVq1ycgBNM4pO8pyUN+lr5FypsytxN5YGUM647LhnP1C4PV6HqkiTR+SgQ7qTNSBybe1de4x/
+AAAAtEGap0nhDyZTAhv//qeEAAFIVwviuGnBH2vLBcBTZ4WatMvdWxYPU6l3Ka/MuMlKLqgqfmss
+ZXIBk4/yNhWbqfF7diB6nbTywPZZoiu7dE9LGgPCMvMhUsfaeBUpbDoipAWGVaz8jYnbZGcyy0CV
+OkTvkKGzX//yKrhe/8AdlNL2aFh2z4jHUPjVpjthdDAAbakoesk450Ef9CBTSTWwTkvq9tlv3n7L
+zS/34jS+ot8/55MxEwAAAHpBmshJ4Q8mUwIb//6nhAABSOZdqFzZ771iIAE5Ib99IohDCj6LjQ4S
+jS7zoVv003R58t84rJp+oM7z8Ps9Jf0uctLL88urVZHe0TNN+9W4J1reeYvx3GZDQt7oK+Dh3YFE
+MU9dOtFfBTdP2rOWLZCQO16luyFdeQ0ikgAAALZBmulJ4Q8mUwIb//6nhAAAo2FHZXkgAnJD+KwZ
+grW1D7Qj8To5g9BX0xqCnOsLI0vNrUa3grw/ZLgBHhqiTtitaalo2M8h5XgvMI+I/eg6W10EABE6
+PoxZvp1Arf7MnLdgE8FA+SvR5RZuPmPFC7veGjS5kd3f2VO0FOWa74Jfu0iHVy7b1jXscBjy1N/M
+RyUG6sNRh9mECHACujbgd2zyv2aq2Lbet53jq/VKapotk5ioj/SRcAAAALRBmwpJ4Q8mUwIb//6n
+hAAAo6i9JRlTNrgBKnrNReph8QzfsV294OipbDdg/744BsxlP+Ee/+0MQ4yp7Ux/p8SAC7eciN6L
+mBofpYgLGEH5V2fUKMK89k1167gl9SHhksN4X+km7Vslm1iWyqO+SsybEdpw77yo3akwL6K5X80j
+Yq9884Z6XO4S0bIOxOC6eqjHyaFmHfzVbrt6Xe8AHBXydei27SfCduivb4Dwl25RSVcEQ8EAAACf
+QZsrSeEPJlMCG//+p4QAAUjmXagtUFtHZLBz6joALAxg/CHqkAMLIWsS9rIjwoENoieBuYRDmfnT
+u5nvAwapq2ZgMlSQM+k5e4qRaZM4xw+716aBAKxGgTDV9DLHzvF73Y372oGHbUeyba8AIhLDVxgx
+myhHboYXfIG8ovXVr+wKTpW+GYkP2jzmRU+//HE9X859Kks4fSNOcI1KcDQgAAAAvkGbTEnhDyZT
+Ahv//qeEAACn5nxICFXJdxlFgo1g6dFB5KyG3yqJZsPbu/Og/mC9BW1/vpO+vrvwHGymoyU+k8nR
+zAjXTXdfRq89/esikssQc/XowpKgThtrwWWSmjH2zKehctX34z62wCPVmhKc7w2EdwqNwhMoJUX4
+tlXxUFWW+KjglhYAcanNMjE59925zTmEEx59BmoirM81/Nc9CYhfB0WfK+tmlSegeX7xWmsWGfiY
+dZQcy2vicegJAxoAAACGQZttSeEPJlMCHf/+qZYAAFU/ukbSghPdaej2itDIOq92/7/EZV3bCFRz
+Iur3FO32vgaA/T0C28y9m3uXKN86Q5KgF8CK0/nqfG+goiJ6o/4BbFB7k3qV4/w64urnOjTdwH1u
+ZRLUlr9sUoyA9NxWEJY3/VHXQ4Xxq4Z7tbbFD47jLM9cB80AAAC1QZuPSeEPJlMFETw7//6plgAA
+VTnnkY1UdH/9pc4U8AANFTiJ7Qnfd3D7E6JA5zLDtiRZ/gLem4SUv9a5mhefdVBOhPYPZh+v2rYN
+2Fgpj/mlJKiGEfJ/3ZLcFOrBRQZqf7Vv7ScH8FX4QCWOEQZCHLG80sZGe1dhIjuED1H94VODHao1
+uZKROJX01VoQE/wnpFiNt177K8bWZdkBJn8XGciO5+YPgivWxIIFPOcfc5TVXSBxwQAAAEMBn65q
+Qr8AAIbI5Xd6n9RAAfxDTHEWgpLNZXFS6i6IYxeiu/6s5Cc9EV8kMR6xk7WN0kHJhRBCgrRmCIOh
+np6sNh4VAAAAqEGbsUnhDyZTBTw7//6plgAAK3yFoDG+GlbcfuR44KDqridztKeHVjstUEqpLKhi
+Y8vpSWWEYeKulzeRovtZvhyjuM8ZlCKnaBfiAZ8At3KoPKCAF1XDRt679Rv/oS2sAFui6k2u3N+g
+0sKaIYFgtBjPoZJpB0jtWtqDr0buhTEgWb7wxHpz7se4a2yUIdEUOCYccCeniAYUfxheh4Q9VW/T
+q63xHEGCTgAAAF4Bn9BqQr8AAEV1pij1QeIizRABKWx+NUoLOfWtKvpmPXWCpU24nomAU4f1EvoF
+aI4GUmn+qnA8x5D1umh//xlqiAfRwHcs4oj6oGmne8L3RP0RcW2h1Dq87b4p+vU8AAACskGb00nh
+DyZTBTw7//6plgBIB9PQBuEMSufuB6oOqfjo9qtT5t+dedQFcM73fm6NECGCO9R4GeWtwbVgw9cs
+ZqJrXb9UESLD6W7hgq2U90Y9S97Y8ZQOwQXBU6Te8W49OfFCqrXRUjbBzylZuqzhf8sBlrqBuW2M
+S+pCxsIHZa/Q2OVahC6RN1v6FBzj3J4s4sLtVuICHl8B1hwYRrauap6t71YmgO/wLcjibrFRhmbP
+LB/lXuVMzWaBZmEJIDPInRSLM5t4notp/R5l/DX+m/0TVE7Y0H+vipL7PeublUl/9D/QFgcV+70U
+7BI+xFs0SeU2QgpKwOveoIkDgk4OSN73I9nOB1YiMjTAivnKdWPbRBky5To2tU1UtDRMg1o1FZeT
+L7Rchh0ov6KCT71k6nFYaYoiV9YGNPCVxgBK6cU505qmoRtilfg74nC2r5Dn0jBeKm7FYJWblW87
+/l6K/iogk4spSu2qILw+KD8Ib5zJBbRvObAhRh4vqt3MCKW8FqRb0TBxEozlYcfwfu6P/08EC1dp
+d1++rVfEHOui2tlnYgX5eG2mYcFfYQxX4Q3dRoDH2H3dOtOW7Z79buE7rXJPE0ChnmkpzniWswNX
+9ZQQebqumH4zm9Jqyb45Tc2K2FePBwKYlcKXz/dyeS0eMra6eRw9DOQvwsJI64zLWWNHesZlmq6d
+B/ypc6gc+ZOuReEucUAG1/CvR6jah4pyJoI/exirKor1c+fI6XczxTHfhUkVEZgzGjtGrM6yGNiv
+v1tM7ZE6Am9Id4v1a+En+iVgCqFQ0rSb+IKtmFcPI4xaTBsdVXeCrbbpuKGqG/az9IXf3zE2QRm9
+zymF9y4LHxpk0z+ugiL9AdGFzQjWE0VTT0IUFe3iF3PBPxtImeM9mEaWeUKjoPZjXelLzf94d0V1
+fQAAAHUBn/JqQr8AdBklXi5ZAlpcEFKWqXKRPc1lqVCAFoGAQAg9j8QW5K24MelU+MzaEKpqdEVa
+94vlI4Zre+eBXblwkRWqPTEaZYITzZX4HdDAdkbjviSbNYQCLkSRiI4pu3N269LejKTIr4ZXYPir
+jsdDW8bQlIAAAAEYQZv1SeEPJlMFPDv//qmWAAArvC3wgPiVACWroBe/kNvfbRdNkk2yFHUdxZb6
+CLNgiCSXkGUQHjQWWI76iL1/a6rUhr6qDXKalyKALb0GbDkH56m2S/j//x5bZl5IqxTkQ0xiE5w1
+ZufUgc1ZqQGpkL8pCWXxfyMNA2kkzLs4+dwZirPbM/AphQpYYoDfWj1PdqoS6hfZrkap48ps0wEA
+eDVB1UJtFWq2mggu54ujGpipULYMLlwfyz4G2H28NUWyLgvR9ZREXf/973eUr2osyaDWPukVW6gK
+FAee97J5lLt61TBuu4yLNC/hworlet/4yPgJnSj6Cgju5G84eDmDzj+Tf6Svd4MthleJkXUVonfd
+sc08T/kjeAAAAF4BnhRqQr8AAEWEuefa8vSVxedfcgQAgEIK7VNJKu++z+GYjHN5cwk5s1JmgGmX
+lMq41QM4Lc/vf0Zn8+Rff6NCHIqwHTH9jXTL+1vbfmQmPediTi2NE2ARhCX3tbnhAAABFkGaF0nh
+DyZTBTw7//6plgAAK5M0J5RuLqJwAhTMbCpGikZAl++TDHJK1kQ1ACodippPK4OtYDd0bxl6XDIk
+zIJhe9N3dzJX1vwPJh7ElA4CkOyUdcaC41LKjQX0I5ioawjoC2NnTfibMJCvo6wDM9BgAn9EmTGc
+qtZoQNpKIzoO+YvCB87Djvop0vg2xf8jk2tqORrtpNl/sZCOiz3wBn0ffDu+cmmuaPadWF/5oSVq
+XALe8kvcr7n99lm786Ajo9bF1uyfsa0YbN/LpHGRkHDm1dNzAjdRwJFTNlvWZx0vbiWvTBR+MHBH
+nthkiKi77XrUoLr2bbdgxC7DUaGQfnDyH3QpMbO+Rql86rLd4DYm3bo588EvAAAATAGeNmpCvwAA
+R3XP26IrPHiQAQ3pikuS71g4YfAhcYl1U5P+rZ2Ha97bMjaVOtE9ak37Vodr3FWYqJXSBNR/B8xP
+U+zEi8E/pIpMIbEAAACzQZo5SeEPJlMFPDv//qmWAABXAkHAv6vi4xy/f+eePhOY4h8Hjn5ZUc6y
+CTTa73+8RTzl4YSt0B1dSc21LuRxX8H7wHtMF81gStRZpbHz1ElzipFuixMsnsU703bwiY/ksoMw
+nB92/NO1GtYNWyRCjiNHQxwG6zVdowPEqwqv4D+6AKjDjzraFKb0cfD9l7ELw435KYJb4x/Es+gv
+11AuhuKhrMTyedTGBub2twk+xYlIDBkAAABBAZ5YakK/AABHZBC91ux+HlYAQp3WK8ALf6PSt53q
+ObiszzOLODIOGLwXEUTbGjdUdXVRE+i9hUOZINjTbFICToAAAADAQZpbSeEPJlMFPDv//qmWAABZ
+NA4YpugA46cSC8ybAvDHHO7rxQ5ac+0tJs6MUcMXO4guuqS+rpLo3qiliWDi6mLCrfSbNI6+fsad
+/3/zWFN+RrCIxGIxmfleIiDKyUpqa0URbp/qlxbNbZj72t/UNEUt6Vx1FkiO3wfOQdOaO3bUuFdl
+9akaFjzhIeina9AuQm5mPSCMmEg6NW/Lvic2y4/qP6AWRwEnXAdUkmeTHZlTN9UaqHAAUBBbf7DW
+fCthAAAASwGeempCvwAAjuu24R9+RADYjDSoNQ0EkXOhYYkEEOsVGhJK2Y4vTyvK9rfOXmGipnCo
+3VW7xGPfgR68P4EFEQ4IJLUzPsP8+vVVgAAAAOxBmn1J4Q8mUwU8O//+qZYAAFlYb4YzCQAfyg/n
+jm18lpAv9iUPlsCsXY/bjshR5K3gMbKDLcdJo0xJwuaJqhZMAQkhXd09AdRTyDgaG4RawadD2LrZ
+E+KjfAMm0PWrsmqwjebO/z+vdyMGCxug0zdKeJ9F3HoASaO6SWV7FjvwXoFRFKqvSlALkA+FtLIa
+jhmq/axYyULHCgjfQ0PmrTpS8RjiOZzVZhFDh2mfoAri3+llIXk4P49tSeMrsR66Roe3krPfE0vm
+xR2IVdkDyImNbVFLkYaWvMVU43/AlrZTPz6YfD4hZ5DLfbgU0QAAAEoBnpxqQr8AAI8EcaInnWrR
+fDMb7DABas5wpzS//7/FyyDyTtugbV4KjmTja8pcUlh2OtOvqtdPHQJR3tcvmRM9jsUTOxscUdq6
+fwAAALhBmp9J4Q8mUwU8O//+qZYAALJvoRgDPY7aPaXO0Vc0Z84Q7zLAlaNoi8rK4rsirSO9vCiY
+hKGesOYDeOX2UAArt+ykjDsgKYCsBcurLJ+PANF9TWx0iwNflx1hgDvGuxNUgwL7JDd2OB9NYIJ0
+Fnb/okokAlw3vMe0T3tl6Pp6fzO+8zRnAxrWb7JH+yn4oazTUf+JIwvpqkuHhscIdqwsHrH5AVm6
+FR86e+gij/mBQD0R75I1LI7oAAAAUQGevmpCvwAAjwRxoinvAAQ0zgzXt1np0gLWjwNl6aeKdcv1
+rk6Sx+uzurhS9ukLjlJ+ffM+eeEshHgEzJz4BU4LroUWPJatHoBq3ZgExaTRbAAAAL9BmqFJ4Q8m
+UwU8O//+qZYAALJoHDFluADaYLPrRNz+6RwZnAJkXFHD55/khK3ZiyKm6MXquHC4P08XL9PUOnyI
+BCG4tyiz0TCWTYoBsSPOv6oq8sa0D+9VFWqE1Dk7uY7nFJUagAaJVdrqPD9jba6iJl2n8bnefhaA
+emDVmPSyUYKWoxMtX4CKZ1jfDHfRkCEvL70uRzeGiY2x+lcAN4vfV5TFCySg+QlXsL+lY6WDj43Y
+NlJ9DdX384prDcTYwQAAADwBnsBqQr8AAR3OhHQxE7wKS91o/ABrCmQO9J1RXY/FnoOd9vviwL4R
+dxiEFBoHYMs/+Z60xPhn8dh4o9gAAAECQZrDSeEPJlMFPDv//qmWAACyp2zRfT6MXgA2kuutwumc
+6Ogxr7uIkk+HQgDgMlCMppWh1M0sJMEumlck3ldFuiI64DXlJFckgalljjFQ+AB1d4WAAF6sRiQR
+CdcMWUkbZQAh4kjMa0U1s4BgYktFqqwB1RJMxBQAA+ubXtx08hf+v0+mMC52D5RoNCydLZABBqmq
+qeb1kyAuleaoeH/5Nk4Vb+MRjLut2rqex8FyZrt9rVRWG6Rc5iKwzTYwDZGwRb3n1+9nAqREAbh6
+dP6mRcyGJFxJOIgtTXRG+JNAcpzh5dpYGE1tOxioLdpiy3O7vkSKNc2hBecHHyODDvdi+gY1AAAA
+OgGe4mpCvwABJdbxdHSBwgBB7cQnLS9hvcL5vZzUpyD5yVTyx71sJT+JyG6kn//DhMxzxW3vwvZS
+PPAAAACYQZrmSeEPJlMCHf/+qZYAAW3RbMJmOgBHyC9Xczf8IgdvEKLkc3aw/e1zka53m7YaBSjy
+Tcp1cl1DYmij+0ewcC3RAtTpvhyeKvFGcDf9607v5NDBKpRy8wb5TJjIAZY5QIuV8ELEvgsafLVx
+VcIwCArGq8ma3eizkXV6ivlnMW3UusNflICMS5z+3yMzt0MQFzVbAyrs2oEAAAAxQZ8ERRE8L/8A
+AbBTIewXwZ1L+VwUADSUq8tSe8iMXKi9CvwsJUbxwOR/hlybaYJq3QAAAEMBnyVqQr8AAkuugD13
+fOJwAa8lD4A+Vws6zjPyXD8uxQPJoFxPYMnXipiIbfw29/gfmEYeEuDtQu89fQR9iuy95/JxAAAA
+0EGbKEmoQWiZTBTw7/6plgABbgQd3vvawAt1iS18YtLgV+2VNuq4PZJriXxN7snIemiTZaYhAL3t
+y+iV7vvdHHkOaIBocsvq3hVh3hJaDD7XJ7QcmGU1XC17jh9C8Qzw7nOcfXUOD84i65OSK+Pbi2V0
+YXEb9VPFACNKZ4e5x0mNC5Xne7hdvYbAGpjgk26v8AHHRlCUi0wfBUHJhQiO4p8oHwY6iGBjfkCf
+dRWD1EhnpeTtxTZ+/+vgOZqIB6XdjKP4POlDhe2eIYTwz5wUXzEAAABHAZ9HakK/AAJK+rmabABN
+RvZvT2aHKS35SuUuxU3mUgeC///9YSwi1Y+ty3B5cEH7gsvz/HMfgA3mcg0K6bil8nvK17+3joAA
+AADDQZtKSeEKUmUwUsO//qmWAALbvoTjk49D3W0FuOimKlDMoCpAApAdFIPW3BYJZ4IjYiPfkxmb
+lAzoETbNBXxg2hL04zmlarVe7GA9y+EbhOImlyVk+Reht+axaCXdRexfifQW+ZgpGRF4yoDou6bZ
+v4t3JeaygpP7xP/MlVTCqzkJvS9zCe9jhwSMIMfY2aexTTmEfqcNt4uk30s5Kjwp+rXSKemizaP4
+vWYnl20r1D3aSkr2lOm1uuBXzjw9dDAP2OWAAAAAVQGfaWpCvwACTBHGiKe8ABDVcrJlTxiNpPZv
+YqEoL9haLm41qPkKmMMHUcUgDCs5QptMzeTPnAAsu+0tT+nmdrNKGgDjuCdJa73L3oyuK7tSOHJ5
+3PEAAADPQZtsSeEOiZTBRMO//qmWAALcnbNF+sg8nACFKOEdnvNbSoNliVj19JiYTgGmq4GN19so
+N1KgDr2IJLs0h0Tt/AzCHgi+NooH7aAeyR5bo2zss5Vga19Hmy0fZPpCj4LQZ0Yei//MmDfF3NBN
+YtgjQVo9MnO79yVnkQnK942aNsfBl5iX5J5y+XVvU2v8OnYMfugAHxcNTWJsksopMUp2ysnYKLr3
+Gf+Xnkvss3C2FqSPT0+E5CY8fpJEJnzUR8aBI/DRCs9Nr5yMceWd7WmAAAAAPgGfi2pCvwAEhzjj
+uX+qwAFcnOUCbnz9y7UV1iuRQeEyJijxinhIBHcvVkb+tS/1WlmQMlM9rvhLWAWFFsqwAAAA5kGb
+jknhDyZTBTw7//6plgAC26Bwx9OYAObmrNsRcM0vNFcY/ReE0LsIZnS523wq4ve6lfZEfE5N8487
+uyL3T1inNsm4HZ36VsSmlW4FUsDcM721f//7VAZzr0n+qRXb2fSmIJs0vzf8EeFncFIjcQ+sGmv+
+MwlTUOxyfhUOkqGrdUIQbnEr2JmXdgo7uGKW5IcfgvvPH8H8fI89PkPQEo4TpJkENL+mbqD51YB3
+7OfRuppfPj+LgXbHyPc8Y/yfEoL4pmDZYcMhrRSj841Jd56JVW7q49nMfpxCnb41NZTPjleiqDAh
+AAAAOAGfrWpCvwAEt1x82HmSm/wAQrkrl0RSOM6KEZTmSddKk54uAjouULqqjaGiL6kEpENPfgNc
+mrvlAAAAsEGbsEnhDyZTBTw7//6plgAFuFSLWUIjKgHrRP9UVeWC45DwHqv6XeXGXaOMwVzVYbfl
+Ze0S5rmzqWzR9TsZYfKiwCzAQXpQ2T9qx6AIPT3nWr5oer2Viv2eIol7KjW6aUmNh3HawDJfZfM6
+08NSwX+BNl2yh3+Hl3auy+G9AUvQurmfhYt5C39Wxc0iaaZt0b3O8J5wpjPKOc0v7DV5TI2Gi2u/
+zPLmcY7Mta78UQMvAAAASAGfz2pCvwAJLsBqKTAzrfvdAr+VmYgBAn89KO2usYEUW+2DL6RGo5Pk
+/R57LusDtFixAbap/kN6Pxj4GW9viloHncwAZkCPgAAAAOBBm9NJ4Q8mUwIb//6nhAALoHY0c7Kz
+cAN2HVMxQkFTaSuviCWOHckcl0bKfjjjJRfwKK+phkTIFSHrv2186inTZS37DB0Xb3xwv0ZS0u47
+ohwjnmUQdZwNWOCvYHB3lJ91Zd+8UDHIHF/hV31gNHJG77Dsfp958lUO9cOFOdbRX0xPibA7MAh8
+pA5GIUWA9U0nWEmotoRBU2+Dla+XStVjO5fVTIw199S+5DPdpNXXrjT/SPsBcxzMbvpkZslPRnHU
++OjdMRYI4nvaQ8GB0TsIhZbZZsi45zvHbLVEN7HLaAAAAEdBn/FFETwv/wAG58R3jy+G1MoAJKPQ
+TMD8xbUpdgpSraenTguX5qOGqWe3/J6K/oOVRa8cfHMVnAkNqCQTDxYPNjmrxcW+6QAAAFsBnhJq
+Qr8ACW50Ip3YALp3+H/TQc0DZ4hf/qriLQfglHW+vZ/nFhJKPs3N38eowSid/ogPw1w1VeY9tLb3
+H1tM0cuxp0BUb9yaXfFTTAaq9496HbzJRlCmTi0GAAAAs0GaFEmoQWiZTAh3//6plgAF4TAZeNnl
+M9YAE60ijCPHCOqqlP8JJz1zYnKRYNv/7SIMsBef0LZEEyumgAIQp12GKp6W7xo7ZqyIVjx+JJn8
+sIeLbGRKSfK16qATOcaxYYQrURkmfpk6zBePJd6+MFze1oKJZ46flk2VhVflP/yOco4MCvzw/8zm
+1yoNrdvGHIIXfWc3Nwx2+o2mw2OwTltzf7oFVliyGU/AV8Uk6i0U8gi4AAAAvUGaNknhClJlMFES
+w7/+qZYAC7sN8MVsQAWvF1DB011T44rmUay00ko9kfNb4E57B5KMnpTNtL/QeRAPT08VXdjiUZNw
+3lj/TcVEGTmBOgWtDuMhhVNIgGcf9WhQpPLauaMvmST8uy9MlXBMEqNFHSFDcZg7EutQ0iN2OzMj
+iUngv4O9m660uutkVP+Qx8gNoKnPmu/i9nwTVII0O3KFyE1vyFp2ZWBubuz2G786yKOeDCedFTGL
+wsIFtSHblQAAAEQBnlVqQr8AEuDK3VgKXlTLHKMAANclkUnzb8BI3cr4/zBv8/u4kmSGYG63hfa3
+68WPFiAJCMOuWVhDh1gejVMJJVw1JAAAALRBmlhJ4Q6JlMFEw7/+qZYAC7aBwxZbgAvO0F8xwqgS
+LM5KaLcGLE51isiNjw3GJiB5BK7+5o6yqZCJ54XunhMHLYxlXNNG3Dp2SYrfdDVVg7jN0+Bjktcg
+fuKrDcs/NFyFyuOH9kdrgaZ8Afbi2eoVnwpThtzeQTbU8O8vvTdwTh0M1pbSfSfJDdWpDaKzp42Y
+dnAvfwlcJS+akZh+itg2Ts6vUGPN3ezZ4+7DBepXfqhUnW8AAABZAZ53akK/ABNdc/bmHi3oi8VG
+5ozIASthjk13RPSGdKdj2UpEqgy7BkvzqWiUNCW4rIGH/wdhSQrWDwFkBfbCxmOFqsumzMKgR9Pa
+gNMW4h1hE2pvcDO4XcEAAACgQZp6SeEPJlMFPDv//qmWAAwXF+et69PSV2iedwovRAADgLLoGEQq
+vU/OIBbj4OAIvGiUm8nkii4AYlotKXpn35qvuf3y6DPIl3Zvg9cqSWgPPyQaBpjkkDRLVPcSmL39
+QCDpWyW1CMcLqGRKKUs4ojhl5+6CO4Yjri+gCyGFRDgDWS8Vub/EXvbq5+agvBDqcJPTTAzpYqZM
+oyAmrs7TQgAAADoBnplqQr8AE2DBJwWYGiKyzFclP0gAfxGQq+1mwAVccVpkr4rZiA6c0YESAEZN
++ELs0JKiCkIj/MH5AAAApEGanUnhDyZTAh3//qmWABgIFdEqO6ACTJ0O/CmqsV1unUp9byhFkMCv
+OKWayuqz+FpP26ZG53Cj/cBdVTcErl0/mKOPToIIapaqVotn46VC1F+lbfTfQkayMbEA0A6nPfNH
+J5JOr0+L//V+yrbnenZ5J5pBDK+DafIWHcv4zGv5OYz/ju0qgC4mBJ0cFhK34XJjaKnxSrW1LeDk
++e1vccpHWI7uAAAATEGeu0URPC//ABxUvsQ7aE1UwaKplCEDJka3BzNCt4FHROXYAKTcSPCN8n6/
+DG88y7/3ndLgF2dtj3M5gYkIpmRYfTz1Nkhu1ZcatoEAAABHAZ7cakK/ACa50Im9SVyVBalP4hin
+unezoAPEDHXRxseewt10QcGmv2SxHnSAfB+dvnMeS0sktfbx53pKlLtBmYfJvaA+ixcAAADAQZrf
+SahBaJlMFPDv/qmWABgjZJCyspBFsmADVp6yCrP7nieHqE6u1L3fvNe+heae0xMXZHMizU3oZ/8I
+yMaXzB7rplHZYcviZBExNhJ8cBwFzlGBviODugMhNNTeUPTe9AqraEvgG8sAT1GBTw+vWTdIgXVt
+sKc63+GAbbFNlm5xIBoMPZu/OG4kL5vLweYN+m67Ixv94A904gLQTbmwgF/hdSD2kj68MBl3cK8G
+k+S4/am+ZmqwEDR5VgSUP3HuAAAASgGe/mpCvwAmqN7fwr71uADwS2Ouvb6je11LeO+8rtsJVa+3
+3rkmZ8H3P+pW4C4RgPF/UcE3qej8Qv9GubvhOKGUoNGHRctwieL0AAAAykGa4UnhClJlMFLDv/6p
+lgBgtkXuBiK8nbw5UuE7D5S8uwQEbvoMWXsukcWMXTCcyAaKIN3YkI1DTtl9CSKIouk0Tps9Af9x
+MsNEqeyak7rVdCgcTq9J0i6zpYyHcYH4QqeutcMal92SSaUzmz4WU6EblNoLUVD5cigEOQjuWpa9
+leyv+CSBkZ3wJtoo+J5+yMkM7EY/oqUegedpC/FFO4402RI0782V90B6FoUZ2SPRoaZlOrghShjo
+t9I0CSUzqNoy+BWVs4qscIEAAABOAZ8AakK/AE113L7YXmSEwAADSKdmLqDPqy8/aMhm/u69p3c6
+CAVmPcaY/q1CY7pwq6aaPI6cvhbnzGmuvjA4epqFm7bcXsvZYFEkJAd0AAAA0EGbA0nhDomUwUTD
+v/6plgBePlIM5EDhiy3ABrTezoWp4Pl+XG5sx3VMFSm42V82CBfhQScurmmxc5H7SmtfGIuX2byp
+GdoSqsQYuxFDXTMmNXKjUzXHVXZf8ScSSlQvXwA7Y+SLx/puGAJMDEKHIlqvQxZ0x+Ivl+iiH92A
+Heu49nZMq2IULJA1Qs9n10/gFmTvlg+11CYYmuxT9Sl82XTthMFbY2cCk/MKnCyR/zSwqjOhWOaQ
+kEbw3GCyrZSi8CBhGWfk4579ru0BCJ4ZgK0AAABGAZ8iakK/AE1zoR0jWp3As7RYWAA+Bldn24fM
+JTotjrVqa0bCBydWQHDZj13qhgfRtXY7gSZ0ggcKVvQ4kP5UQBzaljpN0AAAAKJBmyVJ4Q8mUwU8
+P//+qZYAMBFbanBkAF6jTQf1goFhwXxJXUvHELEdSjEV/6F1L6h59tWv09JU/2Hu6RkkTR8m86Q0
+rJvX68PXOH9dk01O17GcvuEvxJWV6uu/DslEANzlKJ7DUaeflpkS0+Vt6K9EJ/F4i4qkaGgVk2t4
+QrUGJ9t3a/SSPu6PB8JxvS0XDbzMVmDC318RWy5bBC0mEIVq34EAAAA8AZ9EakK/AE+rxupE36lf
+abwANSitNn6xJxb91AW++1TvgF9z7AKWYM5UdnBsxwz1ArbecfFhKJ5/z/DlAAAA/UGbSUnhDyZT
+Ah///qmWAGM2Uz9dZ46YALVIS/8gVCKIQhAKB8EdsOPMq5+jba0ZmH7tePwea/kjCKQfAThkILHN
+Um+oNmRktwKzOalFqSjR35kXeuUOVwzsM5iR/wCNhHYlDfEzmoKcQY+873f1XDdsEUiiUKhah38f
+Kv2Y1iHWpCjJQFwGQWYI9sHYEGIBhSXnXAQ0UEnG31pk9uSfllC50e+zfo4BnVCh5JcTWC4Vln1K
+b42fI2dSgcQZDzqYms72KUycpEOhTe+vjhinkA5c4S1iTyZ8Vr/lN78/1ND4R8OePvyQp9MDJm1L
+9cKpNPvebVEa1cEyOmB1Z4EAAAByQZ9nRRE8M/8AVmCzkALePuBN45nZvPIe9U/whPA5NswwyqiS
++e7Hm0WYOPu3HJ+H16y6VRYFqSUMe1KKnedLbaOa6tOxePS4tAejT830FhVAewASWWLBAsAd635y
+zz9DWObfoWRqPCenwrop2FxgJZeBAAAAQgGfhnRCvwCfZDH6sPJIw1IdLfIT4AAhYE157YFx49Ft
+LpfpYKRIAKXbbpy4EJ1f57z4TmZapm7Of8L7kJ/IgDnq8gAAAEwBn4hqQr8AnwS9p57BmjFEYRn+
+RQAWraGjhjSwksWW8a01aOHD6p50htB84qAMQP9ZMrmcayatXws45kSqZPNv4Nh4iEsqa3A+Jc6H
+AAAAtUGbjUmoQWiZTAh///6plgBiotJkAArfx5Wgcv+EU0nHhGhGXjxYYwN87nVqVuJLbEdhKSY3
+mwJW5k5HO3FOLRpzGExzgSbSbKgAMNqIAx/mfkpG+ZhwlC1+Ts0RQACw9rTUD9cLjuIGyW/KDts5
+1fPUUpytZiYgTHSAQy2DLRM6Pg4ruQASxi3gL4+V2mb5Hx21zzMLOa8XRs3bFhbfkSV7qCEdv/tL
+6+JtC9jqecs/JQqb5TUAAACSQZ+rRREsM/8AVlZ8AAHZG62a9hykhKCHojXDzb4z4IQaQ9I3Ou+c
+XWjRiHOTBsNsRKYHXf/MG3Dc8weiTIOd962GAAR1gOvr4zn0jpAO7j/UIzRpVFv/PY8WPWVyPnv3
+w9fobEZVIUoV6AeXM7EovcjQNet1zT6d+93460QJsZQKbQ2N1Je07W2WW7DQrrbYulgAAABgAZ/K
+dEK/AJ6xwSiRFEAEPz1yqpq+Lce2eThGYxdUJCZLqZXCzKumHHQUnd94am/MnOMTQJtXewAAkrp2
++GMiXPm8MpIb+a88z5eLBY5NNKpIxufrriQtPoR2u9eDIF3wAAAAUAGfzGpCvwCc8WVCaAD9R/0h
+c5AA4zfC6/5/3q6u0WVs7y49uAAFmhR7wmxZilofzzD7I74EvGPzWzACkdL0aD0BxTO6ZGpglnCW
+tTMSA1SxAAAAGUGb0UmoQWyZTAh///6plgAAAwAJT8Y0bEEAAAATQZ/vRRUsM/8AAAMAB++RLlJd
+nwAAAA8Bng50Qr8AAAMADtcBopAAAAANAZ4QakK/AAADAADFgAAAABZBmhVJqEFsmUwIf//+qZYA
+AAMAAHhBAAAAEUGeM0UVLDP/AAADAAJq0W2+AAAADQGeUnRCvwAAAwAAxYAAAAANAZ5UakK/AAAD
+AADFgQAAABZBmllJqEFsmUwId//+qZYAAAMAAHhAAAAAEUGed0UVLDP/AAADAAJq0W2/AAAADQGe
+lnRCvwAAAwAAxYEAAAANAZ6YakK/AAADAADFgAAAABZBmp1JqEFsmUwId//+qZYAAAMAAHhBAAAA
+EUGeu0UVLDP/AAADAAJq0W2+AAAADQGe2nRCvwAAAwAAxYEAAAANAZ7cakK/AAADAADFgQAAABVB
+msFJqEFsmUwIZ//+nhAAAAMAA6YAAAARQZ7/RRUsM/8AAAMAAmrRbb4AAAANAZ8edEK/AAADAADF
+gQAAAA0BnwBqQr8AAAMAAMWAAAAAFkGbA0moQWyZTBRMK//+OEAAAAMADjkAAAAPAZ8iakK/AAAD
+AAR4Mzo4AAAHkm1vb3YAAABsbXZoZAAAAAAAAAAAAAAAAAAAA+gAABOIAAEAAAEAAAAAAAAAAAAA
+AAABAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAIAAAa8dHJhawAAAFx0a2hkAAAAAwAAAAAAAAAAAAAAAQAAAAAAABOIAAAAAAAAAAAA
+AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAQAAAAAGwAAABsAAAAAAAJGVk
+dHMAAAAcZWxzdAAAAAAAAAABAAATiAAABAAAAQAAAAAGNG1kaWEAAAAgbWRoZAAAAAAAAAAAAAAA
+AAAAKAAAAMgAVcQAAAAAAC1oZGxyAAAAAAAAAAB2aWRlAAAAAAAAAAAAAAAAVmlkZW9IYW5kbGVy
+AAAABd9taW5mAAAAFHZtaGQAAAABAAAAAAAAAAAAAAAkZGluZgAAABxkcmVmAAAAAAAAAAEAAAAM
+dXJsIAAAAAEAAAWfc3RibAAAALdzdHNkAAAAAAAAAAEAAACnYXZjMQAAAAAAAAABAAAAAAAAAAAA
+AAAAAAAAAAGwAbAASAAAAEgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+ABj//wAAADVhdmNDAWQAFf/hABhnZAAVrNlBsN6EAAADAAQAAAMAoDxYtlgBAAZo6+PLIsD9+PgA
+AAAAHHV1aWRraEDyXyRPxbo5pRvPAyPzAAAAAAAAABhzdHRzAAAAAAAAAAEAAABkAAACAAAAABRz
+dHNzAAAAAAAAAAEAAAABAAAC4GN0dHMAAAAAAAAAWgAAAAEAAAQAAAAAAQAABgAAAAABAAACAAAA
+AAIAAAQAAAAAAQAABgAAAAABAAACAAAAAAcAAAQAAAAAAQAABgAAAAABAAACAAAAAAEAAAYAAAAA
+AQAAAgAAAAABAAAGAAAAAAEAAAIAAAAAAQAABgAAAAABAAACAAAAAAEAAAYAAAAAAQAAAgAAAAAB
+AAAGAAAAAAEAAAIAAAAAAQAABgAAAAABAAACAAAAAAEAAAYAAAAAAQAAAgAAAAABAAAGAAAAAAEA
+AAIAAAAAAQAABgAAAAABAAACAAAAAAEAAAYAAAAAAQAAAgAAAAABAAAIAAAAAAIAAAIAAAAAAQAA
+BgAAAAABAAACAAAAAAEAAAYAAAAAAQAAAgAAAAABAAAGAAAAAAEAAAIAAAAAAQAABgAAAAABAAAC
+AAAAAAEAAAYAAAAAAQAAAgAAAAABAAAIAAAAAAIAAAIAAAAAAQAABAAAAAABAAAGAAAAAAEAAAIA
+AAAAAQAABgAAAAABAAACAAAAAAEAAAYAAAAAAQAAAgAAAAABAAAIAAAAAAIAAAIAAAAAAQAABgAA
+AAABAAACAAAAAAEAAAYAAAAAAQAAAgAAAAABAAAGAAAAAAEAAAIAAAAAAQAABgAAAAABAAACAAAA
+AAEAAAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAA
+AQAAAgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAAB
+AAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAKAAAAAAEA
+AAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAA
+BgAAAAABAAACAAAAABxzdHNjAAAAAAAAAAEAAAABAAAAZAAAAAEAAAGkc3RzegAAAAAAAAAAAAAA
+ZAAAFE0AAAEkAAAAQwAAAM0AAAC5AAAAywAAAEkAAAC4AAAAfgAAALoAAAC4AAAAowAAAMIAAACK
+AAAAuQAAAEcAAACsAAAAYgAAArYAAAB5AAABHAAAAGIAAAEaAAAAUAAAALcAAABFAAAAxAAAAE8A
+AADwAAAATgAAALwAAABVAAAAwwAAAEAAAAEGAAAAPgAAAJwAAAA1AAAARwAAANQAAABLAAAAxwAA
+AFkAAADTAAAAQgAAAOoAAAA8AAAAtAAAAEwAAADkAAAASwAAAF8AAAC3AAAAwQAAAEgAAAC4AAAA
+XQAAAKQAAAA+AAAAqAAAAFAAAABLAAAAxAAAAE4AAADOAAAAUgAAANQAAABKAAAApgAAAEAAAAEB
+AAAAdgAAAEYAAABQAAAAuQAAAJYAAABkAAAAVAAAAB0AAAAXAAAAEwAAABEAAAAaAAAAFQAAABEA
+AAARAAAAGgAAABUAAAARAAAAEQAAABoAAAAVAAAAEQAAABEAAAAZAAAAFQAAABEAAAARAAAAGgAA
+ABMAAAAUc3RjbwAAAAAAAAABAAAAMAAAAGJ1ZHRhAAAAWm1ldGEAAAAAAAAAIWhkbHIAAAAAAAAA
+AG1kaXJhcHBsAAAAAAAAAAAAAAAALWlsc3QAAAAlqXRvbwAAAB1kYXRhAAAAAQAAAABMYXZmNTgu
+NzYuMTAw
+">
+  Your browser does not support the video tag.
+</video></div></div>
+</div>
+<p>Hopefully you will see a blue ball impacting a red ball close to the origin, no matter what initial velocity or angle is imparted to either sphere.</p>
+<hr class="docutils" />
+<p>One of the examples in the lecture had the following configuration:</p>
+<ul class="simple">
+<li><p>Sphere A: mass <span class="math notranslate nohighlight">\(2\)</span>kg, speed <span class="math notranslate nohighlight">\(8\rm{ms}^{-1}\)</span>, angle of incidence <span class="math notranslate nohighlight">\(45^o\)</span>.</p></li>
+<li><p>Sphere B: mass <span class="math notranslate nohighlight">\(2\)</span>kg, speed <span class="math notranslate nohighlight">\(0\rm{ms}^{-1}\)</span> (angle of incidence irrelevant).</p></li>
+<li><p>Coefficient of restitution <span class="math notranslate nohighlight">\(e=0.5\)</span>.</p></li>
+</ul>
+<p>Rerun the simulation to confirm our post-collision findings in the lecture:</p>
+<p><span class="math notranslate nohighlight">\(v_A=5.831\rm{ms}^{-1}\)</span> at angle of <span class="math notranslate nohighlight">\(75.96^{o}\)</span>, <span class="math notranslate nohighlight">\(v_B=4.243\rm{ms}^{-1}\)</span> at angle of <span class="math notranslate nohighlight">\(0^{o}\)</span> (i.e. along the LoC).</p>
+<hr class="docutils" />
+<p>The second example from the lectures stated</p>
+<ul class="simple">
+<li><p>Sphere A: mass <span class="math notranslate nohighlight">\(8\)</span>kg, speed <span class="math notranslate nohighlight">\(4\rm{ms}^{-1}\)</span>, angle of incidence <span class="math notranslate nohighlight">\(30^o\)</span>.</p></li>
+<li><p>Sphere B: mass <span class="math notranslate nohighlight">\(4\)</span>kg, speed <span class="math notranslate nohighlight">\(2\rm{ms}^{-1}\)</span>, angle of incidence <span class="math notranslate nohighlight">\(60^o\)</span>.</p></li>
+<li><p>Coefficient of restitution <span class="math notranslate nohighlight">\(e=1/2\)</span>.</p></li>
+</ul>
+<p>Rerun the simulation to confirm our post-collision findings in the lecture:</p>
+<p><span class="math notranslate nohighlight">\(v_A=2.997\rm{ms}^{-1}\)</span> at angle of <span class="math notranslate nohighlight">\(41.86^{o}\)</span>, <span class="math notranslate nohighlight">\(v_B=3.873\rm{ms}^{-1}\)</span> at angle of <span class="math notranslate nohighlight">\(26.57^{o}\)</span>.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="MAT201_JT_2DSphereWallCollisions.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">2D Oblique Wall Collisions</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By James Threlfall<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

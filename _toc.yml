@@ -1,0 +1,14 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: MAT201_JT_Python_Intro
+- file: MAT201_JT_relatingSVA.ipynb
+- file: MAT201_ADChapter20_1Dmotion.ipynb
+- file: MAT201_ADChapter21_1DmotionwithDrag.ipynb
+- file: MAT201_ADChapter22_2Dmotion.ipynb
+- file: MAT201_JT_SHM.ipynb
+- file: MAT201_JT_2DSphereWallCollisions.ipynb
+- file: MAT201_JT_2DSphereSphereCollisions.ipynb

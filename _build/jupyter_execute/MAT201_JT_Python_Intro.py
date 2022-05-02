@@ -4,7 +4,7 @@
 # 
 # # Introduction to Python
 # 
-# Interactive code to introduce and illustrate concepts from MAT201 at Abertay University (JT 2022) using Python.
+# Brief introduction to basic Python syntax, libraries, plotting in Jupyter notebooks.
 # 
 
 # ## General introduction

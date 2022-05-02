@@ -1,15 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Displacement, Velocity and Acceleration by Integration & Differentiation
-# 
-# Using Python's symbolic computation library, we will explore how displacement, velocity and acceleration are related, particularly in the case of uniform acceleration.
+# # Fluid Resistance and Terminal speed
+# Using Python's symbolic computation library, we will see how resistive forces affect motion.
 # 
 # If you have not already done so, please check out the MAT201 Python introduction notebook to better understand the content shown here.
 
-# In Lecture 1 of our Dynamics component of MAT201, we saw how to relate velocity, displacement and acceleration mathematically. Lecture two also focusses on expanding on these ideas, using Newton's Second Law to relate forces acting on objects with non-constant acceleration. The ultimate goal of both lectures is the same: given some information about an object, can you determine other related properties/behaviour using mathematics? 
+# In Lecture 3 of our Dynamics component of MAT201, we explored ideas of changing the balance of forces acting upon an object, particularly in the case where a resistive force is applied proportional to the velocity of the object. 
 # 
-# We'll repeat some of the examples we carried out in Lectures 1 and 2, with the help of Python. To do this, we'll require a library for symbolic computation called *sympy*. This library lets Python play with symbols, rather than numbers, and even solve algebraic equations. The first section in this worksheet will briefly demonstrate some key features of sympy (though more extensive documentation can easily be found online). Section 2 will explore applying these tools to uniform acceleration (Lecture 1) while Section 3 will focus on the behaviour of an object subject to a resistive force (non-constant acceleration, Lecture 2).
+# We'll explore some of the same ideas and use Python to solve these equations for us.
 
 # Let's go ahead and load in the libraries we need: in this case, we'll focus solely on sympy:
 # 
@@ -21,25 +20,26 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 import sympy as sym
 
 
-# ## Relating acceleration, velocity and displacement by differentiation and integration:
+# ## Resistive forces
 # 
-# In the lectures we saw that 
+# We have already considered general cases where an object may be subject to a resistive force. To recap, we saw that an object subject to a resistive force $R(v)$ would therefore be subject to Newton's Second Law as:
 # \begin{equation}
-# \int^s_{s_0} {\rm d}x = \int^t_0 v~{\rm{d}}t.
+#  m\frac{{\rm d}v}{{\rm d}t}=-R(v),
 # \end{equation}
-# This means that if we know the velocity, expressed as a function of time, we can **integrate** this to determine the displacement of the object (relative to its initial displacement). The constants of integration determine the range over which we're interested, usually between a time $t=$ (when the displacement is $s_0$) to some other time $t$ (when the displacement will be $s$).
-# Alternatively, if we know an expression describing the displacement as a function of time, we can **differentiate** this expression w.r.t time in order to determine the velocity (and the constants of integration will vanish).
-# 
-# 
-# We can see this in action in the examples shown in the lectures. In the first example we were told an expression describing the displacement $s=16t\left(4-t\right)$ and told to identify
-# 
-# 
-# 1.   The time the object comes to rest.
-# 2.   The initial velocity.
-# 3.   The distance moved when the velocity is half its initial value.
-# 4.   The acceleration when $t=4$.
-# 
-# Lets convert our expression to an equation in Python:
+# which can be separated and integrated to determine expresions for elapsed time $t$ as 
+# \begin{equation}
+# t=-m\int_{v_0}^{v}\frac{{\rm d}v}{R(v)},
+# \end{equation}
+# or indeed an expression for the object displacement $s$ as
+# \begin{equation}
+# s=s_0+\int_{t=0}^{t=t}v{\rm d}t.
+# \end{equation}
+
+# In[ ]:
+
+
+
+
 
 # In[2]:
 

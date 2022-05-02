@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Displacement, Velocity and Acceleration by Integration &amp; Differentiation &#8212; MAT201 Dynamics with Python</title>
+    <title>Fluid Resistance and Terminal speed &#8212; MAT201 Dynamics with Python</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,8 +55,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Vertical Motion (1D)" href="MAT201_ADChapter20_1Dmotion.html" />
-    <link rel="prev" title="Introduction to Python" href="MAT201_JT_Python_Intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -100,14 +98,14 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201_JT_Python_Intro.html">
    Introduction to Python
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201_JT_relatingSVA.html">
    Displacement, Velocity and Acceleration by Integration &amp; Differentiation
   </a>
  </li>
@@ -182,7 +180,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/MAT201_JT_relatingSVA.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/MAT201_JT_airresistance.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -202,7 +200,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/jwt104/MAT201DynamicsWithPythonBook/issues/new?title=Issue%20on%20page%20%2FMAT201_JT_relatingSVA.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/jwt104/MAT201DynamicsWithPythonBook/issues/new?title=Issue%20on%20page%20%2FMAT201_JT_airresistance.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -223,7 +221,7 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/jwt104/MAT201DynamicsWithPythonBook/main?urlpath=lab/tree/MAT201_JT_relatingSVA.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/jwt104/MAT201DynamicsWithPythonBook/main?urlpath=lab/tree/MAT201_JT_airresistance.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -231,7 +229,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/jwt104/MAT201DynamicsWithPythonBook/blob/main/MAT201_JT_relatingSVA.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/jwt104/MAT201DynamicsWithPythonBook/blob/main/MAT201_JT_airresistance.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
                     src="_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
@@ -251,8 +249,8 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#relating-acceleration-velocity-and-displacement-by-differentiation-and-integration">
-   Relating acceleration, velocity and displacement by differentiation and integration:
+  <a class="reference internal nav-link" href="#resistive-forces">
+   Resistive forces
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -275,7 +273,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Displacement, Velocity and Acceleration by Integration & Differentiation</h1>
+                <h1>Fluid Resistance and Terminal speed</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -286,8 +284,8 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#relating-acceleration-velocity-and-displacement-by-differentiation-and-integration">
-   Relating acceleration, velocity and displacement by differentiation and integration:
+  <a class="reference internal nav-link" href="#resistive-forces">
+   Resistive forces
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -309,12 +307,12 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="displacement-velocity-and-acceleration-by-integration-differentiation">
-<h1>Displacement, Velocity and Acceleration by Integration &amp; Differentiation<a class="headerlink" href="#displacement-velocity-and-acceleration-by-integration-differentiation" title="Permalink to this headline">¶</a></h1>
-<p>Using Python’s symbolic computation library, we will explore how displacement, velocity and acceleration are related, particularly in the case of uniform acceleration.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="fluid-resistance-and-terminal-speed">
+<h1>Fluid Resistance and Terminal speed<a class="headerlink" href="#fluid-resistance-and-terminal-speed" title="Permalink to this headline">¶</a></h1>
+<p>Using Python’s symbolic computation library, we will see how resistive forces affect motion.</p>
 <p>If you have not already done so, please check out the MAT201 Python introduction notebook to better understand the content shown here.</p>
-<p>In Lecture 1 of our Dynamics component of MAT201, we saw how to relate velocity, displacement and acceleration mathematically. Lecture two also focusses on expanding on these ideas, using Newton’s Second Law to relate forces acting on objects with non-constant acceleration. The ultimate goal of both lectures is the same: given some information about an object, can you determine other related properties/behaviour using mathematics?</p>
-<p>We’ll repeat some of the examples we carried out in Lectures 1 and 2, with the help of Python. To do this, we’ll require a library for symbolic computation called <em>sympy</em>. This library lets Python play with symbols, rather than numbers, and even solve algebraic equations. The first section in this worksheet will briefly demonstrate some key features of sympy (though more extensive documentation can easily be found online). Section 2 will explore applying these tools to uniform acceleration (Lecture 1) while Section 3 will focus on the behaviour of an object subject to a resistive force (non-constant acceleration, Lecture 2).</p>
+<p>In Lecture 3 of our Dynamics component of MAT201, we explored ideas of changing the balance of forces acting upon an object, particularly in the case where a resistive force is applied proportional to the velocity of the object.</p>
+<p>We’ll explore some of the same ideas and use Python to solve these equations for us.</p>
 <p>Let’s go ahead and load in the libraries we need: in this case, we’ll focus solely on sympy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -324,22 +322,20 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="relating-acceleration-velocity-and-displacement-by-differentiation-and-integration">
-<h2>Relating acceleration, velocity and displacement by differentiation and integration:<a class="headerlink" href="#relating-acceleration-velocity-and-displacement-by-differentiation-and-integration" title="Permalink to this headline">¶</a></h2>
-<p>In the lectures we saw that
+<div class="section" id="resistive-forces">
+<h2>Resistive forces<a class="headerlink" href="#resistive-forces" title="Permalink to this headline">¶</a></h2>
+<p>We have already considered general cases where an object may be subject to a resistive force. To recap, we saw that an object subject to a resistive force <span class="math notranslate nohighlight">\(R(v)\)</span> would therefore be subject to Newton’s Second Law as:
 \begin{equation}
-\int^s_{s_0} {\rm d}x = \int^t_0 v~{\rm{d}}t.
+m\frac{{\rm d}v}{{\rm d}t}=-R(v),
 \end{equation}
-This means that if we know the velocity, expressed as a function of time, we can <strong>integrate</strong> this to determine the displacement of the object (relative to its initial displacement). The constants of integration determine the range over which we’re interested, usually between a time <span class="math notranslate nohighlight">\(t=\)</span> (when the displacement is <span class="math notranslate nohighlight">\(s_0\)</span>) to some other time <span class="math notranslate nohighlight">\(t\)</span> (when the displacement will be <span class="math notranslate nohighlight">\(s\)</span>).
-Alternatively, if we know an expression describing the displacement as a function of time, we can <strong>differentiate</strong> this expression w.r.t time in order to determine the velocity (and the constants of integration will vanish).</p>
-<p>We can see this in action in the examples shown in the lectures. In the first example we were told an expression describing the displacement <span class="math notranslate nohighlight">\(s=16t\left(4-t\right)\)</span> and told to identify</p>
-<ol class="simple">
-<li><p>The time the object comes to rest.</p></li>
-<li><p>The initial velocity.</p></li>
-<li><p>The distance moved when the velocity is half its initial value.</p></li>
-<li><p>The acceleration when <span class="math notranslate nohighlight">\(t=4\)</span>.</p></li>
-</ol>
-<p>Lets convert our expression to an equation in Python:</p>
+which can be separated and integrated to determine expresions for elapsed time <span class="math notranslate nohighlight">\(t\)</span> as
+\begin{equation}
+t=-m\int_{v_0}^{v}\frac{{\rm d}v}{R(v)},
+\end{equation}
+or indeed an expression for the object displacement <span class="math notranslate nohighlight">\(s\)</span> as
+\begin{equation}
+s=s_0+\int_{t=0}^{t=t}v{\rm d}t.
+\end{equation}</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
@@ -579,21 +575,7 @@ s(0.5545177)= 3.20000000000000
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="MAT201_JT_Python_Intro.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Introduction to Python</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="MAT201_ADChapter20_1Dmotion.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Vertical Motion (1D)</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>

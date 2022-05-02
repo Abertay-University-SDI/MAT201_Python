@@ -131,6 +131,11 @@ const thebe_selector_output = ".output, .cell_output"
    2D Oblique Sphere Collisions
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="outro.html">
+   Summary
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -303,7 +308,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Harmonic Motion of A Spring<a class="headerlink" href="#harmonic-motion-of-a-spring" title="Permalink to this headline">¶</a></h1>
 <p>Interactive code to illustrate concepts from MAT201 at Abertay University (JT 2022).</p>
 <p>Notebook illustrates how to solve Newton’s Second Law for a force which induces Simple Harmonic Motion.We also create an animated object which behaves according to those laws. While the object is moving, notebook also draws accompanying distance, velocity and acceleration graphs..</p>
-<p><em>Plotting inspiration from http://firsttimeprogrammer.blogspot.com/2014/12/basic-physics-and-python-simple.html</em></p>
+<p><em>Plotting inspiration from <a class="reference external" href="http://firsttimeprogrammer.blogspot.com/2014/12/basic-physics-and-python-simple.html">http://firsttimeprogrammer.blogspot.com/2014/12/basic-physics-and-python-simple.html</a></em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -321,21 +326,23 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>Simple Harmonic Motion: Solving Newton’s Second Law<a class="headerlink" href="#simple-harmonic-motion-solving-newton-s-second-law" title="Permalink to this headline">¶</a></h2>
 <p>We’ll start by repeating the steps we saw by hand in the lecture to derive expressions for the displacement, velocity and acceleration of an object subject to simple Harmonic Motion.</p>
 <p>NB you may be required to perform these steps mathematically by hand <strong>for the exam</strong>; the symbolic computation approach here is just to verify our solutions and demonstrate the resulting behaviour of the object, governed by the mathematics seen in lectures.</p>
-<p>We saw that an object subject to a force of the form $F=-kx$ (for some constant $k$) causes that object to accelerate towards its equilibrium position, but due to its momentum, overshoots and repeatedly oscillates about this position.</p>
+<p>We saw that an object subject to a force of the form <span class="math notranslate nohighlight">\(F=-kx\)</span> (for some constant <span class="math notranslate nohighlight">\(k\)</span>) causes that object to accelerate towards its equilibrium position, but due to its momentum, overshoots and repeatedly oscillates about this position.</p>
 <p>Newton’s Second Law states:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d34e02fb-41f5-4a2a-882b-b1922efea598">
-<span class="eqno">(14)<a class="headerlink" href="#equation-d34e02fb-41f5-4a2a-882b-b1922efea598" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 \frac{{\rm{d}}^2x(t)}{{\rm{d}}t^2} = a(t) = \frac{F(t)}{m} = -\frac{k}{m}x(t),
-\end{equation}\]</div>
-<p>In the lectures, we saw that we could re-write the acceleration term $a$ as \begin{equation}
+\]</div>
+<p>In the lectures, we saw that we could re-write the acceleration term <span class="math notranslate nohighlight">\(a\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
 a=\frac{{\rm d}v}{{\rm{d}}t}=\frac{{\rm d}v}{{\rm{d}}x}\frac{{\rm d}x}{{\rm{d}}t}=v\frac{{\rm d}v}{{\rm{d}}x}.
-\end{equation}</p>
+\]</div>
 <p>Therefore we can state our equation as a separable first order differential equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e90aaf35-1a93-42db-acd0-a9348cb38c4d">
-<span class="eqno">(15)<a class="headerlink" href="#equation-e90aaf35-1a93-42db-acd0-a9348cb38c4d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 v\frac{{\rm d}v}{{\rm{d}}x}=-\frac{k}{m}x=-\omega^2x,
-\end{equation}\]</div>
-<p>(where we have replaced some of the constants with a frequency $\omega$).</p>
+\]</div>
+<p>(where we have replaced some of the constants with a frequency <span class="math notranslate nohighlight">\(\omega\)</span>).</p>
 <p>Python is great at solving differential equations. First we’ll set up the variables in the problem. The differential equation solver needs to know some of the properties of the symbols it will be working with in order to do its job more effectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -348,8 +355,8 @@ v\frac{{\rm d}v}{{\rm{d}}x}=-\frac{k}{m}x=-\omega^2x,
 </div>
 </div>
 </div>
-<p>Now we’ll create a differential equation and ask Python to solve it. We know from the lectures that we need to use some initial conditions to evaluate some of the constants of integration. In this case, we know that when the object is displaced by the amplitude of oscillation, $A$, then the velocity must be zero.</p>
-<p>Python can solve differential equations if all the terms are on one side of the equation and this equals zero. Shifting $-\omega^2x$ over to the LHS means that we can use <em>dsolve</em> (with the initial condition described above):</p>
+<p>Now we’ll create a differential equation and ask Python to solve it. We know from the lectures that we need to use some initial conditions to evaluate some of the constants of integration. In this case, we know that when the object is displaced by the amplitude of oscillation, <span class="math notranslate nohighlight">\(A\)</span>, then the velocity must be zero.</p>
+<p>Python can solve differential equations if all the terms are on one side of the equation and this equals zero. Shifting <span class="math notranslate nohighlight">\(-\omega^2x\)</span> over to the LHS means that we can use <em>dsolve</em> (with the initial condition described above):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq1</span> <span class="o">=</span> <span class="n">v</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">v</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span>
@@ -376,7 +383,7 @@ v\frac{{\rm d}v}{{\rm{d}}x}=-\frac{k}{m}x=-\omega^2x,
 </div>
 </div>
 <p>Both solutions are identical to those found in the lectures.</p>
-<p>Now lets work in time, and use the same tricks to calculate the displacement as a function of time. The differential equation solver in Python isn’t set up to know that our previous independent variable $x$ is now our <em>dependent</em> variable, $x(t)$. We have to make Python forget the earlier solution, and input it by hand, but we can solve it in the same way as before (while also stating the initial condition that at $t=0$, the displacement will be determined by $A\sin{\left(\phi\right)}$, where $\phi$ is our phase shift):</p>
+<p>Now lets work in time, and use the same tricks to calculate the displacement as a function of time. The differential equation solver in Python isn’t set up to know that our previous independent variable <span class="math notranslate nohighlight">\(x\)</span> is now our <em>dependent</em> variable, <span class="math notranslate nohighlight">\(x(t)\)</span>. We have to make Python forget the earlier solution, and input it by hand, but we can solve it in the same way as before (while also stating the initial condition that at <span class="math notranslate nohighlight">\(t=0\)</span>, the displacement will be determined by <span class="math notranslate nohighlight">\(A\sin{\left(\phi\right)}\)</span>, where <span class="math notranslate nohighlight">\(\phi\)</span> is our phase shift):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">real</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
@@ -401,7 +408,7 @@ a(t)= -A*ω**2*sin(phi + t*ω)
 </div>
 <div class="section" id="animating-simple-harmonic-motion">
 <h2>Animating Simple Harmonic Motion<a class="headerlink" href="#animating-simple-harmonic-motion" title="Permalink to this headline">¶</a></h2>
-<p>Now that we have verified our solutions to Newton’s Second Law for the force $F=-kx$, now its time to see what this looks like in action.</p>
+<p>Now that we have verified our solutions to Newton’s Second Law for the force <span class="math notranslate nohighlight">\(F=-kx\)</span>, now its time to see what this looks like in action.</p>
 <p>We’ll choose some initial values for the constants of motion. Feel free to change these and re-run the animation to see what difference this makes to the observed behaviour:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -450,7 +457,7 @@ First we’ll set up a figure containing 4 subplots so that we can plot lots of 
 </div>
 </div>
 <p>In the top figure, we’ll draw an object oscillating with SHM. For argument’s sake, we’ll make it a box.
-The first time we draw it, we’ll place the centre of the box at the position (i.e. displacement) at $t=0$. Quite often, this is at $x=0$, but also depends on the phase shift $\phi$. Once we’ve drawn everything, try changing the phase and seeing where the box is initially drawn.</p>
+The first time we draw it, we’ll place the centre of the box at the position (i.e. displacement) at <span class="math notranslate nohighlight">\(t=0\)</span>. Quite often, this is at <span class="math notranslate nohighlight">\(x=0\)</span>, but also depends on the phase shift <span class="math notranslate nohighlight">\(\phi\)</span>. Once we’ve drawn everything, try changing the phase and seeing where the box is initially drawn.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">box</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
@@ -465,7 +472,7 @@ The first time we draw it, we’ll place the centre of the box at the position (
 </div>
 </div>
 <p>Now, because we’re excellent at programming(!), I think it would help to see the size and direction of the velocity and acceleration vectors associated with the box.
-To do this, I’m going to make some arrows, centred on the middle of the box, and with sizes determined by $a(t)$ and $v(t)$.</p>
+To do this, I’m going to make some arrows, centred on the middle of the box, and with sizes determined by <span class="math notranslate nohighlight">\(a(t)\)</span> and <span class="math notranslate nohighlight">\(v(t)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">patch2</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Arrow</span><span class="p">(</span><span class="n">disp</span><span class="p">(</span><span class="mf">0.0</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">accel</span><span class="p">(</span><span class="mf">0.0</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
@@ -477,7 +484,7 @@ To do this, I’m going to make some arrows, centred on the middle of the box, a
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.patches.Arrow at 0x1155dda90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.patches.Arrow at 0x121cff850&gt;
 </pre></div>
 </div>
 </div>
@@ -538,7 +545,7 @@ To do this, I’m going to make some arrows, centred on the middle of the box, a
 </div>
 </div>
 </div>
-<p>Next comes the animation: essentially the code will count up in time, recalculate (and append) $t, x, v, a$ and then redraw both the object and arrows, and the graphs.</p>
+<p>Next comes the animation: essentially the code will count up in time, recalculate (and append) <span class="math notranslate nohighlight">\(t, x, v, a\)</span> and then redraw both the object and arrows, and the graphs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
@@ -1534,7 +1541,7 @@ You will also note that the acceleration reaches a maximum (or minimum) when the
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>In the first part of this notebook, we used Python to verify our mathematical solutions seen in the lectures. Remember that for MAT201, I expect you to be able to perform all the integration and differentiation steps yourself by hand in order to determine expressions for $x(t), v(t), v(x)$ and $a(t)$.</p>
+<p>In the first part of this notebook, we used Python to verify our mathematical solutions seen in the lectures. Remember that for MAT201, I expect you to be able to perform all the integration and differentiation steps yourself by hand in order to determine expressions for <span class="math notranslate nohighlight">\(x(t), v(t), v(x)\)</span> and <span class="math notranslate nohighlight">\(a(t)\)</span>.</p>
 <p>In the second part, we saw what these functions mean practically using an animation. Each of the graphs of displacement, velocity and acceleration are sinusoidal, and repeat over time, no matter the values of parameters chosen.</p>
 </div>
 </div>
@@ -1587,7 +1594,7 @@ You will also note that the acceleration reaches a maximum (or minimum) when the
     
       By James Threlfall<br/>
     
-        &copy; Copyright 2021.<br/>
+        &copy; Copyright 2022.<br/>
   </p>
 </footer>
 </main>

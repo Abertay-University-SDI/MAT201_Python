@@ -131,6 +131,11 @@ const thebe_selector_output = ".output, .cell_output"
    2D Oblique Sphere Collisions
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="outro.html">
+   Summary
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -316,18 +321,18 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="relating-acceleration-velocity-and-displacement-by-differentiation-and-integration">
 <h2>Relating acceleration, velocity and displacement by differentiation and integration:<a class="headerlink" href="#relating-acceleration-velocity-and-displacement-by-differentiation-and-integration" title="Permalink to this headline">¶</a></h2>
 <p>In the lectures we saw that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2ba840de-6837-4446-b554-a70c0710b29b">
-<span class="eqno">(3)<a class="headerlink" href="#equation-2ba840de-6837-4446-b554-a70c0710b29b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 \int^s_{s_0} {\rm d}x = \int^t_0 v~{\rm{d}}t.
-\end{equation}\]</div>
-<p>This means that if we know the velocity, expressed as a function of time, we can <strong>integrate</strong> this to determine the displacement of the object (relative to its initial displacement). The constants of integration determine the range over which we’re interested, usually between a time $t=$ (when the displacement is $s_0$) to some other time $t$ (when the displacement will be $s$).
+\]</div>
+<p>This means that if we know the velocity, expressed as a function of time, we can <strong>integrate</strong> this to determine the displacement of the object (relative to its initial displacement). The constants of integration determine the range over which we’re interested, usually between a time <span class="math notranslate nohighlight">\(t=\)</span> (when the displacement is <span class="math notranslate nohighlight">\(s_0\)</span>) to some other time <span class="math notranslate nohighlight">\(t\)</span> (when the displacement will be <span class="math notranslate nohighlight">\(s\)</span>).
 Alternatively, if we know an expression describing the displacement as a function of time, we can <strong>differentiate</strong> this expression w.r.t time in order to determine the velocity (and the constants of integration will vanish).</p>
-<p>We can see this in action in the examples shown in the lectures. In the first example we were told an expression describing the displacement $s=16t\left(4-t\right)$ and told to identify</p>
+<p>We can see this in action in the examples shown in the lectures. In the first example we were told an expression describing the displacement <span class="math notranslate nohighlight">\(s=16t\left(4-t\right)\)</span> and told to identify</p>
 <ol class="simple">
 <li><p>The time the object comes to rest.</p></li>
 <li><p>The initial velocity.</p></li>
 <li><p>The distance moved when the velocity is half its initial value.</p></li>
-<li><p>The acceleration when $t=4$.</p></li>
+<li><p>The acceleration when <span class="math notranslate nohighlight">\(t=4\)</span>.</p></li>
 </ol>
 <p>Lets convert our expression to an equation in Python:</p>
 <div class="cell docutils container">
@@ -339,7 +344,7 @@ Alternatively, if we know an expression describing the displacement as a functio
 </div>
 </div>
 <p>Now we can tackle Part 1.
-The object will be at rest when the velocity $=0$. To evaluate the time when this occurs, we first need to see how the velocity changes in time, by differentiating $s(t)$: $v={\rm{d}}s/{\rm{d}}t$. We then need to solve when this equals zero, for time $t$. We can ask Python to differentiate our expression for $s$ (giving us velocity) <em>and</em> solve when $v=0$, all in one line:</p>
+The object will be at rest when the velocity <span class="math notranslate nohighlight">\(=0\)</span>. To evaluate the time when this occurs, we first need to see how the velocity changes in time, by differentiating <span class="math notranslate nohighlight">\(s(t)\)</span>: <span class="math notranslate nohighlight">\(v={\rm{d}}s/{\rm{d}}t\)</span>. We then need to solve when this equals zero, for time <span class="math notranslate nohighlight">\(t\)</span>. We can ask Python to differentiate our expression for <span class="math notranslate nohighlight">\(s\)</span> (giving us velocity) <em>and</em> solve when <span class="math notranslate nohighlight">\(v=0\)</span>, all in one line:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_whenatrest</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">)</span>
@@ -353,7 +358,7 @@ The object will be at rest when the velocity $=0$. To evaluate the time when thi
 </div>
 </div>
 </div>
-<p>Part 2 requires the initial velocity. The initial velocity occurs when $t=0$, so we can ask Python to substitute the expression “t=0” into the velocity and solve:</p>
+<p>Part 2 requires the initial velocity. The initial velocity occurs when <span class="math notranslate nohighlight">\(t=0\)</span>, so we can ask Python to substitute the expression “t=0” into the velocity and solve:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
@@ -368,7 +373,7 @@ The object will be at rest when the velocity $=0$. To evaluate the time when thi
 </div>
 </div>
 </div>
-<p>Part 3 requires us to find the distance when the velocity has decreased to approximately half of its original value. This one is more complicated to set up, as we first have to calculate how long it will take for the velocity to drop by 0.5, and then substitute that value of $t$ into the expression we have for distance:</p>
+<p>Part 3 requires us to find the distance when the velocity has decreased to approximately half of its original value. This one is more complicated to set up, as we first have to calculate how long it will take for the velocity to drop by 0.5, and then substitute that value of <span class="math notranslate nohighlight">\(t\)</span> into the expression we have for distance:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_halfinitial</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">v_initial</span>
@@ -384,8 +389,12 @@ The object will be at rest when the velocity $=0$. To evaluate the time when thi
 </div>
 </div>
 </div>
-<p>Part 4 requires an acceleration, something we haven’t yet mentioned. Again from the lectures, we learned \begin{equation} \int_u^v ~{\rm{d}}v = \int_0^ta~{\rm{d}}t.\end{equation}
-This means that, to find an acceleration from a velocity, we differentiate velocity in time $a={\rm{d}}v/{\rm{d}}t$. If instead we know acceleration and require velocity, we must integrate.</p>
+<p>Part 4 requires an acceleration, something we haven’t yet mentioned. Again from the lectures, we learned</p>
+<div class="math notranslate nohighlight">
+\[
+\int_u^v ~{\rm{d}}v = \int_0^ta~{\rm{d}}t.
+\]</div>
+<p>This means that, to find an acceleration from a velocity, we differentiate velocity in time <span class="math notranslate nohighlight">\(a={\rm{d}}v/{\rm{d}}t\)</span>. If instead we know acceleration and require velocity, we must integrate.</p>
 <p>So to solve Part 4, we will differentiate the velocity in time. But our velocity expression is <em>already</em> a differential: we can calculate the acceleration by differentiating the displacement <em>twice</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -401,12 +410,12 @@ This means that, to find an acceleration from a velocity, we differentiate veloc
 </div>
 </div>
 <p>Note that the acceleration here is a constant. This means that this system adheres to the equations of motion for constant acceleration derived in MAT101:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8e3a2213-1f71-4fbe-964f-6198e502946e">
-<span class="eqno">(4)<a class="headerlink" href="#equation-8e3a2213-1f71-4fbe-964f-6198e502946e" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
-v &amp;=&amp; u + at, \\
-v^2 &amp;=&amp; u^2 + 2as, \\
-s &amp;=&amp; ut + \frac{1}{2}at^2.
-\end{eqnarray}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+v = u + at,\\
+v^2 = u^2 + 2as,\\
+s = ut + \frac{1}{2}at^2.
+\end{split}\]</div>
 <p>You should be able to show that hese expressions also differentiate or integrate to return each other, for example differentiating the expression for displacement returns:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -426,13 +435,13 @@ ds/dt= 1.0*a*t + u
 </div>
 </div>
 </div>
-<p>Python akways rearranges the equations so that the highest power of the variable (in this case $t$) is first: this is because mathematicians usually arrange their equations in order of powers, with the highest power of the primary variable at the beginning.</p>
+<p>Python akways rearranges the equations so that the highest power of the variable (in this case <span class="math notranslate nohighlight">\(t\)</span>) is first: this is because mathematicians usually arrange their equations in order of powers, with the highest power of the primary variable at the beginning.</p>
 </div>
 <div class="section" id="variable-acceleration">
 <h2>Variable acceleration<a class="headerlink" href="#variable-acceleration" title="Permalink to this headline">¶</a></h2>
 <p>We’ve now seen an example of how Python can be used to tackle problems of integration and differentiation in the case where the acceleration is constant. Many problems we will encounter involving motion of bodies will contain forces (and hence accelerations) which vary in time.</p>
 <p>We can use exactly the same tricks to try to solve these problems using <em>sympy</em>. To illustrate this, we’ll work through a video example we saw in Lecture 2. NB: Python is great at solving symbolic maths problems but <strong>you have to set up the problem correctly yourself first</strong>: Python will try to solve any problem set before it, even if it is different to the problem you are actually trying to solve! You will see this in this example: we have to arrange the problem in a specific way in order that Python will solve it correctly.</p>
-<p>Q: A body of mass $2~{\rm{kg}}$ is projected on a rough horizontal table which exerts a resistance given by $5v/2$ Newtons for velocity $v$. The initial velocity of the mass is $8~{\rm{ms}}^{-1}$. Find the time taken for the velocity to equal $4~{\rm{ms}}^{-1}$ and find the distance travelled in this time.</p>
+<p>Q: A body of mass <span class="math notranslate nohighlight">\(2~{\rm{kg}}\)</span> is projected on a rough horizontal table which exerts a resistance given by <span class="math notranslate nohighlight">\(5v/2\)</span> Newtons for velocity <span class="math notranslate nohighlight">\(v\)</span>. The initial velocity of the mass is <span class="math notranslate nohighlight">\(8~{\rm{ms}}^{-1}\)</span>. Find the time taken for the velocity to equal <span class="math notranslate nohighlight">\(4~{\rm{ms}}^{-1}\)</span> and find the distance travelled in this time.</p>
 <p>We’ll start by defining variables and functions, and convert the force in the question into an acceleration through Newton’s Second Law:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -452,22 +461,23 @@ ds/dt= 1.0*a*t + u
 </div>
 </div>
 </div>
-<p>NB we have specifically restricted the type of variable $v$ and $t$ can be, so that Python won’t look for Imaginary solutions later on in the calculation.</p>
+<p>NB we have specifically restricted the type of variable <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(t\)</span> can be, so that Python won’t look for Imaginary solutions later on in the calculation.</p>
 <p>From the lectures, we know that acceleration is the rate of change of velocity with time:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4a1883f8-d079-4049-8243-d46a8e1b2780">
-<span class="eqno">(5)<a class="headerlink" href="#equation-4a1883f8-d079-4049-8243-d46a8e1b2780" title="Permalink to this equation">¶</a></span>\[\begin{equation} a=\frac{{\rm{d}}v}{{\rm{d}}t}.
-\end{equation}\]</div>
-<p>This is a separable differential equation; multiplying both sides by ${\rm{d}}t$ and integrating yields:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3d0fab7c-6f96-40c3-b527-1ad6a0217d61">
-<span class="eqno">(6)<a class="headerlink" href="#equation-3d0fab7c-6f96-40c3-b527-1ad6a0217d61" title="Permalink to this equation">¶</a></span>\[\begin{equation} 
+<div class="math notranslate nohighlight">
+\[ 
+a=\frac{{\rm{d}}v}{{\rm{d}}t}.
+\]</div>
+<p>This is a separable differential equation; multiplying both sides by <span class="math notranslate nohighlight">\({\rm{d}}t\)</span> and integrating yields:</p>
+<div class="math notranslate nohighlight">
+\[ 
 \int_{t=0}^{t=t}{a(t)}~{\rm{d}}t=\int_{v=u}^{v=v}{\rm{d}}v.
-\end{equation}\]</div>
-<p>However, our expression for acceleration depends on $v$, not $t$ (for now). So we must move any velocity dependence over to the right hand side, because this is where all the velocity terms are:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-95eb750d-88e1-4a7f-b86a-e62941ac4eb0">
-<span class="eqno">(7)<a class="headerlink" href="#equation-95eb750d-88e1-4a7f-b86a-e62941ac4eb0" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray} 
-\int_{0}^{t}\frac{5v}{4}~{\rm{d}}t&amp;=&amp;\int_{u}^{v}{\rm{d}}v, \\
-\int_{0}^{t}\frac{5}{4}~{\rm{d}}t&amp;=&amp;\int_{u}^{v}\frac{{\rm{d}}v}{v}.
-\end{eqnarray}\]</div>
+\]</div>
+<p>However, our expression for acceleration depends on <span class="math notranslate nohighlight">\(v\)</span>, not <span class="math notranslate nohighlight">\(t\)</span> (for now). So we must move any velocity dependence over to the right hand side, because this is where all the velocity terms are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\int_{0}^{t}\frac{5v}{4}~{\rm{d}}t=\int_{u}^{v}{\rm{d}}v, \\
+\int_{0}^{t}\frac{5}{4}~{\rm{d}}t=\int_{u}^{v}\frac{{\rm{d}}v}{v}.
+\end{split}\]</div>
 <p>This is now an integral equation we can handle: lets make Python solve the left and right hand sides seperately:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -499,7 +509,7 @@ rhs:  1.0*log(v) - 1.0*log(8)
 </div>
 </div>
 </div>
-<p>So our particular solution matches that found in the video example. Now our task is to see which value of $t$ makes this expression equal $4{\rm{ms}}^{-1}$:</p>
+<p>So our particular solution matches that found in the video example. Now our task is to see which value of <span class="math notranslate nohighlight">\(t\)</span> makes this expression equal <span class="math notranslate nohighlight">\(4{\rm{ms}}^{-1}\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_4</span> <span class="o">=</span> <span class="mf">4.0</span>
@@ -514,12 +524,12 @@ rhs:  1.0*log(v) - 1.0*log(8)
 </div>
 </div>
 </div>
-<p>The question also asks us to evaluate an expression for the displacement travelled in this time. We know that displacement and velocity are related via $v={\rm{d}s}/{\rm{d}}t$, so we can again multiply both sides by ${\rm{d}}t$ to create an integral equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fb84d52a-a2db-4796-93c9-ce26ba69cdde">
-<span class="eqno">(8)<a class="headerlink" href="#equation-fb84d52a-a2db-4796-93c9-ce26ba69cdde" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>The question also asks us to evaluate an expression for the displacement travelled in this time. We know that displacement and velocity are related via <span class="math notranslate nohighlight">\(v={\rm{d}s}/{\rm{d}}t\)</span>, so we can again multiply both sides by <span class="math notranslate nohighlight">\({\rm{d}}t\)</span> to create an integral equation:</p>
+<div class="math notranslate nohighlight">
+\[
 \int_0^t{v}~{\rm{d}}t=\int_{s_0}^s {\rm{d}}s.
-\end{equation}\]</div>
-<p>The right hand side of this equation simply integrates to $s-s_0$, for initial displacement $s(t=0)=s_0$. If we assume this initial displacement is zero, then all we really want to know to answer the question is:
+\]</div>
+<p>The right hand side of this equation simply integrates to <span class="math notranslate nohighlight">\(s-s_0\)</span>, for initial displacement <span class="math notranslate nohighlight">\(s(t=0)=s_0\)</span>. If we assume this initial displacement is zero, then all we really want to know to answer the question is:
 to</p>
 <ul class="simple">
 <li><p>integrate the velocity once in time (yielding a general expression for the displacement as a function of time)</p></li>
@@ -541,7 +551,7 @@ s(0.5545177)= 3.20000000000000
 </div>
 </div>
 </div>
-<p>The values we obtain for the time and displacement when the velocity reduces to $4{\rm{ms}}^{-1}$ agrees with the values seen in the example video performed by hand.</p>
+<p>The values we obtain for the time and displacement when the velocity reduces to <span class="math notranslate nohighlight">\(4{\rm{ms}}^{-1}\)</span> agrees with the values seen in the example video performed by hand.</p>
 </div>
 <div class="section" id="over-to-you">
 <h2>Over To You<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
@@ -598,7 +608,7 @@ s(0.5545177)= 3.20000000000000
     
       By James Threlfall<br/>
     
-        &copy; Copyright 2021.<br/>
+        &copy; Copyright 2022.<br/>
   </p>
 </footer>
 </main>

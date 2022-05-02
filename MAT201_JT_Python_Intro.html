@@ -352,7 +352,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
-Requirement already satisfied: sympy in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (1.9)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: sympy in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (1.9)
 Requirement already satisfied: mpmath&gt;=0.19 in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from sympy) (1.2.1)
 </pre></div>
 </div>
@@ -439,9 +441,7 @@ Requirement already satisfied: mpmath&gt;=0.19 in /Users/jamesthrelfall/Library/
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sin(x)**2 + cos(x)**2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+1
 </pre></div>
 </div>
 </div>
@@ -461,7 +461,7 @@ Requirement already satisfied: mpmath&gt;=0.19 in /Users/jamesthrelfall/Library/
 <p>where the command has differentiated the first expression with respect to x. We can perform partial derivatives just as easily: lets say we need</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial}{\partial x} \left(x^3+y+axy\right), 
+\frac{\partial}{\partial x} \left(x^3+y+\frac{xy}{2}\right), 
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are independent variables:</p>
 <div class="cell docutils container">

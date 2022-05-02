@@ -111,18 +111,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="MAT201_ADChapter20_1Dmotion.html">
-   Vertical Motion (1D)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201_ADChapter21_1DmotionwithDrag.html">
-   Drag
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201_ADChapter22_2Dmotion.html">
-   Motion in 2D
+  <a class="reference internal" href="MAT201_JT_airresistance.html">
+   Fluid Resistance and Terminal speed
   </a>
  </li>
  <li class="toctree-l1">
@@ -244,6 +234,19 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#over-to-you">
+   Over To You
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -256,6 +259,19 @@ const thebe_selector_output = ".output, .cell_output"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#over-to-you">
+   Over To You
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -348,9 +364,15 @@ With our initial conditions, this means calculating initial components of veloci
 In MAT201 we learned that 2D sphere collisions essentially boil down to:</p>
 <ol class="simple">
 <li><p>perpendicular velocities remain unchanged</p></li>
-<li><p>conservation of momentum (parallel to LOC)</p></li>
-<li><p>Newton’s Law of Restitution (parallel to LOC).</p></li>
+<li><p>conservation of momentum (parallel to LOC):</p></li>
 </ol>
+<div class="math notranslate nohighlight">
+\[ m_{1}U_{1}\cos{\alpha}+m_{2}U_{2}\cos{\beta}=m_{1}v_{1}+m_{2}v_{2} \]</div>
+<ol class="simple">
+<li><p>Newton’s Law of Restitution (parallel to LOC):</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[ v_{2}-v_{1}=e\left(U_{1}\cos{\alpha}-U_{2}\cos{\beta}\right). \]</div>
 <p>The first item fixes the <span class="math notranslate nohighlight">\(y\)</span>-components of velocity; the final two equations reduce to a set of simultaneous equations to solve for <span class="math notranslate nohighlight">\(v_x\)</span> of each particle.</p>
 <p>When we tackle these problems by hand, we usually use substitution or row operations. Python is excellent at solving simultaneous equations (as we will see), provided we format the simultaneous equations in matrix form <span class="math notranslate nohighlight">\(Ax=B\)</span>. This then means that the solutions are given by inverting matrix <span class="math notranslate nohighlight">\(A\)</span> and multiplying it to the coefficients in <span class="math notranslate nohighlight">\(B\)</span>; mathematically, <span class="math notranslate nohighlight">\(A^{-1}Ax=Ix=A^{-1}B\)</span> for identity matrix <span class="math notranslate nohighlight">\(I\)</span>. We’ll therefore arrange some of the coefficients in the final two equations to be in the form of a matrix:</p>
 <div class="cell docutils container">
@@ -470,7 +492,7 @@ In MAT201 we learned that 2D sphere collisions essentially boil down to:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x111adb3d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x1113f5730&gt;
 </pre></div>
 </div>
 <img alt="_images/MAT201_JT_2DSphereSphereCollisions_24_1.png" src="_images/MAT201_JT_2DSphereSphereCollisions_24_1.png" />
@@ -849,6 +871,14 @@ NzYuMTAw
 </div>
 <p>Hopefully you will see a blue ball impacting a red ball close to the origin, no matter what initial velocity or angle is imparted to either sphere.</p>
 <hr class="docutils" />
+<div class="section" id="over-to-you">
+<h2>Over To You<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
+<p>This worksheet illustrates how to use symbolic Python can solve a set of simultaneous equations for us: those equations happen to be conservation of linear momentum and Newton’s Law of Restitution, and are applied to spheres which collide in 2D.</p>
+<p>Try this for yourself:</p>
+<ol class="simple">
+<li><p>Change some of the constants in the problem: what happens when velocities or angles change?</p></li>
+<li><p>Examine other lecture examples using this code:</p></li>
+</ol>
 <p>One of the examples in the lecture had the following configuration:</p>
 <ul class="simple">
 <li><p>Sphere A: mass <span class="math notranslate nohighlight">\(2\)</span>kg, speed <span class="math notranslate nohighlight">\(8\rm{ms}^{-1}\)</span>, angle of incidence <span class="math notranslate nohighlight">\(45^o\)</span>.</p></li>
@@ -866,6 +896,10 @@ NzYuMTAw
 </ul>
 <p>Rerun the simulation to confirm our post-collision findings in the lecture:</p>
 <p><span class="math notranslate nohighlight">\(v_A=2.997\rm{ms}^{-1}\)</span> at angle of <span class="math notranslate nohighlight">\(41.86^{o}\)</span>, <span class="math notranslate nohighlight">\(v_B=3.873\rm{ms}^{-1}\)</span> at angle of <span class="math notranslate nohighlight">\(26.57^{o}\)</span>.</p>
+<ol class="simple">
+<li><p>Attempt a few of the related tutorial questions, and see if you can confirm your worked solutions using the approaches demonstrated in this notebook. For example, you could confirm some of</p></li>
+</ol>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

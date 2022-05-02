@@ -399,9 +399,7 @@ Note that the signs associated with each force are incredibly important.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lhs:  t/m
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhs:  1.0*log(-9.81*m)/k - 1.0*log(1.0*k*v - 9.81*m)/k
+rhs:  1.0*log(-9.81*m)/k - 1.0*log(1.0*k*v - 9.81*m)/k
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v(x): 9.81*m*(1.0 - exp(-k*t/m))/k
@@ -476,13 +474,10 @@ Note that the signs associated with each force are incredibly important.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a(t):
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a(t): 9.81*exp(-k*t/m)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 9.81*exp(-k*t/m)
-</pre></div>
-</div>
-<img alt="_images/MAT201_JT_airresistance_16_2.png" src="_images/MAT201_JT_airresistance_16_2.png" />
+<img alt="_images/MAT201_JT_airresistance_16_1.png" src="_images/MAT201_JT_airresistance_16_1.png" />
 </div>
 </div>
 <p>We can see again that, initially the object accelerates at a value of <span class="math notranslate nohighlight">\(g=9.81{\rm{ms}}^{-2}\)</span>, but air resistance causes the acceleration to fall to zero, at which point terminal velocity is achieved.</p>

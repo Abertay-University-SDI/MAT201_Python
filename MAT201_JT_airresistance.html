@@ -246,8 +246,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#variable-acceleration">
-   Variable acceleration
+  <a class="reference internal nav-link" href="#projectile-motion">
+   Projectile Motion
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -281,8 +281,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#variable-acceleration">
-   Variable acceleration
+  <a class="reference internal nav-link" href="#projectile-motion">
+   Projectile Motion
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -310,13 +310,18 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
+<span class="kn">from</span> <span class="nn">sympy.utilities.lambdify</span> <span class="kn">import</span> <span class="n">lambdify</span><span class="p">,</span> <span class="n">implemented_function</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="resistive-forces">
 <h2>Resistive forces<a class="headerlink" href="#resistive-forces" title="Permalink to this headline">¶</a></h2>
-<p>We have already considered general cases where an object may be subject to a resistive force. To recap, we saw that an object subject to a resistive force <span class="math notranslate nohighlight">\(R(v)\)</span> would therefore be subject to Newton’s Second Law as:
+<p>We have already considered general cases where an object may be subject to a single resistive force. To recap, we saw that an object subject to a resistive force <span class="math notranslate nohighlight">\(R(v)\)</span> would therefore be subject to Newton’s Second Law as:
 \begin{equation}
 m\frac{{\rm d}v}{{\rm d}t}=-R(v),
 \end{equation}
@@ -327,219 +332,205 @@ t=-m\int_{v_0}^{v}\frac{{\rm d}v}{R(v)},
 or indeed an expression for the object displacement <span class="math notranslate nohighlight">\(s\)</span> as
 \begin{equation}
 s=s_0+\int_{t=0}^{t=t}v{\rm d}t.
-\end{equation}</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
-<span class="n">s</span> <span class="o">=</span> <span class="mi">16</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="p">(</span> <span class="mi">4</span> <span class="o">-</span> <span class="n">t</span> <span class="p">)</span>
-</pre></div>
+\end{equation}
+But what happens if multiple forces act upon the body? A good example of this is projectile motion, where an object is accelerating (due to gravity), but is also subject to a resistive force.</p>
 </div>
-</div>
-</div>
-<p>Now we can tackle Part 1.
-The object will be at rest when the velocity <span class="math notranslate nohighlight">\(=0\)</span>. To evaluate the time when this occurs, we first need to see how the velocity changes in time, by differentiating <span class="math notranslate nohighlight">\(s(t)\)</span>: <span class="math notranslate nohighlight">\(v={\rm{d}}s/{\rm{d}}t\)</span>. We then need to solve when this equals zero, for time <span class="math notranslate nohighlight">\(t\)</span>. We can ask Python to differentiate our expression for <span class="math notranslate nohighlight">\(s\)</span> (giving us velocity) <em>and</em> solve when <span class="math notranslate nohighlight">\(v=0\)</span>, all in one line:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_whenatrest</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. =&quot;</span><span class="p">,</span> <span class="n">time_whenatrest</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1. = [2]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Part 2 requires the initial velocity. The initial velocity occurs when <span class="math notranslate nohighlight">\(t=0\)</span>, so we can ask Python to substitute the expression “t=0” into the velocity and solve:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-<span class="n">v_initial</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span> <span class="n">subs</span><span class="o">=</span><span class="p">{</span><span class="n">t</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span> <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. = &quot;</span><span class="p">,</span> <span class="n">v_initial</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2. =  64.0000000000000
-</pre></div>
-</div>
-</div>
-</div>
-<p>Part 3 requires us to find the distance when the velocity has decreased to approximately half of its original value. This one is more complicated to set up, as we first have to calculate how long it will take for the velocity to drop by 0.5, and then substitute that value of <span class="math notranslate nohighlight">\(t\)</span> into the expression we have for distance:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_halfinitial</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">v_initial</span>
-<span class="n">t_halfinitialv</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">v</span> <span class="o">-</span> <span class="n">v_halfinitial</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
-<span class="n">s_halfinitialv</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="n">subs</span><span class="o">=</span><span class="p">{</span><span class="n">t</span><span class="p">:</span><span class="n">t_halfinitialv</span><span class="p">[</span><span class="mi">0</span><span class="p">]})</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3. = &quot;</span><span class="p">,</span> <span class="n">s_halfinitialv</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3. =  48.0000000000000
-</pre></div>
-</div>
-</div>
-</div>
-<p>Part 4 requires an acceleration, something we haven’t yet mentioned. Again from the lectures, we learned \begin{equation} \int_u^v ~{\rm{d}}v = \int_0^ta~{\rm{d}}t.\end{equation}
-This means that, to find an acceleration from a velocity, we differentiate velocity in time <span class="math notranslate nohighlight">\(a={\rm{d}}v/{\rm{d}}t\)</span>. If instead we know acceleration and require velocity, we must integrate.</p>
-<p>So to solve Part 4, we will differentiate the velocity in time. But our velocity expression is <em>already</em> a differential: we can calculate the acceleration by differentiating the displacement <em>twice</em>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accel</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4. =&quot;</span><span class="p">,</span> <span class="n">accel</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4. = -32
-</pre></div>
-</div>
-</div>
-</div>
-<p>Note that the acceleration here is a constant. This means that this system adheres to the equations of motion for constant acceleration derived in MAT101:
-\begin{eqnarray}
-v &amp;=&amp; u + at, \
-v^2 &amp;=&amp; u^2 + 2as, \
-s &amp;=&amp; ut + \frac{1}{2}at^2.
-\end{eqnarray}</p>
-<p>You should be able to show that hese expressions also differentiate or integrate to return each other, for example differentiating the expression for displacement returns:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">u</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">t</span> <span class="o">**</span> <span class="mi">2</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;s=&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> 
-<span class="n">v</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ds/dt=&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>s= 0.5*a*t**2 + t*u
-ds/dt= 1.0*a*t + u
-</pre></div>
-</div>
-</div>
-</div>
-<p>Python akways rearranges the equations so that the highest power of the variable (in this case <span class="math notranslate nohighlight">\(t\)</span>) is first: this is because mathematicians usually arrange their equations in order of powers, with the highest power of the primary variable at the beginning.</p>
-</div>
-<div class="section" id="variable-acceleration">
-<h2>Variable acceleration<a class="headerlink" href="#variable-acceleration" title="Permalink to this headline">¶</a></h2>
-<p>We’ve now seen an example of how Python can be used to tackle problems of integration and differentiation in the case where the acceleration is constant. Many problems we will encounter involving motion of bodies will contain forces (and hence accelerations) which vary in time.</p>
-<p>We can use exactly the same tricks to try to solve these problems using <em>sympy</em>. To illustrate this, we’ll work through a video example we saw in Lecture 2. NB: Python is great at solving symbolic maths problems but <strong>you have to set up the problem correctly yourself first</strong>: Python will try to solve any problem set before it, even if it is different to the problem you are actually trying to solve! You will see this in this example: we have to arrange the problem in a specific way in order that Python will solve it correctly.</p>
-<p>Q: A body of mass <span class="math notranslate nohighlight">\(2~{\rm{kg}}\)</span> is projected on a rough horizontal table which exerts a resistance given by <span class="math notranslate nohighlight">\(5v/2\)</span> Newtons for velocity <span class="math notranslate nohighlight">\(v\)</span>. The initial velocity of the mass is <span class="math notranslate nohighlight">\(8~{\rm{ms}}^{-1}\)</span>. Find the time taken for the velocity to equal <span class="math notranslate nohighlight">\(4~{\rm{ms}}^{-1}\)</span> and find the distance travelled in this time.</p>
-<p>We’ll start by defining variables and functions, and convert the force in the question into an acceleration through Newton’s Second Law:</p>
+<div class="section" id="projectile-motion">
+<h2>Projectile Motion<a class="headerlink" href="#projectile-motion" title="Permalink to this headline">¶</a></h2>
+<p>In the case where an object is acted upon by several forces, some of which may vary according to variables like velocity, we must consider the <em>sum</em> of forces acting on the body, in order to use Newton’s Second Law to describe the motion, e.g.
+\begin{equation}
+\sum{F}=mg-R(v)=ma.
+\end{equation}
+Note that the signs associated with each force are incredibly important.</p>
+<p>The direction and magnitude of forces acting upon a body may confusingly change with time: consider a ball thrown directly upwards, which during <em>ascent</em> will have air resistance acting in the same direction as gravity, at its maximum height will be motionless (and hence no air resistance), and upon <em>descent</em> will have air resistance acting to counter gravity. We may have to break up our treatment of the dynamics of objects into different stages depending on the forces and how they act over time.</p>
+<p>In the lectures we saw a general case described for a mass released from rest from a cliff. This object goes on to achieve terminal velocity before impact. We’ll repeat that general case to examine the behaviour of the solution.</p>
+<p>In that example, an object was released from rest, and was subject to a resistive force <span class="math notranslate nohighlight">\(-kv\)</span> and the force of gravity. We first use Newton’s Law to determine the acceleration of the object as a function of the object’s velocity:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">v_ini</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="n">mass</span> <span class="o">=</span> <span class="mf">2.0</span>
-<span class="n">F_res</span> <span class="o">=</span> <span class="o">-</span><span class="mf">5.0</span> <span class="o">*</span> <span class="n">v</span> <span class="o">/</span> <span class="mf">2.0</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">F_res</span><span class="o">/</span><span class="n">mass</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span>
+<span class="n">v_ini</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">F_res</span> <span class="o">=</span> <span class="o">-</span><span class="n">k</span> <span class="o">*</span> <span class="n">v</span>
+<span class="n">F_g</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">g</span>
+<span class="n">F_total</span> <span class="o">=</span> <span class="n">F_res</span> <span class="o">+</span> <span class="n">F_g</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">F_total</span><span class="o">/</span><span class="n">m</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a=&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a= -1.25*v
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a= (-k*v + 9.81*m)/m
 </pre></div>
 </div>
 </div>
 </div>
-<p>NB we have specifically restricted the type of variable <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(t\)</span> can be, so that Python won’t look for Imaginary solutions later on in the calculation.</p>
-<p>From the lectures, we know that acceleration is the rate of change of velocity with time:
-\begin{equation} a=\fracv}t}.
-\end{equation}
-This is a separable differential equation; multiplying both sides by <span class="math notranslate nohighlight">\({\rm{d}}t\)</span> and integrating yields:
-\begin{equation}
-\int_{t=0}^{t=t}{a(t)}~{\rm{d}}t=\int_{v=u}^{v=v}{\rm{d}}v.
-\end{equation}
-However, our expression for acceleration depends on <span class="math notranslate nohighlight">\(v\)</span>, not <span class="math notranslate nohighlight">\(t\)</span> (for now). So we must move any velocity dependence over to the right hand side, because this is where all the velocity terms are:
-\begin{eqnarray}
-\int_{0}^{t}\frac{5v}{4}~{\rm{d}}t&amp;=&amp;\int_{u}^{v}{\rm{d}}v, \
-\int_{0}^{t}\frac{5}{4}~{\rm{d}}t&amp;=&amp;\int_{u}^{v}\fracv}{v}.
-\end{eqnarray}
-This is now an integral equation we can handle: lets make Python solve the left and right hand sides seperately:</p>
+<p>Over time the resistance force will grow with the velocity of the object, until it <em>matches</em> the force created by gravity. These forces will then cancel each other, yielding <em>no net acceleration</em>. The velocity at which this occurs is called the <strong>terminal velocity</strong>. To calculate the terminal velocity, we set acceleration <span class="math notranslate nohighlight">\(a=0\)</span> and solve for the velocity:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lhs</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">v</span><span class="p">,(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_terminal</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">F_total</span><span class="o">/</span><span class="n">m</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v_terminal</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[9.81*m/k]
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected, this is the value is identical to the expression we determined in the lectures.</p>
+<p>To obtain the acceleration, velocity and position of the object over time, we have to separate and integrate Newton’s Second Law. To emphasise that this is a separable equation, we collect all the terms involving velocity on one side of the equation (RHS), and keep some of the constants on the other (LHS):
+(NB: This may take a few seconds!)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lhs</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">,(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lhs: &quot;</span><span class="p">,</span><span class="n">lhs</span><span class="p">)</span>
-<span class="n">rhs</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">v</span><span class="p">,(</span><span class="n">v</span><span class="p">,</span> <span class="n">v_ini</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">F_total</span><span class="p">,(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rhs: &quot;</span><span class="p">,</span><span class="n">rhs</span><span class="p">)</span>
+<span class="n">vofx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">rhs</span> <span class="o">-</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;v(x):&quot;</span><span class="p">,</span><span class="n">vofx</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lhs:  -1.25*t
-rhs:  1.0*log(v) - 1.0*log(8)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lhs:  t/m
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhs:  1.0*log(-9.81*m)/k - 1.0*log(1.0*k*v - 9.81*m)/k
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v(x): 9.81*m*(1.0 - exp(-k*t/m))/k
 </pre></div>
 </div>
 </div>
 </div>
-<p>Having integrated each side separately, we can move one result over to the other side and ask Python to solve the equation “RHS-LHS=0”:</p>
+<p>Having integrated each side separately, we can move one result over to the other side and ask Python to solve the equation “RHS-LHS=0”, to determine velocity as a function of time:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solution</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">rhs</span> <span class="o">-</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;v(t):&quot;</span><span class="p">,</span><span class="n">solution</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">voft</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">rhs</span> <span class="o">-</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;v(t):&quot;</span><span class="p">,</span><span class="n">voft</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v(t): [8.0*exp(-1.25*t)]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v(t): [9.81*m*(1.0 - exp(-k*t/m))/k]
 </pre></div>
 </div>
 </div>
 </div>
-<p>So our particular solution matches that found in the video example. Now our task is to see which value of <span class="math notranslate nohighlight">\(t\)</span> makes this expression equal <span class="math notranslate nohighlight">\(4{\rm{ms}}^{-1}\)</span>:</p>
+<p>Once again this matches the velocity we found in the lectures. But what does this actually represent?</p>
+<p>Lets plot this on a graph, and include the solution to the same equations but <strong>only</strong> including the force of gravity. In the lectures, we did this using a Taylor series expansion, but we can let Python resolve the same set of equations but including only <span class="math notranslate nohighlight">\(F_g\)</span>. In order to visualise this, we’ll assume a mass <span class="math notranslate nohighlight">\(m=2{\rm{kg}}\)</span> and <span class="math notranslate nohighlight">\(k=1\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_4</span> <span class="o">=</span> <span class="mf">4.0</span>
-<span class="n">t_4</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solution</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">v_4</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time taken for v=4m/s: &quot;</span><span class="p">,</span> <span class="n">t_4</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">voft</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span><span class="mi">1</span><span class="p">}),</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">lhs2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">,(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+<span class="n">rhs2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">F_g</span><span class="p">,(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+<span class="n">voft2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">rhs2</span> <span class="o">-</span> <span class="n">lhs2</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="n">func2</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">voft2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">xvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mf">.2</span><span class="p">)</span>
+<span class="n">yvals</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">xvals</span><span class="p">)</span>
+<span class="n">yvals2</span> <span class="o">=</span> <span class="n">func2</span><span class="p">(</span><span class="n">xvals</span><span class="p">)</span>
+
+<span class="c1"># make figure</span>
+<span class="n">fig2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">yvals</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mg-kv&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">yvals2</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mg&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;v(t)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time taken for v=4m/s:  [0.554517744447956]
-</pre></div>
+<img alt="_images/MAT201_JT_airresistance_14_0.png" src="_images/MAT201_JT_airresistance_14_0.png" />
 </div>
 </div>
-</div>
-<p>The question also asks us to evaluate an expression for the displacement travelled in this time. We know that displacement and velocity are related via <span class="math notranslate nohighlight">\(v={\rm{d}s}/{\rm{d}}t\)</span>, so we can again multiply both sides by <span class="math notranslate nohighlight">\({\rm{d}}t\)</span> to create an integral equation:
-\begin{equation}
-\int_0^t{v}~{\rm{d}}t=\int_{s_0}^s {\rm{d}}s.
-\end{equation}
-The right hand side of this equation simply integrates to <span class="math notranslate nohighlight">\(s-s_0\)</span>, for initial displacement <span class="math notranslate nohighlight">\(s(t=0)=s_0\)</span>. If we assume this initial displacement is zero, then all we really want to know to answer the question is:
-to</p>
-<ul class="simple">
-<li><p>integrate the velocity once in time (yielding a general expression for the displacement as a function of time)</p></li>
-<li><p>evaluate that expression at the time we obtained earlier:</p></li>
-</ul>
+<p>In the graph, you can see that both velocities initially grow in exactly the same way, but the red curve begins to decelerate after a short time. Air resistance quickly forces the object to slow and have a constant velocity: the resistive force <strong>matches</strong> the force due to gravity, meaning that there is no acceleration.</p>
+<p>We can also examine the acceleration as a function of time both with and without the resistive force. To do this, we differentiate our velocity result:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">solution</span><span class="p">[</span><span class="mi">0</span><span class="p">],(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;s(t)=&quot;</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
-<span class="n">s_t4</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="n">subs</span><span class="o">=</span><span class="p">{</span><span class="n">t</span><span class="p">:</span><span class="n">t_4</span><span class="p">[</span><span class="mi">0</span><span class="p">]})</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;s(0.5545177)=&quot;</span><span class="p">,</span><span class="n">s_t4</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aoft</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">voft</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a(t):&quot;</span><span class="p">,</span> <span class="n">aoft</span><span class="p">)</span>
+<span class="n">aoft2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">voft2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">)</span>
+<span class="n">func3</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">aoft</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span><span class="mi">1</span><span class="p">}),</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">ayvals</span> <span class="o">=</span> <span class="n">func3</span><span class="p">(</span><span class="n">xvals</span><span class="p">)</span>
+
+<span class="c1"># make figure</span>
+<span class="n">fig3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">ayvals</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mg-kv&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">],[</span><span class="n">aoft2</span><span class="p">,</span><span class="n">aoft2</span><span class="p">],</span><span class="s1">&#39;b--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mg&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;a(t)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>s(t)= 6.4 - 6.4*exp(-1.25*t)
-s(0.5545177)= 3.20000000000000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a(t):
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 9.81*exp(-k*t/m)
+</pre></div>
+</div>
+<img alt="_images/MAT201_JT_airresistance_16_2.png" src="_images/MAT201_JT_airresistance_16_2.png" />
+</div>
+</div>
+<p>We can see again that, initially the object accelerates at a value of <span class="math notranslate nohighlight">\(g=9.81{\rm{ms}}^{-2}\)</span>, but air resistance causes the acceleration to fall to zero, at which point terminal velocity is achieved.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soft</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">voft</span><span class="p">[</span><span class="mi">0</span><span class="p">],(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;s(t):&quot;</span><span class="p">,</span> <span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">soft</span><span class="p">))</span>
+<span class="n">soft2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">voft2</span><span class="p">[</span><span class="mi">0</span><span class="p">],(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+<span class="n">func4</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">soft</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span><span class="mi">1</span><span class="p">}),</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">func5</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">soft2</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span><span class="mi">1</span><span class="p">}),</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">syvals</span> <span class="o">=</span> <span class="n">func4</span><span class="p">(</span><span class="n">xvals</span><span class="p">)</span>
+<span class="n">syvals2</span> <span class="o">=</span> <span class="n">func5</span><span class="p">(</span><span class="n">xvals</span><span class="p">)</span>
+
+<span class="c1"># make figure</span>
+<span class="n">fig3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">syvals</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mg-kv&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">syvals2</span><span class="p">,</span><span class="s1">&#39;g--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mg&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;s(t)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>s(t): 9.81*m*t/k - 9.81*m**2/k**2 + 9.81*m**2*exp(-k*t/m)/k**2
+</pre></div>
 </div>
-<p>The values we obtain for the time and displacement when the velocity reduces to <span class="math notranslate nohighlight">\(4{\rm{ms}}^{-1}\)</span> agrees with the values seen in the example video performed by hand.</p>
+<img alt="_images/MAT201_JT_airresistance_18_1.png" src="_images/MAT201_JT_airresistance_18_1.png" />
+</div>
+</div>
+<p>Once more we obtain the expressions and graph found in the lectures. In this case, the displacement will grow over time faster in the case where there is no resistive force, as expected. In the case with resistance, the trend levels off: this is to be expected (if the acceleration is zero, the velocity is constant, we should expect distance to linearly depend on time).</p>
 </div>
 <div class="section" id="over-to-you">
 <h2>Over To You<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
-<p>This worksheet illustrates how to use symbolic Python to relate displacement, velocity and acceleration through integration and differentiation. However, care has to be taken to set up the integral/differential equation correctly, depending on the objective.</p>
-<p>Try this for yourself: identify one or two completed tutorial questions or lecture examples and see if you can repeat the processes seen above to complete the question using Python.</p>
+<p>This worksheet illustrates how to use symbolic Python to illustrate solutions of Newton’s Second Law, for objects subject to both constant acceleration and a resistive force which depends on the velocity.</p>
+<p>Try this for yourself:</p>
+<ol class="simple">
+<li><p>Change some of the constants in the problem: what happens when the mass is doubled or when the initial velocity is not zero? How do these constants affect the behaviour</p></li>
+<li><p>The resistive force changes if the speed of the object is particularly high. In the lectures, we categorised these resistive forces as
+\begin{equation}
+f = Dv^2,
+\end{equation}
+for a different proportionality constant <span class="math notranslate nohighlight">\(D\)</span>. Change the form of the force from the low speed <span class="math notranslate nohighlight">\(-kv\)</span> to the high speed <span class="math notranslate nohighlight">\(-Dv^2\)</span> form in this notebook, and see if you can establish how objects behave in this second regime.</p></li>
+<li><p>Attempt a few of the related tutorial questions, and see if you can confirm your worked solutions using the approaches demonstrated in this notebook.</p></li>
+</ol>
 </div>
 </div>
 

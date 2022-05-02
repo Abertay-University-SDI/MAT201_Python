@@ -112,18 +112,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="MAT201_ADChapter20_1Dmotion.html">
-   Vertical Motion (1D)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201_ADChapter21_1DmotionwithDrag.html">
-   Drag
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201_ADChapter22_2Dmotion.html">
-   Motion in 2D
+  <a class="reference internal" href="MAT201_JT_airresistance.html">
+   Fluid Resistance and Terminal speed
   </a>
  </li>
  <li class="toctree-l1">
@@ -245,6 +235,19 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#over-to-you">
+   Over To You
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -257,6 +260,19 @@ const thebe_selector_output = ".output, .cell_output"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#over-to-you">
+   Over To You
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -267,7 +283,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>2D Oblique Wall Collisions<a class="headerlink" href="#d-oblique-wall-collisions" title="Permalink to this headline">¶</a></h1>
 <p>Interactive code to illustrate concepts from MAT201 at Abertay University (JT 2022).</p>
 <p>Visualisation of ball collision with a wall.
-Given a value of speed, angle of incidence and coeff. of restitution, calculate beta and post-collision speed and animate.</p>
+Given a value of speed, angle of incidence and coefficient of restitution, calculate beta and post-collision speed and animate.</p>
 <p>First we’ll load in the libraries we need to create our example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -299,11 +315,17 @@ Given a value of speed, angle of incidence and coeff. of restitution, calculate 
 </div>
 </div>
 </div>
-<p>These initial parameters will determine the behaviour of the ball after it collides with the wall. From the lectures, we know that
-$<span class="math notranslate nohighlight">\( \tan{\left( \beta \right)}=e\tan{\left(\alpha\right)}\)</span><span class="math notranslate nohighlight">\(
-and
-\)</span><span class="math notranslate nohighlight">\(v^2=u^2\left( \cos^2{\left(\alpha\right)}+e^2\sin^2{\left( \alpha\right)}\right).\)</span><span class="math notranslate nohighlight">\(
-We can rearrange both of these equations to determine \)</span>\beta<span class="math notranslate nohighlight">\( and \)</span>v$ (remembering also that Python trig. functions only accept arguments in radians, so we’ll convert them on the fly):</p>
+<p>These initial parameters will determine the behaviour of the ball after it collides with the wall. From the lectures, we know that</p>
+<div class="math notranslate nohighlight">
+\[
+\tan{\left( \beta \right)}=e\tan{\left(\alpha\right)}
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+v^2=u^2\left( \cos^2{\left(\alpha\right)}+e^2\sin^2{\left( \alpha\right)}\right).
+\]</div>
+<p>We can rearrange both of these equations to determine <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(v\)</span> (remembering also that Python trig. functions only accept arguments in radians, so we’ll convert them on the fly):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># angle after bounce (in radians)</span>
@@ -662,6 +684,15 @@ bAAAAAAAAAAAAAAAAC1pbHN0AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU4Ljc2LjEwMA==
 </video></div></div>
 </div>
 <p>And there we see the ball, hitting the wall, and changing direction depending on the initial angle of incidence and the coefficient of restitution.</p>
+<div class="section" id="over-to-you">
+<h2>Over To You<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
+<p>This worksheet illustrates how the mathematics equations taught in lectures control the final velocity and angle of a collision between a ball and a vertical wall.</p>
+<p>Try this for yourself:</p>
+<ol class="simple">
+<li><p>Change some of the constants in the problem: what happens if you choose different speeds or initial angles? Make sure you adjust the plot window to view the behaviour of the sphere.</p></li>
+<li><p>Attempt a few of the related tutorial questions, and see if you can confirm your worked solutions using this notebook: print out the final angle and velocities!</p></li>
+</ol>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

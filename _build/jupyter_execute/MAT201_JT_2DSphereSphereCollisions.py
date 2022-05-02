@@ -93,8 +93,13 @@ extent = 2 * int(math.ceil(lval))
 # In MAT201 we learned that 2D sphere collisions essentially boil down to:
 # 
 # 1.   perpendicular velocities remain unchanged
-# 2.   conservation of momentum (parallel to LOC)
-# 3.   Newton's Law of Restitution (parallel to LOC).
+# 2.   conservation of momentum (parallel to LOC):
+# 
+# $$ m_{1}U_{1}\cos{\alpha}+m_{2}U_{2}\cos{\beta}=m_{1}v_{1}+m_{2}v_{2} $$
+# 
+# 3.   Newton's Law of Restitution (parallel to LOC):
+# 
+# $$ v_{2}-v_{1}=e\left(U_{1}\cos{\alpha}-U_{2}\cos{\beta}\right). $$
 # 
 # The first item fixes the $y$-components of velocity; the final two equations reduce to a set of simultaneous equations to solve for $v_x$ of each particle. 
 # 
@@ -255,8 +260,17 @@ HTML(ani.to_html5_video())
 # 
 # 
 
+# ## Over To You
+# 
+# This worksheet illustrates how to use symbolic Python can solve a set of simultaneous equations for us: those equations happen to be conservation of linear momentum and Newton's Law of Restitution, and are applied to spheres which collide in 2D.
 # 
 # 
+# Try this for yourself: 
+# 
+# 
+# 1. Change some of the constants in the problem: what happens when velocities or angles change?
+# 2. Examine other lecture examples using this code:
+#     
 # One of the examples in the lecture had the following configuration:
 # 
 # *   Sphere A: mass $2$kg, speed $8\rm{ms}^{-1}$, angle of incidence $45^o$.
@@ -273,9 +287,6 @@ HTML(ani.to_html5_video())
 # ---
 # 
 # 
-# 
-
-# 
 # The second example from the lectures stated
 # 
 # *   Sphere A: mass $8$kg, speed $4\rm{ms}^{-1}$, angle of incidence $30^o$.
@@ -285,6 +296,8 @@ HTML(ani.to_html5_video())
 # Rerun the simulation to confirm our post-collision findings in the lecture: 
 # 
 # $v_A=2.997\rm{ms}^{-1}$ at angle of $41.86^{o}$, $v_B=3.873\rm{ms}^{-1}$ at angle of $26.57^{o}$.
+#     
+# 3. Attempt a few of the related tutorial questions, and see if you can confirm your worked solutions using the approaches demonstrated in this notebook. For example, you could confirm some of
 
 # In[ ]:
 

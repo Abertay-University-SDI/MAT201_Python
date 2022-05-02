@@ -18,11 +18,16 @@
 
 get_ipython().run_line_magic('matplotlib', 'inline')
 import sympy as sym
+import numpy as np
+import math 
+import matplotlib.pyplot as plt 
+import matplotlib.gridspec as gridspec
+from sympy.utilities.lambdify import lambdify, implemented_function
 
 
 # ## Resistive forces
 # 
-# We have already considered general cases where an object may be subject to a resistive force. To recap, we saw that an object subject to a resistive force $R(v)$ would therefore be subject to Newton's Second Law as:
+# We have already considered general cases where an object may be subject to a single resistive force. To recap, we saw that an object subject to a resistive force $R(v)$ would therefore be subject to Newton's Second Law as:
 # \begin{equation}
 #  m\frac{{\rm d}v}{{\rm d}t}=-R(v),
 # \end{equation}
@@ -34,181 +39,173 @@ import sympy as sym
 # \begin{equation}
 # s=s_0+\int_{t=0}^{t=t}v{\rm d}t.
 # \end{equation}
+# But what happens if multiple forces act upon the body? A good example of this is projectile motion, where an object is accelerating (due to gravity), but is also subject to a resistive force.
+# 
 
-# In[ ]:
-
-
-
-
+# ## Projectile Motion
+# 
+# In the case where an object is acted upon by several forces, some of which may vary according to variables like velocity, we must consider the *sum* of forces acting on the body, in order to use Newton's Second Law to describe the motion, e.g.
+# \begin{equation}
+# \sum{F}=mg-R(v)=ma.
+# \end{equation}
+# Note that the signs associated with each force are incredibly important. 
+# 
+# The direction and magnitude of forces acting upon a body may confusingly change with time: consider a ball thrown directly upwards, which during *ascent* will have air resistance acting in the same direction as gravity, at its maximum height will be motionless (and hence no air resistance), and upon *descent* will have air resistance acting to counter gravity. We may have to break up our treatment of the dynamics of objects into different stages depending on the forces and how they act over time. 
+# 
+# In the lectures we saw a general case described for a mass released from rest from a cliff. This object goes on to achieve terminal velocity before impact. We'll repeat that general case to examine the behaviour of the solution.
+# 
+# In that example, an object was released from rest, and was subject to a resistive force $-kv$ and the force of gravity. We first use Newton's Law to determine the acceleration of the object as a function of the object's velocity:
+# 
 
 # In[2]:
 
 
-t = sym.Symbol('t')
-s = 16 * t * ( 4 - t )
+v = sym.Symbol('v',real=True)
+x = sym.Symbol('x',real=True)
+t = sym.Symbol('t',real=True, positive=True)
+m = sym.Symbol('m',real=True, positive=True)
+k = sym.Symbol('k',real=True, positive=True)
+D = sym.Symbol('D',real=True, positive=True)
+g = 9.81
+v_ini = 0
+F_res = -k * v
+F_g = m*g
+F_total = F_res + F_g
+a = F_total/m
+print("a=",a)
 
 
-# Now we can tackle Part 1.
-# The object will be at rest when the velocity $=0$. To evaluate the time when this occurs, we first need to see how the velocity changes in time, by differentiating $s(t)$: $v={\rm{d}}s/{\rm{d}}t$. We then need to solve when this equals zero, for time $t$. We can ask Python to differentiate our expression for $s$ (giving us velocity) *and* solve when $v=0$, all in one line:
+# Over time the resistance force will grow with the velocity of the object, until it *matches* the force created by gravity. These forces will then cancel each other, yielding *no net acceleration*. The velocity at which this occurs is called the **terminal velocity**. To calculate the terminal velocity, we set acceleration $a=0$ and solve for the velocity:
 
 # In[3]:
 
 
-time_whenatrest = sym.solve( sym.diff(s, t), t)
-print("1. =", time_whenatrest)
+v_terminal = sym.solve(F_total/m, v)
+print(v_terminal)
 
 
-# Part 2 requires the initial velocity. The initial velocity occurs when $t=0$, so we can ask Python to substitute the expression "t=0" into the velocity and solve:
+# As expected, this is the value is identical to the expression we determined in the lectures.
+# 
+# To obtain the acceleration, velocity and position of the object over time, we have to separate and integrate Newton's Second Law. To emphasise that this is a separable equation, we collect all the terms involving velocity on one side of the equation (RHS), and keep some of the constants on the other (LHS):
+# (NB: This may take a few seconds!)
 
 # In[4]:
 
 
-v = sym.diff(s, t)
-v_initial = v.evalf( subs={t:0} )
-print("2. = ", v_initial)
+lhs = sym.integrate(1/m,(t, 0, t))
+print("lhs: ",lhs)
+rhs = sym.integrate(1.0 / F_total,(v, 0, v))
+print("rhs: ",rhs)
+vofx = sym.solve(rhs - lhs, v)
+print("v(x):",vofx[0])
 
 
-# Part 3 requires us to find the distance when the velocity has decreased to approximately half of its original value. This one is more complicated to set up, as we first have to calculate how long it will take for the velocity to drop by 0.5, and then substitute that value of $t$ into the expression we have for distance:
+# Having integrated each side separately, we can move one result over to the other side and ask Python to solve the equation "RHS-LHS=0", to determine velocity as a function of time:
 
 # In[5]:
 
 
-v_halfinitial = 0.5 * v_initial
-t_halfinitialv = sym.solve(v - v_halfinitial,t)
-s_halfinitialv = s.evalf(subs={t:t_halfinitialv[0]})
-print("3. = ", s_halfinitialv)
+voft = sym.solve(rhs - lhs, v)
+print("v(t):",voft)
 
 
-# Part 4 requires an acceleration, something we haven't yet mentioned. Again from the lectures, we learned \begin{equation} \int_u^v ~{\rm{d}}v = \int_0^ta~{\rm{d}}t.\end{equation}
-# This means that, to find an acceleration from a velocity, we differentiate velocity in time $a={\rm{d}}v/{\rm{d}}t$. If instead we know acceleration and require velocity, we must integrate.
+# Once again this matches the velocity we found in the lectures. But what does this actually represent?
 # 
-# So to solve Part 4, we will differentiate the velocity in time. But our velocity expression is *already* a differential: we can calculate the acceleration by differentiating the displacement *twice*:
+# Lets plot this on a graph, and include the solution to the same equations but **only** including the force of gravity. In the lectures, we did this using a Taylor series expansion, but we can let Python resolve the same set of equations but including only $F_g$. In order to visualise this, we'll assume a mass $m=2{\rm{kg}}$ and $k=1$:
+# 
 # 
 
 # In[6]:
 
 
-accel = sym.diff( s, t, t)
-print("4. =", accel)
+func = lambdify(t, voft[0].subs({m: 2, k:1}),'numpy')
+lhs2 = sym.integrate(1/m,(t, 0, t))
+rhs2 = sym.integrate(1.0 / F_g,(v, 0, v))
+voft2 = sym.solve(rhs2 - lhs2, v)
+func2 = lambdify(t, voft2[0].subs({m: 2}),'numpy')
+xvals = np.arange(0,20,.2)
+yvals = func(xvals)
+yvals2 = func2(xvals)
+
+# make figure
+fig2 = plt.figure(figsize=(8,4))
+plt.plot(xvals,yvals,'r',label='mg-kv')
+plt.plot(xvals,yvals2,'r--',label='mg')
+plt.ylim([0, 25])
+plt.xlabel("t")
+plt.ylabel("v(t)")
+plt.legend(loc='best')
+plt.show()
 
 
-# Note that the acceleration here is a constant. This means that this system adheres to the equations of motion for constant acceleration derived in MAT101:
-# \begin{eqnarray}
-# v &=& u + at, \\
-# v^2 &=& u^2 + 2as, \\
-# s &=& ut + \frac{1}{2}at^2.
-# \end{eqnarray}
+# In the graph, you can see that both velocities initially grow in exactly the same way, but the red curve begins to decelerate after a short time. Air resistance quickly forces the object to slow and have a constant velocity: the resistive force **matches** the force due to gravity, meaning that there is no acceleration.
 # 
-# You should be able to show that hese expressions also differentiate or integrate to return each other, for example differentiating the expression for displacement returns:
-# 
+# We can also examine the acceleration as a function of time both with and without the resistive force. To do this, we differentiate our velocity result:
 
 # In[7]:
 
 
-u = sym.Symbol('u')
-a = sym.Symbol('a')
-s = u * t + 0.5 * a * t ** 2
-print("s=", s) 
-v = sym.diff(s,t)
-print("ds/dt=", v)
+aoft = sym.diff(voft[0],t)
+print("a(t):", aoft)
+aoft2 = sym.diff(voft2[0],t)
+func3 = lambdify(t, aoft.subs({m: 2, k:1}),'numpy')
+ayvals = func3(xvals)
+
+# make figure
+fig3 = plt.figure(figsize=(8,4))
+plt.plot(xvals,ayvals,'b',label='mg-kv')
+plt.plot([0,20],[aoft2,aoft2],'b--',label='mg')
+plt.ylim([0, 10])
+plt.xlim([0,20])
+plt.xlabel("t")
+plt.ylabel("a(t)")
+plt.legend(loc='best')
+plt.show()
 
 
-# Python akways rearranges the equations so that the highest power of the variable (in this case $t$) is first: this is because mathematicians usually arrange their equations in order of powers, with the highest power of the primary variable at the beginning.
-
-# ## Variable acceleration
-# 
-# We've now seen an example of how Python can be used to tackle problems of integration and differentiation in the case where the acceleration is constant. Many problems we will encounter involving motion of bodies will contain forces (and hence accelerations) which vary in time.
-# 
-# We can use exactly the same tricks to try to solve these problems using *sympy*. To illustrate this, we'll work through a video example we saw in Lecture 2. NB: Python is great at solving symbolic maths problems but **you have to set up the problem correctly yourself first**: Python will try to solve any problem set before it, even if it is different to the problem you are actually trying to solve! You will see this in this example: we have to arrange the problem in a specific way in order that Python will solve it correctly.
-# 
-# Q: A body of mass $2~{\rm{kg}}$ is projected on a rough horizontal table which exerts a resistance given by $5v/2$ Newtons for velocity $v$. The initial velocity of the mass is $8~{\rm{ms}}^{-1}$. Find the time taken for the velocity to equal $4~{\rm{ms}}^{-1}$ and find the distance travelled in this time.
-# 
-# We'll start by defining variables and functions, and convert the force in the question into an acceleration through Newton's Second Law:
+# We can see again that, initially the object accelerates at a value of $g=9.81{\rm{ms}}^{-2}$, but air resistance causes the acceleration to fall to zero, at which point terminal velocity is achieved.
 
 # In[8]:
 
 
-v = sym.Symbol('v',real=True)
-t = sym.Symbol('t',real=True)
-v_ini = 8
-mass = 2.0
-F_res = -5.0 * v / 2.0
-a = F_res/mass
-print("a=",a)
+soft = sym.integrate(voft[0],(t, 0, t))
+print("s(t):", sym.simplify(soft))
+soft2 = sym.integrate(voft2[0],(t, 0, t))
+func4 = lambdify(t, soft.subs({m: 2, k:1}),'numpy')
+func5 = lambdify(t, soft2.subs({m: 2, k:1}),'numpy')
+syvals = func4(xvals)
+syvals2 = func5(xvals)
+
+# make figure
+fig3 = plt.figure(figsize=(8,4))
+plt.plot(xvals,syvals,'g',label='mg-kv')
+plt.plot(xvals,syvals2,'g--',label='mg')
+plt.ylim([0, 400])
+plt.xlim([0,20])
+plt.xlabel("t")
+plt.ylabel("s(t)")
+plt.legend(loc='best')
+plt.show()
 
 
-# NB we have specifically restricted the type of variable $v$ and $t$ can be, so that Python won't look for Imaginary solutions later on in the calculation.
-
-# From the lectures, we know that acceleration is the rate of change of velocity with time: 
-# \begin{equation} a=\frac{{\rm{d}}v}{{\rm{d}}t}.
-# \end{equation}
-# This is a separable differential equation; multiplying both sides by ${\rm{d}}t$ and integrating yields:
-# \begin{equation} 
-# \int_{t=0}^{t=t}{a(t)}~{\rm{d}}t=\int_{v=u}^{v=v}{\rm{d}}v.
-# \end{equation}
-# However, our expression for acceleration depends on $v$, not $t$ (for now). So we must move any velocity dependence over to the right hand side, because this is where all the velocity terms are:
-# \begin{eqnarray} 
-# \int_{0}^{t}\frac{5v}{4}~{\rm{d}}t&=&\int_{u}^{v}{\rm{d}}v, \\
-# \int_{0}^{t}\frac{5}{4}~{\rm{d}}t&=&\int_{u}^{v}\frac{{\rm{d}}v}{v}.
-# \end{eqnarray}
-# This is now an integral equation we can handle: lets make Python solve the left and right hand sides seperately:
-
-# In[9]:
-
-
-lhs = sym.integrate(a / v,(t, 0, t))
-print("lhs: ",lhs)
-rhs = sym.integrate(1.0 / v,(v, v_ini, v))
-print("rhs: ",rhs)
-
-
-# Having integrated each side separately, we can move one result over to the other side and ask Python to solve the equation "RHS-LHS=0":
-
-# In[10]:
-
-
-solution = sym.solve(rhs - lhs, v)
-print("v(t):",solution)
-
-
-# So our particular solution matches that found in the video example. Now our task is to see which value of $t$ makes this expression equal $4{\rm{ms}}^{-1}$:
-
-# In[11]:
-
-
-v_4 = 4.0
-t_4 = sym.solve(solution[0] - v_4, t)
-print("time taken for v=4m/s: ", t_4)
-
-
-# The question also asks us to evaluate an expression for the displacement travelled in this time. We know that displacement and velocity are related via $v={\rm{d}s}/{\rm{d}}t$, so we can again multiply both sides by ${\rm{d}}t$ to create an integral equation:
-# \begin{equation}
-# \int_0^t{v}~{\rm{d}}t=\int_{s_0}^s {\rm{d}}s.
-# \end{equation}
-# The right hand side of this equation simply integrates to $s-s_0$, for initial displacement $s(t=0)=s_0$. If we assume this initial displacement is zero, then all we really want to know to answer the question is:
-# to 
-# 
-# *   integrate the velocity once in time (yielding a general expression for the displacement as a function of time)
-# *   evaluate that expression at the time we obtained earlier:
-# 
-# 
-
-# In[12]:
-
-
-s = sym.integrate(solution[0],(t, 0, t))
-print("s(t)=",s)
-s_t4 = s.evalf(subs={t:t_4[0]})
-print("s(0.5545177)=",s_t4)
-
-
-# The values we obtain for the time and displacement when the velocity reduces to $4{\rm{ms}}^{-1}$ agrees with the values seen in the example video performed by hand.
+# Once more we obtain the expressions and graph found in the lectures. In this case, the displacement will grow over time faster in the case where there is no resistive force, as expected. In the case with resistance, the trend levels off: this is to be expected (if the acceleration is zero, the velocity is constant, we should expect distance to linearly depend on time).
 
 # ## Over To You
 # 
-# This worksheet illustrates how to use symbolic Python to relate displacement, velocity and acceleration through integration and differentiation. However, care has to be taken to set up the integral/differential equation correctly, depending on the objective.
+# This worksheet illustrates how to use symbolic Python to illustrate solutions of Newton's Second Law, for objects subject to both constant acceleration and a resistive force which depends on the velocity.
 # 
-# Try this for yourself: identify one or two completed tutorial questions or lecture examples and see if you can repeat the processes seen above to complete the question using Python.
+# 
+# Try this for yourself: 
+# 
+# 
+# 1.   Change some of the constants in the problem: what happens when the mass is doubled or when the initial velocity is not zero? How do these constants affect the behaviour
+# 2.   The resistive force changes if the speed of the object is particularly high. In the lectures, we categorised these resistive forces as 
+# \begin{equation}
+# f = Dv^2,
+# \end{equation}
+# for a different proportionality constant $D$. Change the form of the force from the low speed $-kv$ to the high speed $-Dv^2$ form in this notebook, and see if you can establish how objects behave in this second regime.
+# 3.   Attempt a few of the related tutorial questions, and see if you can confirm your worked solutions using the approaches demonstrated in this notebook.
+# 
 
 # In[ ]:
 

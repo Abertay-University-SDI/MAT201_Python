@@ -6,7 +6,7 @@
 # Interactive code to illustrate concepts from MAT201 at Abertay University (JT 2022).
 # 
 # Visualisation of ball collision with a wall. 
-# Given a value of speed, angle of incidence and coeff. of restitution, calculate beta and post-collision speed and animate.
+# Given a value of speed, angle of incidence and coefficient of restitution, calculate beta and post-collision speed and animate.
 
 # First we'll load in the libraries we need to create our example:
 
@@ -39,10 +39,18 @@ e = 0.5
 dt = 0.005
 
 
-# These initial parameters will determine the behaviour of the ball after it collides with the wall. From the lectures, we know that 
-# $$ \tan{\left( \beta \right)}=e\tan{\left(\alpha\right)}$$
+# These initial parameters will determine the behaviour of the ball after it collides with the wall. From the lectures, we know that
+# 
+# $$
+# \tan{\left( \beta \right)}=e\tan{\left(\alpha\right)}
+# $$
+# 
 # and
-# $$v^2=u^2\left( \cos^2{\left(\alpha\right)}+e^2\sin^2{\left( \alpha\right)}\right).$$
+# 
+# $$
+# v^2=u^2\left( \cos^2{\left(\alpha\right)}+e^2\sin^2{\left( \alpha\right)}\right).
+# $$
+# 
 # We can rearrange both of these equations to determine $\beta$ and $v$ (remembering also that Python trig. functions only accept arguments in radians, so we'll convert them on the fly):
 
 # In[3]:
@@ -156,6 +164,18 @@ HTML(ani.to_html5_video())
 
 
 # And there we see the ball, hitting the wall, and changing direction depending on the initial angle of incidence and the coefficient of restitution.
+
+# ## Over To You
+# 
+# This worksheet illustrates how the mathematics equations taught in lectures control the final velocity and angle of a collision between a ball and a vertical wall.
+# 
+# 
+# Try this for yourself: 
+# 
+# 
+# 1.   Change some of the constants in the problem: what happens if you choose different speeds or initial angles? Make sure you adjust the plot window to view the behaviour of the sphere.
+# 
+# 2.   Attempt a few of the related tutorial questions, and see if you can confirm your worked solutions using this notebook: print out the final angle and velocities!
 
 # In[ ]:
 

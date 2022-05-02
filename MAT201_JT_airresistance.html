@@ -302,10 +302,9 @@ const thebe_selector_output = ".output, .cell_output"
   <div class="tex2jax_ignore mathjax_ignore section" id="fluid-resistance-and-terminal-speed">
 <h1>Fluid Resistance and Terminal speed<a class="headerlink" href="#fluid-resistance-and-terminal-speed" title="Permalink to this headline">¶</a></h1>
 <p>Using Python’s symbolic computation library, we will see how resistive forces affect motion.</p>
-<p>If you have not already done so, please check out the MAT201 Python introduction notebook to better understand the content shown here.</p>
 <p>In Lecture 3 of our Dynamics component of MAT201, we explored ideas of changing the balance of forces acting upon an object, particularly in the case where a resistive force is applied proportional to the velocity of the object.</p>
 <p>We’ll explore some of the same ideas and use Python to solve these equations for us.</p>
-<p>Let’s go ahead and load in the libraries we need: in this case, we’ll focus solely on sympy:</p>
+<p>Let’s go ahead and load in the libraries we need: in this case, we’ll need <em>numpy</em>, <em>sympy</em> and some plotting routines for later:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -321,30 +320,34 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="resistive-forces">
 <h2>Resistive forces<a class="headerlink" href="#resistive-forces" title="Permalink to this headline">¶</a></h2>
-<p>We have already considered general cases where an object may be subject to a single resistive force. To recap, we saw that an object subject to a resistive force <span class="math notranslate nohighlight">\(R(v)\)</span> would therefore be subject to Newton’s Second Law as:
-\begin{equation}
-m\frac{{\rm d}v}{{\rm d}t}=-R(v),
-\end{equation}
-which can be separated and integrated to determine expresions for elapsed time <span class="math notranslate nohighlight">\(t\)</span> as
-\begin{equation}
+<p>We have already considered general cases where an object may be subject to a single resistive force. To recap, we saw that an object subject to a resistive force $R(v)$ would therefore be subject to Newton’s Second Law as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8be652a5-e0ba-4e21-9672-f4ad8f6d9ad2">
+<span class="eqno">(9)<a class="headerlink" href="#equation-8be652a5-e0ba-4e21-9672-f4ad8f6d9ad2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+ m\frac{{\rm d}v}{{\rm d}t}=-R(v),
+\end{equation}\]</div>
+<p>which can be separated and integrated to determine expresions for elapsed time $t$ as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-940796f3-6889-406a-b646-5f5d94713fd9">
+<span class="eqno">(10)<a class="headerlink" href="#equation-940796f3-6889-406a-b646-5f5d94713fd9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 t=-m\int_{v_0}^{v}\frac{{\rm d}v}{R(v)},
-\end{equation}
-or indeed an expression for the object displacement <span class="math notranslate nohighlight">\(s\)</span> as
-\begin{equation}
+\end{equation}\]</div>
+<p>or indeed an expression for the object displacement $s$ as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-abc5a9f7-8048-4cd5-9c79-6558d60b245e">
+<span class="eqno">(11)<a class="headerlink" href="#equation-abc5a9f7-8048-4cd5-9c79-6558d60b245e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 s=s_0+\int_{t=0}^{t=t}v{\rm d}t.
-\end{equation}
-But what happens if multiple forces act upon the body? A good example of this is projectile motion, where an object is accelerating (due to gravity), but is also subject to a resistive force.</p>
+\end{equation}\]</div>
+<p>But what happens if multiple forces act upon the body? A good example of this is projectile motion, where an object is accelerating (due to gravity), but is also subject to a resistive force.</p>
 </div>
 <div class="section" id="projectile-motion">
 <h2>Projectile Motion<a class="headerlink" href="#projectile-motion" title="Permalink to this headline">¶</a></h2>
-<p>In the case where an object is acted upon by several forces, some of which may vary according to variables like velocity, we must consider the <em>sum</em> of forces acting on the body, in order to use Newton’s Second Law to describe the motion, e.g.
-\begin{equation}
+<p>In the case where an object is acted upon by several forces, some of which may vary according to variables like velocity, we must consider the <em>sum</em> of forces acting on the body, in order to use Newton’s Second Law to describe the motion, e.g.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1d2e8e30-7a94-4df9-acc9-d3d074c97385">
+<span class="eqno">(12)<a class="headerlink" href="#equation-1d2e8e30-7a94-4df9-acc9-d3d074c97385" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \sum{F}=mg-R(v)=ma.
-\end{equation}
-Note that the signs associated with each force are incredibly important.</p>
+\end{equation}\]</div>
+<p>Note that the signs associated with each force are incredibly important.</p>
 <p>The direction and magnitude of forces acting upon a body may confusingly change with time: consider a ball thrown directly upwards, which during <em>ascent</em> will have air resistance acting in the same direction as gravity, at its maximum height will be motionless (and hence no air resistance), and upon <em>descent</em> will have air resistance acting to counter gravity. We may have to break up our treatment of the dynamics of objects into different stages depending on the forces and how they act over time.</p>
 <p>In the lectures we saw a general case described for a mass released from rest from a cliff. This object goes on to achieve terminal velocity before impact. We’ll repeat that general case to examine the behaviour of the solution.</p>
-<p>In that example, an object was released from rest, and was subject to a resistive force <span class="math notranslate nohighlight">\(-kv\)</span> and the force of gravity. We first use Newton’s Law to determine the acceleration of the object as a function of the object’s velocity:</p>
+<p>In that example, an object was released from rest, and was subject to a resistive force $-kv$ and the force of gravity. We first use Newton’s Law to determine the acceleration of the object as a function of the object’s velocity:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -369,7 +372,7 @@ Note that the signs associated with each force are incredibly important.</p>
 </div>
 </div>
 </div>
-<p>Over time the resistance force will grow with the velocity of the object, until it <em>matches</em> the force created by gravity. These forces will then cancel each other, yielding <em>no net acceleration</em>. The velocity at which this occurs is called the <strong>terminal velocity</strong>. To calculate the terminal velocity, we set acceleration <span class="math notranslate nohighlight">\(a=0\)</span> and solve for the velocity:</p>
+<p>Over time the resistance force will grow with the velocity of the object, until it <em>matches</em> the force created by gravity. These forces will then cancel each other, yielding <em>no net acceleration</em>. The velocity at which this occurs is called the <strong>terminal velocity</strong>. To calculate the terminal velocity, we set acceleration $a=0$ and solve for the velocity:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_terminal</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">F_total</span><span class="o">/</span><span class="n">m</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
@@ -399,7 +402,9 @@ Note that the signs associated with each force are incredibly important.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lhs:  t/m
-rhs:  1.0*log(-9.81*m)/k - 1.0*log(1.0*k*v - 9.81*m)/k
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhs:  1.0*log(-9.81*m)/k - 1.0*log(1.0*k*v - 9.81*m)/k
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v(x): 9.81*m*(1.0 - exp(-k*t/m))/k
@@ -422,7 +427,7 @@ rhs:  1.0*log(-9.81*m)/k - 1.0*log(1.0*k*v - 9.81*m)/k
 </div>
 </div>
 <p>Once again this matches the velocity we found in the lectures. But what does this actually represent?</p>
-<p>Lets plot this on a graph, and include the solution to the same equations but <strong>only</strong> including the force of gravity. In the lectures, we did this using a Taylor series expansion, but we can let Python resolve the same set of equations but including only <span class="math notranslate nohighlight">\(F_g\)</span>. In order to visualise this, we’ll assume a mass <span class="math notranslate nohighlight">\(m=2{\rm{kg}}\)</span> and <span class="math notranslate nohighlight">\(k=1\)</span>:</p>
+<p>Lets plot this on a graph, and include the solution to the same equations but <strong>only</strong> including the force of gravity. In the lectures, we did this using a Taylor series expansion, but we can let Python resolve the same set of equations but including only $F_g$. In order to visualise this, we’ll assume a mass $m=2{\rm{kg}}$ and $k=1$:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">voft</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span><span class="mi">1</span><span class="p">}),</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
@@ -474,13 +479,16 @@ rhs:  1.0*log(-9.81*m)/k - 1.0*log(1.0*k*v - 9.81*m)/k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a(t): 9.81*exp(-k*t/m)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a(t):
 </pre></div>
 </div>
-<img alt="_images/MAT201_JT_airresistance_16_1.png" src="_images/MAT201_JT_airresistance_16_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 9.81*exp(-k*t/m)
+</pre></div>
+</div>
+<img alt="_images/MAT201_JT_airresistance_16_2.png" src="_images/MAT201_JT_airresistance_16_2.png" />
 </div>
 </div>
-<p>We can see again that, initially the object accelerates at a value of <span class="math notranslate nohighlight">\(g=9.81{\rm{ms}}^{-2}\)</span>, but air resistance causes the acceleration to fall to zero, at which point terminal velocity is achieved.</p>
+<p>We can see again that, initially the object accelerates at a value of $g=9.81{\rm{ms}}^{-2}$, but air resistance causes the acceleration to fall to zero, at which point terminal velocity is achieved.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soft</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">voft</span><span class="p">[</span><span class="mi">0</span><span class="p">],(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
@@ -519,13 +527,14 @@ rhs:  1.0*log(-9.81*m)/k - 1.0*log(1.0*k*v - 9.81*m)/k
 <p>Try this for yourself:</p>
 <ol class="simple">
 <li><p>Change some of the constants in the problem: what happens when the mass is doubled or when the initial velocity is not zero? How do these constants affect the behaviour</p></li>
-<li><p>The resistive force changes if the speed of the object is particularly high. In the lectures, we categorised these resistive forces as
-\begin{equation}
-f = Dv^2,
-\end{equation}
-for a different proportionality constant <span class="math notranslate nohighlight">\(D\)</span>. Change the form of the force from the low speed <span class="math notranslate nohighlight">\(-kv\)</span> to the high speed <span class="math notranslate nohighlight">\(-Dv^2\)</span> form in this notebook, and see if you can establish how objects behave in this second regime.</p></li>
-<li><p>Attempt a few of the related tutorial questions, and see if you can confirm your worked solutions using the approaches demonstrated in this notebook.</p></li>
+<li><p>The resistive force changes if the speed of the object is particularly high. In the lectures, we categorised these resistive forces as</p></li>
 </ol>
+<div class="amsmath math notranslate nohighlight" id="equation-c22f43d9-d83b-46ca-9400-992f7ce96dfc">
+<span class="eqno">(13)<a class="headerlink" href="#equation-c22f43d9-d83b-46ca-9400-992f7ce96dfc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+f = Dv^2,
+\end{equation}\]</div>
+<p>for a different proportionality constant $D$. Change the form of the force from the low speed $-kv$ to the high speed $-Dv^2$ form in this notebook, and see if you can establish how objects behave in this second regime.
+3.   Attempt a few of the related tutorial questions, and see if you can confirm your worked solutions using the approaches demonstrated in this notebook.</p>
 </div>
 </div>
 

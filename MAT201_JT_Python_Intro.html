@@ -336,15 +336,28 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="applications-to-mat201-content">
 <h2>Applications to MAT201 content<a class="headerlink" href="#applications-to-mat201-content" title="Permalink to this headline">¶</a></h2>
 <p>In MAT201, our focus is (as you might expect) on mathematics. The rest of this introduction will illustrate a Python library called <a class="reference external" href="https://www.sympy.org/en/index.html">Sympy</a>. Like other Python packages, it is well documented, and widely used</p>
-<p>Let’s go ahead and load in the libraries we need: in this case, we’ll focus solely on <em>sympy</em>:</p>
+<p>Let’s go ahead and load in the libraries we need: in this case, we’ll focus solely on <em>sympy</em>. (We’ll use this library a lot in the next few notebooks, so we’ll include an extra library first that can be used to check if libraries are installed and install them on the fly if needed).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install sympy
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
+Requirement already satisfied: sympy in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (1.9)
+Requirement already satisfied: mpmath&gt;=0.19 in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from sympy) (1.2.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: You are using pip version 21.3.1; however, version 22.0.4 is available.</span>
+<span class=" -Color -Color-Yellow">You should consider upgrading via the &#39;/usr/local/opt/python@3.9/bin/python3.9 -m pip install --upgrade pip&#39; command.</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Let’s very briefly look at some capabilities of <em>sympy</em>. <em>Sympy</em> has three data types, Real Integer and Rational. Rational numbers are probably better known as fractions. If we wanted to work with the fraction of one half, for example, we could write this as a real number <span class="math notranslate nohighlight">\(0.5\)</span>, or as a fraction:</p>
+<p>Let’s very briefly look at some capabilities of <em>sympy</em>. <em>Sympy</em> has three data types, Real Integer and Rational. Rational numbers are probably better known as fractions. If we wanted to work with the fraction of one half, for example, we could write this as a real number $0.5$, or as a fraction:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">onehalf</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
@@ -371,7 +384,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>We can use symbolic constants like <span class="math notranslate nohighlight">\(pi\)</span>, <span class="math notranslate nohighlight">\(e\)</span> (as in the exponential) or indeed infinity:</p>
+<p>We can use symbolic constants like $pi$, $e$ (as in the exponential) or indeed infinity:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mypi</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">pi</span>
@@ -411,7 +424,7 @@ const thebe_selector_output = ".output, .cell_output"
 \[\displaystyle x^{2} + x y + \frac{y^{2}}{4}\]</div>
 </div>
 </div>
-<p>Sympy has expanded this binomial, just like we would using pen and paper. It knows all the rules we do! It also knows lots about trigonometric functions. The <em>simplify</em> command can simplify expressions, using all of the maths knowledge in the library. We know that <span class="math notranslate nohighlight">\(\cos^2{(x)}+\sin^2{(x)}=1\)</span>; so does sympy:</p>
+<p>Sympy has expanded this binomial, just like we would using pen and paper. It knows all the rules we do! It also knows lots about trigonometric functions. The <em>simplify</em> command can simplify expressions, using all of the maths knowledge in the library. We know that $\cos^2{(x)}+\sin^2{(x)}=1$; so does <em>sympy</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
@@ -421,7 +434,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sin(x)**2 + cos(x)**2
-1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
 </pre></div>
 </div>
 </div>
@@ -438,10 +453,12 @@ const thebe_selector_output = ".output, .cell_output"
 \[\displaystyle x\]</div>
 </div>
 </div>
-<p>where the command has differentiated the first expression with respect to x. We can perform partial derivatives just as easily: lets say we need \begin{equation}
-\frac{\partial}{\partial x} \left(x^3+y+axy\right),
-\end{equation}
-where <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are independent variables:</p>
+<p>where the command has differentiated the first expression with respect to x. We can perform partial derivatives just as easily: lets say we need</p>
+<div class="amsmath math notranslate nohighlight" id="equation-21cc9bfc-3ac6-445a-a716-9583d1c95ef4">
+<span class="eqno">(1)<a class="headerlink" href="#equation-21cc9bfc-3ac6-445a-a716-9583d1c95ef4" title="Permalink to this equation">¶</a></span>\[\begin{equation} 
+\frac{\partial}{\partial x} \left(x^3+y+axy\right), 
+\end{equation}\]</div>
+<p>where $x$ and $y$ are independent variables:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">onehalf</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span> <span class="p">,</span> <span class="n">x</span><span class="p">)</span>
@@ -453,8 +470,9 @@ where <span class="math notranslate nohighlight">\(x\)</span> and <span class="m
 \[\displaystyle 3 x^{2} + \frac{y}{2}\]</div>
 </div>
 </div>
-<p>easy peasy! What about integration? We know that (ignoring the constants of integration for now)
-\begin{equation}\int \frac{1} ~{\rm{d}}x=\ln{|x|}+c,\end{equation} but so does sympy:</p>
+<p>easy peasy! What about integration? We know that (ignoring the constants of integration for now)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-edd116b7-5858-40c4-90e8-d88ee099b099">
+<span class="eqno">(2)<a class="headerlink" href="#equation-edd116b7-5858-40c4-90e8-d88ee099b099" title="Permalink to this equation">¶</a></span>\[\begin{equation}\int \frac{1}{{x}} ~{\rm{d}}x=\ln{|x|}+c,\end{equation}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
@@ -466,7 +484,7 @@ where <span class="math notranslate nohighlight">\(x\)</span> and <span class="m
 \[\displaystyle \log{\left(x \right)}\]</div>
 </div>
 </div>
-<p>(also noting that sympy refers to natural log (<span class="math notranslate nohighlight">\(ln\)</span>) as “log”). Sympy can also solve equations or sets of equations in one line:</p>
+<p>(also noting that sympy refers to natural log ($ln$) as “log”). Sympy can also solve equations or sets of equations in one line:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solution</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">((</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">y</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">y</span> <span class="o">-</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>

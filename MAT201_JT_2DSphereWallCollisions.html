@@ -282,8 +282,7 @@ const thebe_selector_output = ".output, .cell_output"
   <div class="tex2jax_ignore mathjax_ignore section" id="d-oblique-wall-collisions">
 <h1>2D Oblique Wall Collisions<a class="headerlink" href="#d-oblique-wall-collisions" title="Permalink to this headline">¶</a></h1>
 <p>Interactive code to illustrate concepts from MAT201 at Abertay University (JT 2022).</p>
-<p>Visualisation of ball collision with a wall.
-Given a value of speed, angle of incidence and coefficient of restitution, calculate beta and post-collision speed and animate.</p>
+<p>We’ll create a visualisation of a ball collision with a wall. This will solve the maths equations we learned in the lecture, using a value of initial speed, angle of incidence and coefficient of restitution to calculate beta and post-collision speed. To show off a bit, we’ll then animate it!</p>
 <p>First we’ll load in the libraries we need to create our example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -316,16 +315,16 @@ Given a value of speed, angle of incidence and coefficient of restitution, calcu
 </div>
 </div>
 <p>These initial parameters will determine the behaviour of the ball after it collides with the wall. From the lectures, we know that</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="amsmath math notranslate nohighlight" id="equation-abad51d9-c275-49da-938f-f01da8444a88">
+<span class="eqno">(16)<a class="headerlink" href="#equation-abad51d9-c275-49da-938f-f01da8444a88" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \tan{\left( \beta \right)}=e\tan{\left(\alpha\right)}
-\]</div>
+\end{equation}\]</div>
 <p>and</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="amsmath math notranslate nohighlight" id="equation-3b5146e9-2d1a-43ab-8080-ab379071677d">
+<span class="eqno">(17)<a class="headerlink" href="#equation-3b5146e9-2d1a-43ab-8080-ab379071677d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 v^2=u^2\left( \cos^2{\left(\alpha\right)}+e^2\sin^2{\left( \alpha\right)}\right).
-\]</div>
-<p>We can rearrange both of these equations to determine <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(v\)</span> (remembering also that Python trig. functions only accept arguments in radians, so we’ll convert them on the fly):</p>
+\end{equation}\]</div>
+<p>We can rearrange both of these equations to determine $\beta$ and $v$ (remembering also that Python trig. functions only accept arguments in radians, so we’ll convert them on the fly):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># angle after bounce (in radians)</span>
@@ -337,7 +336,7 @@ v^2=u^2\left( \cos^2{\left(\alpha\right)}+e^2\sin^2{\left( \alpha\right)}\right)
 </div>
 </div>
 <p>Now we can start to set up the simulation. We’re going to be updating the position and velocity of the ball at each timestep.
-Let’s choose an initial position for the ball; if we place the wall at <span class="math notranslate nohighlight">\(y=0\)</span>, this means our initial value of <span class="math notranslate nohighlight">\(y\)</span> must be positive.</p>
+Let’s choose an initial position for the ball; if we place the wall at $y=0$, this means our initial value of $y$ must be positive.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span>
@@ -345,7 +344,7 @@ Let’s choose an initial position for the ball; if we place the wall at <span c
 </div>
 </div>
 </div>
-<p>What about our initial velocity? Well, we’re needing to solve equations of motion in both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions, so we need to calculate these components of velocity too. We’ll use a ball that is moving from left to right and descending, so make <span class="math notranslate nohighlight">\(v_y\)</span> negative.</p>
+<p>What about our initial velocity? Well, we’re needing to solve equations of motion in both $x$ and $y$ directions, so we need to calculate these components of velocity too. We’ll use a ball that is moving from left to right and descending, so make $v_y$ negative.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vx0</span> <span class="o">=</span> <span class="n">u</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span>
@@ -354,7 +353,7 @@ Let’s choose an initial position for the ball; if we place the wall at <span c
 </div>
 </div>
 </div>
-<p>The animation will update the position of the ball in each frame. When it updates, we’ll need to check if the ball has passed the wall, and if it has then change the sign of the <span class="math notranslate nohighlight">\(y\)</span>-component of velocity to bounce the ball from the wall.</p>
+<p>The animation will update the position of the ball in each frame. When it updates, we’ll need to check if the ball has passed the wall, and if it has then change the sign of the $y$-component of velocity to bounce the ball from the wall.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_pos</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -391,7 +390,7 @@ Let’s choose an initial position for the ball; if we place the wall at <span c
 </div>
 </div>
 </div>
-<p>The final function will set up the animation loop, where each time the animation is updated, we’ll append the position in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> with our new values, move the ball to be in the correct location and update the text on the picture which states the current height of the ball above the wall.</p>
+<p>The final function will set up the animation loop, where each time the animation is updated, we’ll append the position in $x$ and $y$ with our new values, move the ball to be in the correct location and update the text on the picture which states the current height of the ball above the wall.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
@@ -407,7 +406,7 @@ Let’s choose an initial position for the ball; if we place the wall at <span c
 </div>
 </div>
 </div>
-<p>We haven’t yet set up the figure upon which we’ll draw the animation. We’ll go ahead and do that here, where we’ll also set up some of the objects we’ll display on it. The ball will be plotted as a circle, and the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> plot data are initialised here.</p>
+<p>We haven’t yet set up the figure upon which we’ll draw the animation. We’ll go ahead and do that here, where we’ll also set up some of the objects we’ll display on it. The ball will be plotted as a circle, and the $x$ and $y$ plot data are initialised here.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a new Figure, with equal aspect ratio so the ball appears round.</span>

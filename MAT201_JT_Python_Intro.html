@@ -486,8 +486,12 @@ where <span class="math notranslate nohighlight">\(x\)</span> and <span class="m
 \[\displaystyle 3 x^{2} + \frac{y}{2}\]</div>
 </div>
 </div>
-<p>easy peasy! What about integration? We know that (ignoring the constants of integration for now)
-\begin{equation}\int \frac{1} ~{\rm{d}}x=\ln{|x|}+c,\end{equation} but so does sympy:</p>
+<p>easy peasy! What about integration? We know that (ignoring the constants of integration for now)</p>
+<div class="math notranslate nohighlight">
+\[
+\int \frac{1}{{x}} ~{\rm{d}}x=\ln{|x|}+c,
+\]</div>
+<p>but so does sympy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>

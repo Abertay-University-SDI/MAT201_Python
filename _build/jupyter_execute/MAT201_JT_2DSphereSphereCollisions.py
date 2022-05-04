@@ -5,8 +5,7 @@
 # 
 # Interactive code to illustrate concepts from MAT201 at Abertay University (JT 2022).
 # 
-# Visualisation of ball collision with another ball. 
-# Post impact trajectories determined by solving simultaneous equations subject to conditions outlined in lectures. Impact takes place at origin.
+# Using the maths we learned in lectures, we'll create a visualisation of a ball collision with another ball. Post-impact trajectories are determined by the solution of a set of simultaneous equations, for an initial set of speeds, angles, masses and coefficient of restitution. Impact takes place at origin for simplicity.
 
 # As always, we need to load in the Python libraries that we need to carry out the plotting, animation and (in this case) solve a set of simultaneous equations.
 
@@ -95,11 +94,15 @@ extent = 2 * int(math.ceil(lval))
 # 1.   perpendicular velocities remain unchanged
 # 2.   conservation of momentum (parallel to LOC):
 # 
-# $$ m_{1}U_{1}\cos{\alpha}+m_{2}U_{2}\cos{\beta}=m_{1}v_{1}+m_{2}v_{2} $$
+# $$ 
+# m_{1}U_{1}\cos{\alpha}+m_{2}U_{2}\cos{\beta}=m_{1}v_{1}+m_{2}v_{2} 
+# $$
 # 
 # 3.   Newton's Law of Restitution (parallel to LOC):
 # 
-# $$ v_{2}-v_{1}=e\left(U_{1}\cos{\alpha}-U_{2}\cos{\beta}\right). $$
+# $$ 
+# v_{2}-v_{1}=e\left(U_{1}\cos{\alpha}-U_{2}\cos{\beta}\right). 
+# $$
 # 
 # The first item fixes the $y$-components of velocity; the final two equations reduce to a set of simultaneous equations to solve for $v_x$ of each particle. 
 # 

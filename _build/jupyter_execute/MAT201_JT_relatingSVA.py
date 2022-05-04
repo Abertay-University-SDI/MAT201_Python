@@ -4,8 +4,6 @@
 # # Displacement, Velocity and Acceleration by Integration & Differentiation
 # 
 # Using Python's symbolic computation library, we will explore how displacement, velocity and acceleration are related, particularly in the case of uniform acceleration.
-# 
-# If you have not already done so, please check out the MAT201 Python introduction notebook to better understand the content shown here.
 
 # In Lecture 1 of our Dynamics component of MAT201, we saw how to relate velocity, displacement and acceleration mathematically. Lecture two also focusses on expanding on these ideas, using Newton's Second Law to relate forces acting on objects with non-constant acceleration. The ultimate goal of both lectures is the same: given some information about an object, can you determine other related properties/behaviour using mathematics? 
 # 
@@ -24,9 +22,11 @@ import sympy as sym
 # ## Relating acceleration, velocity and displacement by differentiation and integration:
 # 
 # In the lectures we saw that 
-# \begin{equation}
+# 
+# $$
 # \int^s_{s_0} {\rm d}x = \int^t_0 v~{\rm{d}}t.
-# \end{equation}
+# $$
+# 
 # This means that if we know the velocity, expressed as a function of time, we can **integrate** this to determine the displacement of the object (relative to its initial displacement). The constants of integration determine the range over which we're interested, usually between a time $t=$ (when the displacement is $s_0$) to some other time $t$ (when the displacement will be $s$).
 # Alternatively, if we know an expression describing the displacement as a function of time, we can **differentiate** this expression w.r.t time in order to determine the velocity (and the constants of integration will vanish).
 # 
@@ -79,7 +79,12 @@ s_halfinitialv = s.evalf(subs={t:t_halfinitialv[0]})
 print("3. = ", s_halfinitialv)
 
 
-# Part 4 requires an acceleration, something we haven't yet mentioned. Again from the lectures, we learned \begin{equation} \int_u^v ~{\rm{d}}v = \int_0^ta~{\rm{d}}t.\end{equation}
+# Part 4 requires an acceleration, something we haven't yet mentioned. Again from the lectures, we learned 
+# 
+# $$
+# \int_u^v ~{\rm{d}}v = \int_0^ta~{\rm{d}}t.
+# $$
+# 
 # This means that, to find an acceleration from a velocity, we differentiate velocity in time $a={\rm{d}}v/{\rm{d}}t$. If instead we know acceleration and require velocity, we must integrate.
 # 
 # So to solve Part 4, we will differentiate the velocity in time. But our velocity expression is *already* a differential: we can calculate the acceleration by differentiating the displacement *twice*:
@@ -93,13 +98,14 @@ print("4. =", accel)
 
 
 # Note that the acceleration here is a constant. This means that this system adheres to the equations of motion for constant acceleration derived in MAT101:
-# \begin{eqnarray}
-# v &=& u + at, \\
-# v^2 &=& u^2 + 2as, \\
-# s &=& ut + \frac{1}{2}at^2.
-# \end{eqnarray}
 # 
-# You should be able to show that hese expressions also differentiate or integrate to return each other, for example differentiating the expression for displacement returns:
+# $$
+# v = u + at,\\
+# v^2 = u^2 + 2as,\\
+# s = ut + \frac{1}{2}at^2.
+# $$
+# 
+# You should be able to show that these expressions also differentiate or integrate to return each other, for example differentiating the expression for displacement returns:
 # 
 
 # In[7]:
@@ -140,17 +146,24 @@ print("a=",a)
 # NB we have specifically restricted the type of variable $v$ and $t$ can be, so that Python won't look for Imaginary solutions later on in the calculation.
 
 # From the lectures, we know that acceleration is the rate of change of velocity with time: 
-# \begin{equation} a=\frac{{\rm{d}}v}{{\rm{d}}t}.
-# \end{equation}
+# 
+# $$ 
+# a=\frac{{\rm{d}}v}{{\rm{d}}t}.
+# $$
+# 
 # This is a separable differential equation; multiplying both sides by ${\rm{d}}t$ and integrating yields:
-# \begin{equation} 
+# 
+# $$ 
 # \int_{t=0}^{t=t}{a(t)}~{\rm{d}}t=\int_{v=u}^{v=v}{\rm{d}}v.
-# \end{equation}
+# $$
+# 
 # However, our expression for acceleration depends on $v$, not $t$ (for now). So we must move any velocity dependence over to the right hand side, because this is where all the velocity terms are:
-# \begin{eqnarray} 
-# \int_{0}^{t}\frac{5v}{4}~{\rm{d}}t&=&\int_{u}^{v}{\rm{d}}v, \\
-# \int_{0}^{t}\frac{5}{4}~{\rm{d}}t&=&\int_{u}^{v}\frac{{\rm{d}}v}{v}.
-# \end{eqnarray}
+# 
+# $$
+# \int_{0}^{t}\frac{5v}{4}~{\rm{d}}t=\int_{u}^{v}{\rm{d}}v, \\
+# \int_{0}^{t}\frac{5}{4}~{\rm{d}}t=\int_{u}^{v}\frac{{\rm{d}}v}{v}.
+# $$
+# 
 # This is now an integral equation we can handle: lets make Python solve the left and right hand sides seperately:
 
 # In[9]:
@@ -182,9 +195,11 @@ print("time taken for v=4m/s: ", t_4)
 
 
 # The question also asks us to evaluate an expression for the displacement travelled in this time. We know that displacement and velocity are related via $v={\rm{d}s}/{\rm{d}}t$, so we can again multiply both sides by ${\rm{d}}t$ to create an integral equation:
-# \begin{equation}
+# 
+# $$
 # \int_0^t{v}~{\rm{d}}t=\int_{s_0}^s {\rm{d}}s.
-# \end{equation}
+# $$
+# 
 # The right hand side of this equation simply integrates to $s-s_0$, for initial displacement $s(t=0)=s_0$. If we assume this initial displacement is zero, then all we really want to know to answer the question is:
 # to 
 # 

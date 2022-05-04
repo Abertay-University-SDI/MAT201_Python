@@ -55,6 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Summary" href="outro.html" />
     <link rel="prev" title="2D Oblique Wall Collisions" href="MAT201_JT_2DSphereWallCollisions.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -128,6 +129,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    2D Oblique Sphere Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="outro.html">
+   Summary
   </a>
  </li>
 </ul>
@@ -281,8 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
   <div class="tex2jax_ignore mathjax_ignore section" id="d-oblique-sphere-collisions">
 <h1>2D Oblique Sphere Collisions<a class="headerlink" href="#d-oblique-sphere-collisions" title="Permalink to this headline">¶</a></h1>
 <p>Interactive code to illustrate concepts from MAT201 at Abertay University (JT 2022).</p>
-<p>Visualisation of ball collision with another ball.
-Post impact trajectories determined by solving simultaneous equations subject to conditions outlined in lectures. Impact takes place at origin.</p>
+<p>Using the maths we learned in lectures, we’ll create a visualisation of a ball collision with another ball. Post-impact trajectories are determined by the solution of a set of simultaneous equations, for an initial set of speeds, angles, masses and coefficient of restitution. Impact takes place at origin for simplicity.</p>
 <p>As always, we need to load in the Python libraries that we need to carry out the plotting, animation and (in this case) solve a set of simultaneous equations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -367,12 +372,16 @@ In MAT201 we learned that 2D sphere collisions essentially boil down to:</p>
 <li><p>conservation of momentum (parallel to LOC):</p></li>
 </ol>
 <div class="math notranslate nohighlight">
-\[ m_{1}U_{1}\cos{\alpha}+m_{2}U_{2}\cos{\beta}=m_{1}v_{1}+m_{2}v_{2} \]</div>
+\[ 
+m_{1}U_{1}\cos{\alpha}+m_{2}U_{2}\cos{\beta}=m_{1}v_{1}+m_{2}v_{2} 
+\]</div>
 <ol class="simple">
 <li><p>Newton’s Law of Restitution (parallel to LOC):</p></li>
 </ol>
 <div class="math notranslate nohighlight">
-\[ v_{2}-v_{1}=e\left(U_{1}\cos{\alpha}-U_{2}\cos{\beta}\right). \]</div>
+\[ 
+v_{2}-v_{1}=e\left(U_{1}\cos{\alpha}-U_{2}\cos{\beta}\right). 
+\]</div>
 <p>The first item fixes the <span class="math notranslate nohighlight">\(y\)</span>-components of velocity; the final two equations reduce to a set of simultaneous equations to solve for <span class="math notranslate nohighlight">\(v_x\)</span> of each particle.</p>
 <p>When we tackle these problems by hand, we usually use substitution or row operations. Python is excellent at solving simultaneous equations (as we will see), provided we format the simultaneous equations in matrix form <span class="math notranslate nohighlight">\(Ax=B\)</span>. This then means that the solutions are given by inverting matrix <span class="math notranslate nohighlight">\(A\)</span> and multiplying it to the coefficients in <span class="math notranslate nohighlight">\(B\)</span>; mathematically, <span class="math notranslate nohighlight">\(A^{-1}Ax=Ix=A^{-1}B\)</span> for identity matrix <span class="math notranslate nohighlight">\(I\)</span>. We’ll therefore arrange some of the coefficients in the final two equations to be in the form of a matrix:</p>
 <div class="cell docutils container">
@@ -492,7 +501,7 @@ In MAT201 we learned that 2D sphere collisions essentially boil down to:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x1113f5730&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x110eb46a0&gt;
 </pre></div>
 </div>
 <img alt="_images/MAT201_JT_2DSphereSphereCollisions_24_1.png" src="_images/MAT201_JT_2DSphereSphereCollisions_24_1.png" />
@@ -934,6 +943,13 @@ NzYuMTAw
             <p class="prev-next-title">2D Oblique Wall Collisions</p>
         </div>
     </a>
+    <a class='right-next' id="next-link" href="outro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Summary</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>
@@ -943,7 +959,7 @@ NzYuMTAw
     
       By James Threlfall<br/>
     
-        &copy; Copyright 2021.<br/>
+        &copy; Copyright 2022.<br/>
   </p>
 </footer>
 </main>

@@ -4,28 +4,44 @@
 # 
 # # Introduction to Python
 # 
-# Brief introduction to basic Python syntax, libraries, plotting in Jupyter notebooks.
+# Short introduction to fundamental commands and structure of Python notebooks, as needed for this workbook.
 # 
 
 # ## General introduction
 # 
-# This notebook lists examples of simple Python commands and programs that can be used to help with the understanding of the MAT201 course, particularly in the area of dynamics. Students can use Python to check their answers and visually see the mathematics in action. More broadly, a wide knowledge and ability to use other programming languages may help with problem solving and employability. 
-# 
-# This is a Jupyter notebook launched from within the Anaconda data science platform. Anaconda can be downloaded here:
-# 
-# [https://www.anaconda.com](https://www.anaconda.com)
+# This workbook contains examples of simple Python commands and programs. These examples aim to enhance understanding of the dynamics component of MAT201. 
+# Students can use Python to check their answers and visually see the mathematics in action. More broadly, a wide knowledge and ability to use other programming languages may help with problem solving and employability. 
 # 
 # Python is an open-source programming language used extensively around the world. It is also vital for carrying out Scientific Computation.
 # 
-# To execute commands in Jupyter, either Run the cell or hit SHIFT + ENTER.
+# This workbook comprises of a series of Jupyter notebooks.
+# Jupyter and python can be launched through the Anaconda data science platform on an individual machine. Anaconda can be downloaded here:
 # 
-# Alternatively, you can perform cloud computing using Google Colab:
+# [https://www.anaconda.com](https://www.anaconda.com)
 # 
-# [https://colab.research.google.com/](https://colab.research.google.com/)
+# Jupyter notebooks combines sections of markdown text (which can include mathematical expressions) with executable elements of (Python) code. The executable elements appear in this workbook as grey boxes; when the workbook was created, *all* code elements were ran, and any output from them is seen directly below them.
 # 
-# You will need a Google account to perform cloud computing, but the commands are (largely) the same. One can also click the "play" button next to an executable segment of code to run that code.
+# The big advantage of this workbook is this:
+# 
+# **You can download each notebook to your computer or to the cloud and run all the code elements for yourself!**
+# 
+# I encourage you to read through each page of the workbook, then choose one of two options:
+#  
+# <p float="left">
+#   <img src="./rocket.png" width="100" /><img src="./down.png" width="100" /> 
+# </p>
+# 
+# 
+# 1.   click the rocket symbol  at the top of the page and launch the page in Google Colab.
+# 2.   click the arrow symbol  at the top of the page, and download the notebook as a '.ipynb' file, in order to run the examples using jupyter-notebook.
+# 
+# I recommend using [Google Colab](https://colab.research.google.com/), unless you are confident that you have installed anaconda and jupyter notebook correctly on your machine. You will need a Google account to perform cloud computing, but executing the code elements is nearly identical in both Jupyter and Colab.
 
-# Notebooks in Jupyter look like this: ![title](JupyterNotebook_my_first_plot.png)
+# ## Executing Jupyter notebook code
+# 
+# Notebooks in Jupyter look like this: ![Jupyter screenshot](https://github.com/jwt104/MAT201DynamicsWithPythonBook/blob/main/JupyterNotebook_my_first_plot.png?raw=1)
+# 
+# Note that they comprise of markdown cells and code cells. This text is a markdown cell. Below, you can see my first code cell, containing the classic first command:
 
 # In[1]:
 
@@ -35,11 +51,13 @@ print("Hello, World")
 
 # The output should always appear below each code cell (if there is any).
 # 
-# Note if you hit ENTER without the shift, the notebook will either open the cell for editing, or perform a carriage return within that cell instead. You can edit code or text, then run it with SHIFT + ENTER.
+# Running the cell requires using SHIFT + ENTER. (In Colab, you may also click the play button next to each code cell to run it).
+# 
+# If you hit ENTER without the shift, the notebook will open the cell for editing, or perform a carriage return within that cell instead. You can edit code or text, then run it with SHIFT + ENTER.
 # 
 # Try modifying this statement yourself: **Python is ....**
 # 
-# I encourage you to make copies of notebooks (to augment your lecture notes) and save them to your own computer or OneDrive areas. 
+# I encourage you to edit copies of notebooks (to augment your lecture notes) and use SAVE AS (in Colab or Jupyter) to store your own personal copy of them to your own computer or OneDrive. 
 
 # Python has extended functionality through libraries containing lots of extra commands, functions, and useful stuff. We import these libraries and commands using the *import* command:
 
@@ -51,8 +69,16 @@ time.sleep(3)
 
 
 # In this case, we have imported a library called "time" in order to run a command called "sleep". This command runs for an amount of time given by its argument (in our case, 3 seconds) and produces no output. Note that when the code is running the symbol within the square brackets changes (indicating it is running).
+# 
+# One thing to note is that some libraries have long names. When running a command from that library, we have so also write the name of the library out again:  
+# 
+# ```
+# # time.sleep()
+# ```
+# In some cases you will see that common libraries are imported 'as' a different name (primarily so that our commands are shorter in future!)
+# 
 
-# There are **many** detailed introductions to Jupyter notebooks, and Google colab, including textbooks, online workshops, videos, notebooks, theatrical productions (well maybe)... most are available on the web, like
+# There are **many** detailed introductions to Jupyter notebooks, and Google Colab, including textbooks, online workshops, videos, notebooks, theatrical productions (well maybe)... most are available on the web, like
 # [this one](https://www.dataquest.io/blog/jupyter-notebook-tutorial/). Youtube videos [like this one](https://youtu.be/RLYoEyIHL6A) also allow you to see this process as you would on your machine.
 # 
 # 
@@ -63,7 +89,7 @@ time.sleep(3)
 
 # ## Applications to MAT201 content
 # 
-# In MAT201, our focus is (as you might expect) on mathematics. The rest of this introduction will illustrate a Python library called [Sympy](https://www.sympy.org/en/index.html). Like other Python packages, it is well documented, and widely used
+# In MAT201, our focus is (as you might expect) on mathematics. The rest of this introduction will illustrate a Python library called [Sympy](https://www.sympy.org/en/index.html). Like other Python packages, it is well documented, and widely used.
 # 
 # Let's go ahead and load in the libraries we need: in this case, we'll focus solely on *sympy*:
 # 

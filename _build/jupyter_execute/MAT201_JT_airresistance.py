@@ -3,15 +3,12 @@
 
 # # Fluid Resistance and Terminal speed
 # Using Python's symbolic computation library, we will see how resistive forces affect motion.
-# 
-# If you have not already done so, please check out the MAT201 Python introduction notebook to better understand the content shown here.
 
 # In Lecture 3 of our Dynamics component of MAT201, we explored ideas of changing the balance of forces acting upon an object, particularly in the case where a resistive force is applied proportional to the velocity of the object. 
 # 
 # We'll explore some of the same ideas and use Python to solve these equations for us.
 
-# Let's go ahead and load in the libraries we need: in this case, we'll focus solely on sympy:
-# 
+# Let's go ahead and load in the libraries we need: in this case, we'll need *numpy*, *sympy* and some plotting routines for later:
 
 # In[1]:
 
@@ -28,26 +25,34 @@ from sympy.utilities.lambdify import lambdify, implemented_function
 # ## Resistive forces
 # 
 # We have already considered general cases where an object may be subject to a single resistive force. To recap, we saw that an object subject to a resistive force $R(v)$ would therefore be subject to Newton's Second Law as:
-# \begin{equation}
+# 
+# $$
 #  m\frac{{\rm d}v}{{\rm d}t}=-R(v),
-# \end{equation}
+# $$
+# 
 # which can be separated and integrated to determine expresions for elapsed time $t$ as 
-# \begin{equation}
+# 
+# $$
 # t=-m\int_{v_0}^{v}\frac{{\rm d}v}{R(v)},
-# \end{equation}
+# $$
+# 
 # or indeed an expression for the object displacement $s$ as
-# \begin{equation}
+# 
+# $$
 # s=s_0+\int_{t=0}^{t=t}v{\rm d}t.
-# \end{equation}
+# $$
+# 
 # But what happens if multiple forces act upon the body? A good example of this is projectile motion, where an object is accelerating (due to gravity), but is also subject to a resistive force.
 # 
 
 # ## Projectile Motion
 # 
 # In the case where an object is acted upon by several forces, some of which may vary according to variables like velocity, we must consider the *sum* of forces acting on the body, in order to use Newton's Second Law to describe the motion, e.g.
-# \begin{equation}
+# 
+# $$
 # \sum{F}=mg-R(v)=ma.
-# \end{equation}
+# $$
+# 
 # Note that the signs associated with each force are incredibly important. 
 # 
 # The direction and magnitude of forces acting upon a body may confusingly change with time: consider a ball thrown directly upwards, which during *ascent* will have air resistance acting in the same direction as gravity, at its maximum height will be motionless (and hence no air resistance), and upon *descent* will have air resistance acting to counter gravity. We may have to break up our treatment of the dynamics of objects into different stages depending on the forces and how they act over time. 
@@ -200,9 +205,11 @@ plt.show()
 # 
 # 1.   Change some of the constants in the problem: what happens when the mass is doubled or when the initial velocity is not zero? How do these constants affect the behaviour
 # 2.   The resistive force changes if the speed of the object is particularly high. In the lectures, we categorised these resistive forces as 
-# \begin{equation}
+# 
+# $$
 # f = Dv^2,
-# \end{equation}
+# $$
+# 
 # for a different proportionality constant $D$. Change the form of the force from the low speed $-kv$ to the high speed $-Dv^2$ form in this notebook, and see if you can establish how objects behave in this second regime.
 # 3.   Attempt a few of the related tutorial questions, and see if you can confirm your worked solutions using the approaches demonstrated in this notebook.
 # 

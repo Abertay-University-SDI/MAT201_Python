@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="2D Oblique Wall Collisions" href="MAT201_JT_2DSphereWallCollisions.html" />
-    <link rel="prev" title="Motion in 2D" href="MAT201_ADChapter22_2Dmotion.html" />
+    <link rel="prev" title="Fluid Resistance and Terminal speed" href="MAT201_JT_airresistance.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -112,18 +112,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="MAT201_ADChapter20_1Dmotion.html">
-   Vertical Motion (1D)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201_ADChapter21_1DmotionwithDrag.html">
-   Drag
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201_ADChapter22_2Dmotion.html">
-   Motion in 2D
+  <a class="reference internal" href="MAT201_JT_airresistance.html">
+   Fluid Resistance and Terminal speed
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -139,6 +129,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201_JT_2DSphereSphereCollisions.html">
    2D Oblique Sphere Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="outro.html">
+   Summary
   </a>
  </li>
 </ul>
@@ -313,8 +308,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Harmonic Motion of A Spring<a class="headerlink" href="#harmonic-motion-of-a-spring" title="Permalink to this headline">¶</a></h1>
 <p>Interactive code to illustrate concepts from MAT201 at Abertay University (JT 2022).</p>
 <p>Notebook illustrates how to solve Newton’s Second Law for a force which induces Simple Harmonic Motion.We also create an animated object which behaves according to those laws. While the object is moving, notebook also draws accompanying distance, velocity and acceleration graphs..</p>
-<p>If you have not already done so, please check out the MAT201 Python introduction notebook to better understand the content shown here.</p>
-<p>Plotting inspiration from <a class="reference external" href="http://firsttimeprogrammer.blogspot.com/2014/12/basic-physics-and-python-simple.html">http://firsttimeprogrammer.blogspot.com/2014/12/basic-physics-and-python-simple.html</a></p>
+<p><em>Plotting inspiration from <a class="reference external" href="http://firsttimeprogrammer.blogspot.com/2014/12/basic-physics-and-python-simple.html">http://firsttimeprogrammer.blogspot.com/2014/12/basic-physics-and-python-simple.html</a></em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -322,23 +316,8 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="k">as</span> <span class="nn">animation</span>
 <span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install sympy
 <span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
 <span class="kn">import</span> <span class="nn">math</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: sympy in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (1.9)
-Requirement already satisfied: mpmath&gt;=0.19 in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from sympy) (1.2.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: You are using pip version 21.3.1; however, version 22.0.4 is available.</span>
-<span class=" -Color -Color-Yellow">You should consider upgrading via the &#39;/usr/local/opt/python@3.9/bin/python3.9 -m pip install --upgrade pip&#39; command.</span>
 </pre></div>
 </div>
 </div>
@@ -349,17 +328,21 @@ Requirement already satisfied: mpmath&gt;=0.19 in /Users/jamesthrelfall/Library/
 <p>NB you may be required to perform these steps mathematically by hand <strong>for the exam</strong>; the symbolic computation approach here is just to verify our solutions and demonstrate the resulting behaviour of the object, governed by the mathematics seen in lectures.</p>
 <p>We saw that an object subject to a force of the form <span class="math notranslate nohighlight">\(F=-kx\)</span> (for some constant <span class="math notranslate nohighlight">\(k\)</span>) causes that object to accelerate towards its equilibrium position, but due to its momentum, overshoots and repeatedly oscillates about this position.</p>
 <p>Newton’s Second Law states:</p>
-<p>\begin{equation}
-\frac^2x(t)}t^2} = a(t) = \frac{F(t)}{m} = -\frac{k}{m}x(t),
-\end{equation}</p>
-<p>In the lectures, we saw that we could re-write the acceleration term <span class="math notranslate nohighlight">\(a\)</span> as \begin{equation}
-a=\fract}=\fracx}\fract}=v\fracx}.
-\end{equation}</p>
-<p>Therefore we can state our equation as a seperable first order differential equation:
-\begin{equation}
-v\fracx}=-\frac{k}{m}x=-\omega^2x,
-\end{equation}
-(where we have replaced some of the constants with a frequency <span class="math notranslate nohighlight">\(\omega\)</span>).</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{{\rm{d}}^2x(t)}{{\rm{d}}t^2} = a(t) = \frac{F(t)}{m} = -\frac{k}{m}x(t),
+\]</div>
+<p>In the lectures, we saw that we could re-write the acceleration term <span class="math notranslate nohighlight">\(a\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+a=\frac{{\rm d}v}{{\rm{d}}t}=\frac{{\rm d}v}{{\rm{d}}x}\frac{{\rm d}x}{{\rm{d}}t}=v\frac{{\rm d}v}{{\rm{d}}x}.
+\]</div>
+<p>Therefore we can state our equation as a separable first order differential equation:</p>
+<div class="math notranslate nohighlight">
+\[
+v\frac{{\rm d}v}{{\rm{d}}x}=-\frac{k}{m}x=-\omega^2x,
+\]</div>
+<p>(where we have replaced some of the constants with a frequency <span class="math notranslate nohighlight">\(\omega\)</span>).</p>
 <p>Python is great at solving differential equations. First we’ll set up the variables in the problem. The differential equation solver needs to know some of the properties of the symbols it will be working with in order to do its job more effectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -501,7 +484,7 @@ To do this, I’m going to make some arrows, centred on the middle of the box, a
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.patches.Arrow at 0x119003a90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.patches.Arrow at 0x121cff850&gt;
 </pre></div>
 </div>
 </div>
@@ -1588,11 +1571,11 @@ You will also note that the acceleration reaches a maximum (or minimum) when the
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="MAT201_ADChapter22_2Dmotion.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="MAT201_JT_airresistance.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Motion in 2D</p>
+            <p class="prev-next-title">Fluid Resistance and Terminal speed</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="MAT201_JT_2DSphereWallCollisions.html" title="next page">
@@ -1611,7 +1594,7 @@ You will also note that the acceleration reaches a maximum (or minimum) when the
     
       By James Threlfall<br/>
     
-        &copy; Copyright 2021.<br/>
+        &copy; Copyright 2022.<br/>
   </p>
 </footer>
 </main>

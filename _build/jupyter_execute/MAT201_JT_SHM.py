@@ -6,9 +6,7 @@
 # 
 # Notebook illustrates how to solve Newton's Second Law for a force which induces Simple Harmonic Motion.We also create an animated object which behaves according to those laws. While the object is moving, notebook also draws accompanying distance, velocity and acceleration graphs.. 
 # 
-# If you have not already done so, please check out the MAT201 Python introduction notebook to better understand the content shown here.
-# 
-# Plotting inspiration from http://firsttimeprogrammer.blogspot.com/2014/12/basic-physics-and-python-simple.html
+# *Plotting inspiration from http://firsttimeprogrammer.blogspot.com/2014/12/basic-physics-and-python-simple.html*
 
 # In[1]:
 
@@ -18,8 +16,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.animation as animation
 import matplotlib.patches as patches
-import sys
-get_ipython().system('{sys.executable} -m pip install sympy')
 import sympy as sym
 import math
 
@@ -34,20 +30,24 @@ import math
 # 
 # Newton's Second Law states:
 # 
-# \begin{equation}
+# $$
 # \frac{{\rm{d}}^2x(t)}{{\rm{d}}t^2} = a(t) = \frac{F(t)}{m} = -\frac{k}{m}x(t),
-# \end{equation} 
+# $$
 # 
-# In the lectures, we saw that we could re-write the acceleration term $a$ as \begin{equation}
+# In the lectures, we saw that we could re-write the acceleration term $a$ as 
+# 
+# $$
 # a=\frac{{\rm d}v}{{\rm{d}}t}=\frac{{\rm d}v}{{\rm{d}}x}\frac{{\rm d}x}{{\rm{d}}t}=v\frac{{\rm d}v}{{\rm{d}}x}.
-# \end{equation}
+# $$
 # 
 # 
 
-# Therefore we can state our equation as a seperable first order differential equation:
-# \begin{equation}
+# Therefore we can state our equation as a separable first order differential equation:
+# 
+# $$
 # v\frac{{\rm d}v}{{\rm{d}}x}=-\frac{k}{m}x=-\omega^2x,
-# \end{equation}
+# $$
+# 
 # (where we have replaced some of the constants with a frequency $\omega$).
 # 
 # Python is great at solving differential equations. First we'll set up the variables in the problem. The differential equation solver needs to know some of the properties of the symbols it will be working with in order to do its job more effectively.

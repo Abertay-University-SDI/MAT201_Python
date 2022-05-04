@@ -3,7 +3,9 @@
 
 title: MAT201 Dynamics with Python
 author: James Threlfall
+copyright: "2022"  # Copyright year to be placed in the footer
 logo: Abertay_Uni_Black.png
+exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -33,3 +35,10 @@ html:
 launch_buttons:
   colab_url: "https://colab.research.google.com"
   notebook_interface: "jupyterlab"  # or "classic"
+
+#parse:
+#  myst_enable_extensions:
+#    # don't forget to list any other extensions you want enabled,
+#    # including those that are enabled by default!
+#    - amsmath
+#    - dollarmath

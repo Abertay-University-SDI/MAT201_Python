@@ -112,18 +112,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="MAT201_ADChapter20_1Dmotion.html">
-   Vertical Motion (1D)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201_ADChapter21_1DmotionwithDrag.html">
-   Drag
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201_ADChapter22_2Dmotion.html">
-   Motion in 2D
+  <a class="reference internal" href="MAT201_JT_airresistance.html">
+   Fluid Resistance and Terminal speed
   </a>
  </li>
  <li class="toctree-l1">
@@ -139,6 +129,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201_JT_2DSphereSphereCollisions.html">
    2D Oblique Sphere Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="outro.html">
+   Summary
   </a>
  </li>
 </ul>
@@ -256,6 +251,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#executing-jupyter-notebook-code">
+   Executing Jupyter notebook code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#applications-to-mat201-content">
    Applications to MAT201 content
   </a>
@@ -286,6 +286,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#executing-jupyter-notebook-code">
+   Executing Jupyter notebook code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#applications-to-mat201-content">
    Applications to MAT201 content
   </a>
@@ -301,18 +306,32 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-python">
 <h1>Introduction to Python<a class="headerlink" href="#introduction-to-python" title="Permalink to this headline">¶</a></h1>
-<p>Brief introduction to basic Python syntax, libraries, plotting in Jupyter notebooks.</p>
+<p>Short introduction to fundamental commands and structure of Python notebooks, as needed for this workbook.</p>
 <div class="section" id="general-introduction">
 <h2>General introduction<a class="headerlink" href="#general-introduction" title="Permalink to this headline">¶</a></h2>
-<p>This notebook lists examples of simple Python commands and programs that can be used to help with the understanding of the MAT201 course, particularly in the area of dynamics. Students can use Python to check their answers and visually see the mathematics in action. More broadly, a wide knowledge and ability to use other programming languages may help with problem solving and employability.</p>
-<p>This is a Jupyter notebook launched from within the Anaconda data science platform. Anaconda can be downloaded here:</p>
-<p><a class="reference external" href="https://www.anaconda.com">https://www.anaconda.com</a></p>
+<p>This workbook contains examples of simple Python commands and programs. These examples aim to enhance understanding of the dynamics component of MAT201.
+Students can use Python to check their answers and visually see the mathematics in action. More broadly, a wide knowledge and ability to use other programming languages may help with problem solving and employability.</p>
 <p>Python is an open-source programming language used extensively around the world. It is also vital for carrying out Scientific Computation.</p>
-<p>To execute commands in Jupyter, either Run the cell or hit SHIFT + ENTER.</p>
-<p>Alternatively, you can perform cloud computing using Google Colab:</p>
-<p><a class="reference external" href="https://colab.research.google.com/">https://colab.research.google.com/</a></p>
-<p>You will need a Google account to perform cloud computing, but the commands are (largely) the same. One can also click the “play” button next to an executable segment of code to run that code.</p>
-<p>Notebooks in Jupyter look like this: <img alt="title" src="_images/JupyterNotebook_my_first_plot.png" /></p>
+<p>This workbook comprises of a series of Jupyter notebooks.
+Jupyter and python can be launched through the Anaconda data science platform on an individual machine. Anaconda can be downloaded here:</p>
+<p><a class="reference external" href="https://www.anaconda.com">https://www.anaconda.com</a></p>
+<p>Jupyter notebooks combines sections of markdown text (which can include mathematical expressions) with executable elements of (Python) code. The executable elements appear in this workbook as grey boxes; when the workbook was created, <em>all</em> code elements were ran, and any output from them is seen directly below them.</p>
+<p>The big advantage of this workbook is this:</p>
+<p><strong>You can download each notebook to your computer or to the cloud and run all the code elements for yourself!</strong></p>
+<p>I encourage you to read through each page of the workbook, then choose one of two options:</p>
+<p float="left">
+  <img src="./rocket.png" width="100" /><img src="./down.png" width="100" /> 
+</p>
+<ol class="simple">
+<li><p>click the rocket symbol  at the top of the page and launch the page in Google Colab.</p></li>
+<li><p>click the arrow symbol  at the top of the page, and download the notebook as a ‘.ipynb’ file, in order to run the examples using jupyter-notebook.</p></li>
+</ol>
+<p>I recommend using <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, unless you are confident that you have installed anaconda and jupyter notebook correctly on your machine. You will need a Google account to perform cloud computing, but executing the code elements is nearly identical in both Jupyter and Colab.</p>
+</div>
+<div class="section" id="executing-jupyter-notebook-code">
+<h2>Executing Jupyter notebook code<a class="headerlink" href="#executing-jupyter-notebook-code" title="Permalink to this headline">¶</a></h2>
+<p>Notebooks in Jupyter look like this: <img alt="Jupyter screenshot" src="https://github.com/jwt104/MAT201DynamicsWithPythonBook/blob/main/JupyterNotebook_my_first_plot.png?raw=1" /></p>
+<p>Note that they comprise of markdown cells and code cells. This text is a markdown cell. Below, you can see my first code cell, containing the classic first command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World&quot;</span><span class="p">)</span>
@@ -326,9 +345,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <p>The output should always appear below each code cell (if there is any).</p>
-<p>Note if you hit ENTER without the shift, the notebook will either open the cell for editing, or perform a carriage return within that cell instead. You can edit code or text, then run it with SHIFT + ENTER.</p>
+<p>Running the cell requires using SHIFT + ENTER. (In Colab, you may also click the play button next to each code cell to run it).</p>
+<p>If you hit ENTER without the shift, the notebook will open the cell for editing, or perform a carriage return within that cell instead. You can edit code or text, then run it with SHIFT + ENTER.</p>
 <p>Try modifying this statement yourself: <strong>Python is ….</strong></p>
-<p>I encourage you to make copies of notebooks (to augment your lecture notes) and save them to your own computer or OneDrive areas.</p>
+<p>I encourage you to edit copies of notebooks (to augment your lecture notes) and use SAVE AS (in Colab or Jupyter) to store your own personal copy of them to your own computer or OneDrive.</p>
 <p>Python has extended functionality through libraries containing lots of extra commands, functions, and useful stuff. We import these libraries and commands using the <em>import</em> command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -339,13 +359,18 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <p>In this case, we have imported a library called “time” in order to run a command called “sleep”. This command runs for an amount of time given by its argument (in our case, 3 seconds) and produces no output. Note that when the code is running the symbol within the square brackets changes (indicating it is running).</p>
-<p>There are <strong>many</strong> detailed introductions to Jupyter notebooks, and Google colab, including textbooks, online workshops, videos, notebooks, theatrical productions (well maybe)… most are available on the web, like
+<p>One thing to note is that some libraries have long names. When running a command from that library, we have so also write the name of the library out again:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># time.sleep()</span>
+</pre></div>
+</div>
+<p>In some cases you will see that common libraries are imported ‘as’ a different name (primarily so that our commands are shorter in future!)</p>
+<p>There are <strong>many</strong> detailed introductions to Jupyter notebooks, and Google Colab, including textbooks, online workshops, videos, notebooks, theatrical productions (well maybe)… most are available on the web, like
 <a class="reference external" href="https://www.dataquest.io/blog/jupyter-notebook-tutorial/">this one</a>. Youtube videos <a class="reference external" href="https://youtu.be/RLYoEyIHL6A">like this one</a> also allow you to see this process as you would on your machine.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="applications-to-mat201-content">
 <h2>Applications to MAT201 content<a class="headerlink" href="#applications-to-mat201-content" title="Permalink to this headline">¶</a></h2>
-<p>In MAT201, our focus is (as you might expect) on mathematics. The rest of this introduction will illustrate a Python library called <a class="reference external" href="https://www.sympy.org/en/index.html">Sympy</a>. Like other Python packages, it is well documented, and widely used</p>
+<p>In MAT201, our focus is (as you might expect) on mathematics. The rest of this introduction will illustrate a Python library called <a class="reference external" href="https://www.sympy.org/en/index.html">Sympy</a>. Like other Python packages, it is well documented, and widely used.</p>
 <p>Let’s go ahead and load in the libraries we need: in this case, we’ll focus solely on <em>sympy</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -431,7 +456,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sin(x)**2 + cos(x)**2
-1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
 </pre></div>
 </div>
 </div>
@@ -542,7 +569,7 @@ where <span class="math notranslate nohighlight">\(x\)</span> and <span class="m
     
       By James Threlfall<br/>
     
-        &copy; Copyright 2021.<br/>
+        &copy; Copyright 2022.<br/>
   </p>
 </footer>
 </main>

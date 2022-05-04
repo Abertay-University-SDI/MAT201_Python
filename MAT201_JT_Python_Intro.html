@@ -251,6 +251,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#executing-jupyter-notebook-code">
+   Executing Jupyter notebook code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#applications-to-mat201-content">
    Applications to MAT201 content
   </a>
@@ -281,6 +286,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#executing-jupyter-notebook-code">
+   Executing Jupyter notebook code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#applications-to-mat201-content">
    Applications to MAT201 content
   </a>
@@ -296,18 +306,30 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-python">
 <h1>Introduction to Python<a class="headerlink" href="#introduction-to-python" title="Permalink to this headline">¶</a></h1>
-<p>Brief introduction to basic Python syntax, libraries, plotting in Jupyter notebooks.</p>
+<p>Short introduction to fundamental commands and structure of Python notebooks, as needed for this workbook.</p>
 <div class="section" id="general-introduction">
 <h2>General introduction<a class="headerlink" href="#general-introduction" title="Permalink to this headline">¶</a></h2>
-<p>This notebook lists examples of simple Python commands and programs that can be used to help with the understanding of the MAT201 course, particularly in the area of dynamics. Students can use Python to check their answers and visually see the mathematics in action. More broadly, a wide knowledge and ability to use other programming languages may help with problem solving and employability.</p>
-<p>This is a Jupyter notebook launched from within the Anaconda data science platform. Anaconda can be downloaded here:</p>
-<p><a class="reference external" href="https://www.anaconda.com">https://www.anaconda.com</a></p>
+<p>This workbook contains examples of simple Python commands and programs. These examples aim to enhance understanding of the dynamics component of MAT201.
+Students can use Python to check their answers and visually see the mathematics in action. More broadly, a wide knowledge and ability to use other programming languages may help with problem solving and employability.</p>
 <p>Python is an open-source programming language used extensively around the world. It is also vital for carrying out Scientific Computation.</p>
-<p>To execute commands in Jupyter, either Run the cell or hit SHIFT + ENTER.</p>
-<p>Alternatively, you can perform cloud computing using Google Colab:</p>
-<p><a class="reference external" href="https://colab.research.google.com/">https://colab.research.google.com/</a></p>
-<p>You will need a Google account to perform cloud computing, but the commands are (largely) the same. One can also click the “play” button next to an executable segment of code to run that code.</p>
-<p>Notebooks in Jupyter look like this: <img alt="title" src="_images/JupyterNotebook_my_first_plot.png" /></p>
+<p>This workbook comprises of a series of Jupyter notebooks.
+Jupyter and python can be launched through the Anaconda data science platform on an individual machine. Anaconda can be downloaded here:</p>
+<p><a class="reference external" href="https://www.anaconda.com">https://www.anaconda.com</a></p>
+<p>Jupyter notebooks combines sections of markdown text (which can include mathematical expressions) with executable elements of (Python) code. The executable elements appear in this workbook as grey boxes; when the workbook was created, <em>all</em> code elements were ran, and any output from them is seen directly below them.</p>
+<p>The big advantage of this workbook is this:</p>
+<p><strong>You can download each notebook to your computer or to the cloud and run all the code elements for yourself!</strong></p>
+<p>I encourage you to read through each page of the workbook, then choose one of two options:</p>
+<ol class="simple">
+<li><p>click the rocket symbol at the top of the page and
+launch the page in Google Colab.</p></li>
+<li><p>click the arrow symbol at the top of the page, and download the notebook as a ‘.ipynb’ file, in order to run the examples using jupyter-notebook.</p></li>
+</ol>
+<p>I recommend using <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, unless you are confident that you have installed anaconda and jupyter notebook correctly on your machine. You will need a Google account to perform cloud computing, but executing the code elements is nearly identical in both Jupyter and Colab.</p>
+</div>
+<div class="section" id="executing-jupyter-notebook-code">
+<h2>Executing Jupyter notebook code<a class="headerlink" href="#executing-jupyter-notebook-code" title="Permalink to this headline">¶</a></h2>
+<p>Notebooks in Jupyter look like this: <img alt="Jupyter screenshot" src="https://github.com/jwt104/MAT201DynamicsWithPythonBook/blob/main/JupyterNotebook_my_first_plot.png?raw=1" /></p>
+<p>Note that they comprise of markdown cells and code cells. This text is a markdown cell. Below, you can see my first code cell, containing the classic first command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World&quot;</span><span class="p">)</span>
@@ -321,9 +343,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <p>The output should always appear below each code cell (if there is any).</p>
-<p>Note if you hit ENTER without the shift, the notebook will either open the cell for editing, or perform a carriage return within that cell instead. You can edit code or text, then run it with SHIFT + ENTER.</p>
+<p>Running the cell requires using SHIFT + ENTER. (In Colab, you may also click the play button next to each code cell to run it).</p>
+<p>If you hit ENTER without the shift, the notebook will open the cell for editing, or perform a carriage return within that cell instead. You can edit code or text, then run it with SHIFT + ENTER.</p>
 <p>Try modifying this statement yourself: <strong>Python is ….</strong></p>
-<p>I encourage you to make copies of notebooks (to augment your lecture notes) and save them to your own computer or OneDrive areas.</p>
+<p>I encourage you to edit copies of notebooks (to augment your lecture notes) and use SAVE AS (in Colab or Jupyter) to store your own personal copy of them to your own computer or OneDrive.</p>
 <p>Python has extended functionality through libraries containing lots of extra commands, functions, and useful stuff. We import these libraries and commands using the <em>import</em> command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -334,32 +357,22 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <p>In this case, we have imported a library called “time” in order to run a command called “sleep”. This command runs for an amount of time given by its argument (in our case, 3 seconds) and produces no output. Note that when the code is running the symbol within the square brackets changes (indicating it is running).</p>
-<p>There are <strong>many</strong> detailed introductions to Jupyter notebooks, and Google colab, including textbooks, online workshops, videos, notebooks, theatrical productions (well maybe)… most are available on the web, like
+<p>One thing to note is that some libraries have long names. When running a command from that library, we have so also write the name of the library out again:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># time.sleep()</span>
+</pre></div>
+</div>
+<p>In some cases you will see that common libraries are imported ‘as’ a different name (primarily so that our commands are shorter in future!)</p>
+<p>There are <strong>many</strong> detailed introductions to Jupyter notebooks, and Google Colab, including textbooks, online workshops, videos, notebooks, theatrical productions (well maybe)… most are available on the web, like
 <a class="reference external" href="https://www.dataquest.io/blog/jupyter-notebook-tutorial/">this one</a>. Youtube videos <a class="reference external" href="https://youtu.be/RLYoEyIHL6A">like this one</a> also allow you to see this process as you would on your machine.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="applications-to-mat201-content">
 <h2>Applications to MAT201 content<a class="headerlink" href="#applications-to-mat201-content" title="Permalink to this headline">¶</a></h2>
-<p>In MAT201, our focus is (as you might expect) on mathematics. The rest of this introduction will illustrate a Python library called <a class="reference external" href="https://www.sympy.org/en/index.html">Sympy</a>. Like other Python packages, it is well documented, and widely used</p>
-<p>Let’s go ahead and load in the libraries we need: in this case, we’ll focus solely on <em>sympy</em>. (We’ll use this library a lot in the next few notebooks, so we’ll include an extra library first that can be used to check if libraries are installed and install them on the fly if needed).</p>
+<p>In MAT201, our focus is (as you might expect) on mathematics. The rest of this introduction will illustrate a Python library called <a class="reference external" href="https://www.sympy.org/en/index.html">Sympy</a>. Like other Python packages, it is well documented, and widely used.</p>
+<p>Let’s go ahead and load in the libraries we need: in this case, we’ll focus solely on <em>sympy</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install sympy
-<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: sympy in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (1.9)
-Requirement already satisfied: mpmath&gt;=0.19 in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from sympy) (1.2.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: You are using pip version 21.3.1; however, version 22.0.4 is available.</span>
-<span class=" -Color -Color-Yellow">You should consider upgrading via the &#39;/usr/local/opt/python@3.9/bin/python3.9 -m pip install --upgrade pip&#39; command.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
 </pre></div>
 </div>
 </div>
@@ -391,7 +404,7 @@ Requirement already satisfied: mpmath&gt;=0.19 in /Users/jamesthrelfall/Library/
 </div>
 </div>
 </div>
-<p>We can use symbolic constants like <span class="math notranslate nohighlight">\(\pi\)</span>, <span class="math notranslate nohighlight">\(e\)</span> (as in the exponential) or indeed infinity:</p>
+<p>We can use symbolic constants like <span class="math notranslate nohighlight">\(pi\)</span>, <span class="math notranslate nohighlight">\(e\)</span> (as in the exponential) or indeed infinity:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mypi</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">pi</span>
@@ -431,7 +444,7 @@ Requirement already satisfied: mpmath&gt;=0.19 in /Users/jamesthrelfall/Library/
 \[\displaystyle x^{2} + x y + \frac{y^{2}}{4}\]</div>
 </div>
 </div>
-<p>Sympy has expanded this binomial, just like we would using pen and paper. It knows all the rules we do! It also knows lots about trigonometric functions. The <em>simplify</em> command can simplify expressions, using all of the maths knowledge in the library. We know that <span class="math notranslate nohighlight">\(\cos^2{(x)}+\sin^2{(x)}=1\)</span>; so does <em>sympy</em>:</p>
+<p>Sympy has expanded this binomial, just like we would using pen and paper. It knows all the rules we do! It also knows lots about trigonometric functions. The <em>simplify</em> command can simplify expressions, using all of the maths knowledge in the library. We know that <span class="math notranslate nohighlight">\(\cos^2{(x)}+\sin^2{(x)}=1\)</span>; so does sympy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
@@ -458,12 +471,10 @@ Requirement already satisfied: mpmath&gt;=0.19 in /Users/jamesthrelfall/Library/
 \[\displaystyle x\]</div>
 </div>
 </div>
-<p>where the command has differentiated the first expression with respect to x. We can perform partial derivatives just as easily: lets say we need</p>
-<div class="math notranslate nohighlight">
-\[
-\frac{\partial}{\partial x} \left(x^3+y+\frac{xy}{2}\right), 
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are independent variables:</p>
+<p>where the command has differentiated the first expression with respect to x. We can perform partial derivatives just as easily: lets say we need \begin{equation}
+\frac{\partial}{\partial x} \left(x^3+y+axy\right),
+\end{equation}
+where <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are independent variables:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">onehalf</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span> <span class="p">,</span> <span class="n">x</span><span class="p">)</span>
@@ -475,12 +486,8 @@ Requirement already satisfied: mpmath&gt;=0.19 in /Users/jamesthrelfall/Library/
 \[\displaystyle 3 x^{2} + \frac{y}{2}\]</div>
 </div>
 </div>
-<p>easy peasy! What about integration? We know that (ignoring the constants of integration for now)</p>
-<div class="math notranslate nohighlight">
-\[ 
-\int \frac{1}{{x}} ~{\rm{d}}x=\ln{|x|}+c,
-\]</div>
-<p>but so does <em>sympy</em>:</p>
+<p>easy peasy! What about integration? We know that (ignoring the constants of integration for now)
+\begin{equation}\int \frac{1} ~{\rm{d}}x=\ln{|x|}+c,\end{equation} but so does sympy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>

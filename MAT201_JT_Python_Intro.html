@@ -251,8 +251,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#executing-code-segments">
-   Executing code segments
+  <a class="reference internal nav-link" href="#executing-jupyter-notebook-code">
+   Executing Jupyter notebook code
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -286,8 +286,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#executing-code-segments">
-   Executing code segments
+  <a class="reference internal nav-link" href="#executing-jupyter-notebook-code">
+   Executing Jupyter notebook code
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -319,13 +319,17 @@ Jupyter and python can be launched through the Anaconda data science platform on
 <p>The big advantage of this workbook is this:</p>
 <p><strong>You can download each notebook to your computer or to the cloud and run all the code elements for yourself!</strong></p>
 <p>I encourage you to read through each page of the workbook, then choose one of two options:</p>
-<p><img alt="rocket" src="https://github.com/jwt104/MAT201DynamicsWithPythonBook/blob/main/rocket.png?raw=1" /> 1.   click the rocket symbol  at the top of the page and launch the page in Google Colab.</p>
-<p>OR</p>
-<p><img alt="down" src="https://github.com/jwt104/MAT201DynamicsWithPythonBook/blob/main/down.png?raw=1" /> 2.   click the arrow symbol  at the top of the page, and download the notebook as a ‘.ipynb’ file, in order to run the examples using jupyter-notebook.</p>
+<p float="left">
+  <img src="./rocket.png" width="100" /><img src="./down.png" width="100" /> 
+</p>
+<ol class="simple">
+<li><p>click the rocket symbol  at the top of the page and launch the page in Google Colab.</p></li>
+<li><p>click the arrow symbol  at the top of the page, and download the notebook as a ‘.ipynb’ file, in order to run the examples using jupyter-notebook.</p></li>
+</ol>
 <p>I recommend using <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, unless you are confident that you have installed anaconda and jupyter notebook correctly on your machine. You will need a Google account to perform cloud computing, but executing the code elements is nearly identical in both Jupyter and Colab.</p>
 </div>
-<div class="section" id="executing-code-segments">
-<h2>Executing code segments<a class="headerlink" href="#executing-code-segments" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="executing-jupyter-notebook-code">
+<h2>Executing Jupyter notebook code<a class="headerlink" href="#executing-jupyter-notebook-code" title="Permalink to this headline">¶</a></h2>
 <p>Notebooks in Jupyter look like this: <img alt="Jupyter screenshot" src="https://github.com/jwt104/MAT201DynamicsWithPythonBook/blob/main/JupyterNotebook_my_first_plot.png?raw=1" /></p>
 <p>Note that they comprise of markdown cells and code cells. This text is a markdown cell. Below, you can see my first code cell, containing the classic first command:</p>
 <div class="cell docutils container">
@@ -469,12 +473,10 @@ Jupyter and python can be launched through the Anaconda data science platform on
 \[\displaystyle x\]</div>
 </div>
 </div>
-<p>where the command has differentiated the first expression with respect to x. We can perform partial derivatives just as easily: lets say we need</p>
-<div class="math notranslate nohighlight">
-\[ 
-\frac{\partial}{\partial x} \left(x^3+y+axy\right), 
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are independent variables:</p>
+<p>where the command has differentiated the first expression with respect to x. We can perform partial derivatives just as easily: lets say we need \begin{equation}
+\frac{\partial}{\partial x} \left(x^3+y+axy\right),
+\end{equation}
+where <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are independent variables:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">onehalf</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span> <span class="p">,</span> <span class="n">x</span><span class="p">)</span>
@@ -486,12 +488,8 @@ Jupyter and python can be launched through the Anaconda data science platform on
 \[\displaystyle 3 x^{2} + \frac{y}{2}\]</div>
 </div>
 </div>
-<p>easy peasy! What about integration? We know that (ignoring the constants of integration for now)</p>
-<div class="math notranslate nohighlight">
-\[
-\int \frac{1}{{x}} ~{\rm{d}}x=\ln{|x|}+c,
-\]</div>
-<p>but so does sympy:</p>
+<p>easy peasy! What about integration? We know that (ignoring the constants of integration for now)
+\begin{equation}\int \frac{1} ~{\rm{d}}x=\ln{|x|}+c,\end{equation} but so does sympy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
@@ -517,7 +515,7 @@ Jupyter and python can be launched through the Anaconda data science platform on
 </div>
 </div>
 </div>
-<p>It can also solve matrix equations and tons of other clever things. However, this is plenty of information to begin to explore simple differential calculus taught in MAT201 dynamics lectures.</p>
+<p>It can also solve matrix equations and tons of other clever things. However, this is plenty of information to begin to explore simple differential calculus that we’ll encounter in our MAT201 dynamics lectures.</p>
 </div>
 </div>
 

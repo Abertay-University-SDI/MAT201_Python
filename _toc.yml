@@ -1,13 +1,47 @@
 # Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
+# JT2023: MAT201 Workbook (Abertay University)
 
 format: jb-book
 root: intro
-chapters:
-- file: MAT201_JT_Python_Intro
-- file: MAT201_JT_relatingSVA.ipynb
-- file: MAT201_JT_airresistance.ipynb
-- file: MAT201_JT_SHM.ipynb
-- file: MAT201_JT_2DSphereWallCollisions.ipynb
-- file: MAT201_JT_2DSphereSphereCollisions.ipynb
-- file: outro.md
+parts:
+- numbered: false
+  chapters:
+  - file: MAT201_PythonIntro.ipynb
+    title: Python Intro.
+- caption: Methods
+  numbered: true
+  chapters:
+  - file: methods/MAT201M_2DVT.ipynb
+    title: 2D Viewing Transforms
+  - file: methods/MAT201M_3DVT.ipynb
+    title: 3D Viewing Transforms
+  - file: methods/MAT201M_ComplexNos.ipynb
+    title: Complex Numbers
+  - file: methods/MAT201M_Quats.ipynb
+    title: Quaternions
+  - file: methods/MAT201M_RaysIntro.ipynb
+    title: Ray Tracing
+  - file: methods/MAT201M_RaysBoxes.ipynb
+    title: Rays and Boxes
+  - file: methods/MAT201M_RaysPlanes.ipynb
+    title: Rays and Planes
+- caption: Dynamics
+  numbered: true
+  chapters:
+  - file: dynamics/MAT201D_AccVelDist.ipynb
+    title: Linear Motion
+  - file: dynamics/MAT201D_AirRes.ipynb
+    title: Air Resistance
+  - file: dynamics/MAT201D_SHM.ipynb
+    title: Simple Harmonic Motion
+  - file: dynamics/MAT201D_2DSWcols.ipynb
+    title: 2D Sphere/Wall Collisions
+  - file: dynamics/MAT201D_2DSScols.ipynb
+    title: 2D Sphere/Sphere Collisions
+- numbered: false
+  chapters:
+  - file: outro.md
+    title: Summary
+
+
+

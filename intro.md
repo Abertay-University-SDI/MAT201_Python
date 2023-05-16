@@ -1,4 +1,4 @@
-# Welcome to MAT201 Dynamics with Python
+# Welcome
 
 This is a book containing a collection of Python Jupyter notebooks, designed to complement the dynamics content covered in MAT201 for 
 undergraduate Computer Games Technology (CGT) students at Abertay University.

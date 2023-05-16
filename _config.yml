@@ -18,12 +18,12 @@ latex:
     targetname: book.tex
 
 # Add a bibtex file so that we can create citations
-bibtex_bibfiles:
-  - references.bib
+#bibtex_bibfiles:
+#  - references.bib
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/jwt104/MAT201DynamicsWithPythonBook  # Online location of your book
+  url: https://github.com/Abertay-University-SDI/MAT201_Python  # Online location of your book
   branch: main  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book
@@ -31,6 +31,7 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+  use_multitoc_numbering: false
 
 launch_buttons:
   colab_url: "https://colab.research.google.com"

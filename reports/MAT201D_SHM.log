@@ -1,0 +1,71 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 1093, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/local/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/usr/local/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/local/Cellar/python@3.9/3.9.16/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 559, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 854, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 756, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+interval = 1000*dt
+anim = animation.FuncAnimation(fig, animate, interval=interval, init_func=init,
+                               blit=True, repeat=False)
+from IPython.display import HTML
+HTML(anim.to_html5_video())
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_35642/395436596.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      3[0m                                blit=True, repeat=False)
+[1;32m      4[0m [0;32mfrom[0m [0mIPython[0m[0;34m.[0m[0mdisplay[0m [0;32mimport[0m [0mHTML[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 5[0;31m [0mHTML[0m[0;34m([0m[0manim[0m[0;34m.[0m[0mto_html5_video[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m~/Library/Python/3.9/lib/python/site-packages/matplotlib/animation.py[0m in [0;36mto_html5_video[0;34m(self, embed_limit)[0m
+[1;32m   1286[0m                                 [0mbitrate[0m[0;34m=[0m[0mmpl[0m[0;34m.[0m[0mrcParams[0m[0;34m[[0m[0;34m'animation.bitrate'[0m[0;34m][0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1287[0m                                 fps=1000. / self._interval)
+[0;32m-> 1288[0;31m                 [0mself[0m[0;34m.[0m[0msave[0m[0;34m([0m[0mstr[0m[0;34m([0m[0mpath[0m[0;34m)[0m[0;34m,[0m [0mwriter[0m[0;34m=[0m[0mwriter[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1289[0m                 [0;31m# Now open and base64 encode.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1290[0m                 [0mvid64[0m [0;34m=[0m [0mbase64[0m[0;34m.[0m[0mencodebytes[0m[0;34m([0m[0mpath[0m[0;34m.[0m[0mread_bytes[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/Library/Python/3.9/lib/python/site-packages/matplotlib/animation.py[0m in [0;36msave[0;34m(self, filename, writer, fps, dpi, codec, bitrate, extra_args, metadata, extra_anim, savefig_kwargs, progress_callback)[0m
+[1;32m   1101[0m                 [0;32mfor[0m [0manim[0m[0;34m,[0m [0md[0m [0;32min[0m [0mzip[0m[0;34m([0m[0mall_anim[0m[0;34m,[0m [0mdata[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1102[0m                     [0;31m# TODO: See if turning off blit is really necessary[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1103[0;31m                     [0manim[0m[0;34m.[0m[0m_draw_next_frame[0m[0;34m([0m[0md[0m[0;34m,[0m [0mblit[0m[0;34m=[0m[0;32mFalse[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1104[0m                     [0;32mif[0m [0mprogress_callback[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1105[0m                         [0mprogress_callback[0m[0;34m([0m[0mframe_number[0m[0;34m,[0m [0mtotal_frames[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/Library/Python/3.9/lib/python/site-packages/matplotlib/animation.py[0m in [0;36m_draw_next_frame[0;34m(self, framedata, blit)[0m
+[1;32m   1136[0m         [0;31m# post- draw, as well as the drawing of the frame itself.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1137[0m         [0mself[0m[0;34m.[0m[0m_pre_draw[0m[0;34m([0m[0mframedata[0m[0;34m,[0m [0mblit[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1138[0;31m         [0mself[0m[0;34m.[0m[0m_draw_frame[0m[0;34m([0m[0mframedata[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1139[0m         [0mself[0m[0;34m.[0m[0m_post_draw[0m[0;34m([0m[0mframedata[0m[0;34m,[0m [0mblit[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1140[0m [0;34m[0m[0m
+
+[0;32m~/Library/Python/3.9/lib/python/site-packages/matplotlib/animation.py[0m in [0;36m_draw_frame[0;34m(self, framedata)[0m
+[1;32m   1765[0m         [0;31m# Call the func with framedata and args. If blitting is desired,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1766[0m         [0;31m# func needs to return a sequence of any artists that were modified.[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1767[0;31m         [0mself[0m[0;34m.[0m[0m_drawn_artists[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_func[0m[0;34m([0m[0mframedata[0m[0;34m,[0m [0;34m*[0m[0mself[0m[0;34m.[0m[0m_args[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1768[0m [0;34m[0m[0m
+[1;32m   1769[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0m_blit[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_35642/966834619.py[0m in [0;36manimate[0;34m(i)[0m
+[1;32m     14[0m     ])
+[1;32m     15[0m     [0mpatch[0m[0;34m.[0m[0mset_xy[0m[0;34m([0m[0mbox[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 16[0;31m     [0max1[0m[0;34m.[0m[0mpatches[0m[0;34m.[0m[0mremove[0m[0;34m([0m[0mpatch2[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     17[0m     [0max1[0m[0;34m.[0m[0mpatches[0m[0;34m.[0m[0mremove[0m[0;34m([0m[0mpatch3[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     18[0m     [0mpatch2[0m [0;34m=[0m [0mpatches[0m[0;34m.[0m[0mArrow[0m[0;34m([0m[0mdisp[0m[0;34m([0m[0mdt[0m[0;34m*[0m[0mi[0m[0;34m)[0m[0;34m,[0m [0;36m0.0[0m[0;34m,[0m [0maccel[0m[0;34m([0m[0mdt[0m [0;34m*[0m [0mi[0m[0;34m)[0m[0;34m,[0m [0;36m0.0[0m[0;34m,[0m [0mcolor[0m[0;34m=[0m[0;34m'blue'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: 'ArtistList' object has no attribute 'remove'
+AttributeError: 'ArtistList' object has no attribute 'remove'
+

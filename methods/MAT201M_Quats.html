@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4. Quaternions (and rotations!) &#8212; MAT201 Dynamics with Python</title>
+    <title>5. Quaternions (and rotations!) &#8212; MAT201 Dynamics with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Ray Tracing" href="MAT201M_RaysIntro.html" />
-    <link rel="prev" title="3. Complex Numbers" href="MAT201M_ComplexNos.html" />
+    <link rel="next" title="6. Ray Tracing" href="MAT201M_RaysIntro.html" />
+    <link rel="prev" title="4. Complex Numbers" href="MAT201M_ComplexNos.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -124,28 +124,33 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="MAT201M_3DVT2.html">
+   3. More 3D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_ComplexNos.html">
-   3. Complex Numbers
+   4. Complex Numbers
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   4. Quaternions
+   5. Quaternions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysIntro.html">
-   5. Ray Tracing
+   6. Ray Tracing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysBoxes.html">
-   6. Rays and Boxes
+   7. Rays and Boxes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysPlanes.html">
-   7. Rays and Planes
+   8. Rays and Planes
   </a>
  </li>
 </ul>
@@ -298,24 +303,24 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   4.1. Introduction
+   5.1. Introduction
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-1-rotation-using-quaternions">
-     4.1.1. Example 1: rotation using quaternions
+     5.1.1. Example 1: rotation using quaternions
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-2">
-   4.2. Example 2
+   5.2. Example 2
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-3">
-   4.3. Example 3
+   5.3. Example 3
   </a>
  </li>
 </ul>
@@ -340,24 +345,24 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   4.1. Introduction
+   5.1. Introduction
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-1-rotation-using-quaternions">
-     4.1.1. Example 1: rotation using quaternions
+     5.1.1. Example 1: rotation using quaternions
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-2">
-   4.2. Example 2
+   5.2. Example 2
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-3">
-   4.3. Example 3
+   5.3. Example 3
   </a>
  </li>
 </ul>
@@ -370,7 +375,7 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="quaternions-and-rotations">
-<h1><span class="section-number">4. </span>Quaternions (and rotations!)<a class="headerlink" href="#quaternions-and-rotations" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">5. </span>Quaternions (and rotations!)<a class="headerlink" href="#quaternions-and-rotations" title="Permalink to this headline">¶</a></h1>
 <p>JT 2023. Ongoing MAT201 expansion notebooks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -388,7 +393,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="introduction">
-<h2><span class="section-number">4.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Quaternions are like an extended form of complex number. They have one real and <em>three</em> hyperimaginary components, for example:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -418,9 +423,7 @@ q = a+b\vec{i}+c\vec{j}+d\vec{k}.
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip available: <span class=" -Color -Color-Red">22.3.1</span> -&gt; <span class=" -Color -Color-Green">23.1.2</span>
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip available: <span class=" -Color -Color-Red">22.3.1</span> -&gt; <span class=" -Color -Color-Green">23.1.2</span>
 <span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">/usr/local/opt/python@3.9/bin/python3.9 -m pip install --upgrade pip</span>
 </pre></div>
 </div>
@@ -522,7 +525,7 @@ quaternion(0.182574185835055, -0.365148371670111, -0.547722557505166, -0.7302967
 </div>
 <p>Let us now put these processes to the test. In our lectures we encountered several examples.</p>
 <div class="section" id="example-1-rotation-using-quaternions">
-<h3><span class="section-number">4.1.1. </span>Example 1: rotation using quaternions<a class="headerlink" href="#example-1-rotation-using-quaternions" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.1. </span>Example 1: rotation using quaternions<a class="headerlink" href="#example-1-rotation-using-quaternions" title="Permalink to this headline">¶</a></h3>
 <p>The point <span class="math notranslate nohighlight">\((2,3,1)\)</span> is to be rotated about the <span class="math notranslate nohighlight">\(x\)</span>-axis by <span class="math notranslate nohighlight">\(90^o\)</span> using quaternions.</p>
 <p>In only a few lines we can use Python to carry out the same rotation:</p>
 <div class="cell docutils container">
@@ -618,7 +621,7 @@ To display an axis, we could create a type of arrow to indicate size and directi
 </div>
 </div>
 <div class="section" id="example-2">
-<h2><span class="section-number">4.2. </span>Example 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2. </span>Example 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h2>
 <p>The point <span class="math notranslate nohighlight">\((1,0,-2)\)</span> is to be rotated by <span class="math notranslate nohighlight">\(60^o\)</span> about the axis <span class="math notranslate nohighlight">\(\vec{i}+2\vec{j}-\vec{k}\)</span>. Carry out the rotation using quaternions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -675,7 +678,7 @@ To display an axis, we could create a type of arrow to indicate size and directi
 </div>
 </div>
 <div class="section" id="example-3">
-<h2><span class="section-number">4.3. </span>Example 3<a class="headerlink" href="#example-3" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.3. </span>Example 3<a class="headerlink" href="#example-3" title="Permalink to this headline">¶</a></h2>
 <p>Example 3 used the same direction for the axis of rotation as in Example 1, but now passing through a specific point. To carry out this example, we must first translate the point before carrying out the rotation, then translating the point back by the same amount at the end:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -768,13 +771,13 @@ Now it’s over to you. Examine some of the examples you completed in the tutori
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">3. </span>Complex Numbers</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>Complex Numbers</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="MAT201M_RaysIntro.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Ray Tracing</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Ray Tracing</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

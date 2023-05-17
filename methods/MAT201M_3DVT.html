@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Complex Numbers" href="MAT201M_ComplexNos.html" />
+    <link rel="next" title="3. More 3D Coordinate Transformations" href="MAT201M_3DVT2.html" />
     <link rel="prev" title="1. Coordinate Transformations in 2D" href="MAT201M_2DVT.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -124,28 +124,33 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="MAT201M_3DVT2.html">
+   3. More 3D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_ComplexNos.html">
-   3. Complex Numbers
+   4. Complex Numbers
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_Quats.html">
-   4. Quaternions
+   5. Quaternions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysIntro.html">
-   5. Ray Tracing
+   6. Ray Tracing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysBoxes.html">
-   6. Rays and Boxes
+   7. Rays and Boxes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysPlanes.html">
-   7. Rays and Planes
+   8. Rays and Planes
   </a>
  </li>
 </ul>
@@ -367,7 +372,7 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="coordinate-transformations-in-3d">
 <h1><span class="section-number">2. </span>Coordinate Transformations in 3D<a class="headerlink" href="#coordinate-transformations-in-3d" title="Permalink to this headline">¶</a></h1>
-<p>JT 2023. Part of an ongoing series of notebooks exploring if/how best we can illustrate behaviour introduced in MAT201.</p>
+<p>Following on from 2D graphics transformations, we can extend all standard operations into 3D, retaining and using homogenous coordinates. Our objective will again be to combine the required standard sets of operations into a single <em>composite</em> matrix.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Libraries</span>
@@ -383,7 +388,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <p>Let’s set up a matrix of positions that we can transform.
-This time, for arguments sake, we’ll play with a triangle.</p>
+This time, for arguments sake, we’ll play with a 3D triangle.
+As before, we’ll store the vertices in separate arrays for <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(z\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
@@ -418,8 +424,8 @@ This time, for arguments sake, we’ll play with a triangle.</p>
 </div>
 <div class="section" id="homogenous-coordinates">
 <h2><span class="section-number">2.1. </span>Homogenous coordinates<a class="headerlink" href="#homogenous-coordinates" title="Permalink to this headline">¶</a></h2>
-<p>Let’s first organise the coordinates so that we can perform transformations. Our points are currently listed as an array, with the first row being the <span class="math notranslate nohighlight">\(x\)</span>-coords, and the second row as <span class="math notranslate nohighlight">\(y\)</span>-coords.</p>
-<p>To transform using matrices, we need to have each <em>column</em> list a different dimension. We also need to extent each 2D set of points to contain an extra dimension, known as homogenous coordinates. Our plan will be to add these extra coordinates first, then switchs rows and columns (an operation known as the “transpose” of a matrix).</p>
+<p>Our first step, as with 2D, is to apply the concept of homogenous coordinates, in order that we correctly format our positions ready for transformation. Our points are currently listed as an array, with the first row being the <span class="math notranslate nohighlight">\(x\)</span>-coords, and the second row as <span class="math notranslate nohighlight">\(y\)</span>-coords.</p>
+<p>To transform using matrices, we need to have each <em>column</em> list a different dimension. We also need to extend each 2D set of points to contain an extra dimension, known as homogenous coordinates. Our plan will be to add these extra coordinates first, then switchs rows and columns (an operation known as the “transpose” of a matrix).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">newrow</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
@@ -465,7 +471,7 @@ T_{\underline{v}} =
 	a &amp; b &amp; c &amp; 1 
 	\end{pmatrix}	
 \end{split}\]</div>
-<p>We have to remember to PRE-MULTIPLY (due to the standard graphics pipeline approach). This may be different in other web resources and textbooks, but they may use different pipelines or codes.</p>
+<p>We have to remember to <strong>PRE-MULTIPLY</strong> (due to the standard graphics pipeline approach). This may be different in other web resources and textbooks, but they may use different pipelines or codes.</p>
 <p>We’ll leave the object unstretched in <span class="math notranslate nohighlight">\(x\)</span>, but make it three times bigger in <span class="math notranslate nohighlight">\(y\)</span> and half as big in <span class="math notranslate nohighlight">\(z\)</span>.</p>
 <p>Remember, if we wish to scale or rotate, we have to move the object to the origin. We will first translate all coordinates so that one is located at the origin. The easiest to target is coordinate (1,0,0), so let us subtract 1 in <span class="math notranslate nohighlight">\(x\)</span> from all coordinates. While we’re at it, lets create the opposite operation so we don’t forget:</p>
 <div class="cell docutils container">
@@ -494,7 +500,7 @@ T_{\underline{v}} =
 </div>
 </div>
 </div>
-<p>For plotting purposes, we’ll undo our operations from earlier, and repeat the same plotting operation, overplotting the original coords too.</p>
+<p>For plotting purposes, we’ll undo our operations from earlier, and repeat the same plotting operation, overplotting the original coords too. (we’ll use the “np.squeeze” command to make the arrays the correct shape for Python to correctly handle).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">newp</span> <span class="o">=</span> <span class="n">sp</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
@@ -532,7 +538,7 @@ T_{\underline{v}} =
 <img alt="../_images/MAT201M_3DVT_16_0.png" src="../_images/MAT201M_3DVT_16_0.png" />
 </div>
 </div>
-<p>You can see that the object is now three times bigger in <span class="math notranslate nohighlight">\(y\)</span>, and has been squashed in <span class="math notranslate nohighlight">\(z\)</span>. Due to the viewing perspective in 3D, it is much more difficult to directly confirm exact sizes visually. Try modifying the azimuth and elevation in the plot to confirm the sizes in the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span> directions.</p>
+<p>You can see that the object is now three times bigger in <span class="math notranslate nohighlight">\(y\)</span>, and has been squashed in <span class="math notranslate nohighlight">\(z\)</span>. Due to the viewing perspective in 3D, it is much more difficult to directly confirm exact sizes visually. Try modifying the azimuth and elevation in the plot (in the “ax.view_init()” command, first number is an angle relative to the z=0 plane, second is an angle relative to y=0 plane) to confirm the sizes in the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span> directions.</p>
 </div>
 <div class="section" id="rotation">
 <h2><span class="section-number">2.3. </span>Rotation<a class="headerlink" href="#rotation" title="Permalink to this headline">¶</a></h2>
@@ -718,10 +724,10 @@ R_{\theta_{x,\underline{i}}}=
             <p class="prev-next-title"><span class="section-number">1. </span>Coordinate Transformations in 2D</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="MAT201M_ComplexNos.html" title="next page">
+    <a class='right-next' id="next-link" href="MAT201M_3DVT2.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Complex Numbers</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>More 3D Coordinate Transformations</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

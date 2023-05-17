@@ -103,7 +103,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../MAT201_PythonIntro.html">
-   Python Intro.
+   Python Introduction
   </a>
  </li>
 </ul>
@@ -124,28 +124,33 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="MAT201M_3DVT2.html">
+   3. More 3D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_ComplexNos.html">
-   3. Complex Numbers
+   4. Complex Numbers
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_Quats.html">
-   4. Quaternions
+   5. Quaternions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysIntro.html">
-   5. Ray Tracing
+   6. Ray Tracing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysBoxes.html">
-   6. Rays and Boxes
+   7. Rays and Boxes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysPlanes.html">
-   7. Rays and Planes
+   8. Rays and Planes
   </a>
  </li>
 </ul>
@@ -318,7 +323,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#rotation-and-scaling-at-the-origin">
-   1.5. Rotation and Scaling at the origin.
+   1.5. Rotation and scaling at the origin
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -368,7 +373,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#rotation-and-scaling-at-the-origin">
-   1.5. Rotation and Scaling at the origin.
+   1.5. Rotation and scaling at the origin
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -387,7 +392,9 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="coordinate-transformations-in-2d">
 <h1><span class="section-number">1. </span>Coordinate Transformations in 2D<a class="headerlink" href="#coordinate-transformations-in-2d" title="Permalink to this headline">¶</a></h1>
-<p>JT 2023. Part of an ongoing series of notebooks exploring if/how best we can illustrate behaviour introduced in MAT201.</p>
+<p>In lectures, we were introduced to the idea that graphics programming uses matrices to transform objects seen in a window to be correctly displayed in a viewport on the screen.</p>
+<p>To do this efficiently, we can construct a <em>composite</em> transformation matrix by multiplying the required steps (translation, rotation, scaling) and their matrices together. Due to our particular application and graphics pipeline, we use specific forms of matrices and post-multiply window coordinates to achieve the correct transformations. We were also introduced to the concept of homogenous coordinates for specific positions, in order to correctly apply the transformations.</p>
+<p>In this notebook, we will put these calculations into practice, by performing the transformations practiced in class on specific objects and observing the effects.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Libraries</span>
@@ -399,8 +406,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>Let’s set up an array of positions that we can transform.
-A simple thing to visualise is a square.</p>
+<p>We will begin by creating an object that we need to transform.
+One of the simplest objects to manipulate is a square: it will also easily allow us to explore the results of the transformations and compare with the original size and shape.</p>
+<p>To create a square, we can create an array of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>-coordinates which are the vertices of this square. In order to draw lines between each array element and the next, we will append the array with the first value: this means that Python will just join every element of the array automatically when plotted:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
@@ -424,7 +432,7 @@ A simple thing to visualise is a square.</p>
 </div>
 <div class="section" id="homogenous-coordinates">
 <h2><span class="section-number">1.1. </span>Homogenous coordinates<a class="headerlink" href="#homogenous-coordinates" title="Permalink to this headline">¶</a></h2>
-<p>Let’s first organise the coordinates so that we can perform transformations. Our points are currently listed in two arrays, with the first containing the <span class="math notranslate nohighlight">\(x\)</span>-coordinates, and the second containing <span class="math notranslate nohighlight">\(y\)</span>-coords.</p>
+<p>Our first task will be to organise the coordinates so that we can perform transformations. Our points are currently listed in two arrays, with the first containing the <span class="math notranslate nohighlight">\(x\)</span>-coordinates, and the second containing <span class="math notranslate nohighlight">\(y\)</span>-coords.</p>
 <p>Typically when we work with coordinates and vectors or matrices, we need to have each <em>column</em> list a different dimension. We also need to extend each (2D) set of points to contain an extra dimension, a concept taught in the lectures as “homogenous coordinates’’.</p>
 <p>Since we have an array each for <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, we’ll first create a third array containing our extra homogenous coordinates. Then we’ll stack our arrays on top of each other, to make a matrix which contains each coordinate dimension as a new row. Finally, we’ll use the transpose command to switch rows and columns, so that we have our coordinate matrix formatted as we saw in lectures:</p>
 <div class="cell docutils container">
@@ -521,7 +529,7 @@ S_{S_x,~S_y}=
 </div>
 <div class="section" id="rotation">
 <h2><span class="section-number">1.3. </span>Rotation<a class="headerlink" href="#rotation" title="Permalink to this headline">¶</a></h2>
-<p>In cases where we need to rotate objects, in the lectures we saw that we can use the 2D rotation matrix, which take the form:</p>
+<p>In cases where we need to rotate objects, in the lectures we saw that we can use the 2D rotation matrix, which takes the form seen in class (and in MAT101):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 R_{\theta_{z,{\underline{k}}}}=
@@ -586,7 +594,7 @@ R_{-\theta_{z,{\underline{k}}}}=
 </div>
 <div class="section" id="translation">
 <h2><span class="section-number">1.4. </span>Translation<a class="headerlink" href="#translation" title="Permalink to this headline">¶</a></h2>
-<p>The final common operation we’ll deal with is a translation. In the lectures, translating an object by an amount <span class="math notranslate nohighlight">\(x_A\)</span> in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y_A\)</span> in <span class="math notranslate nohighlight">\(y\)</span> is given by the following matrix:</p>
+<p>The final common operation we’ll deal with is a translation. In the lectures, translating an object by an amount <span class="math notranslate nohighlight">\(x_A\)</span> in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y_A\)</span> in <span class="math notranslate nohighlight">\(y\)</span> is achieved using the following matrix:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 T_{\underline{v}}=
@@ -596,6 +604,7 @@ T_{\underline{v}}=
 	x_{A} &amp; y_{A} &amp; 1
 	\end{pmatrix}
 \end{split}\]</div>
+<p>Note that all other operations (rotation and scaling) for 2D positions can in principle be contained in a <span class="math notranslate nohighlight">\(2\times2\)</span> matrix; a translation requires one more row and column than the number of dimensions we are working with. Hence to translate a 2D position, we require a <span class="math notranslate nohighlight">\(3\times3\)</span> matrix. This is also why we need homogenous coordinates, so that we can couple translation with other transformations, filling in the missing dimensions as needed.</p>
 <p>In this demo, we’ll translate by <span class="math notranslate nohighlight">\(10\)</span> in <span class="math notranslate nohighlight">\(x\)</span> (<span class="math notranslate nohighlight">\(x_A=10\)</span>) and <span class="math notranslate nohighlight">\(8\)</span> in <span class="math notranslate nohighlight">\(y\)</span> (<span class="math notranslate nohighlight">\(y_A=8\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -640,8 +649,8 @@ T_{\underline{v}}=
 <p>As expected, the object has been translated by the expected amount in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
 </div>
 <div class="section" id="rotation-and-scaling-at-the-origin">
-<h2><span class="section-number">1.5. </span>Rotation and Scaling at the origin.<a class="headerlink" href="#rotation-and-scaling-at-the-origin" title="Permalink to this headline">¶</a></h2>
-<p>Let’s quickly explore why rotation and scaling must occur at the origin.
+<h2><span class="section-number">1.5. </span>Rotation and scaling at the origin<a class="headerlink" href="#rotation-and-scaling-at-the-origin" title="Permalink to this headline">¶</a></h2>
+<p>One thing mentioned in the lectures is that rotation and scaling must occur at the origin. Let us examine this concept further using Python to handle the mathematical operations.
 We’ve already seen what happens when we rotate an object whose bottom left corner is already at the origin. <strong>What happens if we rotate an object without first moving it to the origin?</strong></p>
 <p>To explore this, we’ll combine the rotation and translation operations we saw earlier, <em>but</em> explore what happens if we apply the transformations in two different orders, one where we translate then rotate, and one where we rotate then translate.</p>
 <div class="cell docutils container">

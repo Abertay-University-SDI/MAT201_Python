@@ -2,7 +2,12 @@
 # coding: utf-8
 
 # # Coordinate Transformations in 2D
-# JT 2023. Part of an ongoing series of notebooks exploring if/how best we can illustrate behaviour introduced in MAT201.
+# 
+# In lectures, we were introduced to the idea that graphics programming uses matrices to transform objects seen in a window to be correctly displayed in a viewport on the screen.
+# 
+# To do this efficiently, we can construct a *composite* transformation matrix by multiplying the required steps (translation, rotation, scaling) and their matrices together. Due to our particular application and graphics pipeline, we use specific forms of matrices and post-multiply window coordinates to achieve the correct transformations. We were also introduced to the concept of homogenous coordinates for specific positions, in order to correctly apply the transformations.
+# 
+# In this notebook, we will put these calculations into practice, by performing the transformations practiced in class on specific objects and observing the effects.
 
 # In[1]:
 
@@ -14,8 +19,10 @@ import matplotlib.pyplot as plt
 import sympy as sym
 
 
-# Let's set up an array of positions that we can transform.
-# A simple thing to visualise is a square.
+# We will begin by creating an object that we need to transform.
+# One of the simplest objects to manipulate is a square: it will also easily allow us to explore the results of the transformations and compare with the original size and shape.
+# 
+# To create a square, we can create an array of $x$ and $y$-coordinates which are the vertices of this square. In order to draw lines between each array element and the next, we will append the array with the first value: this means that Python will just join every element of the array automatically when plotted:
 
 # In[2]:
 
@@ -39,7 +46,7 @@ plt.show()
 # 
 #  
 
-# Let's first organise the coordinates so that we can perform transformations. Our points are currently listed in two arrays, with the first containing the $x$-coordinates, and the second containing $y$-coords.
+# Our first task will be to organise the coordinates so that we can perform transformations. Our points are currently listed in two arrays, with the first containing the $x$-coordinates, and the second containing $y$-coords.
 # 
 # Typically when we work with coordinates and vectors or matrices, we need to have each *column* list a different dimension. We also need to extend each (2D) set of points to contain an extra dimension, a concept taught in the lectures as "homogenous coordinates''. 
 # 
@@ -134,7 +141,7 @@ plt.show()
 # ## Rotation
 # 
 
-# In cases where we need to rotate objects, in the lectures we saw that we can use the 2D rotation matrix, which take the form:
+# In cases where we need to rotate objects, in the lectures we saw that we can use the 2D rotation matrix, which takes the form seen in class (and in MAT101):
 # 
 # $$
 # R_{\theta_{z,{\underline{k}}}}=
@@ -200,7 +207,7 @@ plt.show()
 # ## Translation
 # 
 
-# The final common operation we'll deal with is a translation. In the lectures, translating an object by an amount $x_A$ in $x$ and $y_A$ in $y$ is given by the following matrix:
+# The final common operation we'll deal with is a translation. In the lectures, translating an object by an amount $x_A$ in $x$ and $y_A$ in $y$ is achieved using the following matrix:
 # 
 # $$
 # T_{\underline{v}}=
@@ -210,6 +217,8 @@ plt.show()
 # 	x_{A} & y_{A} & 1
 # 	\end{pmatrix}
 # $$
+# 
+# Note that all other operations (rotation and scaling) for 2D positions can in principle be contained in a $2\times2$ matrix; a translation requires one more row and column than the number of dimensions we are working with. Hence to translate a 2D position, we require a $3\times3$ matrix. This is also why we need homogenous coordinates, so that we can couple translation with other transformations, filling in the missing dimensions as needed.
 # 
 # In this demo, we'll translate by $10$ in $x$ ($x_A=10$) and $8$ in $y$ ($y_A=8$).
 
@@ -251,9 +260,9 @@ plt.show()
 
 # As expected, the object has been translated by the expected amount in $x$ and $y$.
 
-# ## Rotation and Scaling at the origin.
+# ## Rotation and scaling at the origin
 
-# Let's quickly explore why rotation and scaling must occur at the origin.
+# One thing mentioned in the lectures is that rotation and scaling must occur at the origin. Let us examine this concept further using Python to handle the mathematical operations.
 # We've already seen what happens when we rotate an object whose bottom left corner is already at the origin. **What happens if we rotate an object without first moving it to the origin?**
 # 
 # To explore this, we'll combine the rotation and translation operations we saw earlier, *but* explore what happens if we apply the transformations in two different orders, one where we translate then rotate, and one where we rotate then translate.

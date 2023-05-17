@@ -2,7 +2,8 @@
 # coding: utf-8
 
 # # Coordinate Transformations in 3D
-# JT 2023. Part of an ongoing series of notebooks exploring if/how best we can illustrate behaviour introduced in MAT201.
+# 
+# Following on from 2D graphics transformations, we can extend all standard operations into 3D, retaining and using homogenous coordinates. Our objective will again be to combine the required standard sets of operations into a single *composite* matrix.
 
 # In[1]:
 
@@ -18,7 +19,8 @@ import sympy as sym
 
 
 # Let's set up a matrix of positions that we can transform.
-# This time, for arguments sake, we'll play with a triangle.
+# This time, for arguments sake, we'll play with a 3D triangle.
+# As before, we'll store the vertices in separate arrays for $x$, $y$, $z$.
 
 # In[2]:
 
@@ -50,9 +52,9 @@ plt.show()
 
 # ## Homogenous coordinates
 
-# Let's first organise the coordinates so that we can perform transformations. Our points are currently listed as an array, with the first row being the $x$-coords, and the second row as $y$-coords.
+# Our first step, as with 2D, is to apply the concept of homogenous coordinates, in order that we correctly format our positions ready for transformation. Our points are currently listed as an array, with the first row being the $x$-coords, and the second row as $y$-coords.
 # 
-# To transform using matrices, we need to have each *column* list a different dimension. We also need to extent each 2D set of points to contain an extra dimension, known as homogenous coordinates. Our plan will be to add these extra coordinates first, then switchs rows and columns (an operation known as the "transpose" of a matrix).
+# To transform using matrices, we need to have each *column* list a different dimension. We also need to extend each 2D set of points to contain an extra dimension, known as homogenous coordinates. Our plan will be to add these extra coordinates first, then switchs rows and columns (an operation known as the "transpose" of a matrix).
 
 # In[3]:
 
@@ -95,7 +97,7 @@ print(hp.transpose())
 # 
 # 
 # 
-# We have to remember to PRE-MULTIPLY (due to the standard graphics pipeline approach). This may be different in other web resources and textbooks, but they may use different pipelines or codes.
+# We have to remember to **PRE-MULTIPLY** (due to the standard graphics pipeline approach). This may be different in other web resources and textbooks, but they may use different pipelines or codes.
 # 
 # We'll leave the object unstretched in $x$, but make it three times bigger in $y$ and half as big in $z$.
 # 
@@ -128,7 +130,7 @@ Sxyz = np.matrix([[1, 0, 0, 0],
 sp = hp.transpose()*Tw*Sxyz*Tv
 
 
-# For plotting purposes, we'll undo our operations from earlier, and repeat the same plotting operation, overplotting the original coords too.
+# For plotting purposes, we'll undo our operations from earlier, and repeat the same plotting operation, overplotting the original coords too. (we'll use the "np.squeeze" command to make the arrays the correct shape for Python to correctly handle).
 
 # In[6]:
 
@@ -163,7 +165,7 @@ ax.set_box_aspect([1,1,1])
 plt.show()
 
 
-# You can see that the object is now three times bigger in $y$, and has been squashed in $z$. Due to the viewing perspective in 3D, it is much more difficult to directly confirm exact sizes visually. Try modifying the azimuth and elevation in the plot to confirm the sizes in the $x$, $y$ and $z$ directions.
+# You can see that the object is now three times bigger in $y$, and has been squashed in $z$. Due to the viewing perspective in 3D, it is much more difficult to directly confirm exact sizes visually. Try modifying the azimuth and elevation in the plot (in the "ax.view_init()" command, first number is an angle relative to the z=0 plane, second is an angle relative to y=0 plane) to confirm the sizes in the $x$, $y$ and $z$ directions.
 
 # ## Rotation
 # 

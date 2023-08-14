@@ -302,28 +302,45 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   4.1. Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#basic-arithmetic-operations">
-   4.1. Basic arithmetic operations
+   4.2. Basic arithmetic operations
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#complex-number-division">
-   4.2. Complex number division
+   4.3. Complex number division
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#visualising-complex-numbers">
-   4.3. Visualising complex numbers
+   4.4. Visualising complex numbers
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cmath">
-   4.4. Cmath
+   4.5. Cmath
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rotations-with-complex-numbers">
+   4.6. Rotations with Complex Numbers
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lecture-example-rotate-a-position-using-complex-numbers">
+     4.6.1. Lecture example: rotate a position using complex numbers
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#over-to-you">
-   4.5. Over to you!
+   4.7. Over to you!
   </a>
  </li>
 </ul>
@@ -347,28 +364,45 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   4.1. Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#basic-arithmetic-operations">
-   4.1. Basic arithmetic operations
+   4.2. Basic arithmetic operations
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#complex-number-division">
-   4.2. Complex number division
+   4.3. Complex number division
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#visualising-complex-numbers">
-   4.3. Visualising complex numbers
+   4.4. Visualising complex numbers
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cmath">
-   4.4. Cmath
+   4.5. Cmath
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rotations-with-complex-numbers">
+   4.6. Rotations with Complex Numbers
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lecture-example-rotate-a-position-using-complex-numbers">
+     4.6.1. Lecture example: rotate a position using complex numbers
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#over-to-you">
-   4.5. Over to you!
+   4.7. Over to you!
   </a>
  </li>
 </ul>
@@ -382,7 +416,7 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="complex-numbers">
 <h1><span class="section-number">4. </span>Complex Numbers<a class="headerlink" href="#complex-numbers" title="Permalink to this headline">¶</a></h1>
-<p>JT 2023. Ongoing MAT201 expansion notebooks.</p>
+<p>Complex numbers are a rare example of more abstract mathematical ideas than can be useful practically. They are useful in a number of different mathematical fields and so have very wide implications on a number of branches of mathematics. However, in the field of computer graphics they have interesting properties which will allow us to describe rotations in a new and somewhat unexpected way. In order to perform rotations, we must understand the basic properties of complex numbers, as taught in the lectures.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Libraries</span>
@@ -390,12 +424,14 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="kn">import</span> <span class="nn">math</span> 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">FancyArrowPatch</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>##Introduction
-As seen in the lectures, complex numbers comprise of a real part and an imaginary part, with the letter “i” indicating which is which. In general a complex number is denoted as</p>
+<div class="section" id="introduction">
+<h2><span class="section-number">4.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>As seen in the lectures, complex numbers comprise of a real part and an imaginary part, with the letter “i” indicating which is which. In general a complex number is denoted as</p>
 <div class="math notranslate nohighlight">
 \[
 z = A+iB,
@@ -410,8 +446,9 @@ z = A+iB,
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="basic-arithmetic-operations">
-<h2><span class="section-number">4.1. </span>Basic arithmetic operations<a class="headerlink" href="#basic-arithmetic-operations" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.2. </span>Basic arithmetic operations<a class="headerlink" href="#basic-arithmetic-operations" title="Permalink to this headline">¶</a></h2>
 <p>When we add or subtract complex numbers, we must add or subtract the real parts and imaginary components separately:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -436,11 +473,12 @@ z1-z2= (3+4j)
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
-(A+iB)⋅(C+iD)&amp;=A \cdot C+iB\cdot C+A\cdot iD+iB\cdot iD. \\
-&amp;=AC+i(BC+AD)+i^2BD=(AC-BD)+i(BC+AD)
+(A+iB)⋅(C+iD)&amp;=A \cdot C+iB\cdot C+A\cdot iD+iB\cdot iD, \\
+&amp;=AC+i(BC+AD)+i^2BD=(AC-BD)+i(BC+AD).
 \end{align}
 \end{split}\]</div>
-<p>When both terms containing <span class="math notranslate nohighlight">\(i\)</span> multiply, we need to remember <span class="math notranslate nohighlight">\(i^2={\sqrt{-1}}^2=-1\)</span>. Python also knows that this is the case.</p>
+<p>The result is also a complex number, with the real part given as the addition of two of the pairs, and the complex part given by adding the remaining two.</p>
+<p>The key thing here is knowing how to treat <span class="math notranslate nohighlight">\(i\)</span>. We need to remember that when two imaginary numbers multiply, we need to take account of <span class="math notranslate nohighlight">\(i^2={\sqrt{-1}}^2=-1\)</span>. Python also knows that this is the case.</p>
 <p>For example:
 $<span class="math notranslate nohighlight">\(
 \begin{align}
@@ -498,9 +536,15 @@ conj(z3)= (3-1j)
 </div>
 </div>
 <div class="section" id="complex-number-division">
-<h2><span class="section-number">4.2. </span>Complex number division<a class="headerlink" href="#complex-number-division" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3. </span>Complex number division<a class="headerlink" href="#complex-number-division" title="Permalink to this headline">¶</a></h2>
 <p>The complex conjugate is really useful for dividing complex numbers. We can eliminate the presence of a complex term in the denominator by multiplying it by it’s conjugate; to balance this, we also multiply the numerator by the complex conjugate of the denominator.</p>
-<p>We can confirm this approach by having Python carry out the complex division in one go, then checking that it is equivalent to the approach we saw in lectures:</p>
+<p>In the lectures we saw how this worked for a general complex number division:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{a+ib}{c+id}=\frac{(a+ib)(c-id)}{(c+id)(c-id)}=\frac{ac+i(bd)-i(ad)-i^2(bd)}{c^2+i(dc)-i(cd)-i^2(d^2)}=\frac{(ac+bd)+i(bc-ad)}{c^2+d^2}
+\]</div>
+<p>noting that in this example the conjugate of <span class="math notranslate nohighlight">\(z=c-id\)</span> is <span class="math notranslate nohighlight">\(\bar{z}=c+id\)</span>.</p>
+<p>We can confirm this approach by having Python carry out a complex division using the division operator, then carrying out the same calculation using the steps seen in lectures:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;z2/z3=&quot;</span><span class="p">,</span><span class="n">z2</span><span class="o">/</span><span class="n">z3</span><span class="p">)</span>
@@ -519,7 +563,7 @@ ans= (-8-4j) / (10+0j) = (-0.8-0.4j)
 </div>
 </div>
 <div class="section" id="visualising-complex-numbers">
-<h2><span class="section-number">4.3. </span>Visualising complex numbers<a class="headerlink" href="#visualising-complex-numbers" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.4. </span>Visualising complex numbers<a class="headerlink" href="#visualising-complex-numbers" title="Permalink to this headline">¶</a></h2>
 <p>One way to visualise complex numbers is to use the Argand diagram. In this diagram we plot the real component of the complex number as the <span class="math notranslate nohighlight">\(x\)</span>-coordinate, and the imaginary component as the <span class="math notranslate nohighlight">\(y\)</span>-coordinate.</p>
 <p>To show this, we’ll define a function called “argand”. The argument of this function is a complex number. Our function will return the location of this complex number on the Argand diagram, highlighting the <span class="math notranslate nohighlight">\(x\)</span>- and <span class="math notranslate nohighlight">\(y\)</span>-components:</p>
 <div class="cell docutils container">
@@ -599,7 +643,7 @@ ans= (-8-4j) / (10+0j) = (-0.8-0.4j)
 </div>
 </div>
 <div class="section" id="cmath">
-<h2><span class="section-number">4.4. </span>Cmath<a class="headerlink" href="#cmath" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.5. </span>Cmath<a class="headerlink" href="#cmath" title="Permalink to this headline">¶</a></h2>
 <p>Python has an explicit package solely for manipulating complex numbers, called <em>cmath</em>. It goes far beyond our needs (complex numbers are an entire interesting branch of mathematics with wide-ranging implications and applications). Some of the more basic functions can be useful however: <em>cmath</em> can quickly and directly convert to/from polar form, for example using the <em>polar</em> command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -620,10 +664,106 @@ ans= (-8-4j) / (10+0j) = (-0.8-0.4j)
 </div>
 </div>
 </div>
+<div class="section" id="rotations-with-complex-numbers">
+<h2><span class="section-number">4.6. </span>Rotations with Complex Numbers<a class="headerlink" href="#rotations-with-complex-numbers" title="Permalink to this headline">¶</a></h2>
+<p>We now have a relatively clear idea of some of the most useful properties of complex numbers. We will need these concepts to understand longer forms of complex numbers called “Quaternions”, which are commonly used to rotate objects in 3D space.</p>
+<p>As a sneak peak of what we might expect from quaternions, we can also use complex numbers to rotate objects in 2D. The content of this section is strictly for information, and will not be examined upon. In the lectures we illustrated this idea with an example:</p>
+<div class="section" id="lecture-example-rotate-a-position-using-complex-numbers">
+<h3><span class="section-number">4.6.1. </span>Lecture example: rotate a position using complex numbers<a class="headerlink" href="#lecture-example-rotate-a-position-using-complex-numbers" title="Permalink to this headline">¶</a></h3>
+<p><strong>Rotate the coordinates <span class="math notranslate nohighlight">\((1,5)\)</span> by <span class="math notranslate nohighlight">\(60^o\)</span> counterclockwise about the origin using complex numbers.</strong></p>
+<p>Our first step is to express the coordinate as a complex number:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zp</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="mf">5.</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we must also express the rotation as a complex number. The modulus of the complex number must be one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">zr</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="p">)),</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To carry out the rotation, we multiply both complex numbers together, with the rotation acting to the left of coordinate:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">zr</span><span class="o">*</span><span class="n">zp</span>
+<span class="n">imstr</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">+</span><span class="si">{:.2f}</span><span class="s2">j&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">image</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">imstr</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-3.83+3.37j
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">R_theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="p">)),</span> <span class="mi">0</span><span class="p">],</span> 
+                     <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="p">)),</span> <span class="mi">0</span><span class="p">],</span> 
+                     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span> 
+<span class="n">rp</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">*</span><span class="n">R_theta</span>
+<span class="n">rmstr</span><span class="o">=</span><span class="s2">&quot;(</span><span class="si">{:.2f}</span><span class="s2">,</span><span class="si">{:.2f}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">rp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;achieved with matrix transforms: &quot;</span><span class="p">,</span> <span class="n">rmstr</span><span class="p">)</span>
+<span class="n">lstr</span><span class="o">=</span><span class="s2">&quot;(</span><span class="si">{:.2f}</span><span class="s2">,</span><span class="si">{:.2f}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="mf">5.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="mf">5.</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lectures stated im= &quot;</span><span class="p">,</span> <span class="n">lstr</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>achieved with matrix transforms:  (-3.83,3.37)
+lectures stated im=  (-3.83,3.37)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">zp</span><span class="o">.</span><span class="n">real</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">zp</span><span class="o">.</span><span class="n">imag</span><span class="p">],</span><span class="s1">&#39;bo-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="n">zpstr</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">+</span><span class="si">{:.2f}</span><span class="s2">j&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">zp</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">zp</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">zp</span><span class="o">.</span><span class="n">real</span><span class="o">+</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">zp</span><span class="o">.</span><span class="n">imag</span><span class="o">+</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">zpstr</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">zp</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">zp</span><span class="o">.</span><span class="n">real</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">zp</span><span class="o">.</span><span class="n">imag</span><span class="p">],</span><span class="s1">&#39;k--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">zp</span><span class="o">.</span><span class="n">real</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;k--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">image</span><span class="o">.</span><span class="n">real</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">image</span><span class="o">.</span><span class="n">imag</span><span class="p">],</span><span class="s1">&#39;ro-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="n">imstring</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">+</span><span class="si">{:.2f}</span><span class="s2">j&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">image</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">real</span><span class="o">+</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">imag</span><span class="o">+</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">imstr</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">image</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">image</span><span class="o">.</span><span class="n">real</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">image</span><span class="o">.</span><span class="n">imag</span><span class="p">],</span><span class="s1">&#39;k--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">image</span><span class="o">.</span><span class="n">real</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;k--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="n">limit</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">image</span><span class="p">)))</span> <span class="c1"># set limits for axis</span>
+<span class="n">style</span><span class="o">=</span><span class="s2">&quot;Simple,tail_width=0.5,head_width=4,head_length=8&quot;</span>
+<span class="n">kw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="n">style</span><span class="p">)</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="n">FancyArrowPatch</span><span class="p">((</span><span class="mf">0.5</span><span class="o">*</span><span class="n">zp</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">zp</span><span class="o">.</span><span class="n">imag</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">image</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">image</span><span class="o">.</span><span class="n">imag</span><span class="p">),</span><span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3,rad=0.3&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="n">xmin</span><span class="o">=-</span><span class="n">limit</span><span class="p">,</span><span class="n">xmax</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=-</span><span class="n">limit</span><span class="p">,</span><span class="n">ymax</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+<span class="n">angstring</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">$^o$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.2</span><span class="o">*</span><span class="p">(</span><span class="n">zp</span><span class="o">.</span><span class="n">real</span><span class="o">+</span><span class="n">image</span><span class="o">.</span><span class="n">real</span><span class="p">),</span> <span class="mf">0.2</span><span class="o">*</span><span class="p">(</span><span class="n">zp</span><span class="o">.</span><span class="n">imag</span><span class="o">+</span><span class="n">image</span><span class="o">.</span><span class="n">imag</span><span class="p">),</span><span class="n">angstring</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Imaginary&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Real&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MAT201M_ComplexNos_32_0.png" src="../_images/MAT201M_ComplexNos_32_0.png" />
+</div>
+</div>
+<p>Thus we have confirmed the process: converting a 2D position to a complex number and multiplying it by a complex number representing the rotation achieves the <em>same</em> image location as carrying out a 2D graphics transformation!</p>
+<p>To achieve the same result in three dimensions, we have to use quaternions (as we will see shortly!)..</p>
+</div>
+</div>
 <div class="section" id="over-to-you">
-<h2><span class="section-number">4.5. </span>Over to you!<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.7. </span>Over to you!<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
 <p>These examples are one way that we can use Python to illustrate some of our methods taught in lectures.</p>
-<p>Can you confirm some of the tutorial question solutions using Python? Can you plot these on the Argand diagram, or evaluate them in polar form?</p>
+<p>Can you confirm some of the tutorial question solutions using Python? Can you plot these on the Argand diagram, or evaluate them in polar form? Can you pick a different position and perform a rotation to satisfy yourself that complex numbers and graphics transformations can achieve identical results..?</p>
 </div>
 </div>
 

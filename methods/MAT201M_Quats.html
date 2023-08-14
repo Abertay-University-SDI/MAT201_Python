@@ -376,7 +376,8 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="quaternions-and-rotations">
 <h1><span class="section-number">5. </span>Quaternions (and rotations!)<a class="headerlink" href="#quaternions-and-rotations" title="Permalink to this headline">¶</a></h1>
-<p>JT 2023. Ongoing MAT201 expansion notebooks.</p>
+<p>Having learned about complex numbers and their properties, it’s really time to kick it up a notch: Quaternions are like an extended complex number, in that they have not one but three hyper-imaginary components. Quaternions are an industry standard way to perform rotations in 3D graphics, but they operate very differently to matrix transformations.</p>
+<p>In this notebook we will explore some of the properties of quaternions, and then apply those properties to rotate objects in 3D space.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Libraries</span>
@@ -397,7 +398,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Quaternions are like an extended form of complex number. They have one real and <em>three</em> hyperimaginary components, for example:</p>
 <div class="math notranslate nohighlight">
 \[
-q = a+b\vec{i}+c\vec{j}+d\vec{k}.
+\vec{q} = a+b\vec{i}+c\vec{j}+d\vec{k}.
 \]</div>
 <p>In this course we will label each of the <span class="math notranslate nohighlight">\(i,j,k\)</span> components as vectors, as we will be learning to exploit their properties to perform rotations in 3D space.</p>
 <p>Quaternions have various properties that make them fantastic at performing rotations, as discussed in lectures.</p>
@@ -423,9 +424,7 @@ q = a+b\vec{i}+c\vec{j}+d\vec{k}.
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip available: <span class=" -Color -Color-Red">22.3.1</span> -&gt; <span class=" -Color -Color-Green">23.1.2</span>
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip available: <span class=" -Color -Color-Red">22.3.1</span> -&gt; <span class=" -Color -Color-Green">23.1.2</span>
 <span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">/usr/local/opt/python@3.9/bin/python3.9 -m pip install --upgrade pip</span>
 </pre></div>
 </div>

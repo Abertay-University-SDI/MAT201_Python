@@ -2,7 +2,10 @@
 # coding: utf-8
 
 # # Quaternions (and rotations!)
-# JT 2023. Ongoing MAT201 expansion notebooks.
+# 
+# Having learned about complex numbers and their properties, it's really time to kick it up a notch: Quaternions are like an extended complex number, in that they have not one but three hyper-imaginary components. Quaternions are an industry standard way to perform rotations in 3D graphics, but they operate very differently to matrix transformations.
+# 
+# In this notebook we will explore some of the properties of quaternions, and then apply those properties to rotate objects in 3D space.
 
 # In[1]:
 
@@ -22,7 +25,7 @@ import sympy as sym
 # Quaternions are like an extended form of complex number. They have one real and *three* hyperimaginary components, for example:
 # 
 # $$
-# q = a+b\vec{i}+c\vec{j}+d\vec{k}.
+# \vec{q} = a+b\vec{i}+c\vec{j}+d\vec{k}.
 # $$
 # 
 # In this course we will label each of the $i,j,k$ components as vectors, as we will be learning to exploit their properties to perform rotations in 3D space.

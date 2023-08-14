@@ -392,7 +392,7 @@ plt.gca().set_aspect('equal')
 plt.show()
 
 
-# ### Part 2:
+# ### Part 2: Rotation about axis not at origin
 # With the axis of rotation no longer passing through the origin, we must translate the coordinates by a distance equal to the effective distance of the axis from the origin. However, and really quite nicely, we can *re-use* the matrix we already calculated for the rotation, and simply book-end it with the necessary translations:
 
 # In[20]:

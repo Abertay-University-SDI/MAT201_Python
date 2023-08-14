@@ -2,7 +2,8 @@
 # coding: utf-8
 
 # # Complex Numbers
-# JT 2023. Ongoing MAT201 expansion notebooks.
+# 
+# Complex numbers are a rare example of more abstract mathematical ideas than can be useful practically. They are useful in a number of different mathematical fields and so have very wide implications on a number of branches of mathematics. However, in the field of computer graphics they have interesting properties which will allow us to describe rotations in a new and somewhat unexpected way. In order to perform rotations, we must understand the basic properties of complex numbers, as taught in the lectures.
 
 # In[1]:
 
@@ -12,9 +13,10 @@ import numpy as np
 import math 
 import matplotlib.pyplot as plt
 import sympy as sym
+from matplotlib.patches import FancyArrowPatch
 
 
-# ##Introduction
+# ## Introduction
 # As seen in the lectures, complex numbers comprise of a real part and an imaginary part, with the letter "i" indicating which is which. In general a complex number is denoted as
 # 
 # $$
@@ -53,12 +55,13 @@ print("z1-z2=",z1-z2)
 # 
 # $$
 # \begin{align}
-# (A+iB)⋅(C+iD)&=A \cdot C+iB\cdot C+A\cdot iD+iB\cdot iD. \\
-# &=AC+i(BC+AD)+i^2BD=(AC-BD)+i(BC+AD)
+# (A+iB)⋅(C+iD)&=A \cdot C+iB\cdot C+A\cdot iD+iB\cdot iD, \\
+# &=AC+i(BC+AD)+i^2BD=(AC-BD)+i(BC+AD).
 # \end{align}
 # $$
+# The result is also a complex number, with the real part given as the addition of two of the pairs, and the complex part given by adding the remaining two.
 # 
-# When both terms containing $i$ multiply, we need to remember $i^2={\sqrt{-1}}^2=-1$. Python also knows that this is the case.
+# The key thing here is knowing how to treat $i$. We need to remember that when two imaginary numbers multiply, we need to take account of $i^2={\sqrt{-1}}^2=-1$. Python also knows that this is the case.
 # 
 # For example:
 # $$
@@ -106,7 +109,15 @@ print("z3*conj(z3) = ",z3*z3.conjugate())
 # 
 # The complex conjugate is really useful for dividing complex numbers. We can eliminate the presence of a complex term in the denominator by multiplying it by it's conjugate; to balance this, we also multiply the numerator by the complex conjugate of the denominator.
 # 
-# We can confirm this approach by having Python carry out the complex division in one go, then checking that it is equivalent to the approach we saw in lectures:
+# In the lectures we saw how this worked for a general complex number division:
+# 
+# $$
+# \frac{a+ib}{c+id}=\frac{(a+ib)(c-id)}{(c+id)(c-id)}=\frac{ac+i(bd)-i(ad)-i^2(bd)}{c^2+i(dc)-i(cd)-i^2(d^2)}=\frac{(ac+bd)+i(bc-ad)}{c^2+d^2}
+# $$
+# 
+# noting that in this example the conjugate of $z=c-id$ is $\bar{z}=c+id$.
+# 
+# We can confirm this approach by having Python carry out a complex division using the division operator, then carrying out the same calculation using the steps seen in lectures:
 
 # In[7]:
 
@@ -207,12 +218,95 @@ print(cmath.polar(2 + 3j))
 print(cmath.polar(1 + 5j))
 
 
+# ## Rotations with Complex Numbers
+# 
+# We now have a relatively clear idea of some of the most useful properties of complex numbers. We will need these concepts to understand longer forms of complex numbers called "Quaternions", which are commonly used to rotate objects in 3D space.
+# 
+# As a sneak peak of what we might expect from quaternions, we can also use complex numbers to rotate objects in 2D. The content of this section is strictly for information, and will not be examined upon. In the lectures we illustrated this idea with an example:
+# 
+# ### Lecture example: rotate a position using complex numbers
+# **Rotate the coordinates $(1,5)$ by $60^o$ counterclockwise about the origin using complex numbers.**
+# 
+
+# Our first step is to express the coordinate as a complex number:
+
+# In[13]:
+
+
+zp = complex(1.,5.)
+
+
+# Next we must also express the rotation as a complex number. The modulus of the complex number must be one. 
+
+# In[14]:
+
+
+theta = 60
+zr = complex(np.cos(np.radians(theta)),np.sin(np.radians(theta)))
+
+
+# To carry out the rotation, we multiply both complex numbers together, with the rotation acting to the left of coordinate:
+
+# In[15]:
+
+
+image = zr*zp
+imstr="{:.2f}+{:.2f}j".format(image.real,image.imag)
+print(imstr) 
+
+
+# In[16]:
+
+
+hp = np.array([1, 5, 1])
+R_theta = np.matrix([[np.cos(math.radians(theta)), np.sin(math.radians(theta)), 0], 
+                     [-np.sin(math.radians(theta)), np.cos(math.radians(theta)), 0], 
+                     [0, 0, 1]]) 
+rp = hp.transpose()*R_theta
+rmstr="({:.2f},{:.2f})".format(rp[0,0], rp[0,1])
+print("achieved with matrix transforms: ", rmstr)
+lstr="({:.2f},{:.2f})".format(0.5*(1.-5.*np.sqrt(3)), 0.5*(np.sqrt(3)+5.))
+print("lectures stated im= ", lstr) 
+
+
+# In[17]:
+
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot([0,zp.real],[0,zp.imag],'bo-',label='python')
+zpstr="{:.2f}+{:.2f}j".format(zp.real,zp.imag)
+ax.text(zp.real+0.15, zp.imag+0.15, zpstr, c='blue')
+ax.plot([zp.real,zp.real],[0,zp.imag],'k--',label='python')
+ax.plot([0,zp.real],[0,0],'k--',label='python')
+ax.plot([0,image.real],[0,image.imag],'ro-',label='python')
+imstring="{:.2f}+{:.2f}j".format(image.real,image.imag)
+ax.text(image.real+0.15, image.imag+0.15, imstr, c='red')
+ax.plot([image.real,image.real],[0,image.imag],'k--',label='python')
+ax.plot([0,image.real],[0,0],'k--',label='python')
+limit=np.max(np.ceil(np.absolute(image))) # set limits for axis
+style="Simple,tail_width=0.5,head_width=4,head_length=8"
+kw = dict(arrowstyle=style)
+a1 = FancyArrowPatch((0.5*zp.real, 0.5*zp.imag), (0.5*image.real, 0.5*image.imag),connectionstyle="arc3,rad=0.3", **kw)
+ax.add_patch(a1)
+ax.axis(xmin=-limit,xmax=limit, ymin=-limit,ymax=limit)
+angstring="{}$^o$".format(theta)
+ax.text(0.2*(zp.real+image.real), 0.2*(zp.imag+image.imag),angstring, c='black')
+ax.set_ylabel('Imaginary')
+ax.set_xlabel('Real')
+plt.show()
+
+
+# Thus we have confirmed the process: converting a 2D position to a complex number and multiplying it by a complex number representing the rotation achieves the *same* image location as carrying out a 2D graphics transformation!
+# 
+# To achieve the same result in three dimensions, we have to use quaternions (as we will see shortly!).. 
+
 # ## Over to you!
 # These examples are one way that we can use Python to illustrate some of our methods taught in lectures.
 # 
-# Can you confirm some of the tutorial question solutions using Python? Can you plot these on the Argand diagram, or evaluate them in polar form?
+# Can you confirm some of the tutorial question solutions using Python? Can you plot these on the Argand diagram, or evaluate them in polar form? Can you pick a different position and perform a rotation to satisfy yourself that complex numbers and graphics transformations can achieve identical results..?
 
-# In[ ]:
+# In[17]:
 
 
 

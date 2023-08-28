@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # # Rays Intersecting with 2D boxes
-# JT 2023: Aim is to demonstrate the implementation of mathematical principles seen in MAT201 using Python. In this instance, it would be useful to see Python solve the mathematics problems, and visualise the solutions
+# Having now been introduced to ray tracing, we will explore more complex objects. Up to now, we have considered objects which are entirely described by one single mathematical equation. These tend to be relatively simple shapes. More complex shapes can be constructed using multiple sets of these simple shapes. The downside to this is that we have to check for intersections with many different components of a single object. The simplest example of these is a 2D box.
 
 # In[1]:
 
@@ -17,8 +17,6 @@ from matplotlib.patches import FancyArrowPatch
 from mpl_toolkits.mplot3d import Axes3D, proj3d
 
 
-# Following on from the introduction to ray tracing, we will examine if/how mathematics reveals locations of intersection when firing a ray at a 2D box.
-# 
 # We will make use of the example shown in lectures which contains several different rays which share a common origin. In particular, we want to illustrate what this configuration looks like, something not really covered in the lectures:
 
 # ## Lecture Example 1

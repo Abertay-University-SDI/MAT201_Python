@@ -3,9 +3,9 @@
 
 # # More 3D Coordinate Transformations
 # 
-# We have already shown how Python is capable of performing and visualing the standard set of operations for 3D graphics transformations.
+# We have already shown how Python is capable of performing and visualising the standard set of operations for 3D graphics transformations.
 # 
-# There are several additional useful operations than can be performed by matrices. This notebook will examine two of these: reflection in a given plane and rotation about an axis.
+# There are several additional useful operations than can be performed by matrices. This notebook will examine two of these: *reflection in a given plane* and *rotation about an axis*.
 
 # In[1]:
 
@@ -34,7 +34,7 @@ from mpl_toolkits.mplot3d import proj3d
 # 	\end{pmatrix}}.
 # $$
 # 
-# The additional factor of $a^2+b^2+c^2$ in the bottom right element of this matrix means that we often need to remember to check that we have returned to homogenous coordinates after the calculation has been carried out.
+# The additional factor of $a^2+b^2+c^2$ in the bottom right element of this matrix means that we must remember to check that we have returned to homogenous coordinates after the calculation has been carried out.
 # 
 # To test this, we will repeat one of the examples shown in the lectures:
 # 
@@ -77,7 +77,8 @@ plt.gca().set_aspect('equal')
 plt.show()
 
 
-# We need to make sure that we convert our arrays into the correct shape vector and include homogenous coordinates. In this case, rather than specifying the number of 1's needed, I will use Python to count the number of points and produce an array of the same length, initialised by "1" in each element.
+# When using Python this way, we need to remember i) to convert our arrays into the correct shape vector and ii) to include homogenous coordinates. In this case, rather than specifying the number of 1's needed, I will use Python to count the number of coordinate locations and produce an array of the same length. This new array is initialised by "1" in each element: this saves me having to do this manually, and can be extended easily if we introduce more coordinates into the problem.
+# 
 # Thus we can create our matrix of coordinates, formatted in the same way shown in class:
 
 # In[4]:
@@ -412,7 +413,9 @@ print(fp3)
 
 # With this technique we have very quickly recovered the solutions we determined in the lecture example.
 # 
-# Again, let's take advantage of the power of Python to visualise what this means. Remember that in this second example, the rotation axis passes through the point C, so we would expect that the pyramid rotates about C (while C itself remains unaffected, as illustrated by the transformed coordinates
+# Again, let's take advantage of the power of Python to visualise what this means. Remember that in this second example, the rotation axis passes through the point C, so we would expect that the pyramid rotates about C (while C itself remains unaffected).
+# 
+# Taking the coordinates we found above, we can transpose them and group them together to make a visual comparison with the pyramid we started with.
 
 # In[21]:
 
@@ -459,10 +462,10 @@ plt.gca().set_aspect('equal')
 plt.show()
 
 
-# In this final image I have adjusted the viewing angle to highlight that the rotation does appear to have been performed correctly: one of the points has not been rotated, while the others look to be a rotation about the blue axis.
+# In this final image I have adjusted the viewing angle to highlight that the rotation does appear to have been performed correctly: one of the points has not been rotated, while the others look to have been achieved by a rotation about the blue axis.
 
 # ## Over to you
-# As usual, I recommend that you apply these tools and visualisation techniques to some of the problems seen in the maths tutorial sheet. Can you cuse Python to confirm your approach to the matrix multiplication by hand? Can you visualise what some of the reflection or rotation questions produce and why?
+# As usual, I recommend that you apply these tools and visualisation techniques to some of the problems seen in the maths tutorial sheet. Can you use Python to confirm your approach to the matrix multiplication by hand? Can you visualise what some of the reflection or rotation questions produce and why?
 
 # In[ ]:
 

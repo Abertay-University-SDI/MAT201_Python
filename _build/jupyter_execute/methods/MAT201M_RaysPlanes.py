@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # # Rays Intersecting Planes
-# JT 2023: Following the notebooks introducing rays, and intersections with 2D boxes, can we illsutrate the mathematics in action when a ray intersects a parallelogram plane segment and a triangular plane segment?
+# One of the most common ways to construct a complex (realistic) object to interact with a ray uses two types of 3D plane: *parallelogram plane segments* and *triangular plane segments*. Mathematically, these plane types require multiple parameters to define their entire surface, and hence require three simultaneous equations to solve. Here, we will put Python to work, showing how these simultaneous equation solutions underpin ray intersections with such objects.
 
 # In[1]:
 
@@ -52,17 +52,24 @@ class Arrow3D(FancyArrowPatch):
 
 
 u , v = sym.Symbol('u', positive=True), sym.Symbol('v', positive=True)
+
+
+# First we have defined two unknown parameters, $u$ and $v$. These parameters determine every position on the plane, and are constrained to be between zero and one. By telling Python that these symbols are positive, we are effectively constraining Python to only find positive values of $u$ and $v$ when it searches for solutions to the simultaneous equations we will set up later. Now we can construct our parallelogram from the four coordinates given in the question:
+
+# In[4]:
+
+
 A = sym.Matrix([[0, 0, 0]])
 B = sym.Matrix([[3, 4, -2]])
 C = sym.Matrix([[2, 3, 1]])
 D = sym.Matrix([[-1, -1, 3]])
 
 
-# First we need to identify two parallel sides, so that we can construct our paralellogram plane equation from two non-parallel edges. There are several ways to do this:
+# To construct a parallelogram equation, we need to identify two parallel sides: the paralellogram plane equation requires **two non-parallel edges**. There are several ways to do this:
 # 
-# Lets check what all the vectors linking A with the other points look like (remembering that two of these will be edge vectors, with the other vector not at the edge but instead bisecting the plane):
+# Lets check what all the vectors linking A with the other points look like (remembering that two of these will be edge vectors, with the other vector bisecting the plane):
 
-# In[4]:
+# In[5]:
 
 
 print("A-B:", A-B)
@@ -72,7 +79,7 @@ print("A-D:", A-D)
 
 # Let's also print the other vectors we could use: 
 
-# In[5]:
+# In[6]:
 
 
 print("B-C:", B-C)
@@ -86,7 +93,7 @@ print("C-D:", C-D)
 # 
 # Lets double check that the vectors AB and AD are not parallel:
 
-# In[6]:
+# In[7]:
 
 
 print("AB x AD:",A-B.cross(A-D))
@@ -94,7 +101,7 @@ print("AB x AD:",A-B.cross(A-D))
 
 # The fact that the cross product is non-zero is enough evidence that these vectors are not parallel. (To illustrate what happens when we take the cross product of two parallel vectors, lets use ones we identified earlier, AD and BC:
 
-# In[7]:
+# In[8]:
 
 
 print("AD x BC:",(A-D).cross(B-C))
@@ -108,7 +115,7 @@ print("AD x BC:",(A-D).cross(B-C))
 # \vec{r}=\vec{p}+u\vec{a}+v\vec{b},~~~0\le u,v\le 1.
 # $$
 
-# In[8]:
+# In[9]:
 
 
 rp = A + u * (B-A) + v * (D-A)
@@ -117,13 +124,13 @@ print(rp)
 
 # This expression matches the solution we determined in class. Can we see what this looks like?
 
-# In[9]:
+# In[10]:
 
 
 print((A.tolist()[0])[0])
 
 
-# In[10]:
+# In[11]:
 
 
 Aa = np.array(A.tolist()[0],dtype='float64')
@@ -168,7 +175,7 @@ plt.show()
 # We can hopefully reuse the structures we already created, and simply create two rays using the technique we already encountered:
 # 
 
-# In[11]:
+# In[12]:
 
 
 t = sym.Symbol('t', positive=True)
@@ -181,7 +188,7 @@ r2 = r_o + t * (r2_e-r_o)
 
 # For part 1, we need to solve the system of equations created by equating the ray and plane. Python can't solve equations like "ray = plane", unless we arrange the equations to read "ray - plane = 0". We then insert the LHS into the solver:
 
-# In[12]:
+# In[13]:
 
 
 sols1 = sym.solve(r1-rp,(u,v,t))
@@ -192,7 +199,7 @@ print(sols1)
 # 
 # For the ray in Part 2, we can repeat this process:
 
-# In[13]:
+# In[14]:
 
 
 sols2 = sym.solve(r2-rp,(u,v,t))
@@ -201,7 +208,7 @@ print(sols2)
 
 # These values exactly match those we calculated in class, and lie within the appropriate ranges to make this a true intersection point.
 
-# In[14]:
+# In[15]:
 
 
 r2t = list(sols2.values())[2].evalf()
@@ -215,7 +222,7 @@ print("Python finds:",rpi)
 # 
 # A final sanity check is to visually show the two rays and intersection location overlaid with the parallelogram plane segment:
 
-# In[15]:
+# In[16]:
 
 
 rpia = np.array(rpi.tolist()[0],dtype='float64')
@@ -265,7 +272,7 @@ plt.show()
 # In order to construct a parametric equation describing every point on the surface, we need to pick two sides of the triangle to act as vectors. However, unlike the parallelogram plane, we have to pick the second vector which begins when the first vector begins.
 # 
 
-# In[16]:
+# In[17]:
 
 
 A3 = sym.Matrix([[5, 0, 0]])
@@ -275,7 +282,7 @@ rpt = A3 + u * (B3-A3) + v * (C3-B3)
 print(rpt)
 
 
-# In[17]:
+# In[18]:
 
 
 r3_o = sym.Matrix([[2, 1, 2]])
@@ -293,7 +300,7 @@ if r3uvt[0] > r3uvt[1] :
 
 # Let's check what this physically looks like:
 
-# In[18]:
+# In[19]:
 
 
 Aa3 = np.array(A3.tolist()[0],dtype='float64')
@@ -328,7 +335,7 @@ plt.show()
 # As we can see from the image, we successfully formed a triangular plane segment between the three vertices, and indeed (as seen in the lectures) the chosen ray intersects the triangular plane segment at the location we have found.
 
 # ## Over to you
-# Try some more examples from the lectures or the tutorial questions once you are satisfied with the mathematics
+# The aim of this course is to familiarise and become an expert in the mathematics underpinning several common standard games tools and techniques. You should carry out the questions in the tutorial booklet **by hand** to practice this mathematics and prepare for the exam. However, particularly in this topic, the mathematics is not easily visualised; having completed the maths exercises, try and visualise some of the solutions you have created to verify the ray behaviour. 
 
 # In[ ]:
 

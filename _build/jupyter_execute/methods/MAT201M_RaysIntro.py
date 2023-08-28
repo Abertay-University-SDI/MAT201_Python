@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # # Ray Tracing
-# JT 2023: Can we illustrate the mathematical principles of MAT201, specifically those in ray tracing?
+# Now that we are used to many of the tools and techniques to visualise objects, rotate and transform them, we can explore how mathematics allows us to check if/how some types of objects *interact* using Python: Ray Tracing.
 
 # In[1]:
 
@@ -16,7 +16,7 @@ from matplotlib.patches import FancyArrowPatch
 from mpl_toolkits.mplot3d import Axes3D, proj3d
 
 
-# First we need to set up a ray, an object and see if we can equate the expressions for a specific value or values of the length along the ray. We will begin, as we did in the lectures, using spheres (or their 2D equivalent, circles) to illustrate the procedure.
+# First we need to set up a ray and an object: after this we will explore if/how to equate the expressions for a specific value or values of the length along the ray. We will begin, as we did in the lectures, using spheres (or their 2D equivalent, circles) to illustrate the procedure.
 # 
 # Before we examine some specific examples, it would be nice to also visualise the examples as we go. We will therefore first set up some of the 3D objects that we will need to plot. First, we will want to visualise a 3D sphere. Lets set up a 3D object in the shape of a sphere:
 

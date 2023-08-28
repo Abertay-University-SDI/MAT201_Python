@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Displacement, Velocity and Acceleration by Integration &amp; Differentiation" href="../dynamics/MAT201D_AccVelDist.html" />
+    <link rel="next" title="Summary" href="../outro.html" />
     <link rel="prev" title="7. Rays Intersecting with 2D boxes" href="MAT201M_RaysBoxes.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -109,6 +109,38 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_AccVelDist.html">
+   1. Linear Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_AirRes.html">
+   2. Air Resistance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_SHM.html">
+   3. Simple Harmonic Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_2DSWcols.html">
+   4. 2D Sphere/Wall Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_2DSScols.html">
+   5. 2D Sphere/Sphere Collisions
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Methods
  </span>
 </p>
@@ -151,38 +183,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    8. Rays and Planes
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Dynamics
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamics/MAT201D_AccVelDist.html">
-   1. Linear Motion
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamics/MAT201D_AirRes.html">
-   2. Air Resistance
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamics/MAT201D_SHM.html">
-   3. Simple Harmonic Motion
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamics/MAT201D_2DSWcols.html">
-   4. 2D Sphere/Wall Collisions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamics/MAT201D_2DSScols.html">
-   5. 2D Sphere/Sphere Collisions
   </a>
  </li>
 </ul>
@@ -400,7 +400,7 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="rays-intersecting-planes">
 <h1><span class="section-number">8. </span>Rays Intersecting Planes<a class="headerlink" href="#rays-intersecting-planes" title="Permalink to this headline">¶</a></h1>
-<p>JT 2023: Following the notebooks introducing rays, and intersections with 2D boxes, can we illsutrate the mathematics in action when a ray intersects a parallelogram plane segment and a triangular plane segment?</p>
+<p>One of the most common ways to construct a complex (realistic) object to interact with a ray uses two types of 3D plane: <em>parallelogram plane segments</em> and <em>triangular plane segments</em>. Mathematically, these plane types require multiple parameters to define their entire surface, and hence require three simultaneous equations to solve. Here, we will put Python to work, showing how these simultaneous equation solutions underpin ray intersections with such objects.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Libraries</span>
@@ -444,7 +444,14 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>First we have defined two unknown parameters, <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span>. These parameters determine every position on the plane, and are constrained to be between zero and one. By telling Python that these symbols are positive, we are effectively constraining Python to only find positive values of <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> when it searches for solutions to the simultaneous equations we will set up later. Now we can construct our parallelogram from the four coordinates given in the question:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
 <span class="n">B</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]])</span>
 <span class="n">C</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
 <span class="n">D</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
@@ -452,8 +459,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>First we need to identify two parallel sides, so that we can construct our paralellogram plane equation from two non-parallel edges. There are several ways to do this:</p>
-<p>Lets check what all the vectors linking A with the other points look like (remembering that two of these will be edge vectors, with the other vector not at the edge but instead bisecting the plane):</p>
+<p>To construct a parallelogram equation, we need to identify two parallel sides: the paralellogram plane equation requires <strong>two non-parallel edges</strong>. There are several ways to do this:</p>
+<p>Lets check what all the vectors linking A with the other points look like (remembering that two of these will be edge vectors, with the other vector bisecting the plane):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A-B:&quot;</span><span class="p">,</span> <span class="n">A</span><span class="o">-</span><span class="n">B</span><span class="p">)</span>
@@ -576,7 +583,7 @@ C-D: Matrix([[3, 4, -2]])
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MAT201M_RaysPlanes_18_0.png" src="../_images/MAT201M_RaysPlanes_18_0.png" />
+<img alt="../_images/MAT201M_RaysPlanes_20_0.png" src="../_images/MAT201M_RaysPlanes_20_0.png" />
 </div>
 </div>
 <p>This allows us to visualise the parallelogram (blue) and its component vertices (red).</p>
@@ -689,7 +696,7 @@ Python finds: Matrix([[1.39705882352941, 2, 0.0294117647058822]])
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MAT201M_RaysPlanes_29_0.png" src="../_images/MAT201M_RaysPlanes_29_0.png" />
+<img alt="../_images/MAT201M_RaysPlanes_31_0.png" src="../_images/MAT201M_RaysPlanes_31_0.png" />
 </div>
 </div>
 <p>(noting that in this case the axis are no longer presented in Cartesian coordinates).</p>
@@ -777,7 +784,7 @@ Matrix([[85/53, 39/53, 92/53]])
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MAT201M_RaysPlanes_35_0.png" src="../_images/MAT201M_RaysPlanes_35_0.png" />
+<img alt="../_images/MAT201M_RaysPlanes_37_0.png" src="../_images/MAT201M_RaysPlanes_37_0.png" />
 </div>
 </div>
 <p>As we can see from the image, we successfully formed a triangular plane segment between the three vertices, and indeed (as seen in the lectures) the chosen ray intersects the triangular plane segment at the location we have found.</p>
@@ -785,7 +792,7 @@ Matrix([[85/53, 39/53, 92/53]])
 </div>
 <div class="section" id="over-to-you">
 <h2><span class="section-number">8.3. </span>Over to you<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
-<p>Try some more examples from the lectures or the tutorial questions once you are satisfied with the mathematics</p>
+<p>The aim of this course is to familiarise and become an expert in the mathematics underpinning several common standard games tools and techniques. You should carry out the questions in the tutorial booklet <strong>by hand</strong> to practice this mathematics and prepare for the exam. However, particularly in this topic, the mathematics is not easily visualised; having completed the maths exercises, try and visualise some of the solutions you have created to verify the ray behaviour.</p>
 </div>
 </div>
 
@@ -821,10 +828,10 @@ Matrix([[85/53, 39/53, 92/53]])
             <p class="prev-next-title"><span class="section-number">7. </span>Rays Intersecting with 2D boxes</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../dynamics/MAT201D_AccVelDist.html" title="next page">
+    <a class='right-next' id="next-link" href="../outro.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Displacement, Velocity and Acceleration by Integration &amp; Differentiation</p>
+        <p class="prev-next-title">Summary</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

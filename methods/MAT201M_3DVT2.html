@@ -109,6 +109,38 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_AccVelDist.html">
+   1. Linear Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_AirRes.html">
+   2. Air Resistance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_SHM.html">
+   3. Simple Harmonic Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_2DSWcols.html">
+   4. 2D Sphere/Wall Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_2DSScols.html">
+   5. 2D Sphere/Sphere Collisions
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Methods
  </span>
 </p>
@@ -151,38 +183,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysPlanes.html">
    8. Rays and Planes
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Dynamics
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamics/MAT201D_AccVelDist.html">
-   1. Linear Motion
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamics/MAT201D_AirRes.html">
-   2. Air Resistance
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamics/MAT201D_SHM.html">
-   3. Simple Harmonic Motion
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamics/MAT201D_2DSWcols.html">
-   4. 2D Sphere/Wall Collisions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamics/MAT201D_2DSScols.html">
-   5. 2D Sphere/Sphere Collisions
   </a>
  </li>
 </ul>
@@ -400,8 +400,8 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="more-3d-coordinate-transformations">
 <h1><span class="section-number">3. </span>More 3D Coordinate Transformations<a class="headerlink" href="#more-3d-coordinate-transformations" title="Permalink to this headline">¶</a></h1>
-<p>We have already shown how Python is capable of performing and visualing the standard set of operations for 3D graphics transformations.</p>
-<p>There are several additional useful operations than can be performed by matrices. This notebook will examine two of these: reflection in a given plane and rotation about an axis.</p>
+<p>We have already shown how Python is capable of performing and visualising the standard set of operations for 3D graphics transformations.</p>
+<p>There are several additional useful operations than can be performed by matrices. This notebook will examine two of these: <em>reflection in a given plane</em> and <em>rotation about an axis</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Libraries</span>
@@ -429,7 +429,7 @@ M_{\rm{reflection}} =
 	a &amp; b &amp; c &amp; a^2+b^2+c^2 
 	\end{pmatrix}}.
 \end{split}\]</div>
-<p>The additional factor of <span class="math notranslate nohighlight">\(a^2+b^2+c^2\)</span> in the bottom right element of this matrix means that we often need to remember to check that we have returned to homogenous coordinates after the calculation has been carried out.</p>
+<p>The additional factor of <span class="math notranslate nohighlight">\(a^2+b^2+c^2\)</span> in the bottom right element of this matrix means that we must remember to check that we have returned to homogenous coordinates after the calculation has been carried out.</p>
 <p>To test this, we will repeat one of the examples shown in the lectures:</p>
 <div class="section" id="lecture-example">
 <h3><span class="section-number">3.1.1. </span>Lecture Example:<a class="headerlink" href="#lecture-example" title="Permalink to this headline">¶</a></h3>
@@ -472,8 +472,8 @@ M_{\rm{reflection}} =
 <img alt="../_images/MAT201M_3DVT2_6_0.png" src="../_images/MAT201M_3DVT2_6_0.png" />
 </div>
 </div>
-<p>We need to make sure that we convert our arrays into the correct shape vector and include homogenous coordinates. In this case, rather than specifying the number of 1’s needed, I will use Python to count the number of points and produce an array of the same length, initialised by “1” in each element.
-Thus we can create our matrix of coordinates, formatted in the same way shown in class:</p>
+<p>When using Python this way, we need to remember i) to convert our arrays into the correct shape vector and ii) to include homogenous coordinates. In this case, rather than specifying the number of 1’s needed, I will use Python to count the number of coordinate locations and produce an array of the same length. This new array is initialised by “1” in each element: this saves me having to do this manually, and can be extended easily if we introduce more coordinates into the problem.</p>
+<p>Thus we can create our matrix of coordinates, formatted in the same way shown in class:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">))]</span>
@@ -860,7 +860,8 @@ rotated points:
 </div>
 </div>
 <p>With this technique we have very quickly recovered the solutions we determined in the lecture example.</p>
-<p>Again, let’s take advantage of the power of Python to visualise what this means. Remember that in this second example, the rotation axis passes through the point C, so we would expect that the pyramid rotates about C (while C itself remains unaffected, as illustrated by the transformed coordinates</p>
+<p>Again, let’s take advantage of the power of Python to visualise what this means. Remember that in this second example, the rotation axis passes through the point C, so we would expect that the pyramid rotates about C (while C itself remains unaffected).</p>
+<p>Taking the coordinates we found above, we can transpose them and group them together to make a visual comparison with the pyramid we started with.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">newp3</span> <span class="o">=</span> <span class="n">fp3</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
@@ -911,12 +912,12 @@ rotated points:
 <img alt="../_images/MAT201M_3DVT2_43_0.png" src="../_images/MAT201M_3DVT2_43_0.png" />
 </div>
 </div>
-<p>In this final image I have adjusted the viewing angle to highlight that the rotation does appear to have been performed correctly: one of the points has not been rotated, while the others look to be a rotation about the blue axis.</p>
+<p>In this final image I have adjusted the viewing angle to highlight that the rotation does appear to have been performed correctly: one of the points has not been rotated, while the others look to have been achieved by a rotation about the blue axis.</p>
 </div>
 </div>
 <div class="section" id="over-to-you">
 <h2><span class="section-number">3.3. </span>Over to you<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
-<p>As usual, I recommend that you apply these tools and visualisation techniques to some of the problems seen in the maths tutorial sheet. Can you cuse Python to confirm your approach to the matrix multiplication by hand? Can you visualise what some of the reflection or rotation questions produce and why?</p>
+<p>As usual, I recommend that you apply these tools and visualisation techniques to some of the problems seen in the maths tutorial sheet. Can you use Python to confirm your approach to the matrix multiplication by hand? Can you visualise what some of the reflection or rotation questions produce and why?</p>
 </div>
 </div>
 

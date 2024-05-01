@@ -109,6 +109,38 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_AccVelDist.html">
+   1. Linear Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_AirRes.html">
+   2. Air Resistance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_SHM.html">
+   3. Simple Harmonic Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_2DSWcols.html">
+   4. 2D Sphere/Wall Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_2DSScols.html">
+   5. 2D Sphere/Sphere Collisions
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Methods
  </span>
 </p>
@@ -151,38 +183,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysPlanes.html">
    8. Rays and Planes
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Dynamics
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamics/MAT201D_AccVelDist.html">
-   1. Linear Motion
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamics/MAT201D_AirRes.html">
-   2. Air Resistance
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamics/MAT201D_SHM.html">
-   3. Simple Harmonic Motion
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamics/MAT201D_2DSWcols.html">
-   4. 2D Sphere/Wall Collisions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamics/MAT201D_2DSScols.html">
-   5. 2D Sphere/Sphere Collisions
   </a>
  </li>
 </ul>
@@ -380,15 +380,15 @@ const thebe_selector_output = ".output, .cell_output"
 <p>In this notebook we will explore some of the properties of quaternions, and then apply those properties to rotate objects in 3D space.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Libraries</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">math</span> 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
-<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">FancyArrowPatch</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">proj3d</span>
-<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>## Libraries
+%matplotlib inline
+import numpy as np
+import math 
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.patches import FancyArrowPatch
+from mpl_toolkits.mplot3d import proj3d
+import sympy as sym
 </pre></div>
 </div>
 </div>
@@ -405,9 +405,9 @@ const thebe_selector_output = ".output, .cell_output"
 <p>To play with quaternions in Python, we have to use a custom Python package that isn’t commonly installed on Colab, so we need to force it to remember and reinstall if necessary:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install --upgrade numpy-quaternion
-<span class="kn">import</span> <span class="nn">quaternion</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import sys
+!{sys.executable} -m pip install --upgrade numpy-quaternion
+import quaternion
 </pre></div>
 </div>
 </div>
@@ -416,16 +416,40 @@ const thebe_selector_output = ".output, .cell_output"
 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy-quaternion in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (2022.4.3)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Ignoring invalid distribution -lotly (/usr/local/lib/python3.9/site-packages)</span>
+Requirement already satisfied: numpy-quaternion in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (2022.4.3)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.13 in /usr/local/lib/python3.9/site-packages (from numpy-quaternion) (1.21.4)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting numpy-quaternion
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading numpy_quaternion-2023.0.3-cp39-cp39-macosx_10_9_x86_64.whl.metadata (14 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.13 in /usr/local/lib/python3.9/site-packages (from numpy-quaternion) (1.24.4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading numpy_quaternion-2023.0.3-cp39-cp39-macosx_10_9_x86_64.whl (61 kB)
+?25l   <span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">0.0/61.4 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━</span> <span class=" -Color -Color-Green">51.2/61.4 kB</span> <span class=" -Color -Color-Red">3.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   <span class=" -Color -Color-Red">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">61.4/61.4 kB</span> <span class=" -Color -Color-Red">1.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Ignoring invalid distribution -lotly (/usr/local/lib/python3.9/site-packages)</span>
+Installing collected packages: numpy-quaternion
+  Attempting uninstall: numpy-quaternion
+    Found existing installation: numpy-quaternion 2022.4.3
+    Uninstalling numpy-quaternion-2022.4.3:
+      Successfully uninstalled numpy-quaternion-2022.4.3
+<span class=" -Color -Color-Yellow">  DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
+<span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
 
-<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip available: <span class=" -Color -Color-Red">22.3.1</span> -&gt; <span class=" -Color -Color-Green">23.1.2</span>
-<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">/usr/local/opt/python@3.9/bin/python3.9 -m pip install --upgrade pip</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed numpy-quaternion-2022.4.3
 </pre></div>
 </div>
 </div>
@@ -433,8 +457,8 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Now we can store and play with quaternions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quaternion</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">q2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quaternion</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>q1 = np.quaternion(1,2,3,4)
+q2 = np.quaternion(5,6,7,8)
 </pre></div>
 </div>
 </div>
@@ -442,22 +466,22 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Python isn’t strictly built to mess with quaternions, so to illustrate some of rotations later, we’ll first set up some functions to carry out certain operations that we will use later. These functions are based on the concepts taught in lectures. For example, it will be useful to quickly evaluate the modulus and inverse of a given quaternion:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modq</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;Function to create the |q| of a given quaternion.</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="kn">import</span> <span class="nn">quaternion</span>
-  <span class="n">mq</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">w</span><span class="o">*</span><span class="n">q</span><span class="o">.</span><span class="n">w</span><span class="o">+</span><span class="n">q</span><span class="o">.</span><span class="n">x</span><span class="o">*</span><span class="n">q</span><span class="o">.</span><span class="n">x</span><span class="o">+</span><span class="n">q</span><span class="o">.</span><span class="n">y</span><span class="o">*</span><span class="n">q</span><span class="o">.</span><span class="n">y</span><span class="o">+</span><span class="n">q</span><span class="o">.</span><span class="n">z</span><span class="o">*</span><span class="n">q</span><span class="o">.</span><span class="n">z</span>
-  <span class="n">mq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mq</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">mq</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def modq(q):
+  &quot;&quot;&quot;Function to create the |q| of a given quaternion.
+  &quot;&quot;&quot;
+  import quaternion
+  mq = q.w*q.w+q.x*q.x+q.y*q.y+q.z*q.z
+  mq = np.sqrt(mq)
+  return mq
 
-<span class="k">def</span> <span class="nf">invertq</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;Function to create q^(-1) of a given quaternion.</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="kn">import</span> <span class="nn">quaternion</span>
-  <span class="n">mq</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">w</span> <span class="o">*</span> <span class="n">q</span><span class="o">.</span><span class="n">w</span> <span class="o">+</span> <span class="n">q</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">q</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">q</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">q</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">q</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">q</span><span class="o">.</span><span class="n">z</span>
-  <span class="n">mq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mq</span><span class="p">)</span>
-  <span class="n">q_inverse</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">conjugate</span><span class="p">()</span><span class="o">/</span><span class="n">mq</span>
-  <span class="k">return</span> <span class="n">q_inverse</span>
+def invertq(q):
+  &quot;&quot;&quot;Function to create q^(-1) of a given quaternion.
+  &quot;&quot;&quot;
+  import quaternion
+  mq = q.w * q.w + q.x * q.x + q.y * q.y + q.z * q.z
+  mq = np.sqrt(mq)
+  q_inverse = q.conjugate()/mq
+  return q_inverse
 </pre></div>
 </div>
 </div>
@@ -465,10 +489,10 @@ const thebe_selector_output = ".output, .cell_output"
 <p>The quaternion numpy addon package is capable of calculating the conjugate of a given quaternion, so lets now check that this and our functions calculate exactly what we would expect:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">q1</span><span class="o">.</span><span class="n">w</span> <span class="o">*</span> <span class="n">q1</span><span class="o">.</span><span class="n">w</span> <span class="o">+</span> <span class="n">q1</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">q1</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">q1</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">q1</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">q1</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">q1</span><span class="o">.</span><span class="n">z</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">modq</span><span class="p">(</span><span class="n">q1</span><span class="p">))</span>
-<span class="n">q1</span><span class="o">.</span><span class="n">conjugate</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">invertq</span><span class="p">(</span><span class="n">q1</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(np.sqrt(q1.w * q1.w + q1.x * q1.x + q1.y * q1.y + q1.z * q1.z))
+print(modq(q1))
+q1.conjugate()
+print(invertq(q1))
 </pre></div>
 </div>
 </div>
@@ -484,42 +508,42 @@ quaternion(0.182574185835055, -0.365148371670111, -0.547722557505166, -0.7302967
 <p>To help us implement these quickly in Python, let us again define some specific functions to convert a point to a quaternion, or a quaternion into a point. We can also create functions which, if given a rotation angle and axis, generate the equivalent quaternion, and one which will evaluate a rotation angle and axis from a given quaternion.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">point2quat</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;Function to convert a point to a quaternion</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="kn">import</span> <span class="nn">quaternion</span>
-  <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quaternion</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-  <span class="k">return</span> <span class="n">q</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def point2quat(p):
+  &quot;&quot;&quot;Function to convert a point to a quaternion
+  &quot;&quot;&quot;
+  import quaternion
+  q = np.quaternion(0, p[0], p[1], p[2])
+  return q
 
-<span class="k">def</span> <span class="nf">quat2point</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;Function to convert a point to a quaternion</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="kn">import</span> <span class="nn">quaternion</span>
-  <span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>
-  <span class="k">return</span> <span class="n">p</span>
+def quat2point(q):
+  &quot;&quot;&quot;Function to convert a point to a quaternion
+  &quot;&quot;&quot;
+  import quaternion
+  p = [q.x, q.y, q.z]
+  return p
 
-<span class="k">def</span> <span class="nf">rotation2quat</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;Function to represent an axis and rotation angle using quaternions</span>
-<span class="sd">  with theta read in degrees</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="kn">import</span> <span class="nn">quaternion</span>
-  <span class="n">rtheta</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">theta</span>
-  <span class="n">modv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-  <span class="n">myI</span> <span class="o">=</span> <span class="n">v</span> <span class="o">/</span> <span class="n">modv</span>
-  <span class="n">ct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">rtheta</span><span class="p">))</span>
-  <span class="n">st</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">rtheta</span><span class="p">))</span>
-  <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quaternion</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span><span class="n">myI</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">st</span><span class="p">,</span><span class="n">myI</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">st</span><span class="p">,</span><span class="n">myI</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">st</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">q</span>
+def rotation2quat(theta, v):
+  &quot;&quot;&quot;Function to represent an axis and rotation angle using quaternions
+  with theta read in degrees
+  &quot;&quot;&quot;
+  import quaternion
+  rtheta = 0.5 * theta
+  modv = np.sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2])
+  myI = v / modv
+  ct = np.cos(np.radians(rtheta))
+  st = np.sin(np.radians(rtheta))
+  q = np.quaternion(ct,myI[0]*st,myI[1]*st,myI[2]*st)
+  return q
 
-<span class="k">def</span> <span class="nf">quat2rotation</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;Function to break apart quaternion to display rotation axis and angle</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="kn">import</span> <span class="nn">quaternion</span>
-  <span class="n">mq</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">w</span> <span class="o">*</span> <span class="n">q</span><span class="o">.</span><span class="n">w</span> <span class="o">+</span> <span class="n">q</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">q</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">q</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">q</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">q</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">q</span><span class="o">.</span><span class="n">z</span>
-  <span class="n">mq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mq</span><span class="p">)</span> 
-  <span class="n">theta</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">w</span> <span class="o">/</span> <span class="n">mq</span><span class="p">))</span>
-  <span class="n">axis</span> <span class="o">=</span> <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;theta=&quot;</span><span class="p">,</span><span class="mf">2.</span><span class="o">*</span><span class="n">theta</span><span class="p">,</span> <span class="s2">&quot; axis=&quot;</span><span class="p">,</span><span class="n">axis</span><span class="p">)</span>  
+def quat2rotation(q):
+  &quot;&quot;&quot;Function to break apart quaternion to display rotation axis and angle
+  &quot;&quot;&quot;
+  import quaternion
+  mq = q.w * q.w + q.x * q.x + q.y * q.y + q.z * q.z
+  mq = np.sqrt(mq) 
+  theta = math.degrees(np.arccos(q.w / mq))
+  axis = [q.x, q.y, q.z]
+  print(&quot;theta=&quot;,2.*theta, &quot; axis=&quot;,axis)  
 </pre></div>
 </div>
 </div>
@@ -531,15 +555,15 @@ quaternion(0.182574185835055, -0.365148371670111, -0.547722557505166, -0.7302967
 <p>In only a few lines we can use Python to carry out the same rotation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pt</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">qp</span> <span class="o">=</span> <span class="n">point2quat</span><span class="p">(</span><span class="n">pt</span><span class="p">)</span> <span class="c1">#convert point to quaternion form</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">qp</span><span class="p">)</span>
-<span class="n">theta</span> <span class="o">=</span> <span class="mi">90</span>
-<span class="n">axis</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">qr</span> <span class="o">=</span> <span class="n">rotation2quat</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">axis</span><span class="p">)</span> <span class="c1">#rotate point about specified axis</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">qr</span><span class="p">)</span>
-<span class="n">qri</span> <span class="o">=</span> <span class="n">invertq</span><span class="p">(</span><span class="n">qr</span><span class="p">)</span> <span class="c1">#calculate inverse of quaternion</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">qri</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pt = [2,3,1]
+qp = point2quat(pt) #convert point to quaternion form
+print(qp)
+theta = 90
+axis = [1,0,0]
+qr = rotation2quat(theta,axis) #rotate point about specified axis
+print(qr)
+qri = invertq(qr) #calculate inverse of quaternion
+print(qri)
 </pre></div>
 </div>
 </div>
@@ -553,8 +577,8 @@ quaternion(0.707106781186548, -0.707106781186547, -0, -0)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">quat2point</span><span class="p">(</span><span class="n">qr</span> <span class="o">*</span> <span class="n">qp</span> <span class="o">*</span> <span class="n">qri</span><span class="p">)</span> <span class="c1">#q * p * q^(-1)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>im = quat2point(qr * qp * qri) #q * p * q^(-1)
+print(im)
 </pre></div>
 </div>
 </div>
@@ -569,17 +593,17 @@ quaternion(0.707106781186548, -0.707106781186547, -0, -0)
 To display an axis, we could create a type of arrow to indicate size and direction of any vectors:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Arrow3D</span><span class="p">(</span><span class="n">FancyArrowPatch</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_verts3d</span> <span class="o">=</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Arrow3D(FancyArrowPatch):
+    def __init__(self, xs, ys, zs, *args, **kwargs):
+        super().__init__((0,0), (0,0), *args, **kwargs)
+        self._verts3d = xs, ys, zs
 
-    <span class="k">def</span> <span class="nf">do_3d_projection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="n">xs3d</span><span class="p">,</span> <span class="n">ys3d</span><span class="p">,</span> <span class="n">zs3d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_verts3d</span>
-        <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span> <span class="o">=</span> <span class="n">proj3d</span><span class="o">.</span><span class="n">proj_transform</span><span class="p">(</span><span class="n">xs3d</span><span class="p">,</span> <span class="n">ys3d</span><span class="p">,</span> <span class="n">zs3d</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">M</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_positions</span><span class="p">((</span><span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">ys</span><span class="p">[</span><span class="mi">0</span><span class="p">]),(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">ys</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    def do_3d_projection(self, renderer=None):
+        xs3d, ys3d, zs3d = self._verts3d
+        xs, ys, zs = proj3d.proj_transform(xs3d, ys3d, zs3d, self.axes.M)
+        self.set_positions((xs[0],ys[0]),(xs[1],ys[1]))
 
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">zs</span><span class="p">)</span>
+        return np.min(zs)
 </pre></div>
 </div>
 </div>
@@ -587,30 +611,30 @@ To display an axis, we could create a type of arrow to indicate size and directi
 <p>Now lets display the arrow (representing the axis of rotation), the original point and the rotated image of that point. We can add in a curved arrow indicating the direction of rotation and some text to help identify which object is which:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">55</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">pt</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">pt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">pt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">pt</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">im</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">im</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">im</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">im</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xlim3d</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> 
-<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> 
-<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_zlim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
-<span class="n">vstring</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">i+</span><span class="si">{}</span><span class="s2">j+</span><span class="si">{}</span><span class="s2">k&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">axis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">axis</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">axis</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="n">arrow_prop_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mutation_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-|&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">shrinkA</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shrinkB</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">Arrow3D</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">axis</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">axis</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">axis</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="o">**</span><span class="n">arrow_prop_dict</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">vstring</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">a2</span> <span class="o">=</span> <span class="n">Arrow3D</span><span class="p">([</span><span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">im</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">im</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">pt</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">im</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="n">mutation_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-            <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;-|&gt;&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3,rad=1&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = plt.figure()
+ax = fig.add_subplot(111, projection=&#39;3d&#39;)
+ax.view_init(20, 55)
+ax.scatter(pt[0], pt[1], pt[2], color=&quot;r&quot;, s=100)
+ax.text(pt[0]+2, pt[2]+1, pt[2]+1, pt, c=&#39;r&#39;)
+ax.scatter(im[0], im[1], im[2], color=&quot;b&quot;, s=100)
+ax.text(im[0]-2, im[1]-1, im[2]+2, im, c=&#39;b&#39;)
+ax.axes.set_xlim3d(left=-5, right=5) 
+ax.axes.set_ylim3d(bottom=-5, top=5) 
+ax.axes.set_zlim3d(bottom=-5, top=5)
+ax.set_xlabel(&#39;x&#39;)
+ax.set_ylabel(&#39;y&#39;)
+ax.set_zlabel(&#39;z&#39;)
+vstring=&quot;{}i+{}j+{}k&quot;.format(axis[0],axis[1],axis[2])
+arrow_prop_dict = dict(mutation_scale=20, arrowstyle=&#39;-|&gt;&#39;, color=&#39;k&#39;, shrinkA=0, shrinkB=0, linewidth=2)
+a = Arrow3D([0, 3*axis[0]], [0, 3*axis[1]], [0, 3*axis[2]], **arrow_prop_dict)
+ax.text(0, 0, -2, vstring, c=&#39;k&#39;)
+a2 = Arrow3D([pt[0], im[0]], [pt[1], im[1]], [pt[2], im[2]], mutation_scale=20,
+            lw=1, arrowstyle=&quot;-|&gt;&quot;, color=&quot;b&quot;, connectionstyle=&quot;arc3,rad=1&quot;, linestyle=&#39;--&#39;)
 
-<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_box_aspect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+ax.add_artist(a)
+ax.add_artist(a2)
+ax.set_box_aspect([1,1,1])
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -626,14 +650,14 @@ To display an axis, we could create a type of arrow to indicate size and directi
 <p>The point <span class="math notranslate nohighlight">\((1,0,-2)\)</span> is to be rotated by <span class="math notranslate nohighlight">\(60^o\)</span> about the axis <span class="math notranslate nohighlight">\(\vec{i}+2\vec{j}-\vec{k}\)</span>. Carry out the rotation using quaternions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pt2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">qp2</span> <span class="o">=</span> <span class="n">point2quat</span><span class="p">(</span><span class="n">pt2</span><span class="p">)</span>
-<span class="n">axis2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">theta2</span> <span class="o">=</span> <span class="mf">60.0</span>
-<span class="n">qr2</span> <span class="o">=</span> <span class="n">rotation2quat</span><span class="p">(</span><span class="n">theta2</span><span class="p">,</span><span class="n">axis2</span><span class="p">)</span>
-<span class="n">qri2</span> <span class="o">=</span> <span class="n">invertq</span><span class="p">(</span><span class="n">qr2</span><span class="p">)</span>
-<span class="n">im2</span> <span class="o">=</span> <span class="n">quat2point</span><span class="p">(</span><span class="n">qr2</span> <span class="o">*</span> <span class="n">qp2</span> <span class="o">*</span> <span class="n">qri2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">im2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pt2 = [1, 0, -2]
+qp2 = point2quat(pt2)
+axis2 = [1,2,-1]
+theta2 = 60.0
+qr2 = rotation2quat(theta2,axis2)
+qri2 = invertq(qr2)
+im2 = quat2point(qr2 * qp2 * qri2)
+print(im2)
 </pre></div>
 </div>
 </div>
@@ -646,30 +670,30 @@ To display an axis, we could create a type of arrow to indicate size and directi
 <p>We can also visualise this rotation in 3D, using arrows to illustrate the rotation axis, the rotation itself and the old and new image locations:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">55</span><span class="p">)</span>
-<span class="n">imtext</span><span class="o">=</span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">im2</span><span class="p">]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pt2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pt2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">pt2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">pt2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pt2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pt2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">im2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">im2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">im2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">im2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">im2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">im2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">imtext</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xlim3d</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> 
-<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> 
-<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_zlim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
-<span class="n">vstring</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">i+</span><span class="si">{}</span><span class="s2">j+</span><span class="si">{}</span><span class="s2">k&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">axis2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">axis2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">axis2</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="n">arrow_prop_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mutation_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-|&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">shrinkA</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shrinkB</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">Arrow3D</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">axis2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis2</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="o">**</span><span class="n">arrow_prop_dict</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">vstring</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">a2</span> <span class="o">=</span> <span class="n">Arrow3D</span><span class="p">([</span><span class="n">pt2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">im2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">pt2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">im2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">pt2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">im2</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="n">mutation_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-            <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;-|&gt;&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3,rad=-0.6&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = plt.figure()
+ax = fig.add_subplot(111, projection=&#39;3d&#39;)
+ax.view_init(20, -55)
+imtext=[round(float(i), 2) for i in im2]
+ax.scatter(pt2[0], pt2[1], pt2[2], color=&quot;r&quot;, s=100)
+ax.text(pt2[0]+0.5, pt2[2]+0.5, pt2[2]+1, pt2, c=&#39;r&#39;)
+ax.scatter(im2[0], im2[1], im2[2], color=&quot;b&quot;, s=100)
+ax.text(im2[0]-1, im2[1]-1, im2[2]+0.5, imtext, c=&#39;b&#39;)
+ax.axes.set_xlim3d(left=-2, right=2) 
+ax.axes.set_ylim3d(bottom=-2, top=2) 
+ax.axes.set_zlim3d(bottom=-2, top=2)
+ax.set_xlabel(&#39;x&#39;)
+ax.set_ylabel(&#39;y&#39;)
+ax.set_zlabel(&#39;z&#39;)
+vstring=&quot;{}i+{}j+{}k&quot;.format(axis2[0],axis2[1],axis2[2])
+arrow_prop_dict = dict(mutation_scale=20, arrowstyle=&#39;-|&gt;&#39;, color=&#39;k&#39;, shrinkA=0, shrinkB=0, linewidth=2)
+a = Arrow3D([0,axis2[0]], [0, axis2[1]], [0, axis2[2]], **arrow_prop_dict)
+ax.text(0, 0, 0.5, vstring, c=&#39;k&#39;)
+a2 = Arrow3D([pt2[0], im2[0]], [pt2[1], im2[1]], [pt2[2], im2[2]], mutation_scale=20,
+            lw=1, arrowstyle=&quot;-|&gt;&quot;, color=&quot;b&quot;, connectionstyle=&quot;arc3,rad=-0.6&quot;, linestyle=&#39;--&#39;)
 
-<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+ax.add_artist(a)
+ax.add_artist(a2)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -683,12 +707,12 @@ To display an axis, we could create a type of arrow to indicate size and directi
 <p>Example 3 used the same direction for the axis of rotation as in Example 1, but now passing through a specific point. To carry out this example, we must first translate the point before carrying out the rotation, then translating the point back by the same amount at the end:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ptT</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])]</span>
-<span class="n">qp3</span> <span class="o">=</span> <span class="n">point2quat</span><span class="p">(</span><span class="n">ptT</span><span class="p">)</span>
-<span class="n">imT</span> <span class="o">=</span> <span class="n">quat2point</span><span class="p">(</span><span class="n">qr</span> <span class="o">*</span> <span class="n">qp3</span> <span class="o">*</span> <span class="n">qri</span><span class="p">)</span>
-<span class="n">im3</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">imT</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">im3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">imT</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ptT = [a - b for a, b in zip(pt, [-1,2,1])]
+qp3 = point2quat(ptT)
+imT = quat2point(qr * qp3 * qri)
+im3 = [a + b for a, b in zip(imT, [-1,2,1])]
+print(im3)
+print(imT)
 </pre></div>
 </div>
 </div>
@@ -707,14 +731,14 @@ In the lectures, this was illsutated by an example. The point <span class="math 
 <p>To carry this out using Python, we can create the two required quaternions, multiply them, find the inverse of the result, then perform the rotation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qrc1</span> <span class="o">=</span> <span class="n">rotation2quat</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">qrc2</span> <span class="o">=</span> <span class="n">rotation2quat</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">q2q1</span> <span class="o">=</span> <span class="n">qrc2</span> <span class="o">*</span> <span class="n">qrc1</span>
-<span class="n">q2q1_inverse</span> <span class="o">=</span> <span class="n">invertq</span><span class="p">(</span><span class="n">q2q1</span><span class="p">)</span>
-<span class="n">pc1</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">qpc</span> <span class="o">=</span> <span class="n">point2quat</span><span class="p">(</span><span class="n">pc1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">q2q1</span> <span class="o">*</span> <span class="n">qpc</span> <span class="o">*</span> <span class="n">q2q1_inverse</span><span class="p">)</span>
-<span class="n">imc</span> <span class="o">=</span> <span class="n">quat2point</span><span class="p">(</span><span class="n">q2q1</span> <span class="o">*</span> <span class="n">qpc</span> <span class="o">*</span> <span class="n">q2q1_inverse</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>qrc1 = rotation2quat(120, [0, 0, 1])
+qrc2 = rotation2quat(-90, [1, 0, -1])
+q2q1 = qrc2 * qrc1
+q2q1_inverse = invertq(q2q1)
+pc1 = [-1,0,1]
+qpc = point2quat(pc1)
+print(q2q1 * qpc * q2q1_inverse)
+imc = quat2point(q2q1 * qpc * q2q1_inverse)
 </pre></div>
 </div>
 </div>
@@ -727,7 +751,7 @@ In the lectures, this was illsutated by an example. The point <span class="math 
 <p>To convert the quaternion back to a rotation, we can use the <em>quat2rotation</em> function we created earlier:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quat2rotation</span><span class="p">(</span><span class="n">q2q1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>quat2rotation(q2q1)
 </pre></div>
 </div>
 </div>

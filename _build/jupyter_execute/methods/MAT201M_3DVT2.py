@@ -27,10 +27,10 @@ from mpl_toolkits.mplot3d import proj3d
 # $$
 # M_{\rm{reflection}} = 
 # 	{\begin{pmatrix}
-# 	-a^2+^2+c^2 & -2ab & -2ac & 0  \\
-# 	-2ab & a^2-b^2+c^2 & -2cb & 0  \\
+# 	-a^2+b^2+c^2 & -2ab & -2ac & 0  \\
+# 	-2ab & a^2-b^2+c^2 & -2bc & 0  \\
 # 	-2ac & -2bc & a^2+b^2-c^2 & 0  \\
-# 	a & b & c & a^2+b^2+c^2 
+# 	0 & 0 & 0 & a^2+b^2+c^2 
 # 	\end{pmatrix}}.
 # $$
 # 
@@ -151,7 +151,7 @@ Tv = np.matrix([[1, 0, 0, 0],
 
 
 Mr = np.matrix([[-a*a+b*b+c*c, -2*a*b, -2*a*c, 0], 
-                [-2*a*b, a*a-b*b+c*c, -2*c*b, 0], 
+                [-2*a*b, a*a-b*b+c*c, -2*b*c, 0], 
                 [-2*a*c, -2*b*c, a*a+b*b-c*c, 0],
                 [0,0, 0, a*a+b*b+c*c]])
 
@@ -174,9 +174,9 @@ rph = rp/rp[:,3:]
 print(rph)
 
 
-# These are the locations of the reflected image.
+# These are the locations of the reflected image in homogenous coordinates.
 # 
-# Finally, to demonstrate the power of Python, we can plot the images, the plane about which the reflection is performed and the original points for a visual comparison:
+# Finally, to demonstrate the power of Python, we can plot the solution we have found. For completeness, I will include the plane about which the reflection is performed and the original (unreflected) positions:
 
 # In[11]:
 
@@ -213,7 +213,7 @@ plt.gca().set_aspect('equal')
 plt.show()
 
 
-# We can see in this example that the points we need to reflect actually straddle the plane, which is why the reflected images also straddle the plane in the opposite sense.
+# In this example the points we need to reflect actually straddle the plane: the reflected images therefore also straddle the plane, but in the opposite sense.
 
 # ## Rotation about an arbitrary axis
 # 
@@ -287,7 +287,7 @@ plt.gca().set_aspect('equal')
 plt.show()
 
 
-# Now let us examine the axis of rotation. In order to be in the correct format to use in the rotation matrix taught in the lectures, we must make sure the axis of rotation is formatted as a unit vector.
+# Now let us examine the axis of rotation. In order to be in the correct format to use in the rotation matrix taught in the lectures, the axis of rotation must be framed as a unit vector.
 # 
 # In this case, I'm too lazy to check if the vector is unit or not: I'll just divide the vector by it's size (that way if the vector is already unit, dividing by its size won't change the vector):
 
@@ -299,7 +299,7 @@ v_hat = v / np.linalg.norm(v)
 print(v_hat)
 
 
-# We now have all the ingredients we need to fill the abitrary rotation matrix. We must remember that in Python, arguments for trigonometric functions must be in radians:
+# We now have all the ingredients we need to fill the abitrary rotation matrix. Remember that, in Python, arguments for trigonometric functions must be in radians:
 
 # In[15]:
 
@@ -310,7 +310,7 @@ gamma = v_hat[2]
 theta = 45
 st = np.sin(math.radians(theta))
 ct = np.cos(math.radians(theta))
-Rtv = np.matrix([[alpha*alpha*(1-ct)+ct, alpha*beta*(1-ct)+gamma*ct, alpha*gamma*(1-ct)-beta*st, 0], 
+Rtv = np.matrix([[alpha*alpha*(1-ct)+ct, alpha*beta*(1-ct)+gamma*st, alpha*gamma*(1-ct)-beta*st, 0], 
                 [alpha*beta*(1-ct)-gamma*st, beta*beta*(1-ct)+ct, beta*gamma*(1-ct)+alpha*st, 0], 
                 [alpha*gamma*(1-ct)+beta*st, beta*gamma*(1-ct)-alpha*st, gamma*gamma*(1-ct)+ct, 0],
                 [0,0, 0, 1]])
@@ -330,7 +330,26 @@ print("rotated points:")
 print(fp)
 
 
+# Thus we have rotated the object, and have returned the rotated positions in homogenous coordinates.
+# 
+# We'll convert these positions back to Cartesian coordinates ready for plotting:
+
 # In[17]:
+
+
+newp2 = fp[:,0:3].transpose()
+x_vals2n = np.squeeze(np.asarray(newp2[0,:]))
+y_vals2n = np.squeeze(np.asarray(newp2[1,:]))
+z_vals2n = np.squeeze(np.asarray(newp2[2,:]))
+O2 = np.squeeze(np.asarray(newp2[:,0]))
+B2 = np.squeeze(np.asarray(newp2[:,1]))
+C2 = np.squeeze(np.asarray(newp2[:,2]))
+D2 = np.squeeze(np.asarray(newp2[:,3]))
+
+
+# Now we can look to visualise the result. First I will set up some custom arrows for Python to plot: we want to identify the vector about which the rotation is performed.
+
+# In[18]:
 
 
 class Arrow3D(FancyArrowPatch):
@@ -346,20 +365,7 @@ class Arrow3D(FancyArrowPatch):
         return np.min(zs)
 
 
-# We'll convert the points back to transformed positions ready for plotting:
-
-# In[18]:
-
-
-newp2 = fp[:,0:3].transpose()
-x_vals2n = np.squeeze(np.asarray(newp2[0,:]))
-y_vals2n = np.squeeze(np.asarray(newp2[1,:]))
-z_vals2n = np.squeeze(np.asarray(newp2[2,:]))
-O2 = np.squeeze(np.asarray(newp2[:,0]))
-B2 = np.squeeze(np.asarray(newp2[:,1]))
-C2 = np.squeeze(np.asarray(newp2[:,2]))
-D2 = np.squeeze(np.asarray(newp2[:,3]))
-
+# The plot setup will build on what we have used before. We will include the original pyramid shape (black), and its rotated equivalent (red), plus a blue arrow denoting the axis of rotation:
 
 # In[19]:
 
@@ -392,6 +398,8 @@ ax.axes.set_zlim3d(bottom=-2, top=3)
 plt.gca().set_aspect('equal')
 plt.show()
 
+
+# As in previous 3D examples, it is difficult to confirm the rotation has been carried out successfully using still 3D images. Try varying the rotation angle of the problem, or the viewing angle in the plotting commands to verify the behaviour of the solution.
 
 # ### Part 2: Rotation about axis not at origin
 # With the axis of rotation no longer passing through the origin, we must translate the coordinates by a distance equal to the effective distance of the axis from the origin. However, and really quite nicely, we can *re-use* the matrix we already calculated for the rotation, and simply book-end it with the necessary translations:

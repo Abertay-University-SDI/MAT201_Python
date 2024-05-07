@@ -30,6 +30,10 @@ parts:
     title: 3D Viewing Transforms
   - file: methods/MAT201M_3DVT2.ipynb
     title: More 3D Viewing Transforms
+  - file: methods/MAT201M_Proj1.ipynb
+    title: Orthographic Projection
+  - file: methods/MAT201M_Proj2.ipynb
+    title: Perspective Projection
   - file: methods/MAT201M_ComplexNos.ipynb
     title: Complex Numbers
   - file: methods/MAT201M_Quats.ipynb

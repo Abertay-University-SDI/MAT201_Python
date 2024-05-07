@@ -5,7 +5,7 @@
 # 
 # In lectures, we were introduced to the idea that graphics programming uses matrices to transform objects seen in a window to be correctly displayed in a viewport on the screen.
 # 
-# To do this efficiently, we can construct a *composite* transformation matrix by multiplying the required steps (translation, rotation, scaling) and their matrices together. Due to our particular application and graphics pipeline, we use specific forms of matrices and post-multiply window coordinates to achieve the correct transformations. We were also introduced to the concept of homogenous coordinates for specific positions, in order to correctly apply the transformations.
+# In code, efficiency is important. A *composite* transformation matrix can apply all the steps needed at the same time, reducing the number of operations. The composite transformation matrix is formed by multiplying the required steps (translation, rotation, scaling) and their matrices together. Due to our particular application and graphics pipeline, we use specific forms of matrices and post-multiply window coordinates to achieve the correct transformations. We were also introduced to the concept of homogenous coordinates for specific positions, in order to correctly apply the transformations.
 # 
 # In this notebook, we will put these calculations into practice, by performing the transformations practiced in class on specific objects and observing the effects.
 
@@ -62,86 +62,10 @@ print(hp.transpose())
 
 # Note that each of the vertices of the object are listed as we saw in the lectures, with set of coordinates each inhabiting its own row.
 
-# ## Scaling
-# 
-
-# We learned in lectures to take the matrix of positions, and scale by the scaling matrix. In 2D, the scaling matrix looks like:
-# 
-# $$
-# S_{S_x,~S_y}=
-# \begin{pmatrix}
-# 	S_x & 0 & 0 \\
-# 	0 & S_y & 0 \\
-# 	0 & 0 & 1
-# 	\end{pmatrix}
-# $$
-# 
-# We have to remember to PRE-MULTIPLY (due to the standard graphics pipeline approach). You may encounter different ways to apply transformation matrices in other web resources and textbooks, but they may use different pipelines or codes.
-# 
-# We'll stretch the object twice in $x$ and $2.5\times$ in $y$, which fixes $S_x$ and $S_y$:
-# 
-# $$
-# S_{S_x,~S_y}=
-# \begin{pmatrix}
-# 	2 & 0 & 0 \\
-# 	0 & 2.5 & 0 \\
-# 	0 & 0 & 1
-# 	\end{pmatrix}.
-# $$
-# 
-# This can be easily implemented in Python as a matrix:
-
-# In[4]:
-
-
-Sxy = np.matrix([[2, 0, 0], 
-                 [0, 2.5, 0], 
-                 [0, 0, 1]]) 
-
-
-# We'll take our coordinates (in homogenous form), and multiply by this scaling matrix.
-# 
-# 
-
-# In[5]:
-
-
-sp = hp.transpose()*Sxy
-
-
-# For plotting purposes, we'll undo our operations from earlier (Python makes it easier to plot things if fed a certain structure): hence we'll use the transpose command of the result to leave $x$ and $y$ coordinates in the first and second rows. Then we'll be able to plot the result and overlay the original object from our earlier plot.
-
-# In[6]:
-
-
-newp = sp[:,0:2].transpose()
-x_vals1 = [newp[0,:]]
-y_vals1 = [newp[1,:]]
-slx=np.append(x_vals1,x_vals1[0])
-sly=np.append(y_vals1,y_vals1[0])
-
-
-# Lets now plot the results:
-
-# In[7]:
-
-
-plt.plot(slx, sly, 'ro', linestyle="-")
-plt.plot(lx, ly, 'ko', linestyle="--")
-plt.ylim([-10,20])
-plt.xlim([-10,20])
-plt.ylabel('y')
-plt.xlabel('x')
-plt.gca().set_aspect('equal')
-plt.show()
-
-
-# You can see that the object has been doubled in size in $x$, while it is $2.5\times$ bigger in $y$. Note also that the positions whose coordinate elements equal zero are *unaffected* by the scaling: they remain at zero!
-
 # ## Rotation
 # 
 
-# In cases where we need to rotate objects, in the lectures we saw that we can use the 2D rotation matrix, which takes the form seen in class (and in MAT101):
+# In cases where rotation is needed, in the lectures we learned about the 2D rotation matrix, which takes the form seen in class (and in MAT102):
 # 
 # $$
 # R_{\theta_{z,{\underline{k}}}}=
@@ -154,7 +78,7 @@ plt.show()
 # 
 # In this experiment, lets rotate by our square anticlockwise by $60^o$.
 
-# In[8]:
+# In[4]:
 
 
 theta = 60
@@ -163,19 +87,19 @@ R_theta = np.matrix([[np.cos(math.radians(theta)), np.sin(math.radians(theta)), 
                      [0, 0, 1]]) 
 
 
-# Again, we'll work with our matrix of coordinates (where each column is a different coordinate, i.e. using the transpose once more), and post-multiply our transformation matrix.
+# We have to remember to PRE-MULTIPLY (due to the standard graphics pipeline approach). You may encounter different ways to apply transformation matrices in other web resources and textbooks, but they may use different pipelines or codes.
+# 
+# We take our matrix of coordinates (where each column is a different coordinate, i.e. using the transpose as shown above), and post-multiply our transformation matrix:
 
-# In[9]:
+# In[5]:
 
 
 rp = hp.transpose()*R_theta
 
 
-# As we have seen already, to plot this along side the original positions, we have to undo (repeat) our transpose operation, then complete the square by appending the first coordinates to our arrays, before plotting the result alongside the original:
-# 
-# 
+# To plot this along side the original positions, we have to undo (or repeat) our transpose operation. To join the square up for plotting, we append the first coordinate to our arrays as the new last coordinate. We can now display the result of our rotation (in green), alongside the original unrotated square (black) in a plot:
 
-# In[10]:
+# In[6]:
 
 
 newrp = rp[:,0:2].transpose()
@@ -193,7 +117,7 @@ plt.gca().set_aspect('equal')
 plt.show()
 
 
-# Note that the object has rotated *anti-clockwise*. If you require a clockwise rotation, the angle must be negative. Python can still handle negative angles, or you can modify the rotation matrix:
+# Note that the object has rotated *anti-clockwise*. If you require a clockwise rotation, the angle must be negative. Python can still handle negative angles. When it handles negative angles, it is really modifying the rotation matrix as you have learned in class:
 # 
 # $$
 # R_{-\theta_{z,{\underline{k}}}}=
@@ -203,6 +127,81 @@ plt.show()
 # 	0 & 0 & 1
 # 	\end{pmatrix}.
 # $$
+
+# ## Scaling
+# 
+
+# We learned in lectures to take the matrix of positions, and scale by the scaling matrix. In 2D, the scaling matrix looks like:
+# 
+# $$
+# S_{S_x,~S_y}=
+# \begin{pmatrix}
+# 	S_x & 0 & 0 \\
+# 	0 & S_y & 0 \\
+# 	0 & 0 & 1
+# 	\end{pmatrix}
+# $$
+# 
+# 
+# We'll stretch the object twice in $x$ and $2.5\times$ in $y$, which fixes $S_x$ and $S_y$:
+# 
+# $$
+# S_{S_x,~S_y}=
+# \begin{pmatrix}
+# 	2 & 0 & 0 \\
+# 	0 & 2.5 & 0 \\
+# 	0 & 0 & 1
+# 	\end{pmatrix}.
+# $$
+# 
+# This can be easily implemented in Python as a matrix:
+
+# In[7]:
+
+
+Sxy = np.matrix([[2, 0, 0], 
+                 [0, 2.5, 0], 
+                 [0, 0, 1]]) 
+
+
+# We'll take our coordinates (in homogenous form), and multiply by this scaling matrix.
+# 
+# 
+
+# In[8]:
+
+
+sp = hp.transpose()*Sxy
+
+
+# For plotting purposes, we'll undo our operations from earlier (Python makes it easier to plot things if fed a certain structure): we'll use the transpose command again to leave $x$ and $y$ coordinates in the first and second rows. Then we'll be able to plot the result and overlay the original square once more.
+
+# In[9]:
+
+
+newp = sp[:,0:2].transpose()
+x_vals1 = [newp[0,:]]
+y_vals1 = [newp[1,:]]
+slx=np.append(x_vals1,x_vals1[0])
+sly=np.append(y_vals1,y_vals1[0])
+
+
+# Lets now plot the results, showing the scaled square in red and original square in black:
+
+# In[10]:
+
+
+plt.plot(slx, sly, 'ro', linestyle="-")
+plt.plot(lx, ly, 'ko', linestyle="--")
+plt.ylim([-10,20])
+plt.xlim([-10,20])
+plt.ylabel('y')
+plt.xlabel('x')
+plt.gca().set_aspect('equal')
+plt.show()
+
+
+# You can see that the object has been doubled in size in $x$, while it is $2.5\times$ bigger in $y$. Note also that the positions whose coordinate elements equal zero are *unaffected* by the scaling: they remain at zero!
 
 # ## Translation
 # 
@@ -238,7 +237,7 @@ Tv = np.matrix([[1, 0, 0],
 Tp = hp.transpose()*Tv
 
 
-# Plotting the image will show how the original object has been translated in $x$ and $y$:
+# Plotting the image will show how the original object has been translated in $x$ and $y$ (with translated image in turqoise):
 
 # In[13]:
 
@@ -262,10 +261,10 @@ plt.show()
 
 # ## Rotation and scaling at the origin
 
-# One thing mentioned in the lectures is that rotation and scaling must occur at the origin. Let us examine this concept further using Python to handle the mathematical operations.
+# One thing mentioned in the lectures is that rotation and scaling must occur at the origin. Let's examine this more, with Python handling the mathematical operations.
 # We've already seen what happens when we rotate an object whose bottom left corner is already at the origin. **What happens if we rotate an object without first moving it to the origin?**
 # 
-# To explore this, we'll combine the rotation and translation operations we saw earlier, *but* explore what happens if we apply the transformations in two different orders, one where we translate then rotate, and one where we rotate then translate.
+# To explore this, we'll combine the rotation and translation operations we saw earlier, *but* explore what happens if we apply the transformations in two different orders: (i) translate then rotate; (ii) rotate then translate.
 # 
 
 # In[14]:
@@ -310,7 +309,7 @@ plt.show()
 # 
 # **The order of operations in transformations is crucial.**
 # 
-# If a rotation or scaling operation is required, make sure that the object is moved to the origin first, rotated and/or scaled, then moved back to the required location. This is much easier than rotating the whole system, then attempting to find where the object has moved to! This is known as the **standard sequence** of matrix transformations.
+# If a rotation or scaling operation is required, make sure that the object is moved to the origin first, then rotated, then scaled, then moved back to the required location. This is much easier than rotating the whole system, then attempting to find where the object has moved to! This is known as the **standard sequence** of matrix transformations.
 # 
 # 
 

@@ -109,6 +109,38 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201D_AccVelDist.html">
+   1. Linear Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201D_AirRes.html">
+   2. Air Resistance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201D_SHM.html">
+   3. Simple Harmonic Motion
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. 2D Sphere/Wall Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201D_2DSScols.html">
+   5. 2D Sphere/Sphere Collisions
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Methods
  </span>
 </p>
@@ -151,38 +183,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_RaysPlanes.html">
    8. Rays and Planes
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Dynamics
- </span>
-</p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201D_AccVelDist.html">
-   1. Linear Motion
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201D_AirRes.html">
-   2. Air Resistance
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201D_SHM.html">
-   3. Simple Harmonic Motion
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   4. 2D Sphere/Wall Collisions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201D_2DSScols.html">
-   5. 2D Sphere/Sphere Collisions
   </a>
  </li>
 </ul>
@@ -347,13 +347,13 @@ const thebe_selector_output = ".output, .cell_output"
 <p>First we’ll load in the libraries we need to create our example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="k">as</span> <span class="nn">animation</span>
-<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">math</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.animation as animation
+import matplotlib.patches as patches
+import random
+import math
 </pre></div>
 </div>
 </div>
@@ -361,16 +361,16 @@ const thebe_selector_output = ".output, .cell_output"
 <p>First we’ll need to fix some initial parameters. Choose values for the angle of incidence, initial velocity and the coefficient of restitution. We’ll also pick a time step value, over which time will increase for each frame in the animation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># angle of incidence</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="mf">60.0</span>
-<span class="c1">#initial velocity</span>
-<span class="n">u</span> <span class="o">=</span> <span class="mf">10.0</span>
-<span class="c1"># The maximum x-range of ball&#39;s trajectory to plot.</span>
-<span class="n">XMAX</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="c1"># The coefficient of restitution for bounces (-v_up/v_down).</span>
-<span class="n">e</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="c1"># The time step for the animation.</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.005</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># angle of incidence
+alpha = 60.0
+#initial velocity
+u = 10.0
+# The maximum x-range of ball&#39;s trajectory to plot.
+XMAX = 5
+# The coefficient of restitution for bounces (-v_up/v_down).
+e = 0.5
+# The time step for the animation.
+dt = 0.005
 </pre></div>
 </div>
 </div>
@@ -388,10 +388,10 @@ v^2=u^2\left( \cos^2{\left(\alpha\right)}+e^2\sin^2{\left( \alpha\right)}\right)
 <p>We can rearrange both of these equations to determine <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(v\)</span> (remembering also that Python trig. functions only accept arguments in radians, so we’ll convert them on the fly):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># angle after bounce (in radians)</span>
-<span class="n">beta</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">e</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha</span><span class="p">)))</span>
-<span class="c1"># velocity after bounce</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">u</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">e</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># angle after bounce (in radians)
+beta =np.arctan(e * math.tan(math.radians(alpha)))
+# velocity after bounce
+v = math.sqrt(u ** 2 * (math.cos(math.radians(alpha)) ** 2 + e ** 2 * math.sin(math.radians(alpha)) ** 2))
 </pre></div>
 </div>
 </div>
@@ -400,7 +400,7 @@ v^2=u^2\left( \cos^2{\left(\alpha\right)}+e^2\sin^2{\left( \alpha\right)}\right)
 Let’s choose an initial position for the ball; if we place the wall at <span class="math notranslate nohighlight">\(y=0\)</span>, this means our initial value of <span class="math notranslate nohighlight">\(y\)</span> must be positive.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x0, y0 = 0, 2.5
 </pre></div>
 </div>
 </div>
@@ -408,8 +408,8 @@ Let’s choose an initial position for the ball; if we place the wall at <span c
 <p>What about our initial velocity? Well, we’re needing to solve equations of motion in both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions, so we need to calculate these components of velocity too. We’ll use a ball that is moving from left to right and descending, so make <span class="math notranslate nohighlight">\(v_y\)</span> negative.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vx0</span> <span class="o">=</span> <span class="n">u</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span>
-<span class="n">vy0</span> <span class="o">=</span> <span class="o">-</span><span class="n">u</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>vx0 = u * math.cos(math.radians(alpha))
+vy0 = -u * math.sin(math.radians(alpha))
 </pre></div>
 </div>
 </div>
@@ -417,19 +417,19 @@ Let’s choose an initial position for the ball; if we place the wall at <span c
 <p>The animation will update the position of the ball in each frame. When it updates, we’ll need to check if the ball has passed the wall, and if it has then change the sign of the <span class="math notranslate nohighlight">\(y\)</span>-component of velocity to bounce the ball from the wall.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_pos</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A generator yielding the ball&#39;s position at time t.&quot;&quot;&quot;</span>
-    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">vx</span><span class="p">,</span> <span class="n">vy</span> <span class="o">=</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">vx0</span><span class="p">,</span> <span class="n">vy0</span>
-    <span class="k">while</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">XMAX</span><span class="p">:</span>
-        <span class="n">t</span> <span class="o">+=</span> <span class="n">dt</span>
-        <span class="n">x</span> <span class="o">+=</span> <span class="n">vx</span> <span class="o">*</span> <span class="n">dt</span>
-        <span class="n">y</span> <span class="o">+=</span> <span class="n">vy</span> <span class="o">*</span> <span class="n">dt</span>
-        <span class="k">if</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="c1"># bounce!</span>
-            <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="n">vy</span> <span class="o">=</span> <span class="n">v</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
-            <span class="n">vx</span> <span class="o">=</span> <span class="n">v</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
-        <span class="k">yield</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def get_pos(t=0):
+    &quot;&quot;&quot;A generator yielding the ball&#39;s position at time t.&quot;&quot;&quot;
+    x, y, vx, vy = x0, y0, vx0, vy0
+    while x &lt; XMAX:
+        t += dt
+        x += vx * dt
+        y += vy * dt
+        if y &lt; 0:
+            # bounce!
+            y = 0
+            vy = v * math.sin(beta)
+            vx = v * math.cos(beta)
+        yield x, y
 </pre></div>
 </div>
 </div>
@@ -437,16 +437,16 @@ Let’s choose an initial position for the ball; if we place the wall at <span c
 <p>Then we have to initialise the animation, so set some properties of the figure and the text to be displayed in the figure</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">init</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Initialize the animation figure.&quot;&quot;&quot;</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">XMAX</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y0</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$ /m&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$ /m&#39;</span><span class="p">)</span>
-    <span class="n">line</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">)</span>
-    <span class="n">ball</span><span class="o">.</span><span class="n">set_center</span><span class="p">((</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">))</span>
-    <span class="n">height_text</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Height: </span><span class="si">{</span><span class="n">y0</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> m&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">line</span><span class="p">,</span> <span class="n">ball</span><span class="p">,</span> <span class="n">height_text</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def init():
+    &quot;&quot;&quot;Initialize the animation figure.&quot;&quot;&quot;
+    ax.set_xlim(0, XMAX)
+    ax.set_ylim(0, y0)
+    ax.set_xlabel(&#39;$x$ /m&#39;)
+    ax.set_ylabel(&#39;$y$ /m&#39;)
+    line.set_data(xdata, ydata)
+    ball.set_center((x0, y0))
+    height_text.set_text(f&#39;Height: {y0:.1f} m&#39;)
+    return line, ball, height_text
 </pre></div>
 </div>
 </div>
@@ -454,15 +454,15 @@ Let’s choose an initial position for the ball; if we place the wall at <span c
 <p>The final function will set up the animation loop, where each time the animation is updated, we’ll append the position in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> with our new values, move the ball to be in the correct location and update the text on the picture which states the current height of the ball above the wall.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;For each frame, advance the animation to the new position, pos.&quot;&quot;&quot;</span>
-    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pos</span>
-    <span class="n">xdata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">ydata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">line</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">)</span>
-    <span class="n">ball</span><span class="o">.</span><span class="n">set_center</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
-    <span class="n">height_text</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Height: </span><span class="si">{</span><span class="n">y</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> m&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">line</span><span class="p">,</span> <span class="n">ball</span><span class="p">,</span> <span class="n">height_text</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def animate(pos):
+    &quot;&quot;&quot;For each frame, advance the animation to the new position, pos.&quot;&quot;&quot;
+    x, y = pos
+    xdata.append(x)
+    ydata.append(y)
+    line.set_data(xdata, ydata)
+    ball.set_center((x, y))
+    height_text.set_text(f&#39;Height: {y:.1f} m&#39;)
+    return line, ball, height_text
 </pre></div>
 </div>
 </div>
@@ -470,17 +470,17 @@ Let’s choose an initial position for the ball; if we place the wall at <span c
 <p>We haven’t yet set up the figure upon which we’ll draw the animation. We’ll go ahead and do that here, where we’ll also set up some of the objects we’ll display on it. The ball will be plotted as a circle, and the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> plot data are initialised here.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a new Figure, with equal aspect ratio so the ball appears round.</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Set up a new Figure, with equal aspect ratio so the ball appears round.
+fig, ax = plt.subplots()
+fig.set_size_inches(10, 10)
+ax.set_aspect(&#39;equal&#39;)
 
-<span class="c1"># These are the objects we need to keep track of.</span>
-<span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">ball</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">),</span> <span class="mf">0.08</span><span class="p">)</span>
-<span class="n">height_text</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">XMAX</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">y0</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Height: </span><span class="si">{</span><span class="n">y0</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> m&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">ball</span><span class="p">)</span>
-<span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+# These are the objects we need to keep track of.
+line, = ax.plot([], [], lw=2)
+ball = plt.Circle((x0, y0), 0.08)
+height_text = ax.text(XMAX * 0.5, y0 * 0.8, f&#39;Height: {y0:.1f} m&#39;)
+ax.add_patch(ball)
+xdata, ydata = [], []
 </pre></div>
 </div>
 </div>
@@ -491,16 +491,16 @@ Let’s choose an initial position for the ball; if we place the wall at <span c
 <p>The last set of instructions are to create the total simulation length of time and then to run and display the animation as an html5 video. Note again that the larger the interval is, the longer the movie and the more frames the animation will have to generate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interval</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">*</span><span class="n">dt</span>
-<span class="n">ani</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">get_pos</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                      <span class="n">interval</span><span class="o">=</span><span class="n">interval</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_func</span><span class="o">=</span><span class="n">init</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-<span class="n">HTML</span><span class="p">(</span><span class="n">ani</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>interval = 1000*dt
+ani = animation.FuncAnimation(fig, animate, get_pos, blit=True,
+                      interval=interval, repeat=True, init_func=init)
+from IPython.display import HTML
+HTML(ani.to_html5_video())
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_32279/2882133195.py:2: UserWarning: frames=&lt;function get_pos at 0x114fa6f70&gt; which we can infer the length of, did not pass an explicit *save_count* and passed cache_frame_data=True.  To avoid a possibly unbounded cache, frame data caching has been disabled. To suppress this warning either pass `cache_frame_data=False` or `save_count=MAX_FRAMES`.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_84921/2882133195.py:2: UserWarning: frames=&lt;function get_pos at 0x115436ca0&gt; which we can infer the length of, did not pass an explicit *save_count* and passed cache_frame_data=True.  To avoid a possibly unbounded cache, frame data caching has been disabled. To suppress this warning either pass `cache_frame_data=False` or `save_count=MAX_FRAMES`.
   ani = animation.FuncAnimation(fig, animate, get_pos, blit=True,
 </pre></div>
 </div>

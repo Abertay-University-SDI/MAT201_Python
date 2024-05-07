@@ -89,7 +89,7 @@ time.sleep(3)
 # 
 # In MAT201, our focus is (as you might expect) on mathematics. The rest of this introduction will illustrate a Python library called [Sympy](https://www.sympy.org/en/index.html). Like other Python packages, it is well documented, and widely used.
 # 
-# Let's go ahead and load in the libraries we need: in this case, we'll focus solely on *sympy*:
+# Let's go ahead and load in the libraries we need: in this case, we'll focus solely on *sympy* (which, for simplicity, when calling, we will refer to as "sym"):
 # 
 
 # In[3]:
@@ -141,7 +141,7 @@ print(x + 2 * x + onehalf)
 sym.expand( (x + onehalf * y)**2 )
 
 
-# Sympy has expanded this binomial, just like we would using pen and paper. It knows all the rules we do! It also knows lots about trigonometric functions. The *simplify* command can simplify expressions, using all of the maths knowledge in the library. We know that $\cos^2{(x)}+\sin^2{(x)}=1$; so does sympy:
+# Sympy has expanded this binomial, just like we would using pen and paper. It knows all the rules we do! It also knows lots about trigonometric functions. The *simplify* command can simplify expressions, using all of the maths knowledge in the library. We know that $\cos^2{(x)}+\sin^2{(x)}=1$; so does Sympy:
 
 # In[9]:
 
@@ -158,9 +158,12 @@ print( sym.simplify( sym.cos(x) * sym.cos(x) + sym.sin(x) * sym.sin(x)) )
 sym.diff(onehalf * x ** 2, x)
 
 
-# where the command has differentiated the first expression with respect to x. We can perform partial derivatives just as easily: lets say we need \begin{equation} 
+# where the command has differentiated the first expression with respect to x. We can perform partial derivatives just as easily: lets say we need 
+# 
+# $$
 # \frac{\partial}{\partial x} \left(x^3+y+axy\right), 
-# \end{equation}
+# $$
+# 
 # where $x$ and $y$ are independent variables:
 
 # In[11]:
@@ -169,8 +172,13 @@ sym.diff(onehalf * x ** 2, x)
 sym.diff(x ** 3 + y + onehalf * x * y , x)
 
 
-# easy peasy! What about integration? We know that (ignoring the constants of integration for now) 
-# \begin{equation}\int \frac{1}{{x}} ~{\rm{d}}x=\ln{|x|}+c,\end{equation} but so does sympy:
+# easy peasy! What about integration? We know how to integrate simple functions like 
+# 
+# $$
+# \int \frac{1}{{x}} ~{\rm{d}}x=\ln{|x|}+c,
+# $$ 
+# 
+# but so does Sympy:
 
 # In[12]:
 
@@ -188,9 +196,3 @@ solution[x], solution[y]
 
 
 # It can also solve matrix equations and tons of other clever things. However, this is plenty of information to begin to explore simple differential calculus that we'll encounter in our MAT201 dynamics lectures.
-
-# In[ ]:
-
-
-
-

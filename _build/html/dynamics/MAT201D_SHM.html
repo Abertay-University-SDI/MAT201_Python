@@ -109,6 +109,38 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201D_AccVelDist.html">
+   1. Linear Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201D_AirRes.html">
+   2. Air Resistance
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3. Simple Harmonic Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201D_2DSWcols.html">
+   4. 2D Sphere/Wall Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201D_2DSScols.html">
+   5. 2D Sphere/Sphere Collisions
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Methods
  </span>
 </p>
@@ -151,38 +183,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_RaysPlanes.html">
    8. Rays and Planes
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Dynamics
- </span>
-</p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201D_AccVelDist.html">
-   1. Linear Motion
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201D_AirRes.html">
-   2. Air Resistance
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   3. Simple Harmonic Motion
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201D_2DSWcols.html">
-   4. 2D Sphere/Wall Collisions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MAT201D_2DSScols.html">
-   5. 2D Sphere/Sphere Collisions
   </a>
  </li>
 </ul>
@@ -367,15 +367,15 @@ const thebe_selector_output = ".output, .cell_output"
 <p><em>Plotting inspiration from <a class="reference external" href="http://firsttimeprogrammer.blogspot.com/2014/12/basic-physics-and-python-simple.html">http://firsttimeprogrammer.blogspot.com/2014/12/basic-physics-and-python-simple.html</a></em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="k">as</span> <span class="nn">animation</span>
-<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
-<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install --upgrade Ipython
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.animation as animation
+import matplotlib.patches as patches
+import sympy as sym
+import math
+import sys
+!{sys.executable} -m pip install --upgrade Ipython
 </pre></div>
 </div>
 </div>
@@ -384,36 +384,77 @@ const thebe_selector_output = ".output, .cell_output"
 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: Ipython in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (8.13.2)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Ignoring invalid distribution -lotly (/usr/local/lib/python3.9/site-packages)</span>
+
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: typing-extensions in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from Ipython) (3.10.0.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: Ipython in /usr/local/lib/python3.9/site-packages (7.30.0)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pickleshare in /usr/local/lib/python3.9/site-packages (from Ipython) (0.7.5)
-Requirement already satisfied: matplotlib-inline in /usr/local/lib/python3.9/site-packages (from Ipython) (0.1.3)
-Requirement already satisfied: prompt-toolkit!=3.0.37,&lt;3.1.0,&gt;=3.0.30 in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from Ipython) (3.0.38)
-Requirement already satisfied: pygments&gt;=2.4.0 in /usr/local/lib/python3.9/site-packages (from Ipython) (2.10.0)
-Requirement already satisfied: traitlets&gt;=5 in /usr/local/lib/python3.9/site-packages (from Ipython) (5.1.1)
-Requirement already satisfied: appnope in /usr/local/lib/python3.9/site-packages (from Ipython) (0.1.2)
-Requirement already satisfied: stack-data in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from Ipython) (0.6.2)
-Requirement already satisfied: pexpect&gt;4.3 in /usr/local/lib/python3.9/site-packages (from Ipython) (4.8.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting Ipython
+  Using cached ipython-8.18.1-py3-none-any.whl.metadata (6.0 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: decorator in /usr/local/lib/python3.9/site-packages (from Ipython) (5.1.0)
 Requirement already satisfied: jedi&gt;=0.16 in /usr/local/lib/python3.9/site-packages (from Ipython) (0.18.0)
-Requirement already satisfied: decorator in /usr/local/lib/python3.9/site-packages (from Ipython) (5.1.0)
-Requirement already satisfied: backcall in /usr/local/lib/python3.9/site-packages (from Ipython) (0.2.0)
+Requirement already satisfied: matplotlib-inline in /usr/local/lib/python3.9/site-packages (from Ipython) (0.1.3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting prompt-toolkit&lt;3.1.0,&gt;=3.0.41 (from Ipython)
+  Using cached prompt_toolkit-3.0.43-py3-none-any.whl.metadata (6.5 kB)
+Requirement already satisfied: pygments&gt;=2.4.0 in /usr/local/lib/python3.9/site-packages (from Ipython) (2.10.0)
+Requirement already satisfied: stack-data in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from Ipython) (0.6.2)
+Requirement already satisfied: traitlets&gt;=5 in /usr/local/lib/python3.9/site-packages (from Ipython) (5.1.1)
+Requirement already satisfied: typing-extensions in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from Ipython) (3.10.0.0)
+Requirement already satisfied: exceptiongroup in /usr/local/lib/python3.9/site-packages (from Ipython) (1.2.1)
+Requirement already satisfied: pexpect&gt;4.3 in /usr/local/lib/python3.9/site-packages (from Ipython) (4.8.0)
 Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.0 in /usr/local/lib/python3.9/site-packages (from jedi&gt;=0.16-&gt;Ipython) (0.8.2)
 Requirement already satisfied: ptyprocess&gt;=0.5 in /usr/local/lib/python3.9/site-packages (from pexpect&gt;4.3-&gt;Ipython) (0.7.0)
-Requirement already satisfied: wcwidth in /usr/local/lib/python3.9/site-packages (from prompt-toolkit!=3.0.37,&lt;3.1.0,&gt;=3.0.30-&gt;Ipython) (0.2.5)
-Requirement already satisfied: pure-eval in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from stack-data-&gt;Ipython) (0.2.2)
+Requirement already satisfied: wcwidth in /usr/local/lib/python3.9/site-packages (from prompt-toolkit&lt;3.1.0,&gt;=3.0.41-&gt;Ipython) (0.2.5)
 Requirement already satisfied: executing&gt;=1.2.0 in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from stack-data-&gt;Ipython) (1.2.0)
 Requirement already satisfied: asttokens&gt;=2.1.0 in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from stack-data-&gt;Ipython) (2.2.1)
+Requirement already satisfied: pure-eval in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from stack-data-&gt;Ipython) (0.2.2)
 Requirement already satisfied: six in /usr/local/lib/python3.9/site-packages (from asttokens&gt;=2.1.0-&gt;stack-data-&gt;Ipython) (1.16.0)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using cached ipython-8.18.1-py3-none-any.whl (808 kB)
+Using cached prompt_toolkit-3.0.43-py3-none-any.whl (386 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Ignoring invalid distribution -lotly (/usr/local/lib/python3.9/site-packages)</span>
 
-<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip available: <span class=" -Color -Color-Red">22.3.1</span> -&gt; <span class=" -Color -Color-Green">23.1.2</span>
-<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">/usr/local/opt/python@3.9/bin/python3.9 -m pip install --upgrade pip</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: prompt-toolkit, Ipython
+  Attempting uninstall: prompt-toolkit
+    Found existing installation: prompt-toolkit 3.0.22
+    Uninstalling prompt-toolkit-3.0.22:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Successfully uninstalled prompt-toolkit-3.0.22
+<span class=" -Color -Color-Yellow">  DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Attempting uninstall: Ipython
+    Found existing installation: ipython 7.30.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Uninstalling ipython-7.30.0:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Successfully uninstalled ipython-7.30.0
+<span class=" -Color -Color-Yellow">  DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
+<span class=" -Color -Color-Red">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</span>
+<span class=" -Color -Color-Red">ipykernel 6.5.0 requires ipython&lt;8.0,&gt;=7.23.1, but you have ipython 8.18.1 which is incompatible.</span>
+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed Ipython-8.18.1 prompt-toolkit-3.0.43
 </pre></div>
 </div>
 </div>
@@ -442,11 +483,11 @@ v\frac{{\rm d}v}{{\rm{d}}x}=-\frac{k}{m}x=-\omega^2x,
 <p>Python is great at solving differential equations. First we’ll set up the variables in the problem. The differential equation solver needs to know some of the properties of the symbols it will be working with in order to do its job more effectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">real</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="n">w</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;ω&#39;</span><span class="p">,</span> <span class="n">real</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">positive</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">nonzero</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">real</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">positive</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">nonzero</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="n">phi</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;phi&#39;</span> <span class="p">,</span> <span class="n">real</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = sym.symbols(&#39;x&#39;, real = True)
+w = sym.symbols(&#39;ω&#39;, real = True, positive = True, nonzero = True)
+A = sym.symbols(&#39;A&#39;, real = True, positive = True, nonzero = True)
+phi = sym.symbols(&#39;phi&#39; , real = True)
+v = sym.Function(&#39;v&#39;)
 </pre></div>
 </div>
 </div>
@@ -455,9 +496,9 @@ v\frac{{\rm d}v}{{\rm{d}}x}=-\frac{k}{m}x=-\omega^2x,
 <p>Python can solve differential equations if all the terms are on one side of the equation and this equals zero. Shifting <span class="math notranslate nohighlight">\(-\omega^2x\)</span> over to the LHS means that we can use <em>dsolve</em> (with the initial condition described above):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq1</span> <span class="o">=</span> <span class="n">v</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">v</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span>
-<span class="n">vofx</span><span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">dsolve</span><span class="p">(</span><span class="n">eq1</span><span class="p">,</span><span class="n">v</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">ics</span><span class="o">=</span><span class="p">{</span><span class="n">v</span><span class="p">(</span><span class="n">A</span><span class="p">):</span> <span class="mi">0</span><span class="p">})</span>
-<span class="n">vofx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eq1 = v(x)*v(x).diff(x) + w**2*x
+vofx=sym.dsolve(eq1,v(x), ics={v(A): 0})
+vofx[0]
 </pre></div>
 </div>
 </div>
@@ -469,7 +510,7 @@ v\frac{{\rm d}v}{{\rm{d}}x}=-\frac{k}{m}x=-\omega^2x,
 <p>The first solution is displayed up above, and is the negative solution. This is one of two solutions that Python has found, with the other being:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vofx</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>vofx[1]
 </pre></div>
 </div>
 </div>
@@ -482,13 +523,13 @@ v\frac{{\rm d}v}{{\rm{d}}x}=-\frac{k}{m}x=-\omega^2x,
 <p>Now lets work in time, and use the same tricks to calculate the displacement as a function of time. The differential equation solver in Python isn’t set up to know that our previous independent variable <span class="math notranslate nohighlight">\(x\)</span> is now our <em>dependent</em> variable, <span class="math notranslate nohighlight">\(x(t)\)</span>. We have to make Python forget the earlier solution, and input it by hand, but we can solve it in the same way as before (while also stating the initial condition that at <span class="math notranslate nohighlight">\(t=0\)</span>, the displacement will be determined by <span class="math notranslate nohighlight">\(A\sin{\left(\phi\right)}\)</span>, where <span class="math notranslate nohighlight">\(\phi\)</span> is our phase shift):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">real</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">eq2</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="n">sym</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">w</span><span class="o">*</span><span class="n">w</span><span class="o">-</span><span class="n">x</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">w</span><span class="o">*</span><span class="n">w</span><span class="p">)</span>
-<span class="n">xoft</span><span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">dsolve</span><span class="p">(</span><span class="n">eq2</span><span class="p">,</span><span class="n">x</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">ics</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span><span class="n">A</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)})</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x(t)=&quot;</span><span class="p">,</span> <span class="n">xoft</span><span class="o">.</span><span class="n">rhs</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;v(t)=&quot;</span><span class="p">,</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">xoft</span><span class="o">.</span><span class="n">rhs</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a(t)=&quot;</span><span class="p">,</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">xoft</span><span class="o">.</span><span class="n">rhs</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>t = sym.symbols(&#39;t&#39;, real = True)
+x = sym.Function(&#39;x&#39;)
+eq2 = x(t).diff(t)-sym.sqrt(A*A*w*w-x(t)*x(t)*w*w)
+xoft=sym.dsolve(eq2,x(t), ics={x(0):A*sym.sin(phi)})
+print(&quot;x(t)=&quot;, xoft.rhs)
+print(&quot;v(t)=&quot;, sym.diff(xoft.rhs,t))
+print(&quot;a(t)=&quot;, sym.diff(xoft.rhs,t,2))
 </pre></div>
 </div>
 </div>
@@ -508,12 +549,12 @@ a(t)= -A*ω**2*sin(phi + t*ω)
 <p>We’ll choose some initial values for the constants of motion. Feel free to change these and re-run the animation to see what difference this makes to the observed behaviour:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">50</span>            <span class="c1">#spring constant</span>
-<span class="n">m</span> <span class="o">=</span> <span class="mi">20</span>            <span class="c1">#mass (kg)</span>
-<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span><span class="c1">#angular frequency omega</span>
-<span class="n">phi</span> <span class="o">=</span> <span class="mi">0</span>           <span class="c1">#phase shift</span>
-<span class="n">A</span> <span class="o">=</span> <span class="mi">3</span>             <span class="c1">#amplitude (m)</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.05</span>         <span class="c1">#time step for the animation (s)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>k = 50            #spring constant
+m = 20            #mass (kg)
+w = np.sqrt(k / m)#angular frequency omega
+phi = 0           #phase shift
+A = 3             #amplitude (m)
+dt = 0.05         #time step for the animation (s)
 </pre></div>
 </div>
 </div>
@@ -521,15 +562,15 @@ a(t)= -A*ω**2*sin(phi + t*ω)
 <p>We’ll set up Python functions which at a given time will return the displacement, velocity and acceleration. Note that the returned functions exactly match those solved for earlier in the notebook:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">disp</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
-    <span class="k">global</span> <span class="n">w</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">A</span>
-    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">phi</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">vel</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
-    <span class="k">global</span> <span class="n">w</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">A</span>
-    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">w</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">phi</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">accel</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
-    <span class="k">global</span> <span class="n">w</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">A</span>
-    <span class="k">return</span> <span class="o">-</span><span class="n">A</span> <span class="o">*</span> <span class="n">w</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">phi</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def disp(t):
+    global w, phi, A
+    return A * np.sin(w * t + phi)
+def vel(t):
+    global w, phi, A
+    return A * w * np.cos(w * t + phi)
+def accel(t):
+    global w, phi, A
+    return -A * w ** 2 * np.sin(w * t + phi)
 </pre></div>
 </div>
 </div>
@@ -538,10 +579,10 @@ a(t)= -A*ω**2*sin(phi + t*ω)
 First we’ll set up a figure containing 4 subplots so that we can plot lots of animated graphs:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig, (ax1, ax2, ax3, ax4) = plt.subplots(4,1)
+fig.set_size_inches(10, 15)
+ax1.set_xlim(-10,10)
+ax1.set_ylim(-5,5)
 </pre></div>
 </div>
 </div>
@@ -556,13 +597,13 @@ First we’ll set up a figure containing 4 subplots so that we can plot lots of 
 The first time we draw it, we’ll place the centre of the box at the position (i.e. displacement) at <span class="math notranslate nohighlight">\(t=0\)</span>. Quite often, this is at <span class="math notranslate nohighlight">\(x=0\)</span>, but also depends on the phase shift <span class="math notranslate nohighlight">\(\phi\)</span>. Once we’ve drawn everything, try changing the phase and seeing where the box is initially drawn.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">box</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-    <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">disp</span><span class="p">(</span><span class="mf">0.0</span><span class="p">),</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">],</span>  
-    <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">disp</span><span class="p">(</span><span class="mf">0.0</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">],</span>  
-    <span class="p">[</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">disp</span><span class="p">(</span><span class="mf">0.0</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">disp</span><span class="p">(</span><span class="mf">0.0</span><span class="p">),</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">]</span>
-    <span class="p">])</span>
-<span class="n">patch</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>box= np.array([
+    [-1.0 + disp(0.0), -1.0],  
+    [-1.0 + disp(0.0), 1.0],  
+    [1.0 + disp(0.0), 1.0],
+    [1.0 + disp(0.0), -1.0]
+    ])
+patch = patches.Polygon(box, closed=True, fc=&#39;black&#39;, ec=&#39;black&#39;)
 </pre></div>
 </div>
 </div>
@@ -571,16 +612,16 @@ The first time we draw it, we’ll place the centre of the box at the position (
 To do this, I’m going to make some arrows, centred on the middle of the box, and with sizes determined by <span class="math notranslate nohighlight">\(a(t)\)</span> and <span class="math notranslate nohighlight">\(v(t)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">patch2</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Arrow</span><span class="p">(</span><span class="n">disp</span><span class="p">(</span><span class="mf">0.0</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">accel</span><span class="p">(</span><span class="mf">0.0</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
-<span class="n">patch3</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Arrow</span><span class="p">(</span><span class="n">disp</span><span class="p">(</span><span class="mf">0.0</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">vel</span><span class="p">(</span><span class="mf">0.0</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">patch2</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">patch3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>patch2 = patches.Arrow(disp(0.0), 0.0, accel(0.0), 0.0, color=&#39;blue&#39;)
+patch3 = patches.Arrow(disp(0.0), 0.0, vel(0.0), 0.0, color=&#39;green&#39;)
+ax1.add_patch(patch)
+ax1.add_patch(patch2)
+ax1.add_patch(patch3)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.patches.Arrow at 0x1146fbb80&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.patches.Arrow at 0x11d409af0&gt;
 </pre></div>
 </div>
 </div>
@@ -588,32 +629,32 @@ To do this, I’m going to make some arrows, centred on the middle of the box, a
 <p>Now we’ll set up remaining things to do with the plots, things like labelling each axis. Plot 2 will be the displacement as a function of time, Plot 3 will be the velocity and Plot 4 will be the acceleration. Each of the plots will have to have different a y-axis, so we’ll loop round each plot to set the scales correctly.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$x [m]$&quot;</span><span class="p">)</span>
-<span class="n">time_template</span> <span class="o">=</span> <span class="s1">&#39;time = </span><span class="si">%.1f</span><span class="s1">s&#39;</span>
-<span class="n">time_text</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">7.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax1</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
-<span class="c1">#set up other subplots</span>
-<span class="n">line1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">line2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
-<span class="n">line3</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
-<span class="n">iy</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$x [m]$&quot;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">A</span><span class="p">,</span><span class="s1">&#39;$x_</span><span class="si">{max}</span><span class="s1">=A$&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$v [ms^{-1}]$&quot;</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">w</span><span class="p">,</span><span class="s1">&#39;$v_</span><span class="si">{max}</span><span class="s1">=A\omega$&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$a [ms^{-2}]$&quot;</span><span class="p">)</span>
-<span class="n">ax4</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">w</span> <span class="o">*</span> <span class="n">w</span><span class="p">,</span><span class="s1">&#39;$a_</span><span class="si">{max}</span><span class="s1">=A\omega^2$&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-<span class="c1">#loop round plots and set various ranges and labels</span>
-<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="p">[</span><span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span><span class="p">]:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.25</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">w</span> <span class="o">**</span> <span class="n">iy</span><span class="p">,</span> <span class="mf">1.25</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">w</span> <span class="o">**</span> <span class="n">iy</span><span class="p">)</span>
-    <span class="n">upperbound</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">w</span> <span class="o">**</span> <span class="n">iy</span>
-    <span class="n">lowerbound</span> <span class="o">=</span> <span class="o">-</span><span class="n">A</span> <span class="o">*</span> <span class="n">w</span> <span class="o">**</span> <span class="n">iy</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">upperbound</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">lowerbound</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">iy</span><span class="o">+=</span><span class="mi">1</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$t [s]$&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    
-    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ax1.set_xlabel(&quot;$x [m]$&quot;)
+time_template = &#39;time = %.1fs&#39;
+time_text = ax1.text(-7.5, 4, &#39;&#39;, transform=ax1.transAxes)
+#set up other subplots
+line1, = ax2.plot([], [], lw=2, color=&#39;r&#39;)
+line2, = ax3.plot([], [], lw=2, color=&#39;g&#39;)
+line3, = ax4.plot([], [], lw=2, color=&#39;b&#39;)
+iy = 0
+ax2.set_ylabel(&quot;$x [m]$&quot;)
+ax2.text(4,1.1 * A,&#39;$x_{max}=A$&#39;, color=&#39;black&#39;)
+ax3.set_ylabel(&quot;$v [ms^{-1}]$&quot;)
+ax3.text(4,1.1 * A * w,&#39;$v_{max}=A\omega$&#39;, color=&#39;black&#39;)
+ax4.set_ylabel(&quot;$a [ms^{-2}]$&quot;)
+ax4.text(4,1.1 * A * w * w,&#39;$a_{max}=A\omega^2$&#39;, color=&#39;black&#39;)
+#loop round plots and set various ranges and labels
+for ax in [ax2, ax3, ax4]:
+    ax.set_ylim(-1.25 * A * w ** iy, 1.25 * A * w ** iy)
+    upperbound = A * w ** iy
+    lowerbound = -A * w ** iy
+    ax.axhline(y=upperbound, xmin=0, xmax=5, c=&quot;black&quot;, linewidth=2, linestyle=&quot;--&quot;, zorder=0)
+    ax.axhline(y=lowerbound, xmin=0, xmax=5, c=&quot;black&quot;, linewidth=2, linestyle=&quot;--&quot;, zorder=0)
+    iy+=1
+    ax.set_xlim(0, 5)
+    ax.set_xlabel(&quot;$t [s]$&quot;)
+    ax.axhline(y=0, xmin=0, xmax=5, c=&quot;black&quot;, linewidth=2, zorder=0)    
+    ax.grid()
 </pre></div>
 </div>
 </div>
@@ -621,7 +662,7 @@ To do this, I’m going to make some arrows, centred on the middle of the box, a
 <p>Finally, we’ll create some arrays to store the time values (lets call that “xdata”), and the displacement, velocity and acceleration (which will be displayed on the y-axis of each plot)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xdata</span><span class="p">,</span> <span class="n">y1data</span><span class="p">,</span> <span class="n">y2data</span><span class="p">,</span> <span class="n">y3data</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xdata, y1data, y2data, y3data = [], [], [], []
 </pre></div>
 </div>
 </div>
@@ -629,14 +670,14 @@ To do this, I’m going to make some arrows, centred on the middle of the box, a
 <p>For the animation to work, we need to set up a couple of functions, the first will initialise some of the variables.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">init</span><span class="p">():</span>
-    <span class="c1">#required for animation</span>
-    <span class="k">global</span> <span class="n">time_text</span>
-    <span class="n">line1</span><span class="o">.</span><span class="n">set_data</span><span class="p">([],</span> <span class="p">[])</span>
-    <span class="n">line2</span><span class="o">.</span><span class="n">set_data</span><span class="p">([],</span> <span class="p">[])</span>
-    <span class="n">line3</span><span class="o">.</span><span class="n">set_data</span><span class="p">([],</span> <span class="p">[])</span>
-    <span class="n">time_text</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> 
-    <span class="k">return</span> <span class="n">patch</span><span class="p">,</span> <span class="n">time_text</span><span class="p">,</span> <span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">,</span> <span class="n">line3</span><span class="p">,</span> <span class="n">patch2</span><span class="p">,</span> <span class="n">patch3</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def init():
+    #required for animation
+    global time_text
+    line1.set_data([], [])
+    line2.set_data([], [])
+    line3.set_data([], [])
+    time_text.set_text(&#39;&#39;) 
+    return patch, time_text, line1, line2, line3, patch2, patch3,
 </pre></div>
 </div>
 </div>
@@ -644,35 +685,35 @@ To do this, I’m going to make some arrows, centred on the middle of the box, a
 <p>Next comes the animation: essentially the code will count up in time, recalculate (and append) <span class="math notranslate nohighlight">\(t, x, v, a\)</span> and then redraw both the object and arrows, and the graphs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
-    <span class="k">global</span> <span class="n">patch2</span><span class="p">,</span> <span class="n">patch3</span>
-    <span class="c1">#thing to be animated</span>
-    <span class="n">y1</span> <span class="o">=</span> <span class="n">disp</span><span class="p">(</span><span class="n">dt</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
-    <span class="n">xdata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dt</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
-    <span class="n">y1data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">disp</span><span class="p">(</span><span class="n">dt</span> <span class="o">*</span> <span class="n">i</span><span class="p">))</span>
-    <span class="n">y2data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vel</span><span class="p">(</span><span class="n">dt</span> <span class="o">*</span> <span class="n">i</span><span class="p">))</span>
-    <span class="n">y3data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accel</span><span class="p">(</span><span class="n">dt</span> <span class="o">*</span> <span class="n">i</span><span class="p">))</span>
-    <span class="n">box</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-    <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">disp</span><span class="p">(</span><span class="n">dt</span> <span class="o">*</span> <span class="n">i</span><span class="p">),</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">],</span>  
-    <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">disp</span><span class="p">(</span><span class="n">dt</span> <span class="o">*</span> <span class="n">i</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">],</span>  
-    <span class="p">[</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">disp</span><span class="p">(</span><span class="n">dt</span> <span class="o">*</span> <span class="n">i</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">disp</span><span class="p">(</span><span class="n">dt</span> <span class="o">*</span> <span class="n">i</span><span class="p">),</span><span class="o">-</span><span class="mf">1.0</span><span class="p">]</span>
-    <span class="p">])</span>
-    <span class="n">patch</span><span class="o">.</span><span class="n">set_xy</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
-    <span class="c1">#ax1.patches.remove(patch2)</span>
-    <span class="c1">#ax1.patches.remove(patch3)</span>
-    <span class="c1">#ax1.patches.pop()</span>
-    <span class="n">patch2</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
-    <span class="n">patch3</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
-    <span class="n">patch2</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Arrow</span><span class="p">(</span><span class="n">disp</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">i</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">accel</span><span class="p">(</span><span class="n">dt</span> <span class="o">*</span> <span class="n">i</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
-    <span class="n">patch3</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Arrow</span><span class="p">(</span><span class="n">disp</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">i</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">vel</span><span class="p">(</span><span class="n">dt</span> <span class="o">*</span> <span class="n">i</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">patch2</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">patch3</span><span class="p">)</span>
-    <span class="n">time_text</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">time_template</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">dt</span><span class="p">))</span>
-    <span class="n">line1</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">y1data</span><span class="p">)</span>
-    <span class="n">line2</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">y2data</span><span class="p">)</span>
-    <span class="n">line3</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">y3data</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">patch</span><span class="p">,</span> <span class="n">time_text</span><span class="p">,</span> <span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">,</span> <span class="n">line3</span><span class="p">,</span> <span class="n">patch2</span><span class="p">,</span> <span class="n">patch3</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def animate(i):
+    global patch2, patch3
+    #thing to be animated
+    y1 = disp(dt * i)
+    xdata.append(dt * i)
+    y1data.append(disp(dt * i))
+    y2data.append(vel(dt * i))
+    y3data.append(accel(dt * i))
+    box= np.array([
+    [-1.0 + disp(dt * i), -1.0],  
+    [-1.0 + disp(dt * i), 1.0],  
+    [1.0 + disp(dt * i), 1.0],
+    [1.0 + disp(dt * i),-1.0]
+    ])
+    patch.set_xy(box)
+    #ax1.patches.remove(patch2)
+    #ax1.patches.remove(patch3)
+    #ax1.patches.pop()
+    patch2.remove()
+    patch3.remove()
+    patch2 = patches.Arrow(disp(dt*i), 0.0, accel(dt * i), 0.0, color=&#39;blue&#39;)
+    patch3 = patches.Arrow(disp(dt*i), 0.0, vel(dt * i), 0.0, color=&#39;green&#39;)
+    ax1.add_patch(patch2)
+    ax1.add_patch(patch3)
+    time_text.set_text(time_template%(i*dt))
+    line1.set_data(xdata, y1data)
+    line2.set_data(xdata, y2data)
+    line3.set_data(xdata, y3data)
+    return patch, time_text, line1, line2, line3, patch2, patch3,
 </pre></div>
 </div>
 </div>
@@ -680,11 +721,11 @@ To do this, I’m going to make some arrows, centred on the middle of the box, a
 <p>Final stage is to choose how many timesteps to loop over and feed all the functions into the animation. We’ll also display it as html5 video for ease. Warning: the higher the number of frames, the longer the animation will take to generate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interval</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">*</span><span class="n">dt</span>
-<span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">interval</span><span class="p">,</span> <span class="n">init_func</span><span class="o">=</span><span class="n">init</span><span class="p">,</span>
-                               <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_count</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-<span class="n">HTML</span><span class="p">(</span><span class="n">anim</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>interval = 1000*dt
+anim = animation.FuncAnimation(fig, animate, interval=interval, init_func=init,
+                               blit=True, repeat=False, save_count=100)
+from IPython.display import HTML
+HTML(anim.to_html5_video())
 </pre></div>
 </div>
 </div>

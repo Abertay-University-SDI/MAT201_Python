@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>8. Rays Intersecting Planes &#8212; MAT201 Applied Mathematics with Python</title>
+    <title>10. Rays Intersecting Planes &#8212; MAT201 Applied Mathematics with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Summary" href="../outro.html" />
-    <link rel="prev" title="7. Rays Intersecting with 2D boxes" href="MAT201M_RaysBoxes.html" />
+    <link rel="prev" title="9. Rays Intersecting with 2D boxes" href="MAT201M_RaysBoxes.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -161,28 +161,38 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="MAT201M_Proj1.html">
+   4. Orthographic Projection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201M_Proj2.html">
+   5. Perspective Projection
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_ComplexNos.html">
-   4. Complex Numbers
+   6. Complex Numbers
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_Quats.html">
-   5. Quaternions
+   7. Quaternions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysIntro.html">
-   6. Ray Tracing
+   8. Ray Tracing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysBoxes.html">
-   7. Rays and Boxes
+   9. Rays and Boxes
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   8. Rays and Planes
+   10. Rays and Planes
   </a>
  </li>
 </ul>
@@ -303,36 +313,36 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parallelogram-plane-segments">
-   8.1. Parallelogram plane segments
+   10.1. Parallelogram plane segments
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-1-can-we-construct-a-parallelogram-plane-segment">
-     8.1.1. Example 1: Can we construct a parallelogram plane segment?
+     10.1.1. Example 1: Can we construct a parallelogram plane segment?
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-2-ray-and-parallelogram-intersection">
-     8.1.2. Example 2: Ray and parallelogram intersection?
+     10.1.2. Example 2: Ray and parallelogram intersection?
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#triangular-plane-segments">
-   8.2. Triangular Plane Segments
+   10.2. Triangular Plane Segments
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lecture-example">
-     8.2.1. Lecture Example:
+     10.2.1. Lecture Example:
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#over-to-you">
-   8.3. Over to you
+   10.3. Over to you
   </a>
  </li>
 </ul>
@@ -357,36 +367,36 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parallelogram-plane-segments">
-   8.1. Parallelogram plane segments
+   10.1. Parallelogram plane segments
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-1-can-we-construct-a-parallelogram-plane-segment">
-     8.1.1. Example 1: Can we construct a parallelogram plane segment?
+     10.1.1. Example 1: Can we construct a parallelogram plane segment?
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-2-ray-and-parallelogram-intersection">
-     8.1.2. Example 2: Ray and parallelogram intersection?
+     10.1.2. Example 2: Ray and parallelogram intersection?
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#triangular-plane-segments">
-   8.2. Triangular Plane Segments
+   10.2. Triangular Plane Segments
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lecture-example">
-     8.2.1. Lecture Example:
+     10.2.1. Lecture Example:
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#over-to-you">
-   8.3. Over to you
+   10.3. Over to you
   </a>
  </li>
 </ul>
@@ -399,18 +409,18 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="rays-intersecting-planes">
-<h1><span class="section-number">8. </span>Rays Intersecting Planes<a class="headerlink" href="#rays-intersecting-planes" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">10. </span>Rays Intersecting Planes<a class="headerlink" href="#rays-intersecting-planes" title="Permalink to this headline">¶</a></h1>
 <p>One of the most common ways to construct a complex (realistic) object to interact with a ray uses two types of 3D plane: <em>parallelogram plane segments</em> and <em>triangular plane segments</em>. Mathematically, these plane types require multiple parameters to define their entire surface, and hence require three simultaneous equations to solve. Here, we will put Python to work, showing how these simultaneous equation solutions underpin ray intersections with such objects.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>## Libraries
-%matplotlib inline
-import numpy as np
-import matplotlib.pyplot as plt
-import sympy as sym
-from matplotlib.patches import FancyArrowPatch
-from mpl_toolkits.mplot3d import Axes3D, proj3d
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Libraries</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">FancyArrowPatch</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span><span class="p">,</span> <span class="n">proj3d</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d.art3d</span> <span class="kn">import</span> <span class="n">Poly3DCollection</span>
 </pre></div>
 </div>
 </div>
@@ -418,32 +428,32 @@ from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 <p>We’ll define and use some 3D arrows to illustrate ray behaviour:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Arrow3D(FancyArrowPatch):
-    def __init__(self, xs, ys, zs, *args, **kwargs):
-        super().__init__((0,0), (0,0), *args, **kwargs)
-        self._verts3d = xs, ys, zs
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Arrow3D</span><span class="p">(</span><span class="n">FancyArrowPatch</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_verts3d</span> <span class="o">=</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span>
 
-    def do_3d_projection(self, renderer=None):
-        xs3d, ys3d, zs3d = self._verts3d
-        xs, ys, zs = proj3d.proj_transform(xs3d, ys3d, zs3d, self.axes.M)
-        self.set_positions((xs[0],ys[0]),(xs[1],ys[1]))
+    <span class="k">def</span> <span class="nf">do_3d_projection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">xs3d</span><span class="p">,</span> <span class="n">ys3d</span><span class="p">,</span> <span class="n">zs3d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_verts3d</span>
+        <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span> <span class="o">=</span> <span class="n">proj3d</span><span class="o">.</span><span class="n">proj_transform</span><span class="p">(</span><span class="n">xs3d</span><span class="p">,</span> <span class="n">ys3d</span><span class="p">,</span> <span class="n">zs3d</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">M</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_positions</span><span class="p">((</span><span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">ys</span><span class="p">[</span><span class="mi">0</span><span class="p">]),(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">ys</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 
-        return np.min(zs)
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">zs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="parallelogram-plane-segments">
-<h2><span class="section-number">8.1. </span>Parallelogram plane segments<a class="headerlink" href="#parallelogram-plane-segments" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.1. </span>Parallelogram plane segments<a class="headerlink" href="#parallelogram-plane-segments" title="Permalink to this headline">¶</a></h2>
 <p>Our exploration of this topic begins with a parallelogram plane segment, formed between four coordinates. While not particularly commonly used, these are useful to illustrate the principles of how we can parameterise a surface, in order that every location on the plane can be identified quickly and easily.</p>
 <p>To start this journey, let’s repeat the example from the lectures to see how Python handles this type of problem:</p>
 <div class="section" id="example-1-can-we-construct-a-parallelogram-plane-segment">
-<h3><span class="section-number">8.1.1. </span>Example 1: Can we construct a parallelogram plane segment?<a class="headerlink" href="#example-1-can-we-construct-a-parallelogram-plane-segment" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.1.1. </span>Example 1: Can we construct a parallelogram plane segment?<a class="headerlink" href="#example-1-can-we-construct-a-parallelogram-plane-segment" title="Permalink to this headline">¶</a></h3>
 <p><strong>Determine the equation of the parallelogram plane segment with vertices at <span class="math notranslate nohighlight">\(A(0,0,0)\)</span>, <span class="math notranslate nohighlight">\(B(3,4,-2)\)</span>, <span class="math notranslate nohighlight">\(C(2,3,1)\)</span> and <span class="math notranslate nohighlight">\(D(-1,-1,3)\)</span>.</strong></p>
 <p>Let’s begin by setting up some parameters to work with, and storing the coordinates in matrices. We could use arrays in principle, but we’ll need to solve sets of simultaneous equations using sympy, and from experience the matrix datatype serves our purpose well here:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>u , v = sym.Symbol(&#39;u&#39;, positive=True), sym.Symbol(&#39;v&#39;, positive=True)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -451,10 +461,10 @@ from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 <p>First we have defined two unknown parameters, <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span>. These parameters determine every position on the plane, and are constrained to be between zero and one. By telling Python that these symbols are positive, we are effectively constraining Python to only find positive values of <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> when it searches for solutions to the simultaneous equations we will set up later. Now we can construct our parallelogram from the four coordinates given in the question:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A = sym.Matrix([[0, 0, 0]])
-B = sym.Matrix([[3, 4, -2]])
-C = sym.Matrix([[2, 3, 1]])
-D = sym.Matrix([[-1, -1, 3]])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
@@ -463,9 +473,9 @@ D = sym.Matrix([[-1, -1, 3]])
 <p>Lets check what all the vectors linking A with the other points look like (remembering that two of these will be edge vectors, with the other vector bisecting the plane):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;A-B:&quot;, A-B)
-print(&quot;A-C:&quot;, A-C)
-print(&quot;A-D:&quot;, A-D)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A-B:&quot;</span><span class="p">,</span> <span class="n">A</span><span class="o">-</span><span class="n">B</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A-C:&quot;</span><span class="p">,</span> <span class="n">A</span><span class="o">-</span><span class="n">C</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A-D:&quot;</span><span class="p">,</span> <span class="n">A</span><span class="o">-</span><span class="n">D</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -480,9 +490,9 @@ A-D: Matrix([[1, 1, -3]])
 <p>Let’s also print the other vectors we could use:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;B-C:&quot;, B-C)
-print(&quot;B-D:&quot;, B-D)
-print(&quot;C-D:&quot;, C-D)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;B-C:&quot;</span><span class="p">,</span> <span class="n">B</span><span class="o">-</span><span class="n">C</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;B-D:&quot;</span><span class="p">,</span> <span class="n">B</span><span class="o">-</span><span class="n">D</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;C-D:&quot;</span><span class="p">,</span> <span class="n">C</span><span class="o">-</span><span class="n">D</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -499,7 +509,7 @@ C-D: Matrix([[3, 4, -2]])
 <p>Lets double check that the vectors AB and AD are not parallel:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;AB x AD:&quot;,A-B.cross(A-D))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AB x AD:&quot;</span><span class="p">,</span><span class="n">A</span><span class="o">-</span><span class="n">B</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="n">D</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -512,7 +522,7 @@ C-D: Matrix([[3, 4, -2]])
 <p>The fact that the cross product is non-zero is enough evidence that these vectors are not parallel. (To illustrate what happens when we take the cross product of two parallel vectors, lets use ones we identified earlier, AD and BC:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;AD x BC:&quot;,(A-D).cross(B-C))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AD x BC:&quot;</span><span class="p">,(</span><span class="n">A</span><span class="o">-</span><span class="n">D</span><span class="p">)</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">B</span><span class="o">-</span><span class="n">C</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -530,8 +540,8 @@ C-D: Matrix([[3, 4, -2]])
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rp = A + u * (B-A) + v * (D-A)
-print(rp)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rp</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">u</span> <span class="o">*</span> <span class="p">(</span><span class="n">B</span><span class="o">-</span><span class="n">A</span><span class="p">)</span> <span class="o">+</span> <span class="n">v</span> <span class="o">*</span> <span class="p">(</span><span class="n">D</span><span class="o">-</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -544,7 +554,7 @@ print(rp)
 <p>This expression matches the solution we determined in class. Can we see what this looks like?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print((A.tolist()[0])[0])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">((</span><span class="n">A</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -556,29 +566,29 @@ print(rp)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Aa = np.array(A.tolist()[0],dtype=&#39;float64&#39;)
-Ba = np.array(B.tolist()[0],dtype=&#39;float64&#39;)
-Ca = np.array(C.tolist()[0],dtype=&#39;float64&#39;)
-Da = np.array(D.tolist()[0],dtype=&#39;float64&#39;)
-verts = [list(zip([Aa[0],Ba[0],Ca[0],Da[0]],[Aa[1],Ba[1],Ca[1],Da[1]],[Aa[2],Ba[2],Ca[2],Da[2]]))]
-ax = plt.figure().add_subplot(projection=&#39;3d&#39;)
-ax.view_init(elev=20, azim=210, roll=0)
-ax.axes.set_xlim3d(left=-1, right=3) 
-ax.axes.set_ylim3d(bottom=-1, top=3) 
-ax.axes.set_zlim3d(bottom=-1, top=3)
-ax.set_xlabel(&#39;x&#39;)
-ax.set_ylabel(&#39;y&#39;)
-ax.set_zlabel(&#39;z&#39;)
-ax.add_collection3d(Poly3DCollection(verts))
-ax.scatter(Aa[0],Aa[1],Aa[2], c=&#39;r&#39;, marker=&#39;o&#39;, s=20)
-ax.text(Aa[0], Aa[1]-0.25, Aa[2]+0.25, &quot;A&quot;, c=&#39;r&#39;) 
-ax.scatter(Ba[0],Ba[1],Ba[2], c=&#39;r&#39;, marker=&#39;o&#39;, s=20)
-ax.text(Ba[0], Ba[1]+0.25, Ba[2]+0.25, &quot;B&quot;, c=&#39;r&#39;)
-ax.scatter(Ca[0],Ca[1],Ca[2], c=&#39;r&#39;, marker=&#39;o&#39;, s=20)
-ax.text(Ca[0], Ca[1], Ca[2]+0.25, &quot;C&quot;, c=&#39;r&#39;) 
-ax.scatter(Da[0],Da[1],Da[2], c=&#39;r&#39;, marker=&#39;o&#39;, s=20)
-ax.text(Da[0], Da[1], Da[2]+0.25, &quot;D&quot;, c=&#39;r&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Aa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">Ba</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">B</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">Ca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">Da</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">D</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">verts</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="n">Aa</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Ba</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Ca</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Da</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="n">Aa</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Ba</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Ca</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Da</span><span class="p">[</span><span class="mi">1</span><span class="p">]],[</span><span class="n">Aa</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">Ba</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">Ca</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">Da</span><span class="p">[</span><span class="mi">2</span><span class="p">]]))]</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="n">elev</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">azim</span><span class="o">=</span><span class="mi">210</span><span class="p">,</span> <span class="n">roll</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xlim3d</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_zlim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_collection3d</span><span class="p">(</span><span class="n">Poly3DCollection</span><span class="p">(</span><span class="n">verts</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Aa</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Aa</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Aa</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">Aa</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Aa</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">Aa</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Ba</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Ba</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Ba</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">Ba</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Ba</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">Ba</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Ca</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Ca</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Ca</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">Ca</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Ca</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Ca</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Da</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Da</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Da</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">Da</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Da</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Da</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -589,7 +599,7 @@ plt.show()
 <p>This allows us to visualise the parallelogram (blue) and its component vertices (red).</p>
 </div>
 <div class="section" id="example-2-ray-and-parallelogram-intersection">
-<h3><span class="section-number">8.1.2. </span>Example 2: Ray and parallelogram intersection?<a class="headerlink" href="#example-2-ray-and-parallelogram-intersection" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.1.2. </span>Example 2: Ray and parallelogram intersection?<a class="headerlink" href="#example-2-ray-and-parallelogram-intersection" title="Permalink to this headline">¶</a></h3>
 <p><strong>Determine whether the ray from <span class="math notranslate nohighlight">\((5,2,1)\)</span> to</strong></p>
 <ol class="simple">
 <li><p><strong><span class="math notranslate nohighlight">\((0,-3,4)\)</span></strong></p></li>
@@ -600,12 +610,12 @@ plt.show()
 <p>We can hopefully reuse the structures we already created, and simply create two rays using the technique we already encountered:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>t = sym.Symbol(&#39;t&#39;, positive=True)
-r_o = sym.Matrix([[5, 2, -1]])
-r1_e = sym.Matrix([[0, -3, 4]])
-r2_e = sym.Matrix([[-2, 2, 1]])
-r1 = r_o + t * (r1_e-r_o)
-r2 = r_o + t * (r2_e-r_o)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">r_o</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">r1_e</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="n">r2_e</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">r1</span> <span class="o">=</span> <span class="n">r_o</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="p">(</span><span class="n">r1_e</span><span class="o">-</span><span class="n">r_o</span><span class="p">)</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">r_o</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="p">(</span><span class="n">r2_e</span><span class="o">-</span><span class="n">r_o</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -613,8 +623,8 @@ r2 = r_o + t * (r2_e-r_o)
 <p>For part 1, we need to solve the system of equations created by equating the ray and plane. Python can’t solve equations like “ray = plane”, unless we arrange the equations to read “ray - plane = 0”. We then insert the LHS into the solver:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sols1 = sym.solve(r1-rp,(u,v,t))
-print(sols1)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sols1</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">r1</span><span class="o">-</span><span class="n">rp</span><span class="p">,(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sols1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -628,8 +638,8 @@ print(sols1)
 <p>For the ray in Part 2, we can repeat this process:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sols2 = sym.solve(r2-rp,(u,v,t))
-print(sols2)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sols2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">r2</span><span class="o">-</span><span class="n">rp</span><span class="p">,(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sols2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -642,11 +652,11 @@ print(sols2)
 <p>These values exactly match those we calculated in class, and lie within the appropriate ranges to make this a true intersection point.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>r2t = list(sols2.values())[2].evalf()
-rpi = r2.subs(t,r2t)
-lv=[95./68., 2., 1./34.]
-print(&quot;intersection in lectures found at ({:0.5f}, {:0.5f}, {:0.5f})&quot;.format(lv[0],lv[1],lv[2]))
-print(&quot;Python finds:&quot;,rpi)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2t</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sols2</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">evalf</span><span class="p">()</span>
+<span class="n">rpi</span> <span class="o">=</span> <span class="n">r2</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">r2t</span><span class="p">)</span>
+<span class="n">lv</span><span class="o">=</span><span class="p">[</span><span class="mf">95.</span><span class="o">/</span><span class="mf">68.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mf">34.</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;intersection in lectures found at (</span><span class="si">{:0.5f}</span><span class="s2">, </span><span class="si">{:0.5f}</span><span class="s2">, </span><span class="si">{:0.5f}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">lv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">lv</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Python finds:&quot;</span><span class="p">,</span><span class="n">rpi</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -661,37 +671,37 @@ Python finds: Matrix([[1.39705882352941, 2, 0.0294117647058822]])
 <p>A final sanity check is to visually show the two rays and intersection location overlaid with the parallelogram plane segment:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rpia = np.array(rpi.tolist()[0],dtype=&#39;float64&#39;)
-ax = plt.figure().add_subplot(projection=&#39;3d&#39;)
-ax.view_init(elev=20, azim=215, roll=0)
-ax.axes.set_xlim3d(left=-2, right=4) 
-ax.axes.set_ylim3d(bottom=-2, top=4) 
-ax.axes.set_zlim3d(bottom=-2, top=4)
-ax.set_xlabel(&#39;x&#39;)
-ax.set_ylabel(&#39;y&#39;)
-ax.set_zlabel(&#39;z&#39;)
-ax.add_collection3d(Poly3DCollection(verts, alpha=0.2))
-ax.scatter(Aa[0],Aa[1],Aa[2], c=&#39;r&#39;, marker=&#39;o&#39;, s=20)
-ax.text(Aa[0], Aa[1], Aa[2]+0.25, &quot;A&quot;, c=&#39;r&#39;) 
-ax.scatter(Ba[0],Ba[1],Ba[2], c=&#39;r&#39;, marker=&#39;o&#39;, s=20)
-ax.text(Ba[0], Ba[1], Ba[2]+0.25, &quot;B&quot;, c=&#39;r&#39;)
-ax.scatter(Ca[0],Ca[1],Ca[2], c=&#39;r&#39;, marker=&#39;o&#39;, s=20)
-ax.text(Ca[0], Ca[1], Ca[2]+0.25, &quot;C&quot;, c=&#39;r&#39;) 
-ax.scatter(Da[0],Da[1],Da[2], c=&#39;r&#39;, marker=&#39;o&#39;, s=20)
-ax.text(Da[0], Da[1], Da[2]+0.25, &quot;D&quot;, c=&#39;r&#39;)
-ax.scatter(rpia[0],rpia[1],rpia[2], c=&#39;m&#39;, marker=&#39;x&#39;, s=50)
-ro  = np.array(r_o.tolist()[0],dtype=&#39;float64&#39;)
-r1e  = np.array(r1_e.tolist()[0],dtype=&#39;float64&#39;)
-r2e  = np.array(r2_e.tolist()[0],dtype=&#39;float64&#39;) 
-arrow_prop_dict = dict(mutation_scale=20, arrowstyle=&#39;-|&gt;&#39;, color=&#39;g&#39;, shrinkA=0, shrinkB=0, linewidth=1, linestyle=&quot;:&quot;)
-a = Arrow3D([ro[0], r1e[0]], [ro[1], r1e[1]], [ro[2], r1e[2]], **arrow_prop_dict)
-ax.add_artist(a)
-ax.text(r1e[0], r1e[1], r1e[2], &quot;Ray 1&quot;, c=&#39;g&#39;)
-arrow_prop_dict = dict(mutation_scale=20, arrowstyle=&#39;-|&gt;&#39;, color=&#39;m&#39;, shrinkA=0, shrinkB=0, linewidth=1, linestyle=&#39;:&#39;)
-b = Arrow3D([ro[0], r2e[0]], [ro[1], r2e[1]], [ro[2], r2e[2]], **arrow_prop_dict)
-ax.add_artist(b)
-ax.text(r2e[0], r2e[1], r2e[2]+0.5, &quot;Ray 2&quot;, c=&#39;m&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rpia</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rpi</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="n">elev</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">azim</span><span class="o">=</span><span class="mi">215</span><span class="p">,</span> <span class="n">roll</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xlim3d</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_zlim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_collection3d</span><span class="p">(</span><span class="n">Poly3DCollection</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Aa</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Aa</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Aa</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">Aa</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Aa</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Aa</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Ba</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Ba</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Ba</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">Ba</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Ba</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Ba</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Ca</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Ca</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Ca</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">Ca</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Ca</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Ca</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Da</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Da</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Da</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">Da</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Da</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Da</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rpia</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">rpia</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">rpia</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">ro</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r_o</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">r1e</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r1_e</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">r2e</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r2_e</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span> 
+<span class="n">arrow_prop_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mutation_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-|&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">shrinkA</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shrinkB</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">Arrow3D</span><span class="p">([</span><span class="n">ro</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">r1e</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">ro</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">r1e</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">ro</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">r1e</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="o">**</span><span class="n">arrow_prop_dict</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">r1e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">r1e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">r1e</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;Ray 1&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">arrow_prop_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mutation_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-|&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">shrinkA</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shrinkB</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">Arrow3D</span><span class="p">([</span><span class="n">ro</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">r2e</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">ro</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">r2e</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">ro</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">r2e</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="o">**</span><span class="n">arrow_prop_dict</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">r2e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">r2e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">r2e</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;Ray 2&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -703,20 +713,20 @@ plt.show()
 </div>
 </div>
 <div class="section" id="triangular-plane-segments">
-<h2><span class="section-number">8.2. </span>Triangular Plane Segments<a class="headerlink" href="#triangular-plane-segments" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.2. </span>Triangular Plane Segments<a class="headerlink" href="#triangular-plane-segments" title="Permalink to this headline">¶</a></h2>
 <p>Finally, we will explore how this process changes if we need to work with triangular plane segments. Triangular plane segments are more commonly used in graphics applications (with only three points in space required to map out a 3D surface, many triangular plane segments are often combined to create large, complex 3D objects). Let’s again see how Python handles these types of structures:</p>
 <div class="section" id="lecture-example">
-<h3><span class="section-number">8.2.1. </span>Lecture Example:<a class="headerlink" href="#lecture-example" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.2.1. </span>Lecture Example:<a class="headerlink" href="#lecture-example" title="Permalink to this headline">¶</a></h3>
 <p><strong>Determine if the ray from <span class="math notranslate nohighlight">\((2,1,2)\)</span> to <span class="math notranslate nohighlight">\((-1,-1,0)\)</span> cuts the triangular plane segment vertices at <span class="math notranslate nohighlight">\(A(5,0,0)\)</span>, <span class="math notranslate nohighlight">\(B(0,3,0)\)</span>, and <span class="math notranslate nohighlight">\(C(0,0,4)\)</span>.</strong></p>
 <hr class="docutils" />
 <p>In order to construct a parametric equation describing every point on the surface, we need to pick two sides of the triangle to act as vectors. However, unlike the parallelogram plane, we have to pick the second vector which begins when the first vector begins.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A3 = sym.Matrix([[5, 0, 0]])
-B3 = sym.Matrix([[0, 3, 0]])
-C3 = sym.Matrix([[0, 0, 4]])
-rpt = A3 + u * (B3-A3) + v * (C3-B3)
-print(rpt)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A3</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">B3</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">C3</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="n">rpt</span> <span class="o">=</span> <span class="n">A3</span> <span class="o">+</span> <span class="n">u</span> <span class="o">*</span> <span class="p">(</span><span class="n">B3</span><span class="o">-</span><span class="n">A3</span><span class="p">)</span> <span class="o">+</span> <span class="n">v</span> <span class="o">*</span> <span class="p">(</span><span class="n">C3</span><span class="o">-</span><span class="n">B3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rpt</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -728,17 +738,17 @@ print(rpt)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>r3_o = sym.Matrix([[2, 1, 2]])
-r3_e = sym.Matrix([[-1, -1, 0]])
-r3 = r3_o + t * (r3_e-r3_o)
-sols3 = sym.solve(r3-rpt,(u,v,t))
-print(sols3)
-r3uvt = list(sols3.values())
-if r3uvt[0] &gt; r3uvt[1] :
-  print(&quot;u&gt;v, hence valid intersection at:&quot;)
-  rpi3 = r3.subs(t,r3uvt[2])
-  print(rpi3)
-  rpia3 = np.array(rpi3.tolist()[0],dtype=&#39;float64&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r3_o</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">r3_e</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">r3</span> <span class="o">=</span> <span class="n">r3_o</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="p">(</span><span class="n">r3_e</span><span class="o">-</span><span class="n">r3_o</span><span class="p">)</span>
+<span class="n">sols3</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">r3</span><span class="o">-</span><span class="n">rpt</span><span class="p">,(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sols3</span><span class="p">)</span>
+<span class="n">r3uvt</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sols3</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">r3uvt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">r3uvt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;u&gt;v, hence valid intersection at:&quot;</span><span class="p">)</span>
+  <span class="n">rpi3</span> <span class="o">=</span> <span class="n">r3</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">r3uvt</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">rpi3</span><span class="p">)</span>
+  <span class="n">rpia3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rpi3</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -753,33 +763,33 @@ Matrix([[85/53, 39/53, 92/53]])
 <p>Let’s check what this physically looks like:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Aa3 = np.array(A3.tolist()[0],dtype=&#39;float64&#39;)
-Ba3 = np.array(B3.tolist()[0],dtype=&#39;float64&#39;)
-Ca3 = np.array(C3.tolist()[0],dtype=&#39;float64&#39;)
-verts3 = [list(zip([Aa3[0],Ba3[0],Ca3[0]],[Aa3[1],Ba3[1],Ca3[1]],[Aa3[2],Ba3[2],Ca3[2]]))]
-ax3 = plt.figure().add_subplot(projection=&#39;3d&#39;)
-ax3.view_init(elev=10, azim=-25, roll=0)
-ax3.axes.set_xlim3d(left=-2, right=4) 
-ax3.axes.set_ylim3d(bottom=-2, top=4) 
-ax3.axes.set_zlim3d(bottom=-2, top=4)
-ax3.set_xlabel(&#39;x&#39;)
-ax3.set_ylabel(&#39;y&#39;)
-ax3.set_zlabel(&#39;z&#39;)
-ax3.add_collection3d(Poly3DCollection(verts3, alpha=0.2))
-ax3.scatter(Aa3[0],Aa3[1],Aa3[2], c=&#39;r&#39;, marker=&#39;o&#39;, s=20)
-ax3.text(Aa3[0], Aa3[1], Aa3[2]+0.25, &quot;A&quot;, c=&#39;m&#39;) 
-ax3.scatter(Ba3[0],Ba3[1],Ba3[2], c=&#39;r&#39;, marker=&#39;o&#39;, s=20)
-ax3.text(Ba3[0], Ba3[1], Ba3[2]+0.25, &quot;B&quot;, c=&#39;m&#39;)
-ax3.scatter(Ca3[0],Ca3[1],Ca3[2], c=&#39;r&#39;, marker=&#39;o&#39;, s=20) 
-ax3.text(Ca3[0], Ca3[1], Ca3[2]+0.25, &quot;C&quot;, c=&#39;m&#39;)
-ax3.scatter(rpia3[0],rpia3[1],rpia3[2], c=&#39;m&#39;, marker=&#39;x&#39;, s=50)
-ro3  = np.array(r3_o.tolist()[0],dtype=&#39;float64&#39;)
-re3  = np.array(r3_e.tolist()[0],dtype=&#39;float64&#39;)
-arrow_prop_dict = dict(mutation_scale=20, arrowstyle=&#39;-|&gt;&#39;, color=&#39;g&#39;, shrinkA=0, shrinkB=0, linewidth=1, linestyle=&quot;:&quot;)
-a = Arrow3D([ro3[0], re3[0]], [ro3[1], re3[1]], [ro3[2], re3[2]], **arrow_prop_dict)
-ax3.add_artist(a)
-ax3.text(re3[0], re3[1], re3[2]+0.75, &quot;Ray 1&quot;, c=&#39;g&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Aa3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">A3</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">Ba3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">B3</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">Ca3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">C3</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">verts3</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="n">Aa3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Ba3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Ca3</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="n">Aa3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Ba3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Ca3</span><span class="p">[</span><span class="mi">1</span><span class="p">]],[</span><span class="n">Aa3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">Ba3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">Ca3</span><span class="p">[</span><span class="mi">2</span><span class="p">]]))]</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="n">elev</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">azim</span><span class="o">=-</span><span class="mi">25</span><span class="p">,</span> <span class="n">roll</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xlim3d</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> 
+<span class="n">ax3</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> 
+<span class="n">ax3</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_zlim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">add_collection3d</span><span class="p">(</span><span class="n">Poly3DCollection</span><span class="p">(</span><span class="n">verts3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">))</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Aa3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Aa3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Aa3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">Aa3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Aa3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Aa3</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span> 
+<span class="n">ax3</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Ba3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Ba3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Ba3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">Ba3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Ba3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Ba3</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Ca3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Ca3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Ca3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> 
+<span class="n">ax3</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">Ca3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Ca3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Ca3</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rpia3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">rpia3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">rpia3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">ro3</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r3_o</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">re3</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r3_e</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">arrow_prop_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mutation_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-|&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">shrinkA</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shrinkB</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">Arrow3D</span><span class="p">([</span><span class="n">ro3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">re3</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">ro3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">re3</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">ro3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">re3</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="o">**</span><span class="n">arrow_prop_dict</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">re3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">re3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">re3</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">0.75</span><span class="p">,</span> <span class="s2">&quot;Ray 1&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -791,7 +801,7 @@ plt.show()
 </div>
 </div>
 <div class="section" id="over-to-you">
-<h2><span class="section-number">8.3. </span>Over to you<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.3. </span>Over to you<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
 <p>The aim of this course is to familiarise and become an expert in the mathematics underpinning several common standard games tools and techniques. You should carry out the questions in the tutorial booklet <strong>by hand</strong> to practice this mathematics and prepare for the exam. However, particularly in this topic, the mathematics is not easily visualised; having completed the maths exercises, try and visualise some of the solutions you have created to verify the ray behaviour.</p>
 </div>
 </div>
@@ -825,7 +835,7 @@ plt.show()
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">7. </span>Rays Intersecting with 2D boxes</p>
+            <p class="prev-next-title"><span class="section-number">9. </span>Rays Intersecting with 2D boxes</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../outro.html" title="next page">

@@ -19,6 +19,8 @@ parts:
     title: Simple Harmonic Motion
   - file: dynamics/MAT201D_2DSWcols.ipynb
     title: 2D Sphere/Wall Collisions
+  - file: dynamics/MAT201D_1Dcolls.ipynb
+    title: 1D Sphere/Sphere Collisions
   - file: dynamics/MAT201D_2DSScols.ipynb
     title: 2D Sphere/Sphere Collisions
 - caption: Methods
@@ -48,6 +50,3 @@ parts:
   chapters:
   - file: outro.md
     title: Summary
-
-
-

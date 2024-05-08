@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5. 2D Oblique Sphere Collisions &#8212; MAT201 Applied Mathematics with Python</title>
+    <title>6. 2D Oblique Sphere Collisions &#8212; MAT201 Applied Mathematics with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="1. Coordinate Transformations in 2D" href="../methods/MAT201M_2DVT.html" />
-    <link rel="prev" title="4. 2D Oblique Wall Collisions" href="MAT201D_2DSWcols.html" />
+    <link rel="prev" title="5. 1D Oblique Sphere Collisions" href="MAT201D_1Dcolls.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -133,9 +133,14 @@ const thebe_selector_output = ".output, .cell_output"
    4. 2D Sphere/Wall Collisions
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201D_1Dcolls.html">
+   5. 1D Sphere/Sphere Collisions
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   5. 2D Sphere/Sphere Collisions
+   6. 2D Sphere/Sphere Collisions
   </a>
  </li>
 </ul>
@@ -161,28 +166,38 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_Proj1.html">
+   4. Orthographic Projection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_Proj2.html">
+   5. Perspective Projection
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_ComplexNos.html">
-   4. Complex Numbers
+   6. Complex Numbers
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_Quats.html">
-   5. Quaternions
+   7. Quaternions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_RaysIntro.html">
-   6. Ray Tracing
+   8. Ray Tracing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_RaysBoxes.html">
-   7. Rays and Boxes
+   9. Rays and Boxes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_RaysPlanes.html">
-   8. Rays and Planes
+   10. Rays and Planes
   </a>
  </li>
 </ul>
@@ -302,8 +317,18 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maths-recap">
+   6.1. Maths recap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#animations">
+   6.2. Animations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#over-to-you">
-   5.1. Over To You
+   6.3. Over To You
   </a>
  </li>
 </ul>
@@ -327,8 +352,18 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maths-recap">
+   6.1. Maths recap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#animations">
+   6.2. Animations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#over-to-you">
-   5.1. Over To You
+   6.3. Over To You
   </a>
  </li>
 </ul>
@@ -341,150 +376,61 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="d-oblique-sphere-collisions">
-<h1><span class="section-number">5. </span>2D Oblique Sphere Collisions<a class="headerlink" href="#d-oblique-sphere-collisions" title="Permalink to this headline">¶</a></h1>
-<p>Interactive code to illustrate concepts from MAT201 at Abertay University (JT 2022).</p>
-<p>Using the maths we learned in lectures, we’ll create a visualisation of a ball collision with another ball. Post-impact trajectories are determined by the solution of a set of simultaneous equations, for an initial set of speeds, angles, masses and coefficient of restitution. Impact takes place at origin for simplicity.</p>
+<h1><span class="section-number">6. </span>2D Oblique Sphere Collisions<a class="headerlink" href="#d-oblique-sphere-collisions" title="Permalink to this headline">¶</a></h1>
+<p>This worksheet expands on some of the principles seen in 1D, aiming to illustrate how these principles extend to 2D collisions.</p>
 <p>As always, we need to load in the Python libraries that we need to carry out the plotting, animation and (in this case) solve a set of simultaneous equations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
-import matplotlib.pyplot as plt
-import numpy as np
-import matplotlib.animation as animation
-import matplotlib.patches as patches
-import random
-import math
-import sys
-!{sys.executable} -m pip install --upgrade Ipython
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Ignoring invalid distribution -lotly (/usr/local/lib/python3.9/site-packages)</span>
-Requirement already satisfied: Ipython in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (8.13.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting Ipython
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading ipython-8.18.1-py3-none-any.whl.metadata (6.0 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: decorator in /usr/local/lib/python3.9/site-packages (from Ipython) (5.1.0)
-Requirement already satisfied: jedi&gt;=0.16 in /usr/local/lib/python3.9/site-packages (from Ipython) (0.18.0)
-Requirement already satisfied: matplotlib-inline in /usr/local/lib/python3.9/site-packages (from Ipython) (0.1.3)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting prompt-toolkit&lt;3.1.0,&gt;=3.0.41 (from Ipython)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading prompt_toolkit-3.0.43-py3-none-any.whl.metadata (6.5 kB)
-Requirement already satisfied: pygments&gt;=2.4.0 in /usr/local/lib/python3.9/site-packages (from Ipython) (2.10.0)
-Requirement already satisfied: stack-data in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from Ipython) (0.6.2)
-Requirement already satisfied: traitlets&gt;=5 in /usr/local/lib/python3.9/site-packages (from Ipython) (5.1.1)
-Requirement already satisfied: typing-extensions in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from Ipython) (3.10.0.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting exceptiongroup (from Ipython)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading exceptiongroup-1.2.1-py3-none-any.whl.metadata (6.6 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pexpect&gt;4.3 in /usr/local/lib/python3.9/site-packages (from Ipython) (4.8.0)
-Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.0 in /usr/local/lib/python3.9/site-packages (from jedi&gt;=0.16-&gt;Ipython) (0.8.2)
-Requirement already satisfied: ptyprocess&gt;=0.5 in /usr/local/lib/python3.9/site-packages (from pexpect&gt;4.3-&gt;Ipython) (0.7.0)
-Requirement already satisfied: wcwidth in /usr/local/lib/python3.9/site-packages (from prompt-toolkit&lt;3.1.0,&gt;=3.0.41-&gt;Ipython) (0.2.5)
-Requirement already satisfied: executing&gt;=1.2.0 in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from stack-data-&gt;Ipython) (1.2.0)
-Requirement already satisfied: asttokens&gt;=2.1.0 in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from stack-data-&gt;Ipython) (2.2.1)
-Requirement already satisfied: pure-eval in /Users/jamesthrelfall/Library/Python/3.9/lib/python/site-packages (from stack-data-&gt;Ipython) (0.2.2)
-Requirement already satisfied: six in /usr/local/lib/python3.9/site-packages (from asttokens&gt;=2.1.0-&gt;stack-data-&gt;Ipython) (1.16.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading ipython-8.18.1-py3-none-any.whl (808 kB)
-?25l   <span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">0.0/808.2 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">112.6/808.2 kB</span> <span class=" -Color -Color-Red">3.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">358.4/808.2 kB</span> <span class=" -Color -Color-Red">5.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━</span> <span class=" -Color -Color-Green">716.8/808.2 kB</span> <span class=" -Color -Color-Red">6.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   <span class=" -Color -Color-Red">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">808.2/808.2 kB</span> <span class=" -Color -Color-Red">5.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hDownloading prompt_toolkit-3.0.43-py3-none-any.whl (386 kB)
-?25l
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   <span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">0.0/386.1 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">266.2/386.1 kB</span> <span class=" -Color -Color-Red">9.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺</span> <span class=" -Color -Color-Green">378.9/386.1 kB</span> <span class=" -Color -Color-Red">7.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   <span class=" -Color -Color-Red">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">386.1/386.1 kB</span> <span class=" -Color -Color-Red">4.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading exceptiongroup-1.2.1-py3-none-any.whl (16 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Ignoring invalid distribution -lotly (/usr/local/lib/python3.9/site-packages)</span>
-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: prompt-toolkit, exceptiongroup, Ipython
-  Attempting uninstall: prompt-toolkit
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Found existing installation: prompt-toolkit 3.0.38
-    Uninstalling prompt-toolkit-3.0.38:
-      Successfully uninstalled prompt-toolkit-3.0.38
-<span class=" -Color -Color-Yellow">  DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">  DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Attempting uninstall: Ipython
-    Found existing installation: ipython 8.13.2
-    Uninstalling ipython-8.13.2:
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Successfully uninstalled ipython-8.13.2
-<span class=" -Color -Color-Yellow">  DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</span>
-<span class=" -Color -Color-Red">ipykernel 6.5.0 requires ipython&lt;8.0,&gt;=7.23.1, but you have ipython 8.18.1 which is incompatible.</span>
-Successfully installed Ipython-7.30.0 exceptiongroup-1.2.1 prompt-toolkit-3.0.22
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="k">as</span> <span class="nn">animation</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="c1">#!{sys.executable} -m pip install --upgrade Ipython</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>With the libraries ready, we can set up some of the initial conditions for our collision. We’ll have two balls, labelled A and B, and each is associated with a mass, an initial speed and at some initial angle to the line of centers created when the two spheres meet:</p>
+<div class="section" id="maths-recap">
+<h2><span class="section-number">6.1. </span>Maths recap<a class="headerlink" href="#maths-recap" title="Permalink to this headline">¶</a></h2>
+<p>In lectures we learned that 2D sphere collisions essentially boil down to:</p>
+<ol class="simple">
+<li><p>perpendicular velocities remain unchanged,</p></li>
+<li><p>conservation of momentum (parallel to LOC):</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[ 
+m_{1}U_{1}\cos{\alpha}+m_{2}U_{2}\cos{\beta}=m_{1}v_{1}+m_{2}v_{2}, 
+\]</div>
+<ol class="simple">
+<li><p>Newton’s Law of Restitution (parallel to LOC):</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[ 
+v_{2}-v_{1}=e\left(U_{1}\cos{\alpha}-U_{2}\cos{\beta}\right), 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> are the angles of incidence made by each object relative to the line of centers, <span class="math notranslate nohighlight">\(U_1\)</span> and <span class="math notranslate nohighlight">\(U_2\)</span> are the pre-collision velocities of each sphere, and <span class="math notranslate nohighlight">\(v_1\)</span>, <span class="math notranslate nohighlight">\(v_2\)</span> are the post collision velocities of the sphere in the parallel direction.</p>
+<p>The first statement effectively fixes the <span class="math notranslate nohighlight">\(y\)</span>-components of velocity; the final two equations reduce to a set of simultaneous equations to solve for <span class="math notranslate nohighlight">\(v_x\)</span> of each particle.</p>
+<p>When we tackle these problems by hand, we usually use substitution or row operations. Python is excellent at solving simultaneous equations (as we will see), provided we format the simultaneous equations in matrix form <span class="math notranslate nohighlight">\(Ax=B\)</span>. This then means that the solutions are given by inverting matrix <span class="math notranslate nohighlight">\(A\)</span> and multiplying it to the coefficients in <span class="math notranslate nohighlight">\(B\)</span>; mathematically, <span class="math notranslate nohighlight">\(A^{-1}Ax=Ix=A^{-1}B\)</span> for identity matrix <span class="math notranslate nohighlight">\(I\)</span>.</p>
+<p>At the point where we come to solve the simultaneous equations, we will arrange our coefficients in matrix form, and have Python carry out the inversion and the solution. More details can be found in the 1D collisions worksheet.</p>
+</div>
+<div class="section" id="animations">
+<h2><span class="section-number">6.2. </span>Animations<a class="headerlink" href="#animations" title="Permalink to this headline">¶</a></h2>
+<p>We’ll begin with our initial conditions. Two balls, labelled A and B, are each associated with a mass, an initial speed and at some initial angle to the line of centers created when the two spheres meet:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># angle of incidence
-alpha_A = 45.0
-alpha_B = 45.0-180.0
-#initial velocity (m/s)
-u_A = 2.0
-u_B = 2.0
-# masses (kg)
-m_A = 2.0
-m_B = 2.0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># angle of incidence</span>
+<span class="n">alpha_A</span> <span class="o">=</span> <span class="mf">45.0</span>
+<span class="n">alpha_B</span> <span class="o">=</span> <span class="mf">45.0</span><span class="o">-</span><span class="mf">180.0</span>
+<span class="c1">#initial velocity (m/s)</span>
+<span class="n">u_A</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">u_B</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="c1"># masses (kg)</span>
+<span class="n">m_A</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">m_B</span> <span class="o">=</span> <span class="mf">2.0</span>
 </pre></div>
 </div>
 </div>
@@ -492,10 +438,10 @@ m_B = 2.0
 <p>We should also set up the coefficient of restitution and the step size in time of the simulation</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># The coefficient of restitution for bounces (-v_up/v_down).
-e = 0.5
-# The time step for the animation (s)
-dt = 0.05
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The coefficient of restitution for bounces (-v_up/v_down).</span>
+<span class="n">e</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="c1"># The time step for the animation (s)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.05</span>
 </pre></div>
 </div>
 </div>
@@ -504,12 +450,12 @@ dt = 0.05
 With our initial conditions, this means calculating initial components of velocity using trig functions (again noting that Python trig functions work in radians). The total velocity is therefore also the sum of each of these components squared.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>vx0_A = u_A * math.cos(math.radians(alpha_A))
-vy0_A = u_A * math.sin(math.radians(alpha_A))
-vx0_B = u_B * math.cos(math.radians(alpha_B))
-vy0_B = u_B * math.sin(math.radians(alpha_B))
-vA = math.sqrt(vx0_A * vx0_A + vy0_A * vy0_A) 
-vB = math.sqrt(vx0_B * vx0_B + vy0_B * vy0_B) 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vx0_A</span> <span class="o">=</span> <span class="n">u_A</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha_A</span><span class="p">))</span>
+<span class="n">vy0_A</span> <span class="o">=</span> <span class="n">u_A</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha_A</span><span class="p">))</span>
+<span class="n">vx0_B</span> <span class="o">=</span> <span class="n">u_B</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha_B</span><span class="p">))</span>
+<span class="n">vy0_B</span> <span class="o">=</span> <span class="n">u_B</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">alpha_B</span><span class="p">))</span>
+<span class="n">vA</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vx0_A</span> <span class="o">*</span> <span class="n">vx0_A</span> <span class="o">+</span> <span class="n">vy0_A</span> <span class="o">*</span> <span class="n">vy0_A</span><span class="p">)</span> 
+<span class="n">vB</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vx0_B</span> <span class="o">*</span> <span class="n">vx0_B</span> <span class="o">+</span> <span class="n">vy0_B</span> <span class="o">*</span> <span class="n">vy0_B</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
@@ -520,9 +466,9 @@ vB = math.sqrt(vx0_B * vx0_B + vy0_B * vy0_B)
 <p>Our neat trick here is to pick a time <em>before</em> <span class="math notranslate nohighlight">\(t=0\)</span> and see where the ball would be. I fix <span class="math notranslate nohighlight">\(t=-1\)</span>, and hence <span class="math notranslate nohighlight">\((x,y)=(-u_x,-u_y)\)</span> as our initial positions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Initial position and velocity vectors.
-x0_A, y0_A = -vx0_A, -vy0_A
-x0_B, y0_B = -vx0_B, -vy0_B
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial position and velocity vectors.</span>
+<span class="n">x0_A</span><span class="p">,</span> <span class="n">y0_A</span> <span class="o">=</span> <span class="o">-</span><span class="n">vx0_A</span><span class="p">,</span> <span class="o">-</span><span class="n">vy0_A</span>
+<span class="n">x0_B</span><span class="p">,</span> <span class="n">y0_B</span> <span class="o">=</span> <span class="o">-</span><span class="n">vx0_B</span><span class="p">,</span> <span class="o">-</span><span class="n">vy0_B</span>
 </pre></div>
 </div>
 </div>
@@ -530,35 +476,17 @@ x0_B, y0_B = -vx0_B, -vy0_B
 <p>Now that our initial positions are fixed, this will essentially also fix the size of our plotting area. We’ll fix the extent of our plot to be twice as big as the largest initial displacement in x or y, in order to prevent either ball beginning off-screen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>lval = (max(abs(x0_A), abs(x0_B), abs(y0_A), abs(y0_B)))
-extent = 2 * int(math.ceil(lval))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lval</span> <span class="o">=</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x0_A</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x0_B</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y0_A</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y0_B</span><span class="p">)))</span>
+<span class="n">extent</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">lval</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We now have to deal with what happens when the balls collide.
-In MAT201 we learned that 2D sphere collisions essentially boil down to:</p>
-<ol class="simple">
-<li><p>perpendicular velocities remain unchanged</p></li>
-<li><p>conservation of momentum (parallel to LOC):</p></li>
-</ol>
-<div class="math notranslate nohighlight">
-\[ 
-m_{1}U_{1}\cos{\alpha}+m_{2}U_{2}\cos{\beta}=m_{1}v_{1}+m_{2}v_{2} 
-\]</div>
-<ol class="simple">
-<li><p>Newton’s Law of Restitution (parallel to LOC):</p></li>
-</ol>
-<div class="math notranslate nohighlight">
-\[ 
-v_{2}-v_{1}=e\left(U_{1}\cos{\alpha}-U_{2}\cos{\beta}\right). 
-\]</div>
-<p>The first item fixes the <span class="math notranslate nohighlight">\(y\)</span>-components of velocity; the final two equations reduce to a set of simultaneous equations to solve for <span class="math notranslate nohighlight">\(v_x\)</span> of each particle.</p>
-<p>When we tackle these problems by hand, we usually use substitution or row operations. Python is excellent at solving simultaneous equations (as we will see), provided we format the simultaneous equations in matrix form <span class="math notranslate nohighlight">\(Ax=B\)</span>. This then means that the solutions are given by inverting matrix <span class="math notranslate nohighlight">\(A\)</span> and multiplying it to the coefficients in <span class="math notranslate nohighlight">\(B\)</span>; mathematically, <span class="math notranslate nohighlight">\(A^{-1}Ax=Ix=A^{-1}B\)</span> for identity matrix <span class="math notranslate nohighlight">\(I\)</span>. We’ll therefore arrange some of the coefficients in the final two equations to be in the form of a matrix:</p>
+<p>Let’s store our matrix of coefficients, <span class="math notranslate nohighlight">\(A\)</span>, for later: we’ll solve the system of equations at the instant the collision occurs in the animation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># matrix of coeffs (to use to solve simultaneous equations)
-A = [[1, -1], [m_B, m_A]]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># matrix of coeffs (to use to solve simultaneous equations)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">m_B</span><span class="p">,</span> <span class="n">m_A</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -567,16 +495,16 @@ A = [[1, -1], [m_B, m_A]]
 <p>We’lll model each ball as a circle. Another way to detect a collision (without relying on it taking place at the origin) is to check if one of the circles overlaps the other. To do this, we’ll make a function to check the distance between the centres of the circles. If the distance is less than the radius of each circle added together, then the circles have overlapped.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def overlap(x1, y1, x2, y2, r1, r2):
-# subroutine to check if circles overlap  
-    distSq = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
-    radSumSq = (r1 + r2) * (r1 + r2);
-    if (distSq == radSumSq):
-        return 1
-    elif (distSq &gt; radSumSq):
-        return -1
-    else:
-        return 0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">overlap</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">):</span>
+<span class="c1"># subroutine to check if circles overlap  </span>
+    <span class="n">distSq</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y2</span><span class="p">);</span>
+    <span class="n">radSumSq</span> <span class="o">=</span> <span class="p">(</span><span class="n">r1</span> <span class="o">+</span> <span class="n">r2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">r1</span> <span class="o">+</span> <span class="n">r2</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">distSq</span> <span class="o">==</span> <span class="n">radSumSq</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">distSq</span> <span class="o">&gt;</span> <span class="n">radSumSq</span><span class="p">):</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -585,32 +513,32 @@ A = [[1, -1], [m_B, m_A]]
 <p>We need this function iterate in time (by dt), and with each iteration, we need to check if the balls have overlapped using the overlap function we just created. If an overlap is detected, then we need to calculate the remaining coefficients in the simultaneous equations, and have Pythons linear algebra package (“linalg”) solve the simultaneous equations and return the new velocities parallel to LoC.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def get_pos(t=0):
-    global vA, vB
-# position generation  
-    &quot;&quot;&quot;A generator yielding ball positions at time t.&quot;&quot;&quot;
-    x_A, y_A, vx_A, vy_A = x0_A, y0_A, vx0_A, vy0_A
-    x_B, y_B, vx_B, vy_B = x0_B, y0_B, vx0_B, vy0_B
-    xpos = [x_A, x_B]
-    vA = math.sqrt(vx_A * vx_A + vy_A * vy_A) 
-    vB = math.sqrt(vx_B * vx_B + vy_B * vy_B)
-    ol = 0
-    while all(i &lt;= extent for i in xpos):
-    # iterate while within bounds  
-        t += dt
-        x_A += vx_A * dt
-        y_A += vy_A * dt
-        x_B += vx_B * dt
-        y_B += vy_B * dt        
-        if (overlap(x_A,y_A,x_B,y_B,0.08,0.08) != -1) and (ol == 0) :
-             # if impact detected, solve for new vx values
-             ol = 1 # prevent repeated bounces
-             Y = [e * (vx_A - vx_B), m_A * vx_A + m_B * vx_B]
-             res = np.linalg.inv(A).dot(Y)  #solve simultaneous equations
-             vx_B, vx_A = res[0], res[1]    #new velocities
-             vA = math.sqrt(vx_A * vx_A + vy_A * vy_A) 
-             vB = math.sqrt(vx_B * vx_B + vy_B * vy_B)
-        yield x_A, y_A, x_B, y_B
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_pos</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">vA</span><span class="p">,</span> <span class="n">vB</span>
+<span class="c1"># position generation  </span>
+    <span class="sd">&quot;&quot;&quot;A generator yielding ball positions at time t.&quot;&quot;&quot;</span>
+    <span class="n">x_A</span><span class="p">,</span> <span class="n">y_A</span><span class="p">,</span> <span class="n">vx_A</span><span class="p">,</span> <span class="n">vy_A</span> <span class="o">=</span> <span class="n">x0_A</span><span class="p">,</span> <span class="n">y0_A</span><span class="p">,</span> <span class="n">vx0_A</span><span class="p">,</span> <span class="n">vy0_A</span>
+    <span class="n">x_B</span><span class="p">,</span> <span class="n">y_B</span><span class="p">,</span> <span class="n">vx_B</span><span class="p">,</span> <span class="n">vy_B</span> <span class="o">=</span> <span class="n">x0_B</span><span class="p">,</span> <span class="n">y0_B</span><span class="p">,</span> <span class="n">vx0_B</span><span class="p">,</span> <span class="n">vy0_B</span>
+    <span class="n">xpos</span> <span class="o">=</span> <span class="p">[</span><span class="n">x_A</span><span class="p">,</span> <span class="n">x_B</span><span class="p">]</span>
+    <span class="n">vA</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vx_A</span> <span class="o">*</span> <span class="n">vx_A</span> <span class="o">+</span> <span class="n">vy_A</span> <span class="o">*</span> <span class="n">vy_A</span><span class="p">)</span> 
+    <span class="n">vB</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vx_B</span> <span class="o">*</span> <span class="n">vx_B</span> <span class="o">+</span> <span class="n">vy_B</span> <span class="o">*</span> <span class="n">vy_B</span><span class="p">)</span>
+    <span class="n">ol</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="nb">all</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">extent</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xpos</span><span class="p">):</span>
+    <span class="c1"># iterate while within bounds  </span>
+        <span class="n">t</span> <span class="o">+=</span> <span class="n">dt</span>
+        <span class="n">x_A</span> <span class="o">+=</span> <span class="n">vx_A</span> <span class="o">*</span> <span class="n">dt</span>
+        <span class="n">y_A</span> <span class="o">+=</span> <span class="n">vy_A</span> <span class="o">*</span> <span class="n">dt</span>
+        <span class="n">x_B</span> <span class="o">+=</span> <span class="n">vx_B</span> <span class="o">*</span> <span class="n">dt</span>
+        <span class="n">y_B</span> <span class="o">+=</span> <span class="n">vy_B</span> <span class="o">*</span> <span class="n">dt</span>        
+        <span class="k">if</span> <span class="p">(</span><span class="n">overlap</span><span class="p">(</span><span class="n">x_A</span><span class="p">,</span><span class="n">y_A</span><span class="p">,</span><span class="n">x_B</span><span class="p">,</span><span class="n">y_B</span><span class="p">,</span><span class="mf">0.08</span><span class="p">,</span><span class="mf">0.08</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">ol</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">:</span>
+             <span class="c1"># if impact detected, solve for new vx values</span>
+             <span class="n">ol</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># prevent repeated bounces</span>
+             <span class="n">Y</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span> <span class="o">*</span> <span class="p">(</span><span class="n">vx_A</span> <span class="o">-</span> <span class="n">vx_B</span><span class="p">),</span> <span class="n">m_A</span> <span class="o">*</span> <span class="n">vx_A</span> <span class="o">+</span> <span class="n">m_B</span> <span class="o">*</span> <span class="n">vx_B</span><span class="p">]</span>
+             <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>  <span class="c1">#solve simultaneous equations</span>
+             <span class="n">vx_B</span><span class="p">,</span> <span class="n">vx_A</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>    <span class="c1">#new velocities</span>
+             <span class="n">vA</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vx_A</span> <span class="o">*</span> <span class="n">vx_A</span> <span class="o">+</span> <span class="n">vy_A</span> <span class="o">*</span> <span class="n">vy_A</span><span class="p">)</span> 
+             <span class="n">vB</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vx_B</span> <span class="o">*</span> <span class="n">vx_B</span> <span class="o">+</span> <span class="n">vy_B</span> <span class="o">*</span> <span class="n">vy_B</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">x_A</span><span class="p">,</span> <span class="n">y_A</span><span class="p">,</span> <span class="n">x_B</span><span class="p">,</span> <span class="n">y_B</span>
 </pre></div>
 </div>
 </div>
@@ -618,21 +546,21 @@ A = [[1, -1], [m_B, m_A]]
 <p>In order to animate, we need to set up aspects of the figure and some initial parameters</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def init():
-    &quot;&quot;&quot;Initialize the animation figure.&quot;&quot;&quot;
-    ax.set_xlim(-extent, extent)
-    ax.set_ylim(-extent, extent)
-    ax.set_xlabel(&#39;$x$ (m)&#39;)
-    ax.set_ylabel(&#39;$y$ (m)&#39;)
-    lineA.set_data([],[])
-    lineB.set_data([],[])
-    lineA.set_data(xdata_A, ydata_A)
-    lineB.set_data(xdata_B, ydata_B)
-    ballA.set_center((x0_A, y0_A))
-    ballB.set_center((x0_B, y0_B))
-    v1_text.set_text(&#39;initial&#39;)
-    v2_text.set_text(&#39;initial&#39;)
-    return lineA, ballA, lineB, ballB, v1_text, v2_text,
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">init</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Initialize the animation figure.&quot;&quot;&quot;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="n">extent</span><span class="p">,</span> <span class="n">extent</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="n">extent</span><span class="p">,</span> <span class="n">extent</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$ (m)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$ (m)&#39;</span><span class="p">)</span>
+    <span class="n">lineA</span><span class="o">.</span><span class="n">set_data</span><span class="p">([],[])</span>
+    <span class="n">lineB</span><span class="o">.</span><span class="n">set_data</span><span class="p">([],[])</span>
+    <span class="n">lineA</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">xdata_A</span><span class="p">,</span> <span class="n">ydata_A</span><span class="p">)</span>
+    <span class="n">lineB</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">xdata_B</span><span class="p">,</span> <span class="n">ydata_B</span><span class="p">)</span>
+    <span class="n">ballA</span><span class="o">.</span><span class="n">set_center</span><span class="p">((</span><span class="n">x0_A</span><span class="p">,</span> <span class="n">y0_A</span><span class="p">))</span>
+    <span class="n">ballB</span><span class="o">.</span><span class="n">set_center</span><span class="p">((</span><span class="n">x0_B</span><span class="p">,</span> <span class="n">y0_B</span><span class="p">))</span>
+    <span class="n">v1_text</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;initial&#39;</span><span class="p">)</span>
+    <span class="n">v2_text</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;initial&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lineA</span><span class="p">,</span> <span class="n">ballA</span><span class="p">,</span> <span class="n">lineB</span><span class="p">,</span> <span class="n">ballB</span><span class="p">,</span> <span class="n">v1_text</span><span class="p">,</span> <span class="n">v2_text</span><span class="p">,</span>
 </pre></div>
 </div>
 </div>
@@ -640,20 +568,20 @@ A = [[1, -1], [m_B, m_A]]
 <p>The animation appends the position information (so that we can plot the trajectory of each ball), and also includes info on the total velocity of each ball to be printed as text on the figure in each frame.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def animate(pos):
-    &quot;&quot;&quot;For each frame, advance the animation to the new position, pos.&quot;&quot;&quot;
-    x_A, y_A, x_B, y_B = pos
-    xdata_A.append(x_A)
-    ydata_A.append(y_A)
-    lineA.set_data(xdata_A, ydata_A)
-    xdata_B.append(x_B)
-    ydata_B.append(y_B)
-    lineB.set_data(xdata_B, ydata_B)
-    ballA.set_center((x_A, y_A))
-    ballB.set_center((x_B, y_B))
-    v1_text.set_text(f&quot;$v= {vA:.3f} m/s$&quot;)
-    v2_text.set_text(f&quot;$v= {vB:.3f} m/s$&quot;)
-    return lineA, ballA, lineB, ballB, v1_text, v2_text,
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;For each frame, advance the animation to the new position, pos.&quot;&quot;&quot;</span>
+    <span class="n">x_A</span><span class="p">,</span> <span class="n">y_A</span><span class="p">,</span> <span class="n">x_B</span><span class="p">,</span> <span class="n">y_B</span> <span class="o">=</span> <span class="n">pos</span>
+    <span class="n">xdata_A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_A</span><span class="p">)</span>
+    <span class="n">ydata_A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_A</span><span class="p">)</span>
+    <span class="n">lineA</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">xdata_A</span><span class="p">,</span> <span class="n">ydata_A</span><span class="p">)</span>
+    <span class="n">xdata_B</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_B</span><span class="p">)</span>
+    <span class="n">ydata_B</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_B</span><span class="p">)</span>
+    <span class="n">lineB</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">xdata_B</span><span class="p">,</span> <span class="n">ydata_B</span><span class="p">)</span>
+    <span class="n">ballA</span><span class="o">.</span><span class="n">set_center</span><span class="p">((</span><span class="n">x_A</span><span class="p">,</span> <span class="n">y_A</span><span class="p">))</span>
+    <span class="n">ballB</span><span class="o">.</span><span class="n">set_center</span><span class="p">((</span><span class="n">x_B</span><span class="p">,</span> <span class="n">y_B</span><span class="p">))</span>
+    <span class="n">v1_text</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$v= </span><span class="si">{</span><span class="n">vA</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> m/s$&quot;</span><span class="p">)</span>
+    <span class="n">v2_text</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$v= </span><span class="si">{</span><span class="n">vB</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> m/s$&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lineA</span><span class="p">,</span> <span class="n">ballA</span><span class="p">,</span> <span class="n">lineB</span><span class="p">,</span> <span class="n">ballB</span><span class="p">,</span> <span class="n">v1_text</span><span class="p">,</span> <span class="n">v2_text</span><span class="p">,</span>
 </pre></div>
 </div>
 </div>
@@ -662,36 +590,36 @@ A = [[1, -1], [m_B, m_A]]
 <p>Note that, this LoC is simply for context, and is approximate: the collision actually takes place when an overlap is detected in the code, and so there may be a small offset between the plotted LoC and the true LoC location.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Set up a new figure, with equal aspect ratio.
-fig, ax = plt.subplots()
-fig.set_size_inches(6, 6)
-ax.set_xlim(left=-extent, right=extent)
-ax.set_aspect(&#39;equal&#39;)
-ax.axhline(y=0, xmin=-extent, xmax=extent, c=&quot;black&quot;, linewidth=1, linestyle=&quot;--&quot;, zorder=0)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a new figure, with equal aspect ratio.</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="n">extent</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="n">extent</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=-</span><span class="n">extent</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x10cedf7c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x11159b5e0&gt;
 </pre></div>
 </div>
-<img alt="../_images/MAT201D_2DSScols_24_1.png" src="../_images/MAT201D_2DSScols_24_1.png" />
+<img alt="../_images/MAT201D_2DSScols_25_1.png" src="../_images/MAT201D_2DSScols_25_1.png" />
 </div>
 </div>
 <p>We also need to set up plot objects, like lines representing the trajectories and the circles representing the current location of each ball.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># These are the objects we need to keep track of.
-lineA, = ax.plot([], [], lw=2, linestyle=&#39;dotted&#39;, color=&#39;blue&#39;)
-lineB, = ax.plot([], [], lw=2, linestyle=&#39;dotted&#39;, color=&#39;red&#39;)
-ballA = plt.Circle((x0_A, y0_A), 0.08, color=&#39;blue&#39;)
-ballB = plt.Circle((x0_B, y0_B), 0.08, color=&#39;red&#39;)
-v1_text = ax.text(-0.9 * extent, -0.9 * extent, &#39;&#39;, color=&#39;blue&#39;)
-v2_text = ax.text(0.5 * extent, 0.9 * extent, &#39;&#39;, color=&#39;red&#39;)
-ax.add_patch(ballA)
-ax.add_patch(ballB)
-xdata_A, ydata_A = [], []
-xdata_B, ydata_B = [], []
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These are the objects we need to keep track of.</span>
+<span class="n">lineA</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dotted&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">lineB</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dotted&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ballA</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="n">x0_A</span><span class="p">,</span> <span class="n">y0_A</span><span class="p">),</span> <span class="mf">0.08</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ballB</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="n">x0_B</span><span class="p">,</span> <span class="n">y0_B</span><span class="p">),</span> <span class="mf">0.08</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">v1_text</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.9</span> <span class="o">*</span> <span class="n">extent</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9</span> <span class="o">*</span> <span class="n">extent</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">v2_text</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">extent</span><span class="p">,</span> <span class="mf">0.9</span> <span class="o">*</span> <span class="n">extent</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">ballA</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">ballB</span><span class="p">)</span>
+<span class="n">xdata_A</span><span class="p">,</span> <span class="n">ydata_A</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="n">xdata_B</span><span class="p">,</span> <span class="n">ydata_B</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 </pre></div>
 </div>
 </div>
@@ -699,11 +627,11 @@ xdata_B, ydata_B = [], []
 <p>Final step is to create the animation. The length of the simulation in time is the interval, and will impact the length of time the animation will take to create.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>interval = 1000*dt
-ani = animation.FuncAnimation(fig, animate, get_pos, blit=True,
-                      interval=interval, repeat=False, save_count=100)
-from IPython.display import HTML
-HTML(ani.to_html5_video())
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interval</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">*</span><span class="n">dt</span>
+<span class="n">ani</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">get_pos</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="n">interval</span><span class="o">=</span><span class="n">interval</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_count</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">ani</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -967,9 +895,10 @@ AAAdZGF0YQAAAAEAAAAATGF2ZjU4Ljc2LjEwMA==
 </video></div></div>
 </div>
 <p>Hopefully you will see a blue ball impacting a red ball close to the origin, no matter what initial velocity or angle is imparted to either sphere.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="over-to-you">
-<h2><span class="section-number">5.1. </span>Over To You<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.3. </span>Over To You<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
 <p>This worksheet illustrates how to use symbolic Python can solve a set of simultaneous equations for us: those equations happen to be conservation of linear momentum and Newton’s Law of Restitution, and are applied to spheres which collide in 2D.</p>
 <p>Try this for yourself:</p>
 <ol class="simple">
@@ -1024,11 +953,11 @@ AAAdZGF0YQAAAAEAAAAATGF2ZjU4Ljc2LjEwMA==
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="MAT201D_2DSWcols.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="MAT201D_1Dcolls.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">4. </span>2D Oblique Wall Collisions</p>
+            <p class="prev-next-title"><span class="section-number">5. </span>1D Oblique Sphere Collisions</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../methods/MAT201M_2DVT.html" title="next page">

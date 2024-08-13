@@ -27,7 +27,7 @@ parts:
   numbered: true
   chapters:
   - file: methods/MAT201M_PartialDerivs.ipynb
-    title: 2D Viewing Transforms
+    title: Partial Derivatives
   - file: methods/MAT201M_2DVT.ipynb
     title: 2D Viewing Transforms
   - file: methods/MAT201M_3DVT.ipynb

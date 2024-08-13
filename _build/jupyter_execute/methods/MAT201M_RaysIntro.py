@@ -315,7 +315,7 @@ fig.show()
 # 
 # There are plenty of visualisation and plotting libraries, but none quite do a super job that we can interact with. Another example to visualise this surface is to use "scikit-image":
 
-# In[34]:
+# In[19]:
 
 
 import sys

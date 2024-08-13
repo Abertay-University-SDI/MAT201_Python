@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5. Projection 2 &#8212; MAT201 Applied Mathematics with Python</title>
+    <title>6. Projection 2 &#8212; MAT201 Applied Mathematics with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. Complex Numbers" href="MAT201M_ComplexNos.html" />
-    <link rel="prev" title="4. Projection 1" href="MAT201M_Proj1.html" />
+    <link rel="next" title="7. Complex Numbers" href="MAT201M_ComplexNos.html" />
+    <link rel="prev" title="5. Projection 1" href="MAT201M_Proj1.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -134,8 +134,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_1Dcolls.html">
+   5. 1D Sphere/Sphere Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../dynamics/MAT201D_2DSScols.html">
-   5. 2D Sphere/Sphere Collisions
+   6. 2D Sphere/Sphere Collisions
   </a>
  </li>
 </ul>
@@ -146,53 +151,58 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="MAT201M_2DVT.html">
+  <a class="reference internal" href="MAT201M_PartialDerivs.html">
    1. 2D Viewing Transforms
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="MAT201M_2DVT.html">
+   2. 2D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_3DVT.html">
-   2. 3D Viewing Transforms
+   3. 3D Viewing Transforms
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_3DVT2.html">
-   3. More 3D Viewing Transforms
+   4. More 3D Viewing Transforms
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_Proj1.html">
-   4. Orthographic Projection
+   5. Orthographic Projection
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   5. Perspective Projection
+   6. Perspective Projection
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_ComplexNos.html">
-   6. Complex Numbers
+   7. Complex Numbers
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_Quats.html">
-   7. Quaternions
+   8. Quaternions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysIntro.html">
-   8. Ray Tracing
+   9. Ray Tracing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysBoxes.html">
-   9. Rays and Boxes
+   10. Rays and Boxes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysPlanes.html">
-   10. Rays and Planes
+   11. Rays and Planes
   </a>
  </li>
 </ul>
@@ -313,36 +323,36 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#perspective-projection">
-   5.1. Perspective Projection
+   6.1. Perspective Projection
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lecture-example">
-     5.1.1. Lecture Example:
+     6.1.1. Lecture Example:
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#projection-test">
-       5.1.1.1. Projection Test
+       6.1.1.1. Projection Test
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#carrying-out-the-projection">
-       5.1.1.2. Carrying out the projection
+       6.1.1.2. Carrying out the projection
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#plotting">
-     5.1.2. Plotting
+     6.1.2. Plotting
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#projection-using-python">
-   5.2. Projection using Python
+   6.2. Projection using Python
   </a>
  </li>
 </ul>
@@ -367,36 +377,36 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#perspective-projection">
-   5.1. Perspective Projection
+   6.1. Perspective Projection
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lecture-example">
-     5.1.1. Lecture Example:
+     6.1.1. Lecture Example:
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#projection-test">
-       5.1.1.1. Projection Test
+       6.1.1.1. Projection Test
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#carrying-out-the-projection">
-       5.1.1.2. Carrying out the projection
+       6.1.1.2. Carrying out the projection
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#plotting">
-     5.1.2. Plotting
+     6.1.2. Plotting
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#projection-using-python">
-   5.2. Projection using Python
+   6.2. Projection using Python
   </a>
  </li>
 </ul>
@@ -409,7 +419,7 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="projection-2">
-<h1><span class="section-number">5. </span>Projection 2<a class="headerlink" href="#projection-2" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">6. </span>Projection 2<a class="headerlink" href="#projection-2" title="Permalink to this headline">¶</a></h1>
 <p>We have seen how maths (and Python) can be used to transform coordinates in 2D and 3D. Projection is the process of representing all or part of a 3D object on a 2D screen. Projection shares some common features with 2D and 3D transformations: it commonly uses specific matrix forms in order to perform specific operations.</p>
 <p>In this workbook we will consider the second of two different types of projection, and the resulting impact on the projected image.</p>
 <div class="cell docutils container">
@@ -445,7 +455,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="perspective-projection">
-<h2><span class="section-number">5.1. </span>Perspective Projection<a class="headerlink" href="#perspective-projection" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.1. </span>Perspective Projection<a class="headerlink" href="#perspective-projection" title="Permalink to this headline">¶</a></h2>
 <p>In the previous workbook we considered orthoganol projection, which preserves lines and angles to accurately reproduce 2D scale versions of a 3D object.</p>
 <p>An alternative to this approach is <em>perspective projection</em> which modifies lines and angles of the object so that the projected image contains a sense of depth (“perspective”). These projections are less accurate, but are far more likely to be used by artists and gamers to aid realism and immersion. It is likely you have grown up attempting to draw 3D objects using a pen and paper: these pictures were almost certainly perspective projections!</p>
 <p>In the lectures, we examined some simple perspective projection cases, before combining them together to create a general perspective transformation matrix:</p>
@@ -472,7 +482,7 @@ D=\frac{ax+by+cz-d}{\sqrt{a^2+b^2+c^2}}.
 \]</div>
 <p>As usual with these workbooks I think we could use an illustrative example:</p>
 <div class="section" id="lecture-example">
-<h3><span class="section-number">5.1.1. </span>Lecture Example:<a class="headerlink" href="#lecture-example" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.1.1. </span>Lecture Example:<a class="headerlink" href="#lecture-example" title="Permalink to this headline">¶</a></h3>
 <p><strong>The points <span class="math notranslate nohighlight">\((2,4,-1)\)</span> and <span class="math notranslate nohighlight">\((-3,6,4)\)</span> are projected onto the plane <span class="math notranslate nohighlight">\(3x-y+z=5\)</span> by a single point perspective projection, with viewing centre at <span class="math notranslate nohighlight">\((2,3,4)\)</span>. Find the image of these points and hence determine the parametric equation of the line segment joining these images of the plane</strong>.</p>
 <p>This problem does not strictly ask us to test if the projection is possible, however, as programmers/engineers, we probably want to check this first before proceeding with the calculation (in case we go to a lot of trouble for a projection which wasn’t possible in the first place!).</p>
 <p>To begin, let’s creating the array of points to project:</p>
@@ -533,7 +543,7 @@ D=\frac{ax+by+cz-d}{\sqrt{a^2+b^2+c^2}}.
 </div>
 </div>
 <div class="section" id="projection-test">
-<h4><span class="section-number">5.1.1.1. </span>Projection Test<a class="headerlink" href="#projection-test" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">6.1.1.1. </span>Projection Test<a class="headerlink" href="#projection-test" title="Permalink to this headline">¶</a></h4>
 <p>Let’s now test if we can carry out this projection. Following the information in the lectures we now need to test the distance from the plane to the plane/screen.</p>
 <p>Note that in the lectures, we only require the numerator of the distance formula to evaluate distances. This is because we are not calculating true distances, but comparing relative distances. Because we are using it for a comparison, the denominators don’t matter (they are identical for all points, and only depend on values associated with the plane). However, here, I will include the denominator in the calculation for completeness.</p>
 <p><em>Try for yourselves: comment out the denominator from the formula for <span class="math notranslate nohighlight">\(Dp\)</span> and <span class="math notranslate nohighlight">\(Dc\)</span> in the code below, and verify it does not affect whether the projection is possible.</em></p>
@@ -584,7 +594,7 @@ point 1 : projection possible (signs differ)
 <p>This will automatically check each position in the list and confirm that the projection is possible (and why).</p>
 </div>
 <div class="section" id="carrying-out-the-projection">
-<h4><span class="section-number">5.1.1.2. </span>Carrying out the projection<a class="headerlink" href="#carrying-out-the-projection" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">6.1.1.2. </span>Carrying out the projection<a class="headerlink" href="#carrying-out-the-projection" title="Permalink to this headline">¶</a></h4>
 <p>Having checked that these positions can be projected, we now project them using <span class="math notranslate nohighlight">\(P_{\rm{er}}\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -654,7 +664,7 @@ point 1 : projection possible (signs differ)
 </div>
 </div>
 <div class="section" id="plotting">
-<h3><span class="section-number">5.1.2. </span>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.1.2. </span>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h3>
 <p>Once again, visualising projections in 3D can be tricky to do in Python.
 We will display the plane, the original points, the projected points and the viewing centre. The viewing angle (and the range over which the plane is calculated/displayed) can mean that sometimes visualising this plot produces confusing results.</p>
 <p>Remember that the rays leave the viewing centre (where the eye is placed), and project the location of the object onto the screen. I will use arrows to illustrate each of these rays.</p>
@@ -728,7 +738,7 @@ We will display the plane, the original points, the projected points and the vie
 </div>
 </div>
 <div class="section" id="projection-using-python">
-<h2><span class="section-number">5.2. </span>Projection using Python<a class="headerlink" href="#projection-using-python" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.2. </span>Projection using Python<a class="headerlink" href="#projection-using-python" title="Permalink to this headline">¶</a></h2>
 <p>The aim of this workbook has been to show you how the mathematics of projection you have learned in lectures translates into code, and to illustrate possible ways to view the projections that we carry out.</p>
 <p>As we have seen in other workbooks, Python also includes specific routines which are related to the mathematics topics we encounter. Projection is no different.</p>
 <p>Below is a simple routine which I found on the web which illustrates how Python itself can take different projections into account when it displays images on the screen for you. It is possible to specify the type of projection, and the focal length (which, in our course, is effectively the distance to the viewing centre).</p>
@@ -797,13 +807,13 @@ We will display the plane, the original points, the projected points and the vie
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">4. </span>Projection 1</p>
+            <p class="prev-next-title"><span class="section-number">5. </span>Projection 1</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="MAT201M_ComplexNos.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>Complex Numbers</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Complex Numbers</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

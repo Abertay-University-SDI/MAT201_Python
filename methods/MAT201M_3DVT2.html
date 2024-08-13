@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. More 3D Coordinate Transformations &#8212; MAT201 Applied Mathematics with Python</title>
+    <title>4. More 3D Coordinate Transformations &#8212; MAT201 Applied Mathematics with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Complex Numbers" href="MAT201M_ComplexNos.html" />
-    <link rel="prev" title="2. Coordinate Transformations in 3D" href="MAT201M_3DVT.html" />
+    <link rel="next" title="5. Projection 1" href="MAT201M_Proj1.html" />
+    <link rel="prev" title="3. Coordinate Transformations in 3D" href="MAT201M_3DVT.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -134,8 +134,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_1Dcolls.html">
+   5. 1D Sphere/Sphere Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../dynamics/MAT201D_2DSScols.html">
-   5. 2D Sphere/Sphere Collisions
+   6. 2D Sphere/Sphere Collisions
   </a>
  </li>
 </ul>
@@ -146,43 +151,58 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="MAT201M_2DVT.html">
+  <a class="reference internal" href="MAT201M_PartialDerivs.html">
    1. 2D Viewing Transforms
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="MAT201M_2DVT.html">
+   2. 2D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_3DVT.html">
-   2. 3D Viewing Transforms
+   3. 3D Viewing Transforms
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   3. More 3D Viewing Transforms
+   4. More 3D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201M_Proj1.html">
+   5. Orthographic Projection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201M_Proj2.html">
+   6. Perspective Projection
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_ComplexNos.html">
-   4. Complex Numbers
+   7. Complex Numbers
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_Quats.html">
-   5. Quaternions
+   8. Quaternions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysIntro.html">
-   6. Ray Tracing
+   9. Ray Tracing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysBoxes.html">
-   7. Rays and Boxes
+   10. Rays and Boxes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysPlanes.html">
-   8. Rays and Planes
+   11. Rays and Planes
   </a>
  </li>
 </ul>
@@ -303,36 +323,36 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#mirror-reflection-in-a-given-plane">
-   3.1. Mirror reflection in a given plane
+   4.1. Mirror reflection in a given plane
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lecture-example">
-     3.1.1. Lecture Example:
+     4.1.1. Lecture Example:
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#rotation-about-an-arbitrary-axis">
-   3.2. Rotation about an arbitrary axis
+   4.2. Rotation about an arbitrary axis
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lecture-example-rotating-a-pyramid">
-     3.2.1. Lecture example: Rotating a pyramid
+     4.2.1. Lecture example: Rotating a pyramid
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#part-2-rotation-about-axis-not-at-origin">
-     3.2.2. Part 2: Rotation about axis not at origin
+     4.2.2. Part 2: Rotation about axis not at origin
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#over-to-you">
-   3.3. Over to you
+   4.3. Over to you
   </a>
  </li>
 </ul>
@@ -357,36 +377,36 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#mirror-reflection-in-a-given-plane">
-   3.1. Mirror reflection in a given plane
+   4.1. Mirror reflection in a given plane
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lecture-example">
-     3.1.1. Lecture Example:
+     4.1.1. Lecture Example:
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#rotation-about-an-arbitrary-axis">
-   3.2. Rotation about an arbitrary axis
+   4.2. Rotation about an arbitrary axis
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lecture-example-rotating-a-pyramid">
-     3.2.1. Lecture example: Rotating a pyramid
+     4.2.1. Lecture example: Rotating a pyramid
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#part-2-rotation-about-axis-not-at-origin">
-     3.2.2. Part 2: Rotation about axis not at origin
+     4.2.2. Part 2: Rotation about axis not at origin
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#over-to-you">
-   3.3. Over to you
+   4.3. Over to you
   </a>
  </li>
 </ul>
@@ -399,25 +419,25 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="more-3d-coordinate-transformations">
-<h1><span class="section-number">3. </span>More 3D Coordinate Transformations<a class="headerlink" href="#more-3d-coordinate-transformations" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">4. </span>More 3D Coordinate Transformations<a class="headerlink" href="#more-3d-coordinate-transformations" title="Permalink to this headline">¶</a></h1>
 <p>We have already shown how Python is capable of performing and visualising the standard set of operations for 3D graphics transformations.</p>
 <p>There are several additional useful operations than can be performed by matrices. This notebook will examine two of these: <em>reflection in a given plane</em> and <em>rotation about an axis</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>## Libraries
-import numpy as np
-import math 
-import matplotlib.pyplot as plt
-import sympy as sym
-from mpl_toolkits.mplot3d import Axes3D
-from matplotlib.patches import FancyArrowPatch
-from mpl_toolkits.mplot3d import proj3d
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">FancyArrowPatch</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">proj3d</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="mirror-reflection-in-a-given-plane">
-<h2><span class="section-number">3.1. </span>Mirror reflection in a given plane<a class="headerlink" href="#mirror-reflection-in-a-given-plane" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.1. </span>Mirror reflection in a given plane<a class="headerlink" href="#mirror-reflection-in-a-given-plane" title="Permalink to this headline">¶</a></h2>
 <p>We have been shown in the lectures that reflecting an object in the plane <span class="math notranslate nohighlight">\( ax+by+cz=0\)</span> can be performed by multiplying a set of homogenous coordinates by the reflection matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -432,15 +452,15 @@ M_{\rm{reflection}} =
 <p>The additional factor of <span class="math notranslate nohighlight">\(a^2+b^2+c^2\)</span> in the bottom right element of this matrix means that we must remember to check that we have returned to homogenous coordinates after the calculation has been carried out.</p>
 <p>To test this, we will repeat one of the examples shown in the lectures:</p>
 <div class="section" id="lecture-example">
-<h3><span class="section-number">3.1.1. </span>Lecture Example:<a class="headerlink" href="#lecture-example" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.1.1. </span>Lecture Example:<a class="headerlink" href="#lecture-example" title="Permalink to this headline">¶</a></h3>
 <p><strong>Calculate the images of the points <span class="math notranslate nohighlight">\((3,2,1)\)</span> and <span class="math notranslate nohighlight">\((-1,0,1)\)</span> when reflected in the plane <span class="math notranslate nohighlight">\(2x+y-3z=4\)</span></strong>.</p>
 <p>Let’s set up a matrix of positions that we can transform.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x_vals = np.array([3, -1])
-y_vals = np.array([2, 0])
-z_vals = np.array([1, 1])
-p = np.array([x_vals, y_vals, z_vals])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">z_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">z_vals</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -448,23 +468,23 @@ p = np.array([x_vals, y_vals, z_vals])
 <p>Before we perform the transformation, let’s plot the two positions and (because we can) draw a line between the two points:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>lx=np.append(x_vals,x_vals[0]) #drawing the line between the last and first coord
-ly=np.append(y_vals,y_vals[0])
-lz=np.append(z_vals,z_vals[0])
-ax = plt.figure().add_subplot(projection=&#39;3d&#39;)
-ax.view_init(elev=20, azim=315, roll=0)
-ax.plot(lx, ly, lz, &#39;ko&#39;, linestyle=&quot;--&quot;)
-ax.plot(x_vals, y_vals, z_vals, &#39;ko&#39;)
-ax.text(lx[0]-1, ly[0]+1, lz[0]+1, &quot;A&quot;, c=&#39;k&#39;)
-ax.text(lx[1]-1, ly[1]+1, lz[1]+1, &quot;B&quot;, c=&#39;k&#39;)
-ax.set_xlabel(&#39;x&#39;)
-ax.set_ylabel(&#39;y&#39;)
-ax.set_zlabel(&#39;z&#39;)
-ax.axes.set_xlim3d(left=-5, right=5) 
-ax.axes.set_ylim3d(bottom=0, top=10) 
-ax.axes.set_zlim3d(bottom=-5, top=5)
-plt.gca().set_aspect(&#39;equal&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span><span class="n">x_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#drawing the line between the last and first coord</span>
+<span class="n">ly</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_vals</span><span class="p">,</span><span class="n">y_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">lz</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">z_vals</span><span class="p">,</span><span class="n">z_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="n">elev</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">azim</span><span class="o">=</span><span class="mi">315</span><span class="p">,</span> <span class="n">roll</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lx</span><span class="p">,</span> <span class="n">ly</span><span class="p">,</span> <span class="n">lz</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">z_vals</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">lx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ly</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">lz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">lx</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ly</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">lz</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xlim3d</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_zlim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -476,9 +496,9 @@ plt.show()
 <p>Thus we can create our matrix of coordinates, formatted in the same way shown in class:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>nr = [1 for x in range(len(x_vals))]
-hp = np.vstack([p, nr])
-print(hp.transpose())
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">))]</span>
+<span class="n">hp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">p</span><span class="p">,</span> <span class="n">nr</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hp</span><span class="o">.</span><span class="n">transpose</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -493,12 +513,12 @@ print(hp.transpose())
 <p>We can only perform the calculation if the plane passes through the origin. A quick way to check is to see if the origin coordinates satisfy the plane equation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>a = 2
-b = 1
-c = -3
-d = 4
-print(&quot;LHS:&quot;, a*0+b*0+c*0)
-print(&quot;RHS:&quot;, d)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;LHS:&quot;</span><span class="p">,</span> <span class="n">a</span><span class="o">*</span><span class="mi">0</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="mi">0</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RHS:&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -523,10 +543,10 @@ T_{\underline{w}} =
 <p>To identify the amount we need to move, we can rearrange the plane equation, so that if we choose some points for <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, the equation will determine values of z:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x1 = 1.
-y1 = 2.
-z1 = (a * x1 + b * y1 - d) / c
-print(x1,y1,z1,&quot; lies on plane&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="mf">2.</span>
+<span class="n">z1</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y1</span> <span class="o">-</span> <span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="n">c</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">z1</span><span class="p">,</span><span class="s2">&quot; lies on plane&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -539,14 +559,14 @@ print(x1,y1,z1,&quot; lies on plane&quot;)
 <p>This is the amount we will translate by (and while we are at it, we might as well create the opposite transformation that we’ll have to use at the end too).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Tw = np.matrix([[1, 0, 0, 0], 
-                [0, 1, 0, 0], 
-                [0, 0, 1, 0],
-                [-x1,-y1, -z1, 1]])
-Tv = np.matrix([[1, 0, 0, 0], 
-                [0, 1, 0, 0], 
-                [0, 0, 1, 0],
-                [x1, y1, z1, 1]])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Tw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="p">[</span><span class="o">-</span><span class="n">x1</span><span class="p">,</span><span class="o">-</span><span class="n">y1</span><span class="p">,</span> <span class="o">-</span><span class="n">z1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">Tv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="p">[</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">z1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
@@ -554,10 +574,10 @@ Tv = np.matrix([[1, 0, 0, 0],
 <p>Now we can create our reflection matrix from the formula:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Mr = np.matrix([[-a*a+b*b+c*c, -2*a*b, -2*a*c, 0], 
-                [-2*a*b, a*a-b*b+c*c, -2*b*c, 0], 
-                [-2*a*c, -2*b*c, a*a+b*b-c*c, 0],
-                [0,0, 0, a*a+b*b+c*c]])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Mr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
@@ -565,8 +585,8 @@ Tv = np.matrix([[1, 0, 0, 0],
 <p>We’ve formed all the pieces that will allow us to perform the reflection in full, so let’s go ahead and apply them to our coordinates:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rp = hp.transpose()*Tw*Mr*Tv
-print(rp)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rp</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">*</span><span class="n">Tw</span><span class="o">*</span><span class="n">Mr</span><span class="o">*</span><span class="n">Tv</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -580,8 +600,8 @@ print(rp)
 <p>Following the transformation, we note that the final column (our homogenous coordinates) contain something other than one. This means we need to divide <em>all</em> coordinates in that row by the element in the final column, such that they become equal to one.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rph = rp/rp[:,3:]
-print(rph)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rph</span> <span class="o">=</span> <span class="n">rp</span><span class="o">/</span><span class="n">rp</span><span class="p">[:,</span><span class="mi">3</span><span class="p">:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rph</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -596,36 +616,36 @@ print(rph)
 <p>Finally, to demonstrate the power of Python, we can plot the solution we have found. For completeness, I will include the plane about which the reflection is performed and the original (unreflected) positions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>newp = rph[:,0:3].transpose()
-x_vals1 = np.squeeze(np.asarray(newp[0,:]))
-y_vals1 = np.squeeze(np.asarray(newp[1,:]))
-z_vals1 = np.squeeze(np.asarray(newp[2,:]))
-slx=np.append(x_vals1,x_vals1[0])
-sly=np.append(y_vals1,y_vals1[0])
-slz=np.append(z_vals1,z_vals1[0])
-xr = [-5,5]
-yr = [0,10]
-zr = [-5,5]
-ax.axes.set_xlim3d(left=xr[0], right=xr[1]) 
-ax.axes.set_ylim3d(bottom=yr[0], top=yr[1]) 
-ax.axes.set_zlim3d(bottom=zr[0], top=zr[1])
-#need to set up mesh for plotting plane over range of x, y
-x = np.linspace(xr[0],xr[1],50)
-y = np.linspace(yr[0],yr[1],50)
-X,Y = np.meshgrid(x,y)
-Z = (d - a*X - b*Y) / c
-ax = plt.figure().add_subplot(projection=&#39;3d&#39;)
-ax.view_init(elev=20, azim=315, roll=0)
-ax.plot(lx, ly, lz, &#39;ko&#39;, linestyle=&quot;--&quot;)
-ax.plot(x_vals, y_vals, z_vals, &#39;ko&#39;)
-ax.plot(slx, sly, slz, &#39;ro&#39;, linestyle=&quot;--&quot;)
-ax.plot(x_vals1, y_vals1, z_vals1, &#39;ro&#39;)
-ax.set_xlabel(&#39;x&#39;)
-ax.set_ylabel(&#39;y&#39;)
-ax.set_zlabel(&#39;z&#39;)
-surf = ax.plot_surface(X, Y, Z)
-plt.gca().set_aspect(&#39;equal&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">newp</span> <span class="o">=</span> <span class="n">rph</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="n">x_vals1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]))</span>
+<span class="n">y_vals1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]))</span>
+<span class="n">z_vals1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]))</span>
+<span class="n">slx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_vals1</span><span class="p">,</span><span class="n">x_vals1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">sly</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_vals1</span><span class="p">,</span><span class="n">y_vals1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">slz</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">z_vals1</span><span class="p">,</span><span class="n">z_vals1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">xr</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">yr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">zr</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xlim3d</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">xr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">right</span><span class="o">=</span><span class="n">xr</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="n">yr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">top</span><span class="o">=</span><span class="n">yr</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_zlim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="n">zr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">top</span><span class="o">=</span><span class="n">zr</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1">#need to set up mesh for plotting plane over range of x, y</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">xr</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">yr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">yr</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="p">(</span><span class="n">d</span> <span class="o">-</span> <span class="n">a</span><span class="o">*</span><span class="n">X</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">Y</span><span class="p">)</span> <span class="o">/</span> <span class="n">c</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="n">elev</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">azim</span><span class="o">=</span><span class="mi">315</span><span class="p">,</span> <span class="n">roll</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lx</span><span class="p">,</span> <span class="n">ly</span><span class="p">,</span> <span class="n">lz</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">z_vals</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">slx</span><span class="p">,</span> <span class="n">sly</span><span class="p">,</span> <span class="n">slz</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals1</span><span class="p">,</span> <span class="n">y_vals1</span><span class="p">,</span> <span class="n">z_vals1</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<span class="n">surf</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -637,7 +657,7 @@ plt.show()
 </div>
 </div>
 <div class="section" id="rotation-about-an-arbitrary-axis">
-<h2><span class="section-number">3.2. </span>Rotation about an arbitrary axis<a class="headerlink" href="#rotation-about-an-arbitrary-axis" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.2. </span>Rotation about an arbitrary axis<a class="headerlink" href="#rotation-about-an-arbitrary-axis" title="Permalink to this headline">¶</a></h2>
 <p>Another useful tool in our 3D transformation arsenal is the ability to rotate a point (or set of points) by a specified angle about a specified axis.</p>
 <p>The formula required to carry out this operation is that shown in lectures (and also present in the formula book):</p>
 <div class="math notranslate nohighlight">
@@ -653,7 +673,7 @@ plt.show()
 <p>for a rotation by angle <span class="math notranslate nohighlight">\(\theta\)</span> about the unit vector <span class="math notranslate nohighlight">\({\vec{v}}=\alpha{\vec{i}}+\beta{\vec{j}}+\gamma{\vec{k}} \)</span>.</p>
 <p>Let us examine the application of this matrix using another example from our lectures:</p>
 <div class="section" id="lecture-example-rotating-a-pyramid">
-<h3><span class="section-number">3.2.1. </span>Lecture example: Rotating a pyramid<a class="headerlink" href="#lecture-example-rotating-a-pyramid" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.2.1. </span>Lecture example: Rotating a pyramid<a class="headerlink" href="#lecture-example-rotating-a-pyramid" title="Permalink to this headline">¶</a></h3>
 <p><strong>The pyramid defined by coordinates <span class="math notranslate nohighlight">\(O(0,0,0), B(1,0,0), C(0,1,0)\)</span> and <span class="math notranslate nohighlight">\(D(0,0,1)\)</span> is rotated by <span class="math notranslate nohighlight">\(45^o\)</span> about the line that has direction <span class="math notranslate nohighlight">\(\vec{v}=\vec{j}+\vec{k}\)</span> and passes through:</strong></p>
 <ol class="simple">
 <li><p><strong>the origin;</strong></p></li>
@@ -664,13 +684,13 @@ plt.show()
 <p>We will start by defining the coordinates specified in the question:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>O = [0,0,0]
-B = [1,0,0]
-C = [0,1,0]
-D = [0,0,1]
-x_vals2=[O[0],B[0],C[0],D[0]]
-y_vals2=[O[1],B[1],C[1],D[1]]
-z_vals2=[O[2],B[2],C[2],D[2]]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">O</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">C</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">D</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">x_vals2</span><span class="o">=</span><span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">y_vals2</span><span class="o">=</span><span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">z_vals2</span><span class="o">=</span><span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">C</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -678,23 +698,23 @@ z_vals2=[O[2],B[2],C[2],D[2]]
 <p>Let us first begin by establishing what the pyramid looks like prior to any rotation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>p2 = np.array([x_vals2, y_vals2, z_vals2])
-ax = plt.figure().add_subplot(projection=&#39;3d&#39;)
-ax.view_init(elev=20, azim=30, roll=0)
-ax.plot([O[0],C[0]], [O[1],C[1]], [O[2],C[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([O[0],B[0]], [O[1],B[1]], [O[2],B[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([O[0],D[0]], [O[1],D[1]], [O[2],D[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([C[0],B[0]], [C[1],B[1]], [C[2],B[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([C[0],D[0]], [C[1],D[1]], [C[2],D[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([D[0],B[0]], [D[1],B[1]], [D[2],B[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.set_xlabel(&#39;x&#39;)
-ax.set_ylabel(&#39;y&#39;)
-ax.set_zlabel(&#39;z&#39;)
-ax.axes.set_xlim3d(left=-2, right=3) 
-ax.axes.set_ylim3d(bottom=-2, top=3) 
-ax.axes.set_zlim3d(bottom=-2, top=3)
-plt.gca().set_aspect(&#39;equal&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x_vals2</span><span class="p">,</span> <span class="n">y_vals2</span><span class="p">,</span> <span class="n">z_vals2</span><span class="p">])</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="n">elev</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">azim</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">roll</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">C</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xlim3d</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_zlim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -706,14 +726,14 @@ plt.show()
 <p>In this case, I’m too lazy to check if the vector is unit or not: I’ll just divide the vector by it’s size (that way if the vector is already unit, dividing by its size won’t change the vector):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>v = [0,1,1]
-v_hat = v / np.linalg.norm(v)
-print(v_hat)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">v_hat</span> <span class="o">=</span> <span class="n">v</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v_hat</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.         0.70710678 0.70710678]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.57735027 0.57735027 0.57735027]
 </pre></div>
 </div>
 </div>
@@ -721,16 +741,33 @@ print(v_hat)
 <p>We now have all the ingredients we need to fill the abitrary rotation matrix. Remember that, in Python, arguments for trigonometric functions must be in radians:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>alpha = v_hat[0]
-beta = v_hat[1]
-gamma = v_hat[2]
-theta = 45
-st = np.sin(math.radians(theta))
-ct = np.cos(math.radians(theta))
-Rtv = np.matrix([[alpha*alpha*(1-ct)+ct, alpha*beta*(1-ct)+gamma*st, alpha*gamma*(1-ct)-beta*st, 0], 
-                [alpha*beta*(1-ct)-gamma*st, beta*beta*(1-ct)+ct, beta*gamma*(1-ct)+alpha*st, 0], 
-                [alpha*gamma*(1-ct)+beta*st, beta*gamma*(1-ct)-alpha*st, gamma*gamma*(1-ct)+ct, 0],
-                [0,0, 0, 1]])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="n">v_hat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">v_hat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="n">v_hat</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+<span class="n">ct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+<span class="n">Rtv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="n">alpha</span><span class="o">*</span><span class="n">alpha</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ct</span><span class="p">)</span><span class="o">+</span><span class="n">ct</span><span class="p">,</span> <span class="n">alpha</span><span class="o">*</span><span class="n">beta</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ct</span><span class="p">)</span><span class="o">+</span><span class="n">gamma</span><span class="o">*</span><span class="n">st</span><span class="p">,</span> <span class="n">alpha</span><span class="o">*</span><span class="n">gamma</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ct</span><span class="p">)</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">st</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="n">alpha</span><span class="o">*</span><span class="n">beta</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ct</span><span class="p">)</span><span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">st</span><span class="p">,</span> <span class="n">beta</span><span class="o">*</span><span class="n">beta</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ct</span><span class="p">)</span><span class="o">+</span><span class="n">ct</span><span class="p">,</span> <span class="n">beta</span><span class="o">*</span><span class="n">gamma</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ct</span><span class="p">)</span><span class="o">+</span><span class="n">alpha</span><span class="o">*</span><span class="n">st</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="n">alpha</span><span class="o">*</span><span class="n">gamma</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ct</span><span class="p">)</span><span class="o">+</span><span class="n">beta</span><span class="o">*</span><span class="n">st</span><span class="p">,</span> <span class="n">beta</span><span class="o">*</span><span class="n">gamma</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ct</span><span class="p">)</span><span class="o">-</span><span class="n">alpha</span><span class="o">*</span><span class="n">st</span><span class="p">,</span> <span class="n">gamma</span><span class="o">*</span><span class="n">gamma</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ct</span><span class="p">)</span><span class="o">+</span><span class="n">ct</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">Tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">Tpp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">Rtv</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[ 0.9106836 ,  0.33333333, -0.24401694,  0.        ],
+        [-0.24401694,  0.9106836 ,  0.33333333,  0.        ],
+        [ 0.33333333, -0.24401694,  0.9106836 ,  0.        ],
+        [ 0.        ,  0.        ,  0.        ,  1.        ]])
 </pre></div>
 </div>
 </div>
@@ -738,13 +775,13 @@ Rtv = np.matrix([[alpha*alpha*(1-ct)+ct, alpha*beta*(1-ct)+gamma*st, alpha*gamma
 <p>Now that the rotation is stored in the matrix, we can carry out the transformation of the points as before:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>nr2 = [1 for x in range(len(x_vals2))]
-kp = np.vstack([p2, nr2])
-print(&quot;original points:&quot;)
-print(kp.transpose())
-fp = kp.transpose()*Rtv
-print(&quot;rotated points:&quot;)
-print(fp)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nr2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals2</span><span class="p">))]</span>
+<span class="n">kp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">p2</span><span class="p">,</span> <span class="n">nr2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;original points:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kp</span><span class="o">.</span><span class="n">transpose</span><span class="p">())</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="n">kp</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">*</span><span class="n">Rtv</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rotated points:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -756,9 +793,9 @@ print(fp)
  [0 0 1 1]]
 rotated points:
 [[ 0.          0.          0.          1.        ]
- [ 0.70710678  0.5        -0.5         1.        ]
- [-0.5         0.85355339  0.14644661  1.        ]
- [ 0.5         0.14644661  0.85355339  1.        ]]
+ [ 0.9106836   0.33333333 -0.24401694  1.        ]
+ [-0.24401694  0.9106836   0.33333333  1.        ]
+ [ 0.33333333 -0.24401694  0.9106836   1.        ]]
 </pre></div>
 </div>
 </div>
@@ -767,14 +804,14 @@ rotated points:
 <p>We’ll convert these positions back to Cartesian coordinates ready for plotting:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>newp2 = fp[:,0:3].transpose()
-x_vals2n = np.squeeze(np.asarray(newp2[0,:]))
-y_vals2n = np.squeeze(np.asarray(newp2[1,:]))
-z_vals2n = np.squeeze(np.asarray(newp2[2,:]))
-O2 = np.squeeze(np.asarray(newp2[:,0]))
-B2 = np.squeeze(np.asarray(newp2[:,1]))
-C2 = np.squeeze(np.asarray(newp2[:,2]))
-D2 = np.squeeze(np.asarray(newp2[:,3]))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">newp2</span> <span class="o">=</span> <span class="n">fp</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="n">x_vals2n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp2</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]))</span>
+<span class="n">y_vals2n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp2</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]))</span>
+<span class="n">z_vals2n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp2</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]))</span>
+<span class="n">O2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">B2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">C2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp2</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]))</span>
+<span class="n">D2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp2</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -782,17 +819,17 @@ D2 = np.squeeze(np.asarray(newp2[:,3]))
 <p>Now we can look to visualise the result. First I will set up some custom arrows for Python to plot: we want to identify the vector about which the rotation is performed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class Arrow3D(FancyArrowPatch):
-    def __init__(self, xs, ys, zs, *args, **kwargs):
-        super().__init__((0,0), (0,0), *args, **kwargs)
-        self._verts3d = xs, ys, zs
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Arrow3D</span><span class="p">(</span><span class="n">FancyArrowPatch</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_verts3d</span> <span class="o">=</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span>
 
-    def do_3d_projection(self, renderer=None):
-        xs3d, ys3d, zs3d = self._verts3d
-        xs, ys, zs = proj3d.proj_transform(xs3d, ys3d, zs3d, self.axes.M)
-        self.set_positions((xs[0],ys[0]),(xs[1],ys[1]))
+    <span class="k">def</span> <span class="nf">do_3d_projection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">xs3d</span><span class="p">,</span> <span class="n">ys3d</span><span class="p">,</span> <span class="n">zs3d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_verts3d</span>
+        <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span> <span class="o">=</span> <span class="n">proj3d</span><span class="o">.</span><span class="n">proj_transform</span><span class="p">(</span><span class="n">xs3d</span><span class="p">,</span> <span class="n">ys3d</span><span class="p">,</span> <span class="n">zs3d</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">M</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_positions</span><span class="p">((</span><span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">ys</span><span class="p">[</span><span class="mi">0</span><span class="p">]),(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">ys</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 
-        return np.min(zs)
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">zs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -800,33 +837,33 @@ D2 = np.squeeze(np.asarray(newp2[:,3]))
 <p>The plot setup will build on what we have used before. We will include the original pyramid shape (black), and its rotated equivalent (red), plus a blue arrow denoting the axis of rotation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ax = plt.figure().add_subplot(projection=&#39;3d&#39;)
-ax.view_init(elev=20, azim=30, roll=0)
-ax.plot([O[0],B[0]], [O[1],B[1]], [O[2],B[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([O[0],C[0]], [O[1],C[1]], [O[2],C[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([O[0],D[0]], [O[1],D[1]], [O[2],D[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([C[0],B[0]], [C[1],B[1]], [C[2],B[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([D[0],B[0]], [D[1],B[1]], [D[2],B[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([C[0],D[0]], [C[1],D[1]], [C[2],D[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([O2[0],C2[0]], [O2[1],C2[1]], [O2[2],C2[2]], &#39;ro&#39;, linestyle=&#39;-&#39;)
-ax.plot([O2[0],B2[0]], [O2[1],B2[1]], [O2[2],B2[2]], &#39;ro&#39;, linestyle=&#39;-&#39;)
-ax.plot([O2[0],D2[0]], [O2[1],D2[1]], [O2[2],D2[2]], &#39;ro&#39;, linestyle=&#39;-&#39;)
-ax.plot([C2[0],B2[0]], [C2[1],B2[1]], [C2[2],B2[2]], &#39;ro&#39;, linestyle=&#39;-&#39;)
-ax.plot([C2[0],D2[0]], [C2[1],D2[1]], [C2[2],D2[2]], &#39;ro&#39;, linestyle=&#39;-&#39;)
-ax.plot([D2[0],B2[0]], [D2[1],B2[1]], [D2[2],B2[2]], &#39;ro&#39;, linestyle=&#39;-&#39;)
-ax.set_xlabel(&#39;x&#39;)
-ax.set_ylabel(&#39;y&#39;)
-ax.set_zlabel(&#39;z&#39;)
-vstring=&quot;{}i+{}j+{}k&quot;.format(v[0],v[1],v[2])
-arrow_prop_dict = dict(mutation_scale=20, arrowstyle=&#39;-|&gt;&#39;, color=&#39;b&#39;, shrinkA=0, shrinkB=0, linewidth=2)
-a = Arrow3D([-3*v[0], 3*v[0]], [-3*v[1], 3*v[1]], [-3*v[2], 3*v[2]], **arrow_prop_dict)
-ax.text(v[0], v[1], v[2], vstring, c=&#39;b&#39;)
-ax.add_artist(a)
-ax.axes.set_xlim3d(left=-2, right=3) 
-ax.axes.set_ylim3d(bottom=-2, top=3) 
-ax.axes.set_zlim3d(bottom=-2, top=3)
-plt.gca().set_aspect(&#39;equal&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="n">elev</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">azim</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">roll</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">C</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">C2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">O2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">C2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">O2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">C2</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">O2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">O2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B2</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">D2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">O2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">D2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">O2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">D2</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">C2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">C2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">C2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B2</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">C2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">D2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">C2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">D2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">C2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">D2</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">D2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">D2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">D2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B2</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<span class="n">vstring</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">i+</span><span class="si">{}</span><span class="s2">j+</span><span class="si">{}</span><span class="s2">k&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">arrow_prop_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mutation_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-|&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">shrinkA</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shrinkB</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">Arrow3D</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="o">**</span><span class="n">arrow_prop_dict</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">vstring</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xlim3d</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_zlim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -837,28 +874,28 @@ plt.show()
 <p>As in previous 3D examples, it is difficult to confirm the rotation has been carried out successfully using still 3D images. Try varying the rotation angle of the problem, or the viewing angle in the plotting commands to verify the behaviour of the solution.</p>
 </div>
 <div class="section" id="part-2-rotation-about-axis-not-at-origin">
-<h3><span class="section-number">3.2.2. </span>Part 2: Rotation about axis not at origin<a class="headerlink" href="#part-2-rotation-about-axis-not-at-origin" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.2.2. </span>Part 2: Rotation about axis not at origin<a class="headerlink" href="#part-2-rotation-about-axis-not-at-origin" title="Permalink to this headline">¶</a></h3>
 <p>With the axis of rotation no longer passing through the origin, we must translate the coordinates by a distance equal to the effective distance of the axis from the origin. However, and really quite nicely, we can <em>re-use</em> the matrix we already calculated for the rotation, and simply book-end it with the necessary translations:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Tmp = np.matrix([[1, 0, 0, 0], 
-                [0, 1, 0, 0], 
-                [0, 0, 1, 0],
-                [-C[0],-C[1], -C[2], 1]])
-Tpp = np.matrix([[1, 0, 0, 0], 
-                [0, 1, 0, 0], 
-                [0, 0, 1, 0],
-                [C[0], C[1], C[2], 1]])
-fp3 = kp.transpose()*Tmp*Rtv*Tpp
-print(fp3)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="p">[</span><span class="o">-</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="o">-</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">C</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">Tpp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">C</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">fp3</span> <span class="o">=</span> <span class="n">kp</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">*</span><span class="n">Tmp</span><span class="o">*</span><span class="n">Rtv</span><span class="o">*</span><span class="n">Tpp</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fp3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.5         0.14644661 -0.14644661  1.        ]
- [ 1.20710678  0.64644661 -0.64644661  1.        ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.24401694  0.0893164  -0.33333333  1.        ]
+ [ 1.15470054  0.42264973 -0.57735027  1.        ]
  [ 0.          1.          0.          1.        ]
- [ 1.          0.29289322  0.70710678  1.        ]]
+ [ 0.57735027 -0.15470054  0.57735027  1.        ]]
 </pre></div>
 </div>
 </div>
@@ -868,47 +905,47 @@ print(fp3)
 <p>Taking the coordinates we found above, we can transpose them and group them together to make a visual comparison with the pyramid we started with.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>newp3 = fp3[:,0:3].transpose()
-x_vals3n = np.squeeze(np.asarray(newp3[0,:]))
-y_vals3n = np.squeeze(np.asarray(newp3[1,:]))
-z_vals3n = np.squeeze(np.asarray(newp3[2,:]))
-O3 = np.squeeze(np.asarray(newp3[:,0]))
-B3 = np.squeeze(np.asarray(newp3[:,1]))
-C3 = np.squeeze(np.asarray(newp3[:,2]))
-D3 = np.squeeze(np.asarray(newp3[:,3]))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">newp3</span> <span class="o">=</span> <span class="n">fp3</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="n">x_vals3n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp3</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]))</span>
+<span class="n">y_vals3n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp3</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]))</span>
+<span class="n">z_vals3n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp3</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]))</span>
+<span class="n">O3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp3</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">B3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp3</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">C3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp3</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]))</span>
+<span class="n">D3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">newp3</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ax = plt.figure().add_subplot(projection=&#39;3d&#39;)
-ax.view_init(elev=20, azim=240, roll=0)
-ax.plot([O[0],B[0]], [O[1],B[1]], [O[2],B[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([O[0],C[0]], [O[1],C[1]], [O[2],C[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([O[0],D[0]], [O[1],D[1]], [O[2],D[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([C[0],B[0]], [C[1],B[1]], [C[2],B[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([D[0],B[0]], [D[1],B[1]], [D[2],B[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([C[0],D[0]], [C[1],D[1]], [C[2],D[2]], &#39;ko&#39;, linestyle=&#39;-&#39;)
-ax.plot([O3[0],C3[0]], [O3[1],C3[1]], [O3[2],C3[2]], &#39;ro&#39;, linestyle=&#39;-&#39;)
-ax.plot([O3[0],B3[0]], [O3[1],B3[1]], [O3[2],B3[2]], &#39;ro&#39;, linestyle=&#39;-&#39;)
-ax.plot([O3[0],D3[0]], [O3[1],D3[1]], [O3[2],D3[2]], &#39;ro&#39;, linestyle=&#39;-&#39;)
-ax.plot([C3[0],B3[0]], [C3[1],B3[1]], [C3[2],B3[2]], &#39;ro&#39;, linestyle=&#39;-&#39;)
-ax.plot([C3[0],D3[0]], [C3[1],D3[1]], [C3[2],D3[2]], &#39;ro&#39;, linestyle=&#39;-&#39;)
-ax.plot([D3[0],B3[0]], [D3[1],B3[1]], [D3[2],B3[2]], &#39;ro&#39;, linestyle=&#39;-&#39;)
-ax.set_xlabel(&#39;x&#39;)
-ax.set_ylabel(&#39;y&#39;)
-ax.set_zlabel(&#39;z&#39;)
-vstring=&quot;C+{}i+{}j+{}k&quot;.format(v[0],v[1],v[2])
-arrow_prop_dict = dict(mutation_scale=20, arrowstyle=&#39;-|&gt;&#39;, color=&#39;b&#39;, shrinkA=0, shrinkB=0, linewidth=2)
-a = Arrow3D([C[0]-3*v[0], C[0]+3*v[0]], [C[1]-3*v[1], C[1]+3*v[1]], [C[2]-3*v[2], C[2]+3*v[2]], **arrow_prop_dict)
-ax.text(v[0], v[1], v[2], vstring, c=&#39;b&#39;)
-ax.add_artist(a)
-ax.axes.set_xlim3d(left=-2, right=3) 
-ax.axes.set_ylim3d(bottom=-2, top=3) 
-ax.axes.set_zlim3d(bottom=-2, top=3)
-plt.gca().set_aspect(&#39;equal&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="n">elev</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">azim</span><span class="o">=</span><span class="mi">240</span><span class="p">,</span> <span class="n">roll</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">C</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">O</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">C3</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">O3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">C3</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">O3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">C3</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B3</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">O3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B3</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">O3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B3</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">O3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">D3</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">O3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">D3</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">O3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">D3</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">C3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B3</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">C3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B3</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">C3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B3</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">C3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">D3</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">C3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">D3</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">C3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">D3</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">D3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B3</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">D3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">B3</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">D3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">B3</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<span class="n">vstring</span><span class="o">=</span><span class="s2">&quot;C+</span><span class="si">{}</span><span class="s2">i+</span><span class="si">{}</span><span class="s2">j+</span><span class="si">{}</span><span class="s2">k&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">arrow_prop_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mutation_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-|&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">shrinkA</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shrinkB</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">Arrow3D</span><span class="p">([</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">C</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="o">**</span><span class="n">arrow_prop_dict</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">vstring</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xlim3d</span><span class="p">(</span><span class="n">left</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_zlim3d</span><span class="p">(</span><span class="n">bottom</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -920,7 +957,7 @@ plt.show()
 </div>
 </div>
 <div class="section" id="over-to-you">
-<h2><span class="section-number">3.3. </span>Over to you<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3. </span>Over to you<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
 <p>As usual, I recommend that you apply these tools and visualisation techniques to some of the problems seen in the maths tutorial sheet. Can you use Python to confirm your approach to the matrix multiplication by hand? Can you visualise what some of the reflection or rotation questions produce and why?</p>
 </div>
 </div>
@@ -954,13 +991,13 @@ plt.show()
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">2. </span>Coordinate Transformations in 3D</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Coordinate Transformations in 3D</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="MAT201M_ComplexNos.html" title="next page">
+    <a class='right-next' id="next-link" href="MAT201M_Proj1.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Complex Numbers</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Projection 1</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

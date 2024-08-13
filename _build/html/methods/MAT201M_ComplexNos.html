@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>6. Complex Numbers &#8212; MAT201 Applied Mathematics with Python</title>
+    <title>7. Complex Numbers &#8212; MAT201 Applied Mathematics with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="7. Quaternions (and rotations!)" href="MAT201M_Quats.html" />
-    <link rel="prev" title="5. Projection 2" href="MAT201M_Proj2.html" />
+    <link rel="next" title="8. Quaternions (and rotations!)" href="MAT201M_Quats.html" />
+    <link rel="prev" title="6. Projection 2" href="MAT201M_Proj2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -134,8 +134,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_1Dcolls.html">
+   5. 1D Sphere/Sphere Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../dynamics/MAT201D_2DSScols.html">
-   5. 2D Sphere/Sphere Collisions
+   6. 2D Sphere/Sphere Collisions
   </a>
  </li>
 </ul>
@@ -146,53 +151,58 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="MAT201M_2DVT.html">
+  <a class="reference internal" href="MAT201M_PartialDerivs.html">
    1. 2D Viewing Transforms
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="MAT201M_2DVT.html">
+   2. 2D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_3DVT.html">
-   2. 3D Viewing Transforms
+   3. 3D Viewing Transforms
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_3DVT2.html">
-   3. More 3D Viewing Transforms
+   4. More 3D Viewing Transforms
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_Proj1.html">
-   4. Orthographic Projection
+   5. Orthographic Projection
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_Proj2.html">
-   5. Perspective Projection
+   6. Perspective Projection
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   6. Complex Numbers
+   7. Complex Numbers
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_Quats.html">
-   7. Quaternions
+   8. Quaternions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysIntro.html">
-   8. Ray Tracing
+   9. Ray Tracing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysBoxes.html">
-   9. Rays and Boxes
+   10. Rays and Boxes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysPlanes.html">
-   10. Rays and Planes
+   11. Rays and Planes
   </a>
  </li>
 </ul>
@@ -313,44 +323,44 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   6.1. Introduction
+   7.1. Introduction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#basic-arithmetic-operations">
-   6.2. Basic arithmetic operations
+   7.2. Basic arithmetic operations
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#complex-number-division">
-   6.3. Complex number division
+   7.3. Complex number division
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#visualising-complex-numbers">
-   6.4. Visualising complex numbers
+   7.4. Visualising complex numbers
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cmath">
-   6.5. Cmath
+   7.5. Cmath
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#rotations-with-complex-numbers">
-   6.6. Rotations with Complex Numbers
+   7.6. Rotations with Complex Numbers
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lecture-example-rotate-a-position-using-complex-numbers">
-     6.6.1. Lecture example: rotate a position using complex numbers
+     7.6.1. Lecture example: rotate a position using complex numbers
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#over-to-you">
-   6.7. Over to you!
+   7.7. Over to you!
   </a>
  </li>
 </ul>
@@ -375,44 +385,44 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   6.1. Introduction
+   7.1. Introduction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#basic-arithmetic-operations">
-   6.2. Basic arithmetic operations
+   7.2. Basic arithmetic operations
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#complex-number-division">
-   6.3. Complex number division
+   7.3. Complex number division
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#visualising-complex-numbers">
-   6.4. Visualising complex numbers
+   7.4. Visualising complex numbers
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cmath">
-   6.5. Cmath
+   7.5. Cmath
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#rotations-with-complex-numbers">
-   6.6. Rotations with Complex Numbers
+   7.6. Rotations with Complex Numbers
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lecture-example-rotate-a-position-using-complex-numbers">
-     6.6.1. Lecture example: rotate a position using complex numbers
+     7.6.1. Lecture example: rotate a position using complex numbers
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#over-to-you">
-   6.7. Over to you!
+   7.7. Over to you!
   </a>
  </li>
 </ul>
@@ -425,7 +435,7 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="complex-numbers">
-<h1><span class="section-number">6. </span>Complex Numbers<a class="headerlink" href="#complex-numbers" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">7. </span>Complex Numbers<a class="headerlink" href="#complex-numbers" title="Permalink to this headline">¶</a></h1>
 <p>Complex numbers are a rare example of more abstract mathematical ideas than can be useful practically. They are useful in a number of different mathematical fields and so have very wide implications on a number of branches of mathematics. However, in the field of computer graphics they have interesting properties which will allow us to describe rotations in a new and somewhat unexpected way. In order to perform rotations, we must understand the basic properties of complex numbers, as taught in the lectures.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -440,7 +450,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="introduction">
-<h2><span class="section-number">6.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>As seen in the lectures, complex numbers comprise of a real part and an imaginary part, with the letter “i” indicating which is which. In general a complex number is denoted as</p>
 <div class="math notranslate nohighlight">
 \[
@@ -458,7 +468,7 @@ z = A+iB,
 </div>
 </div>
 <div class="section" id="basic-arithmetic-operations">
-<h2><span class="section-number">6.2. </span>Basic arithmetic operations<a class="headerlink" href="#basic-arithmetic-operations" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.2. </span>Basic arithmetic operations<a class="headerlink" href="#basic-arithmetic-operations" title="Permalink to this headline">¶</a></h2>
 <p>When we add or subtract complex numbers, we must add or subtract the real parts and imaginary components separately:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -546,7 +556,7 @@ conj(z3)= (3-1j)
 </div>
 </div>
 <div class="section" id="complex-number-division">
-<h2><span class="section-number">6.3. </span>Complex number division<a class="headerlink" href="#complex-number-division" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.3. </span>Complex number division<a class="headerlink" href="#complex-number-division" title="Permalink to this headline">¶</a></h2>
 <p>The complex conjugate is really useful for dividing complex numbers. We can eliminate the presence of a complex term in the denominator by multiplying it by it’s conjugate; to balance this, we also multiply the numerator by the complex conjugate of the denominator.</p>
 <p>In the lectures we saw how this worked for a general complex number division:</p>
 <div class="math notranslate nohighlight">
@@ -573,7 +583,7 @@ ans= (-8-4j) / (10+0j) = (-0.8-0.4j)
 </div>
 </div>
 <div class="section" id="visualising-complex-numbers">
-<h2><span class="section-number">6.4. </span>Visualising complex numbers<a class="headerlink" href="#visualising-complex-numbers" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.4. </span>Visualising complex numbers<a class="headerlink" href="#visualising-complex-numbers" title="Permalink to this headline">¶</a></h2>
 <p>One way to visualise complex numbers is to use the Argand diagram. In this diagram we plot the real component of the complex number as the <span class="math notranslate nohighlight">\(x\)</span>-coordinate, and the imaginary component as the <span class="math notranslate nohighlight">\(y\)</span>-coordinate.</p>
 <p>To show this, we’ll define a function called “argand”. The argument of this function is a complex number. Our function will return the location of this complex number on the Argand diagram, highlighting the <span class="math notranslate nohighlight">\(x\)</span>- and <span class="math notranslate nohighlight">\(y\)</span>-components:</p>
 <div class="cell docutils container">
@@ -653,7 +663,7 @@ ans= (-8-4j) / (10+0j) = (-0.8-0.4j)
 </div>
 </div>
 <div class="section" id="cmath">
-<h2><span class="section-number">6.5. </span>Cmath<a class="headerlink" href="#cmath" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.5. </span>Cmath<a class="headerlink" href="#cmath" title="Permalink to this headline">¶</a></h2>
 <p>Python has an explicit package solely for manipulating complex numbers, called <em>cmath</em>. It goes far beyond our needs (complex numbers are an entire interesting branch of mathematics with wide-ranging implications and applications). Some of the more basic functions can be useful however: <em>cmath</em> can quickly and directly convert to/from polar form, for example using the <em>polar</em> command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -675,11 +685,11 @@ ans= (-8-4j) / (10+0j) = (-0.8-0.4j)
 </div>
 </div>
 <div class="section" id="rotations-with-complex-numbers">
-<h2><span class="section-number">6.6. </span>Rotations with Complex Numbers<a class="headerlink" href="#rotations-with-complex-numbers" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.6. </span>Rotations with Complex Numbers<a class="headerlink" href="#rotations-with-complex-numbers" title="Permalink to this headline">¶</a></h2>
 <p>We now have a relatively clear idea of some of the most useful properties of complex numbers. We will need these concepts to understand longer forms of complex numbers called “Quaternions”, which are commonly used to rotate objects in 3D space.</p>
 <p>As a sneak peak of what we might expect from quaternions, we can also use complex numbers to rotate objects in 2D. The content of this section is strictly for information, and will not be examined upon. In the lectures we illustrated this idea with an example:</p>
 <div class="section" id="lecture-example-rotate-a-position-using-complex-numbers">
-<h3><span class="section-number">6.6.1. </span>Lecture example: rotate a position using complex numbers<a class="headerlink" href="#lecture-example-rotate-a-position-using-complex-numbers" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.6.1. </span>Lecture example: rotate a position using complex numbers<a class="headerlink" href="#lecture-example-rotate-a-position-using-complex-numbers" title="Permalink to this headline">¶</a></h3>
 <p><strong>Rotate the coordinates <span class="math notranslate nohighlight">\((1,5)\)</span> by <span class="math notranslate nohighlight">\(60^o\)</span> counterclockwise about the origin using complex numbers.</strong></p>
 <p>Our first step is to express the coordinate as a complex number:</p>
 <div class="cell docutils container">
@@ -771,7 +781,7 @@ lectures stated im=  (-3.83,3.37)
 </div>
 </div>
 <div class="section" id="over-to-you">
-<h2><span class="section-number">6.7. </span>Over to you!<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.7. </span>Over to you!<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
 <p>These examples are one way that we can use Python to illustrate some of our methods taught in lectures.</p>
 <p>Can you confirm some of the tutorial question solutions using Python? Can you plot these on the Argand diagram, or evaluate them in polar form? Can you pick a different position and perform a rotation to satisfy yourself that complex numbers and graphics transformations can achieve identical results..?</p>
 </div>
@@ -806,13 +816,13 @@ lectures stated im=  (-3.83,3.37)
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">5. </span>Projection 2</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Projection 2</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="MAT201M_Quats.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Quaternions (and rotations!)</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Quaternions (and rotations!)</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -294,7 +294,7 @@ plt.show()
 # In[14]:
 
 
-v = [0,1,1]
+v = [1,1,1]
 v_hat = v / np.linalg.norm(v)
 print(v_hat)
 
@@ -307,13 +307,22 @@ print(v_hat)
 alpha = v_hat[0]
 beta = v_hat[1]
 gamma = v_hat[2]
-theta = 45
+theta = 30
 st = np.sin(math.radians(theta))
 ct = np.cos(math.radians(theta))
 Rtv = np.matrix([[alpha*alpha*(1-ct)+ct, alpha*beta*(1-ct)+gamma*st, alpha*gamma*(1-ct)-beta*st, 0], 
                 [alpha*beta*(1-ct)-gamma*st, beta*beta*(1-ct)+ct, beta*gamma*(1-ct)+alpha*st, 0], 
                 [alpha*gamma*(1-ct)+beta*st, beta*gamma*(1-ct)-alpha*st, gamma*gamma*(1-ct)+ct, 0],
                 [0,0, 0, 1]])
+Tmp = np.matrix([[1, 0, 0, 0], 
+                [0, 1, 0, 0], 
+                [0, 0, 1, 0],
+                [-1,-2, -3, 1]])
+Tpp = np.matrix([[1, 0, 0, 0], 
+                [0, 1, 0, 0], 
+                [0, 0, 1, 0],
+                [1, 2, 3, 1]])
+Rtv
 
 
 # Now that the rotation is stored in the matrix, we can carry out the transformation of the points as before:

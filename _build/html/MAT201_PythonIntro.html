@@ -134,8 +134,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="dynamics/MAT201D_1Dcolls.html">
+   5. 1D Sphere/Sphere Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="dynamics/MAT201D_2DSScols.html">
-   5. 2D Sphere/Sphere Collisions
+   6. 2D Sphere/Sphere Collisions
   </a>
  </li>
 </ul>
@@ -146,43 +151,58 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="methods/MAT201M_2DVT.html">
+  <a class="reference internal" href="methods/MAT201M_PartialDerivs.html">
    1. 2D Viewing Transforms
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="methods/MAT201M_2DVT.html">
+   2. 2D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="methods/MAT201M_3DVT.html">
-   2. 3D Viewing Transforms
+   3. 3D Viewing Transforms
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="methods/MAT201M_3DVT2.html">
-   3. More 3D Viewing Transforms
+   4. More 3D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="methods/MAT201M_Proj1.html">
+   5. Orthographic Projection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="methods/MAT201M_Proj2.html">
+   6. Perspective Projection
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="methods/MAT201M_ComplexNos.html">
-   4. Complex Numbers
+   7. Complex Numbers
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="methods/MAT201M_Quats.html">
-   5. Quaternions
+   8. Quaternions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="methods/MAT201M_RaysIntro.html">
-   6. Ray Tracing
+   9. Ray Tracing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="methods/MAT201M_RaysBoxes.html">
-   7. Rays and Boxes
+   10. Rays and Boxes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="methods/MAT201M_RaysPlanes.html">
-   8. Rays and Planes
+   11. Rays and Planes
   </a>
  </li>
 </ul>
@@ -389,7 +409,7 @@ Jupyter and python can be launched through the Anaconda data science platform on
 <p>Note that they comprise of markdown cells and code cells. This text is a markdown cell. Below, you can see my first code cell, containing the classic first command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;Hello, World&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -407,8 +427,8 @@ Jupyter and python can be launched through the Anaconda data science platform on
 <p>Python has extended functionality through libraries containing lots of extra commands, functions, and useful stuff. We import these libraries and commands using the <em>import</em> command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import time
-time.sleep(3)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -429,7 +449,7 @@ time.sleep(3)
 <p>Let’s go ahead and load in the libraries we need: in this case, we’ll focus solely on <em>sympy</em> (which, for simplicity, when calling, we will refer to as “sym”):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import sympy as sym
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
 </pre></div>
 </div>
 </div>
@@ -437,8 +457,8 @@ time.sleep(3)
 <p>Let’s very briefly look at some capabilities of <em>sympy</em>. <em>Sympy</em> has three data types, Real Integer and Rational. Rational numbers are probably better known as fractions. If we wanted to work with the fraction of one half, for example, we could write this as a real number <span class="math notranslate nohighlight">\(0.5\)</span>, or as a fraction:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>onehalf = sym.Rational(1,2)
-print(onehalf)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">onehalf</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">onehalf</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -451,7 +471,7 @@ print(onehalf)
 <p>We can perform basic maths with symbols in the usual way (e.g. addition, subtraction, multiplication, division):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;4*onehalf=&quot;, 4 * onehalf)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4*onehalf=&quot;</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">onehalf</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -464,8 +484,8 @@ print(onehalf)
 <p>We can use symbolic constants like <span class="math notranslate nohighlight">\(pi\)</span>, <span class="math notranslate nohighlight">\(e\)</span> (as in the exponential) or indeed infinity:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mypi = sym.pi
-print(mypi.evalf())
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mypi</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">pi</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mypi</span><span class="o">.</span><span class="n">evalf</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -478,8 +498,8 @@ print(mypi.evalf())
 <p>This is just for starters: we can build systems of equations if we tell Python that some symbols represent unknown numbers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x, y = sym.Symbol(&#39;x&#39;), sym.Symbol(&#39;y&#39;)
-print(x + 2 * x + onehalf)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">),</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">onehalf</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -492,7 +512,7 @@ print(x + 2 * x + onehalf)
 <p>See how Python has simplified the above expression, and added together the x terms? We can get it to do more complicated algebra:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sym.expand( (x + onehalf * y)**2 )
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">onehalf</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -504,16 +524,14 @@ print(x + 2 * x + onehalf)
 <p>Sympy has expanded this binomial, just like we would using pen and paper. It knows all the rules we do! It also knows lots about trigonometric functions. The <em>simplify</em> command can simplify expressions, using all of the maths knowledge in the library. We know that <span class="math notranslate nohighlight">\(\cos^2{(x)}+\sin^2{(x)}=1\)</span>; so does Sympy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print( sym.cos(x) * sym.cos(x) + sym.sin(x) * sym.sin(x))
-print( sym.simplify( sym.cos(x) * sym.cos(x) + sym.sin(x) * sym.sin(x)) )
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sin(x)**2 + cos(x)**2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+1
 </pre></div>
 </div>
 </div>
@@ -521,7 +539,7 @@ print( sym.simplify( sym.cos(x) * sym.cos(x) + sym.sin(x) * sym.sin(x)) )
 <p>It can even perform calculus operations like differentiation and integration:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sym.diff(onehalf * x ** 2, x)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">onehalf</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -538,7 +556,7 @@ print( sym.simplify( sym.cos(x) * sym.cos(x) + sym.sin(x) * sym.sin(x)) )
 <p>where <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are independent variables:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sym.diff(x ** 3 + y + onehalf * x * y , x)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">onehalf</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span> <span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -555,7 +573,7 @@ print( sym.simplify( sym.cos(x) * sym.cos(x) + sym.sin(x) * sym.sin(x)) )
 <p>but so does Sympy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sym.integrate(1 / x, x)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -567,8 +585,8 @@ print( sym.simplify( sym.cos(x) * sym.cos(x) + sym.sin(x) * sym.sin(x)) )
 <p>(also noting that sympy refers to natural log (<span class="math notranslate nohighlight">\(ln\)</span>) as “log”). Sympy can also solve equations or sets of equations in one line:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>solution = sym.solve((x + 5 * y - 2, -3 * x + 6 * y - 15), (x, y))
-solution[x], solution[y]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solution</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">((</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">y</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">y</span> <span class="o">-</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+<span class="n">solution</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">solution</span><span class="p">[</span><span class="n">y</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>

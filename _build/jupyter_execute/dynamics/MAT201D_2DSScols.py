@@ -3,9 +3,7 @@
 
 # # 2D Oblique Sphere Collisions
 # 
-# Interactive code to illustrate concepts from MAT201 at Abertay University (JT 2022).
-# 
-# Using the maths we learned in lectures, we'll create a visualisation of a ball collision with another ball. Post-impact trajectories are determined by the solution of a set of simultaneous equations, for an initial set of speeds, angles, masses and coefficient of restitution. Impact takes place at origin for simplicity.
+# This worksheet expands on some of the principles seen in 1D, aiming to illustrate how these principles extend to 2D collisions.
 
 # As always, we need to load in the Python libraries that we need to carry out the plotting, animation and (in this case) solve a set of simultaneous equations.
 
@@ -20,10 +18,37 @@ import matplotlib.patches as patches
 import random
 import math
 import sys
-get_ipython().system('{sys.executable} -m pip install --upgrade Ipython')
+#!{sys.executable} -m pip install --upgrade Ipython
 
 
-# With the libraries ready, we can set up some of the initial conditions for our collision. We'll have two balls, labelled A and B, and each is associated with a mass, an initial speed and at some initial angle to the line of centers created when the two spheres meet:
+# ## Maths recap
+# 
+# In lectures we learned that 2D sphere collisions essentially boil down to:
+# 
+# 1.   perpendicular velocities remain unchanged,
+# 2.   conservation of momentum (parallel to LOC):
+# 
+# $$ 
+# m_{1}U_{1}\cos{\alpha}+m_{2}U_{2}\cos{\beta}=m_{1}v_{1}+m_{2}v_{2}, 
+# $$
+# 
+# 3.   Newton's Law of Restitution (parallel to LOC):
+# 
+# $$ 
+# v_{2}-v_{1}=e\left(U_{1}\cos{\alpha}-U_{2}\cos{\beta}\right), 
+# $$
+# 
+# where $\alpha$ and $\beta$ are the angles of incidence made by each object relative to the line of centers, $U_1$ and $U_2$ are the pre-collision velocities of each sphere, and $v_1$, $v_2$ are the post collision velocities of the sphere in the parallel direction.
+# 
+# The first statement effectively fixes the $y$-components of velocity; the final two equations reduce to a set of simultaneous equations to solve for $v_x$ of each particle. 
+# 
+# When we tackle these problems by hand, we usually use substitution or row operations. Python is excellent at solving simultaneous equations (as we will see), provided we format the simultaneous equations in matrix form $Ax=B$. This then means that the solutions are given by inverting matrix $A$ and multiplying it to the coefficients in $B$; mathematically, $A^{-1}Ax=Ix=A^{-1}B$ for identity matrix $I$. 
+# 
+# At the point where we come to solve the simultaneous equations, we will arrange our coefficients in matrix form, and have Python carry out the inversion and the solution. More details can be found in the 1D collisions worksheet.
+
+# ## Animations
+# 
+# We'll begin with our initial conditions. Two balls, labelled A and B, are each associated with a mass, an initial speed and at some initial angle to the line of centers created when the two spheres meet:
 
 # In[2]:
 
@@ -90,25 +115,7 @@ lval = (max(abs(x0_A), abs(x0_B), abs(y0_A), abs(y0_B)))
 extent = 2 * int(math.ceil(lval))
 
 
-# We now have to deal with what happens when the balls collide.
-# In MAT201 we learned that 2D sphere collisions essentially boil down to:
-# 
-# 1.   perpendicular velocities remain unchanged
-# 2.   conservation of momentum (parallel to LOC):
-# 
-# $$ 
-# m_{1}U_{1}\cos{\alpha}+m_{2}U_{2}\cos{\beta}=m_{1}v_{1}+m_{2}v_{2} 
-# $$
-# 
-# 3.   Newton's Law of Restitution (parallel to LOC):
-# 
-# $$ 
-# v_{2}-v_{1}=e\left(U_{1}\cos{\alpha}-U_{2}\cos{\beta}\right). 
-# $$
-# 
-# The first item fixes the $y$-components of velocity; the final two equations reduce to a set of simultaneous equations to solve for $v_x$ of each particle. 
-# 
-# When we tackle these problems by hand, we usually use substitution or row operations. Python is excellent at solving simultaneous equations (as we will see), provided we format the simultaneous equations in matrix form $Ax=B$. This then means that the solutions are given by inverting matrix $A$ and multiplying it to the coefficients in $B$; mathematically, $A^{-1}Ax=Ix=A^{-1}B$ for identity matrix $I$. We'll therefore arrange some of the coefficients in the final two equations to be in the form of a matrix:
+# Let's store our matrix of coefficients, $A$, for later: we'll solve the system of equations at the instant the collision occurs in the animation.
 
 # In[7]:
 
@@ -248,12 +255,6 @@ xdata_B, ydata_B = [], []
 
 
 # Final step is to create the animation. The length of the simulation in time is the interval, and will impact the length of time the animation will take to create.
-
-# In[20]:
-
-
-
-
 
 # In[14]:
 

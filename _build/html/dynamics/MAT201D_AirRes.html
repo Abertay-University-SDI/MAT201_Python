@@ -134,8 +134,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="MAT201D_1Dcolls.html">
+   5. 1D Sphere/Sphere Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="MAT201D_2DSScols.html">
-   5. 2D Sphere/Sphere Collisions
+   6. 2D Sphere/Sphere Collisions
   </a>
  </li>
 </ul>
@@ -146,43 +151,58 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../methods/MAT201M_2DVT.html">
+  <a class="reference internal" href="../methods/MAT201M_PartialDerivs.html">
    1. 2D Viewing Transforms
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_2DVT.html">
+   2. 2D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_3DVT.html">
-   2. 3D Viewing Transforms
+   3. 3D Viewing Transforms
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_3DVT2.html">
-   3. More 3D Viewing Transforms
+   4. More 3D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_Proj1.html">
+   5. Orthographic Projection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_Proj2.html">
+   6. Perspective Projection
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_ComplexNos.html">
-   4. Complex Numbers
+   7. Complex Numbers
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_Quats.html">
-   5. Quaternions
+   8. Quaternions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_RaysIntro.html">
-   6. Ray Tracing
+   9. Ray Tracing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_RaysBoxes.html">
-   7. Rays and Boxes
+   10. Rays and Boxes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_RaysPlanes.html">
-   8. Rays and Planes
+   11. Rays and Planes
   </a>
  </li>
 </ul>
@@ -368,13 +388,13 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Let’s go ahead and load in the libraries we need: in this case, we’ll need <em>numpy</em>, <em>sympy</em> and some plotting routines for later:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
-import sympy as sym
-import numpy as np
-import math 
-import matplotlib.pyplot as plt 
-import matplotlib.gridspec as gridspec
-from sympy.utilities.lambdify import lambdify, implemented_function
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
+<span class="kn">from</span> <span class="nn">sympy.utilities.lambdify</span> <span class="kn">import</span> <span class="n">lambdify</span><span class="p">,</span> <span class="n">implemented_function</span>
 </pre></div>
 </div>
 </div>
@@ -411,19 +431,19 @@ s=s_0+\int_{t=0}^{t=t}v{\rm d}t.
 <p>In that example, an object was released from rest, and was subject to a resistive force <span class="math notranslate nohighlight">\(-kv\)</span> and the force of gravity. We first use Newton’s Law to determine the acceleration of the object as a function of the object’s velocity:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>v = sym.Symbol(&#39;v&#39;,real=True)
-x = sym.Symbol(&#39;x&#39;,real=True)
-t = sym.Symbol(&#39;t&#39;,real=True, positive=True)
-m = sym.Symbol(&#39;m&#39;,real=True, positive=True)
-k = sym.Symbol(&#39;k&#39;,real=True, positive=True)
-D = sym.Symbol(&#39;D&#39;,real=True, positive=True)
-g = 9.81
-v_ini = 0
-F_res = -k * v
-F_g = m*g
-F_total = F_res + F_g
-a = F_total/m
-print(&quot;a=&quot;,a)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span>
+<span class="n">v_ini</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">F_res</span> <span class="o">=</span> <span class="o">-</span><span class="n">k</span> <span class="o">*</span> <span class="n">v</span>
+<span class="n">F_g</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">g</span>
+<span class="n">F_total</span> <span class="o">=</span> <span class="n">F_res</span> <span class="o">+</span> <span class="n">F_g</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">F_total</span><span class="o">/</span><span class="n">m</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a=&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -436,8 +456,8 @@ print(&quot;a=&quot;,a)
 <p>Over time the resistance force will grow with the velocity of the object, until it <em>matches</em> the force created by gravity. These forces will then cancel each other, yielding <em>no net acceleration</em>. The velocity at which this occurs is called the <strong>terminal velocity</strong>. To calculate the terminal velocity, we set acceleration <span class="math notranslate nohighlight">\(a=0\)</span> and solve for the velocity:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>v_terminal = sym.solve(F_total/m, v)
-print(v_terminal)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_terminal</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">F_total</span><span class="o">/</span><span class="n">m</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v_terminal</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -452,12 +472,12 @@ print(v_terminal)
 (NB: This may take a few seconds!)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>lhs = sym.integrate(1/m,(t, 0, t))
-print(&quot;lhs: &quot;,lhs)
-rhs = sym.integrate(1.0 / F_total,(v, 0, v))
-print(&quot;rhs: &quot;,rhs)
-vofx = sym.solve(rhs - lhs, v)
-print(&quot;v(x):&quot;,vofx[0])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lhs</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">,(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lhs: &quot;</span><span class="p">,</span><span class="n">lhs</span><span class="p">)</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">F_total</span><span class="p">,(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rhs: &quot;</span><span class="p">,</span><span class="n">rhs</span><span class="p">)</span>
+<span class="n">vofx</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">rhs</span> <span class="o">-</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;v(x):&quot;</span><span class="p">,</span><span class="n">vofx</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -474,8 +494,8 @@ rhs:  1.0*log(-9.81*m)/k - 1.0*log(1.0*k*v - 9.81*m)/k
 <p>Having integrated each side separately, we can move one result over to the other side and ask Python to solve the equation “RHS-LHS=0”, to determine velocity as a function of time:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>voft = sym.solve(rhs - lhs, v)
-print(&quot;v(t):&quot;,voft)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">voft</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">rhs</span> <span class="o">-</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;v(t):&quot;</span><span class="p">,</span><span class="n">voft</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -489,24 +509,24 @@ print(&quot;v(t):&quot;,voft)
 <p>Lets plot this on a graph, and include the solution to the same equations but <strong>only</strong> including the force of gravity. In the lectures, we did this using a Taylor series expansion, but we can let Python resolve the same set of equations but including only <span class="math notranslate nohighlight">\(F_g\)</span>. In order to visualise this, we’ll assume a mass <span class="math notranslate nohighlight">\(m=2{\rm{kg}}\)</span> and <span class="math notranslate nohighlight">\(k=1\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>func = lambdify(t, voft[0].subs({m: 2, k:1}),&#39;numpy&#39;)
-lhs2 = sym.integrate(1/m,(t, 0, t))
-rhs2 = sym.integrate(1.0 / F_g,(v, 0, v))
-voft2 = sym.solve(rhs2 - lhs2, v)
-func2 = lambdify(t, voft2[0].subs({m: 2}),&#39;numpy&#39;)
-xvals = np.arange(0,20,.2)
-yvals = func(xvals)
-yvals2 = func2(xvals)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">voft</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span><span class="mi">1</span><span class="p">}),</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">lhs2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">,(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+<span class="n">rhs2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">F_g</span><span class="p">,(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+<span class="n">voft2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">rhs2</span> <span class="o">-</span> <span class="n">lhs2</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="n">func2</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">voft2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="mi">2</span><span class="p">}),</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">xvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mf">.2</span><span class="p">)</span>
+<span class="n">yvals</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">xvals</span><span class="p">)</span>
+<span class="n">yvals2</span> <span class="o">=</span> <span class="n">func2</span><span class="p">(</span><span class="n">xvals</span><span class="p">)</span>
 
-# make figure
-fig2 = plt.figure(figsize=(8,4))
-plt.plot(xvals,yvals,&#39;r&#39;,label=&#39;mg-kv&#39;)
-plt.plot(xvals,yvals2,&#39;r--&#39;,label=&#39;mg&#39;)
-plt.ylim([0, 25])
-plt.xlabel(&quot;t&quot;)
-plt.ylabel(&quot;v(t)&quot;)
-plt.legend(loc=&#39;best&#39;)
-plt.show()
+<span class="c1"># make figure</span>
+<span class="n">fig2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">yvals</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mg-kv&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">yvals2</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mg&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;v(t)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -518,22 +538,22 @@ plt.show()
 <p>We can also examine the acceleration as a function of time both with and without the resistive force. To do this, we differentiate our velocity result:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>aoft = sym.diff(voft[0],t)
-print(&quot;a(t):&quot;, aoft)
-aoft2 = sym.diff(voft2[0],t)
-func3 = lambdify(t, aoft.subs({m: 2, k:1}),&#39;numpy&#39;)
-ayvals = func3(xvals)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aoft</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">voft</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a(t):&quot;</span><span class="p">,</span> <span class="n">aoft</span><span class="p">)</span>
+<span class="n">aoft2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">voft2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">)</span>
+<span class="n">func3</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">aoft</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span><span class="mi">1</span><span class="p">}),</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">ayvals</span> <span class="o">=</span> <span class="n">func3</span><span class="p">(</span><span class="n">xvals</span><span class="p">)</span>
 
-# make figure
-fig3 = plt.figure(figsize=(8,4))
-plt.plot(xvals,ayvals,&#39;b&#39;,label=&#39;mg-kv&#39;)
-plt.plot([0,20],[aoft2,aoft2],&#39;b--&#39;,label=&#39;mg&#39;)
-plt.ylim([0, 10])
-plt.xlim([0,20])
-plt.xlabel(&quot;t&quot;)
-plt.ylabel(&quot;a(t)&quot;)
-plt.legend(loc=&#39;best&#39;)
-plt.show()
+<span class="c1"># make figure</span>
+<span class="n">fig3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">ayvals</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mg-kv&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">],[</span><span class="n">aoft2</span><span class="p">,</span><span class="n">aoft2</span><span class="p">],</span><span class="s1">&#39;b--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mg&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;a(t)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -547,24 +567,24 @@ plt.show()
 <p>We can see again that, initially the object accelerates at a value of <span class="math notranslate nohighlight">\(g=9.81{\rm{ms}}^{-2}\)</span>, but air resistance causes the acceleration to fall to zero, at which point terminal velocity is achieved.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>soft = sym.integrate(voft[0],(t, 0, t))
-print(&quot;s(t):&quot;, sym.simplify(soft))
-soft2 = sym.integrate(voft2[0],(t, 0, t))
-func4 = lambdify(t, soft.subs({m: 2, k:1}),&#39;numpy&#39;)
-func5 = lambdify(t, soft2.subs({m: 2, k:1}),&#39;numpy&#39;)
-syvals = func4(xvals)
-syvals2 = func5(xvals)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soft</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">voft</span><span class="p">[</span><span class="mi">0</span><span class="p">],(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;s(t):&quot;</span><span class="p">,</span> <span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">soft</span><span class="p">))</span>
+<span class="n">soft2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">voft2</span><span class="p">[</span><span class="mi">0</span><span class="p">],(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+<span class="n">func4</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">soft</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span><span class="mi">1</span><span class="p">}),</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">func5</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">soft2</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span><span class="mi">1</span><span class="p">}),</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">syvals</span> <span class="o">=</span> <span class="n">func4</span><span class="p">(</span><span class="n">xvals</span><span class="p">)</span>
+<span class="n">syvals2</span> <span class="o">=</span> <span class="n">func5</span><span class="p">(</span><span class="n">xvals</span><span class="p">)</span>
 
-# make figure
-fig3 = plt.figure(figsize=(8,4))
-plt.plot(xvals,syvals,&#39;g&#39;,label=&#39;mg-kv&#39;)
-plt.plot(xvals,syvals2,&#39;g--&#39;,label=&#39;mg&#39;)
-plt.ylim([0, 400])
-plt.xlim([0,20])
-plt.xlabel(&quot;t&quot;)
-plt.ylabel(&quot;s(t)&quot;)
-plt.legend(loc=&#39;best&#39;)
-plt.show()
+<span class="c1"># make figure</span>
+<span class="n">fig3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">syvals</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mg-kv&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">syvals2</span><span class="p">,</span><span class="s1">&#39;g--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mg&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;s(t)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

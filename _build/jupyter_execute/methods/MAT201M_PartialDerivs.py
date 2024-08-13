@@ -33,9 +33,9 @@ import sympy as sym
 x, y = sym.Symbol('x'), sym.Symbol('y')
 
 
-# ### Ordinary differentiation ###
+# ## Ordinary differentiation ##
 
-# Let us first consider an ordinary function of the type we have worked with for many years: $f(x)=x^2+3$.
+# Let us first consider an ordinary function of the type we have worked with for many years: $f(x)=5x^2+3$.
 # 
 
 # In[3]:
@@ -45,7 +45,7 @@ f = 5*x**2+3
 f
 
 
-# Python can calculate the ordinary derivative for this function, $f'(x)$, really easily:
+# Python can calculate the ordinary derivative for this function, $f'(x)$ or $f_x$, really easily:
 
 # In[4]:
 
@@ -70,7 +70,7 @@ sym.diff(f,x)*g+f*sym.diff(g,x)
 sym.diff(f*g,x)
 
 
-# ### Partial differentiation ###
+# ## Partial differentiation ##
 # 
 # Lets see what happens when we ask Python to handle functions of multiple variables, like the one seen in the lecture:
 
@@ -109,7 +109,7 @@ sym.diff(z, x)
 
 # We also spent some time in the lectures discussing *symmetric functions*, which are useful to identify: if you identify a function as symmetric, then the behaviour in one derivative will match the behaviour in the other derivative. This can save time on calculations, or setting up functions to describe behaviour.
 
-# ### Second Order Partial Derivatives ###
+# ## Second Order Partial Derivatives ##
 # 
 # The rules that we know also roll over to higher order derivatives. In MAT201, it can be useful to know how to calculate derivatives upto and including second order. Python also does this with ease.
 # 
@@ -136,7 +136,9 @@ sym.diff(f,y,y)
 sym.diff(f,x,y)-sym.diff(f,y,x)
 
 
-# ### Turning Points and their nature ###
+# Subtracting one derivative from the other can only result in a zero if they are *the same*.
+
+# ## Turning Points and Their Nature ##
 # The final part of the lecture showed us that we can use partial derivatives to evaluate turning points in a given function, to identify if they are maxima, minima or saddle-points (points which behave like maxima *and* minima at the same time.
 # 
 # In the lectures we used the following example: $f(x,y)=(x^2-1)(y^2-4)$.

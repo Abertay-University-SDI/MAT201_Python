@@ -32,16 +32,23 @@ import sympy as sym
 # 
 # Quaternions have various properties that make them fantastic at performing rotations, as discussed in lectures.
 # 
-# To play with quaternions in Python, we have to use a custom Python package that isn't commonly installed on Colab, so we need to force it to remember and reinstall if necessary:
+# To play with quaternions in Python, we have to use a custom Python package that isn't commonly installed on Colab called "quaternion". We will ask Python to try loading it, and if it fails, force the local installation of the package and try again.
 
 # In[2]:
 
 
-import sys
-get_ipython().system('{sys.executable} -m pip install --upgrade numpy-quaternion')
-import quaternion
+try:
+    import quaternion
+except ModuleNotFoundError:
+    # Error handling
+    import sys
+    get_ipython().system('{sys.executable} -m pip install --upgrade numpy-quaternion')
+    import quaternion
+    pass
 
 
+# ## Using the quaternions package to do maths ##
+# 
 # Now we can store and play with quaternions:
 
 # In[3]:
@@ -51,7 +58,13 @@ q1 = np.quaternion(1,2,3,4)
 q2 = np.quaternion(5,6,7,8)
 
 
-# Python isn't strictly built to mess with quaternions, so to illustrate some of rotations later, we'll first set up some functions to carry out certain operations that we will use later. These functions are based on the concepts taught in lectures. For example, it will be useful to quickly evaluate the modulus and inverse of a given quaternion:
+# Python isn't strictly built to mess with quaternions, so to illustrate some of rotations later, we'll first set up some functions to carry out certain operations that we will use later. These functions are based on the concepts taught in lectures. 
+# 
+# For example, it will be useful to quickly evaluate the modulus and inverse of a given quaternion:
+# 
+# $$
+# {|\vec{q}|} = \sqrt{a^2+b^2+c^2+d^2}~~~~~~~~~{\vec{q}^{-1}}=\frac{\bar{q}}{{|q|^2}}.
+# $$
 
 # In[4]:
 
@@ -70,7 +83,7 @@ def invertq(q):
   import quaternion
   mq = q.w * q.w + q.x * q.x + q.y * q.y + q.z * q.z
   mq = np.sqrt(mq)
-  q_inverse = q.conjugate()/mq
+  q_inverse = q.conjugate()/mq/mq
   return q_inverse
 
 
@@ -133,7 +146,7 @@ def quat2rotation(q):
 
 # Let us now put these processes to the test. In our lectures we encountered several examples. 
 # 
-# ### Example 1: rotation using quaternions
+# ### Example 1: rotation using quaternions ###
 # The point $(2,3,1)$ is to be rotated about the $x$-axis by $90^o$ using quaternions.
 #  
 # In only a few lines we can use Python to carry out the same rotation: 
@@ -143,20 +156,20 @@ def quat2rotation(q):
 
 pt = [2,3,1]
 qp = point2quat(pt) #convert point to quaternion form
-print(qp)
+print('p=', qp)
 theta = 90
 axis = [1,0,0]
 qr = rotation2quat(theta,axis) #rotate point about specified axis
-print(qr)
+print('q=', qr)
 qri = invertq(qr) #calculate inverse of quaternion
-print(qri)
+print('q^-1=', qri)
 
 
 # In[8]:
 
 
 im = quat2point(qr * qp * qri) #q * p * q^(-1)
-print(im)
+print('image coords:', im)
 
 
 # The image location displayed above matches the location we determined in the lectures using our mathematics.
@@ -213,7 +226,7 @@ plt.show()
 
 # Example 2 in the lectures can also be evaluated this way, and displayed using the same tools:
 # 
-# ## Example 2
+# ### Example 2 ###
 # The point $(1,0,-2)$ is to be rotated by $60^o$ about the axis $\vec{i}+2\vec{j}-\vec{k}$. Carry out the rotation using quaternions.
 # 
 
@@ -227,7 +240,7 @@ theta2 = 60.0
 qr2 = rotation2quat(theta2,axis2)
 qri2 = invertq(qr2)
 im2 = quat2point(qr2 * qp2 * qri2)
-print(im2)
+print('image coords:', im2)
 
 
 # We can also visualise this rotation in 3D, using arrows to illustrate the rotation axis, the rotation itself and the old and new image locations:
@@ -261,7 +274,7 @@ ax.add_artist(a2)
 plt.show()
 
 
-# ## Example 3
+# ### Example 3: rotation axis not through origin ###
 # Example 3 used the same direction for the axis of rotation as in Example 1, but now passing through a specific point. To carry out this example, we must first translate the point before carrying out the rotation, then translating the point back by the same amount at the end:
 # 
 # 
@@ -273,17 +286,16 @@ ptT = [a - b for a, b in zip(pt, [-1,2,1])]
 qp3 = point2quat(ptT)
 imT = quat2point(qr * qp3 * qri)
 im3 = [a + b for a, b in zip(imT, [-1,2,1])]
-print(im3)
-print(imT)
+print('image coords:', im3)
 
 
-# ##Concatenation
+# ## Concatenation ##
 # 
 # One of the most powerful aspects of quaternion rotations involves concatenation: the idea that multiple rotations in sequence can be represented by a single equivalent quaternion.
 # 
 # To follow a rotation $q_1pq_1^{-1}$ by a second rotation $q_2$, we would form $q_2(q_1pq_1^{-1})q_2^{-1}$. All the information about both rotations is stored in a quaternion $q_2q_1$ (and it's inverse, $(q_2q_1)^{-1}$, since $q_1^{-1}q_2^{-1}=(q_2q_1)^{-1}$). By multiplying the two quaternions together to form one new quaternion, we have stored all the information about two rotations in one *concatenated* quaternion.
 # 
-# ###Example 1
+# ### Concatenation Example 1 ###
 # In the lectures, this was illsutated by an example. The point $(-1,0,1)$ was to be rotated about the $z$-axis by $120^o$, followed by a rotation of $-90^o$ about an axis parallel to $\underset{\bar{}}{i}-\underset{\bar{}}{k}$.
 # 
 # To carry this out using Python, we can create the two required quaternions, multiply them, find the inverse of the result, then perform the rotation. 
@@ -311,11 +323,16 @@ quat2rotation(q2q1)
 
 # As expected, the solutions determined by Python match those we found using mathematics in the lectures.
 # 
+# NB: The axis found by Python is $4\times$ smaller than the axis we determined in the lectures using maths by hand. This is because our Python function returns the axis as a *unit vector*. It still points in exactly the same direction as the axis found from the lecture. Both are correct answers; one is just formatted slightly differently.
 # 
-# ##Over to you
-# Now it's over to you. Examine some of the examples you completed in the tutorial questions, and see if Python is able to confirm your tactics and solutions. What do the old and new locations look like in 3D after you have performed the rotation?
+# 
+# ## Over to you ##
+# 
+# Examine some of the examples you completed in the tutorial questions, and see if Python is able to confirm your tactics and solutions. 
+# 
+# What do the old and new locations look like in 3D after you have performed the rotations?
 
-# In[15]:
+# In[ ]:
 
 
 

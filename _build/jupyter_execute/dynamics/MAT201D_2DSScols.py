@@ -15,10 +15,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.animation as animation
 import matplotlib.patches as patches
-import random
 import math
-import sys
-#!{sys.executable} -m pip install --upgrade Ipython
 
 
 # ## Maths recap

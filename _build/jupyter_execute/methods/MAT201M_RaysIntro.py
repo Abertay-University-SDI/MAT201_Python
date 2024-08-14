@@ -290,52 +290,29 @@ print("intersection occurs at ({:0.3f},{:0.3f},{:0.3f})".format(is3a[0],is3a[1],
 # In[18]:
 
 
-import sys
-get_ipython().system('{sys.executable} -m pip install --upgrade plotly')
-import plotly.graph_objects as go
+from matplotlib import cm
+fig, ax = plt.subplots(subplot_kw={"projection": "3d"}, figsize=(12,6))
 
-X, Y, Z = np.mgrid[-1.5:1.5:41j, -1.5:1.5:41j, -1.5:1.5:41j]
-
-# ellipsoid
-values = X * X - Y * Y + 4 * Z
-
-fig = go.Figure(data=go.Isosurface(
-    x=X.flatten(),
-    y=Y.flatten(),
-    z=Z.flatten(),
-    value=values.flatten(),
-    isomin=0,
-    isomax=0,
-    caps=dict(x_show=False, y_show=False)
-    ))
-fig.show()
+X = np.arange(-1, 1, 0.25)
+Y = np.arange(-1, 1, 0.25)
+X, Y = np.meshgrid(X, Y)
+#rearranging the expression to make z the subject:
+Z = (X*X-Y*Y)/(-4)
+surf = ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=cm.coolwarm,
+                       linewidth=0, antialiased=False)
+ax.set_zlim(-0.51, 0.51)
+ax.title.set_text('visualising x^2-y^2+4z=0')
+ax.set_xlabel("X Axis")
+ax.set_ylabel("Y Axis")
+ax.set_zlabel("Z Axis")
+fig.colorbar(surf, shrink=0.5, aspect=10)
 
 
-# Note that in the above image you can zoom and evaluate coordinates that lie on the surface. How much you trust them is up to you!
+# This function looks like a saddle point: we encountered saddle points when looking at Partial Derivatives (Methods L1). 
 # 
-# There are plenty of visualisation and plotting libraries, but none quite do a super job that we can interact with. Another example to visualise this surface is to use "scikit-image":
-
-# In[19]:
-
-
-import sys
-get_ipython().system('{sys.executable} -m pip install --upgrade scikit-image')
-from skimage import measure
-x, y, z = np.mgrid[-1:1:31j, -1:1:31j, -1:1:31j]
-vol = x**2 - y**2 + 4 * z
-iso_val=0.0
-verts, faces, _, _ = measure.marching_cubes(vol, iso_val, spacing=(0.1, 0.1, 0.1))
-
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.plot_trisurf(verts[:, 0], verts[:,1], faces, verts[:, 2], cmap='Spectral',
-                lw=1)
-plt.show()
-
-
-# (noting that in this case the axis are no longer presented in Cartesian coordinates).
+# Maybe, using your maths skills, you could check whether this is a true saddle point, **using the second derivative test**?
 # 
-# Perhaps you can identify a better way to illustrate this behaviour, either using Python or some other code/process. Let me know if you do!
+# A note of caution: Python can handle some 3D images, but that isn't really what it was made to do. There are other plotting libraries to play with (try "scikit-image" for example), but really you already know about graphics programming in other ways!
 
 # ## Over to you
 # Try some more examples from the lectures or the tutorial questions once you are satisfied with the mathematics.

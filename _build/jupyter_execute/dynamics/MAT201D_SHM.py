@@ -2,9 +2,10 @@
 # coding: utf-8
 
 # # Harmonic Motion of A Spring
-# Interactive code to illustrate concepts from MAT201 at Abertay University (JT 2022).
 # 
-# Notebook illustrates how to solve Newton's Second Law for a force which induces Simple Harmonic Motion.We also create an animated object which behaves according to those laws. While the object is moving, notebook also draws accompanying distance, velocity and acceleration graphs.. 
+# NB: The Simple Harmonic Motion lectures of MAT201 have been removed from the syllabus, from 2024-25 onwards. As such, this notebook is just for interest, and contains **no examinable content**. However, the animation object at the end is too cool to ignore(!).
+# 
+# In this notebook, we demonstrate how to solve Newton's Second Law for a force which induces Simple Harmonic Motion. We also create an animated object which behaves according to those laws. While the object is moving, notebook also draws accompanying distance, velocity and acceleration graphs.. 
 # 
 # *Plotting inspiration from http://firsttimeprogrammer.blogspot.com/2014/12/basic-physics-and-python-simple.html*
 
@@ -18,8 +19,6 @@ import matplotlib.animation as animation
 import matplotlib.patches as patches
 import sympy as sym
 import math
-import sys
-get_ipython().system('{sys.executable} -m pip install --upgrade Ipython')
 
 
 # ## Simple Harmonic Motion: Solving Newton's Second Law

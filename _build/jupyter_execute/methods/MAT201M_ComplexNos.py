@@ -3,7 +3,9 @@
 
 # # Complex Numbers
 # 
-# Complex numbers are a rare example of more abstract mathematical ideas than can be useful practically. They are useful in a number of different mathematical fields and so have very wide implications on a number of branches of mathematics. However, in the field of computer graphics they have interesting properties which will allow us to describe rotations in a new and somewhat unexpected way. In order to perform rotations, we must understand the basic properties of complex numbers, as taught in the lectures.
+# Complex numbers are a rare example of more abstract mathematical ideas than can be useful practically. They are useful in a number of different mathematical fields and so have very wide implications on a number of branches of mathematics. However, in the field of computer graphics they have interesting properties which will allow us to describe rotations in a new and somewhat unexpected way. In order to perform rotations, we must understand the basic properties of complex numbers.
+# 
+# NB Complex Numbers have been removed from the MAT201 syllabus from 2024-25. It is useful to know how complex numbers work, in order to understand how quaternions behave (as we will see later). However, all of the complex numbers content seen here is **non-examinable in MAT201**.
 
 # In[1]:
 

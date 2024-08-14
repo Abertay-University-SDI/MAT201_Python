@@ -221,7 +221,6 @@ else:
 
 
 from matplotlib import cm
-from mpl_toolkits.mplot3d.axes3d import get_test_data
 
 fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
 

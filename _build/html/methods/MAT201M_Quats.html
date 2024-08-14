@@ -325,22 +325,44 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#introduction">
    8.1. Introduction
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-the-quaternions-package-to-do-maths">
+   8.2. Using the quaternions package to do maths
+  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-1-rotation-using-quaternions">
-     8.1.1. Example 1: rotation using quaternions
+     8.2.1. Example 1: rotation using quaternions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-2">
+     8.2.2. Example 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-3-rotation-axis-not-through-origin">
+     8.2.3. Example 3: rotation axis not through origin
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-2">
-   8.2. Example 2
+  <a class="reference internal nav-link" href="#concatenation">
+   8.3. Concatenation
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concatenation-example-1">
+     8.3.1. Concatenation Example 1
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-3">
-   8.3. Example 3
+  <a class="reference internal nav-link" href="#over-to-you">
+   8.4. Over to you
   </a>
  </li>
 </ul>
@@ -367,22 +389,44 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#introduction">
    8.1. Introduction
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-the-quaternions-package-to-do-maths">
+   8.2. Using the quaternions package to do maths
+  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-1-rotation-using-quaternions">
-     8.1.1. Example 1: rotation using quaternions
+     8.2.1. Example 1: rotation using quaternions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-2">
+     8.2.2. Example 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-3-rotation-axis-not-through-origin">
+     8.2.3. Example 3: rotation axis not through origin
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-2">
-   8.2. Example 2
+  <a class="reference internal nav-link" href="#concatenation">
+   8.3. Concatenation
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concatenation-example-1">
+     8.3.1. Concatenation Example 1
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-3">
-   8.3. Example 3
+  <a class="reference internal nav-link" href="#over-to-you">
+   8.4. Over to you
   </a>
  </li>
 </ul>
@@ -422,51 +466,24 @@ const thebe_selector_output = ".output, .cell_output"
 \]</div>
 <p>In this course we will label each of the <span class="math notranslate nohighlight">\(i,j,k\)</span> components as vectors, as we will be learning to exploit their properties to perform rotations in 3D space.</p>
 <p>Quaternions have various properties that make them fantastic at performing rotations, as discussed in lectures.</p>
-<p>To play with quaternions in Python, we have to use a custom Python package that isn’t commonly installed on Colab, so we need to force it to remember and reinstall if necessary:</p>
+<p>To play with quaternions in Python, we have to use a custom Python package that isn’t commonly installed on Colab called “quaternion”. We will ask Python to try loading it, and if it fails, force the local installation of the package and try again.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install --upgrade numpy-quaternion
-<span class="kn">import</span> <span class="nn">quaternion</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Ignoring invalid distribution -lotly (/usr/local/lib/python3.9/site-packages)</span>
-Requirement already satisfied: numpy-quaternion in /usr/local/lib/python3.9/site-packages (2023.0.3)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting numpy-quaternion
-  Using cached numpy_quaternion-2023.0.4-cp39-cp39-macosx_10_9_x86_64.whl.metadata (14 kB)
-Requirement already satisfied: numpy&lt;2.0,&gt;=1.13 in /usr/local/lib/python3.9/site-packages (from numpy-quaternion) (1.24.4)
-Using cached numpy_quaternion-2023.0.4-cp39-cp39-macosx_10_9_x86_64.whl (61 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Ignoring invalid distribution -lotly (/usr/local/lib/python3.9/site-packages)</span>
-Installing collected packages: numpy-quaternion
-  Attempting uninstall: numpy-quaternion
-    Found existing installation: numpy-quaternion 2023.0.3
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Uninstalling numpy-quaternion-2023.0.3:
-      Successfully uninstalled numpy-quaternion-2023.0.3
-<span class=" -Color -Color-Yellow">  DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
-<span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed numpy-quaternion-2023.0.4
-
-<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">24.0</span> -&gt; <span class=" -Color -Color-Green">24.2</span>
-<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">/usr/local/opt/python@3.9/bin/python3.9 -m pip install --upgrade pip</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">quaternion</span>
+<span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+    <span class="c1"># Error handling</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install --upgrade numpy-quaternion
+    <span class="kn">import</span> <span class="nn">quaternion</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="using-the-quaternions-package-to-do-maths">
+<h2><span class="section-number">8.2. </span>Using the quaternions package to do maths<a class="headerlink" href="#using-the-quaternions-package-to-do-maths" title="Permalink to this headline">¶</a></h2>
 <p>Now we can store and play with quaternions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -476,7 +493,12 @@ Installing collected packages: numpy-quaternion
 </div>
 </div>
 </div>
-<p>Python isn’t strictly built to mess with quaternions, so to illustrate some of rotations later, we’ll first set up some functions to carry out certain operations that we will use later. These functions are based on the concepts taught in lectures. For example, it will be useful to quickly evaluate the modulus and inverse of a given quaternion:</p>
+<p>Python isn’t strictly built to mess with quaternions, so to illustrate some of rotations later, we’ll first set up some functions to carry out certain operations that we will use later. These functions are based on the concepts taught in lectures.</p>
+<p>For example, it will be useful to quickly evaluate the modulus and inverse of a given quaternion:</p>
+<div class="math notranslate nohighlight">
+\[
+{|\vec{q}|} = \sqrt{a^2+b^2+c^2+d^2}~~~~~~~~~{\vec{q}^{-1}}=\frac{\bar{q}}{{|q|^2}}.
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modq</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
@@ -493,7 +515,7 @@ Installing collected packages: numpy-quaternion
   <span class="kn">import</span> <span class="nn">quaternion</span>
   <span class="n">mq</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">w</span> <span class="o">*</span> <span class="n">q</span><span class="o">.</span><span class="n">w</span> <span class="o">+</span> <span class="n">q</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">q</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">q</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">q</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">q</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">q</span><span class="o">.</span><span class="n">z</span>
   <span class="n">mq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mq</span><span class="p">)</span>
-  <span class="n">q_inverse</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">conjugate</span><span class="p">()</span><span class="o">/</span><span class="n">mq</span>
+  <span class="n">q_inverse</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">conjugate</span><span class="p">()</span><span class="o">/</span><span class="n">mq</span><span class="o">/</span><span class="n">mq</span>
   <span class="k">return</span> <span class="n">q_inverse</span>
 </pre></div>
 </div>
@@ -512,7 +534,7 @@ Installing collected packages: numpy-quaternion
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.477225575051661
 5.477225575051661
-quaternion(0.182574185835055, -0.365148371670111, -0.547722557505166, -0.730296743340221)
+quaternion(0.0333333333333333, -0.0666666666666667, -0.1, -0.133333333333333)
 </pre></div>
 </div>
 </div>
@@ -563,27 +585,27 @@ quaternion(0.182574185835055, -0.365148371670111, -0.547722557505166, -0.7302967
 </div>
 <p>Let us now put these processes to the test. In our lectures we encountered several examples.</p>
 <div class="section" id="example-1-rotation-using-quaternions">
-<h3><span class="section-number">8.1.1. </span>Example 1: rotation using quaternions<a class="headerlink" href="#example-1-rotation-using-quaternions" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">8.2.1. </span>Example 1: rotation using quaternions<a class="headerlink" href="#example-1-rotation-using-quaternions" title="Permalink to this headline">¶</a></h3>
 <p>The point <span class="math notranslate nohighlight">\((2,3,1)\)</span> is to be rotated about the <span class="math notranslate nohighlight">\(x\)</span>-axis by <span class="math notranslate nohighlight">\(90^o\)</span> using quaternions.</p>
 <p>In only a few lines we can use Python to carry out the same rotation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pt</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">qp</span> <span class="o">=</span> <span class="n">point2quat</span><span class="p">(</span><span class="n">pt</span><span class="p">)</span> <span class="c1">#convert point to quaternion form</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">qp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;p=&#39;</span><span class="p">,</span> <span class="n">qp</span><span class="p">)</span>
 <span class="n">theta</span> <span class="o">=</span> <span class="mi">90</span>
 <span class="n">axis</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">qr</span> <span class="o">=</span> <span class="n">rotation2quat</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">axis</span><span class="p">)</span> <span class="c1">#rotate point about specified axis</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">qr</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;q=&#39;</span><span class="p">,</span> <span class="n">qr</span><span class="p">)</span>
 <span class="n">qri</span> <span class="o">=</span> <span class="n">invertq</span><span class="p">(</span><span class="n">qr</span><span class="p">)</span> <span class="c1">#calculate inverse of quaternion</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">qri</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;q^-1=&#39;</span><span class="p">,</span> <span class="n">qri</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>quaternion(0, 2, 3, 1)
-quaternion(0.707106781186548, 0.707106781186547, 0, 0)
-quaternion(0.707106781186548, -0.707106781186547, -0, -0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>p= quaternion(0, 2, 3, 1)
+q= quaternion(0.707106781186548, 0.707106781186547, 0, 0)
+q^-1= quaternion(0.707106781186548, -0.707106781186547, -0, -0)
 </pre></div>
 </div>
 </div>
@@ -591,12 +613,12 @@ quaternion(0.707106781186548, -0.707106781186547, -0, -0)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">quat2point</span><span class="p">(</span><span class="n">qr</span> <span class="o">*</span> <span class="n">qp</span> <span class="o">*</span> <span class="n">qri</span><span class="p">)</span> <span class="c1">#q * p * q^(-1)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;image coords:&#39;</span><span class="p">,</span> <span class="n">im</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.0, -0.9999999999999993, 3.0]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image coords: [2.0, -0.9999999999999993, 3.0]
 </pre></div>
 </div>
 </div>
@@ -657,9 +679,8 @@ To display an axis, we could create a type of arrow to indicate size and directi
 </div>
 <p>Example 2 in the lectures can also be evaluated this way, and displayed using the same tools:</p>
 </div>
-</div>
 <div class="section" id="example-2">
-<h2><span class="section-number">8.2. </span>Example 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">8.2.2. </span>Example 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h3>
 <p>The point <span class="math notranslate nohighlight">\((1,0,-2)\)</span> is to be rotated by <span class="math notranslate nohighlight">\(60^o\)</span> about the axis <span class="math notranslate nohighlight">\(\vec{i}+2\vec{j}-\vec{k}\)</span>. Carry out the rotation using quaternions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -670,12 +691,12 @@ To display an axis, we could create a type of arrow to indicate size and directi
 <span class="n">qr2</span> <span class="o">=</span> <span class="n">rotation2quat</span><span class="p">(</span><span class="n">theta2</span><span class="p">,</span><span class="n">axis2</span><span class="p">)</span>
 <span class="n">qri2</span> <span class="o">=</span> <span class="n">invertq</span><span class="p">(</span><span class="n">qr2</span><span class="p">)</span>
 <span class="n">im2</span> <span class="o">=</span> <span class="n">quat2point</span><span class="p">(</span><span class="n">qr2</span> <span class="o">*</span> <span class="n">qp2</span> <span class="o">*</span> <span class="n">qri2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">im2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;image coords:&#39;</span><span class="p">,</span> <span class="n">im2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.664213562373095, 0.8535533905932737, -1.9571067811865477]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image coords: [-0.664213562373095, 0.8535533905932737, -1.9571067811865477]
 </pre></div>
 </div>
 </div>
@@ -715,8 +736,8 @@ To display an axis, we could create a type of arrow to indicate size and directi
 </div>
 </div>
 </div>
-<div class="section" id="example-3">
-<h2><span class="section-number">8.3. </span>Example 3<a class="headerlink" href="#example-3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example-3-rotation-axis-not-through-origin">
+<h3><span class="section-number">8.2.3. </span>Example 3: rotation axis not through origin<a class="headerlink" href="#example-3-rotation-axis-not-through-origin" title="Permalink to this headline">¶</a></h3>
 <p>Example 3 used the same direction for the axis of rotation as in Example 1, but now passing through a specific point. To carry out this example, we must first translate the point before carrying out the rotation, then translating the point back by the same amount at the end:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -724,23 +745,25 @@ To display an axis, we could create a type of arrow to indicate size and directi
 <span class="n">qp3</span> <span class="o">=</span> <span class="n">point2quat</span><span class="p">(</span><span class="n">ptT</span><span class="p">)</span>
 <span class="n">imT</span> <span class="o">=</span> <span class="n">quat2point</span><span class="p">(</span><span class="n">qr</span> <span class="o">*</span> <span class="n">qp3</span> <span class="o">*</span> <span class="n">qri</span><span class="p">)</span>
 <span class="n">im3</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">imT</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">im3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">imT</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;image coords:&#39;</span><span class="p">,</span> <span class="n">im3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.0, 2.0, 2.0]
-[3.0, 2.220446049250313e-16, 1.0]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image coords: [2.0, 2.0, 2.0]
 </pre></div>
 </div>
 </div>
 </div>
-<p>##Concatenation</p>
+</div>
+</div>
+<div class="section" id="concatenation">
+<h2><span class="section-number">8.3. </span>Concatenation<a class="headerlink" href="#concatenation" title="Permalink to this headline">¶</a></h2>
 <p>One of the most powerful aspects of quaternion rotations involves concatenation: the idea that multiple rotations in sequence can be represented by a single equivalent quaternion.</p>
 <p>To follow a rotation <span class="math notranslate nohighlight">\(q_1pq_1^{-1}\)</span> by a second rotation <span class="math notranslate nohighlight">\(q_2\)</span>, we would form <span class="math notranslate nohighlight">\(q_2(q_1pq_1^{-1})q_2^{-1}\)</span>. All the information about both rotations is stored in a quaternion <span class="math notranslate nohighlight">\(q_2q_1\)</span> (and it’s inverse, <span class="math notranslate nohighlight">\((q_2q_1)^{-1}\)</span>, since <span class="math notranslate nohighlight">\(q_1^{-1}q_2^{-1}=(q_2q_1)^{-1}\)</span>). By multiplying the two quaternions together to form one new quaternion, we have stored all the information about two rotations in one <em>concatenated</em> quaternion.</p>
-<p>###Example 1
-In the lectures, this was illsutated by an example. The point <span class="math notranslate nohighlight">\((-1,0,1)\)</span> was to be rotated about the <span class="math notranslate nohighlight">\(z\)</span>-axis by <span class="math notranslate nohighlight">\(120^o\)</span>, followed by a rotation of <span class="math notranslate nohighlight">\(-90^o\)</span> about an axis parallel to <span class="math notranslate nohighlight">\(\underset{\bar{}}{i}-\underset{\bar{}}{k}\)</span>.</p>
+<div class="section" id="concatenation-example-1">
+<h3><span class="section-number">8.3.1. </span>Concatenation Example 1<a class="headerlink" href="#concatenation-example-1" title="Permalink to this headline">¶</a></h3>
+<p>In the lectures, this was illsutated by an example. The point <span class="math notranslate nohighlight">\((-1,0,1)\)</span> was to be rotated about the <span class="math notranslate nohighlight">\(z\)</span>-axis by <span class="math notranslate nohighlight">\(120^o\)</span>, followed by a rotation of <span class="math notranslate nohighlight">\(-90^o\)</span> about an axis parallel to <span class="math notranslate nohighlight">\(\underset{\bar{}}{i}-\underset{\bar{}}{k}\)</span>.</p>
 <p>To carry this out using Python, we can create the two required quaternions, multiply them, find the inverse of the result, then perform the rotation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -775,8 +798,13 @@ In the lectures, this was illsutated by an example. The point <span class="math 
 </div>
 </div>
 <p>As expected, the solutions determined by Python match those we found using mathematics in the lectures.</p>
-<p>##Over to you
-Now it’s over to you. Examine some of the examples you completed in the tutorial questions, and see if Python is able to confirm your tactics and solutions. What do the old and new locations look like in 3D after you have performed the rotation?</p>
+<p>NB: The axis found by Python is <span class="math notranslate nohighlight">\(4\times\)</span> smaller than the axis we determined in the lectures using maths by hand. This is because our Python function returns the axis as a <em>unit vector</em>. It still points in exactly the same direction as the axis found from the lecture. Both are correct answers; one is just formatted slightly differently.</p>
+</div>
+</div>
+<div class="section" id="over-to-you">
+<h2><span class="section-number">8.4. </span>Over to you<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
+<p>Examine some of the examples you completed in the tutorial questions, and see if Python is able to confirm your tactics and solutions.</p>
+<p>What do the old and new locations look like in 3D after you have performed the rotations?</p>
 </div>
 </div>
 

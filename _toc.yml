@@ -23,7 +23,7 @@ parts:
     title: 1D Sphere/Sphere Collisions
   - file: dynamics/MAT201D_2DSScols.ipynb
     title: 2D Sphere/Sphere Collisions
-- caption: Dynamics
+- caption: Numerical Methods
   numbered: true
   chapters:
   - file: numericalmethods/MAT201N_IterTech.ipynb
@@ -34,7 +34,6 @@ parts:
     title: Runge Kutta Methods
   - file: numericalmethods/MAT201D_DE3.ipynb
     title: Verlet Algorithm
-    
 - caption: Methods
   numbered: true
   chapters:

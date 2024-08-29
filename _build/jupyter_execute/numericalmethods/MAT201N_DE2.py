@@ -149,7 +149,7 @@ plt.show()
 
 # So it looks like our time range works, starting and ending at the correct values and with the correct step size.
 
-# ## 1. Linear Population Equation
+# ## Linear Population Equation
 # 
 # ### Tailoring our 4th Order Runge Kutta scheme
 # To write the specific 4th Order Runge Kutta method for the linear population equation we need 
@@ -264,7 +264,7 @@ df
 # 
 # Lets now explore two other Differential Equations where we will slowly crank up the complexity to see if that makes any noticeable difference to our iterative RK4 answers.
 
-# ## 2. Non-Linear Differential Equation
+# ## Non-Linear Differential Equation
 # Our second equation will be a non-linear differential equation (effectively still an ordinary differential equation but with a higher order power of the dependent variable $y$).
 # 
 # Since our first equation was an equation describing population evolution over time, we'll choose another differential equation describing population behaviour:
@@ -370,7 +370,7 @@ df
 # 
 # The first few steps in the table are likely to be zero due to rounding: this worksheet displays numbers to a preset number of decimal places.
 
-# ## 3. Non-Linear Population Equation with an oscillation 
+# ## Non-Linear Population Equation with an oscillation 
 # In our final differential equation, lets yet again use a more complex population model and evaluate how well RK4 does. The population model is essentially the previous model with an additional sine term (representing shorter fluctuations in population than the long term behaviour):
 # 
 # $$ 

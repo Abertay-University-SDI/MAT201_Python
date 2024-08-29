@@ -22,7 +22,7 @@
 # 
 # We will here discuss several iterative techinques to identify roots of equations. We will often use quadratic functions to test these tools: we already have an exact analytical way to solve these problems, so this makes a good way to test our numerical approaches and examine how accurate and efficient they are.
 
-# #### Setting up Libraries
+# ### Setting up Libraries
 # 
 # As always, we'll make use of some clever Python tools for plotting and maths, so our first step is to load in the libraries that store these tools:
 
@@ -35,6 +35,14 @@ import math
 import sys
 get_ipython().system('{sys.executable} -m pip install termcolor')
 from termcolor import colored
+try:
+    from termcolor import colored
+except ModuleNotFoundError:
+    # Error handling
+    import sys
+    get_ipython().system('{sys.executable} -m pip install --upgrade termcolor')
+    from termcolor import colored
+    pass
 
 
 # (Note that the termcolor package, used to change the font color of some output, doesn't appear to work in Colab. This doesn't really matter, as I was just using it to highlight some specific values).

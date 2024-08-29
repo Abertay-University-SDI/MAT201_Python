@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Partial Derivatives" href="../methods/MAT201M_PartialDerivs.html" />
+    <link rel="next" title="2. Differential Equation Solving 1" href="MAT201N_DE1.html" />
     <link rel="prev" title="6. 2D Oblique Sphere Collisions" href="../dynamics/MAT201D_2DSScols.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -146,13 +146,28 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Dynamics
+  Numerical Methods
  </span>
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    1. Iterative Techiques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201N_DE1.html">
+   2. Euler and Midpoint Method
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201N_DE2.html">
+   3. Runge Kutta Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201N_DE3.html">
+   4. Verlet Algorithm
   </a>
  </li>
 </ul>
@@ -462,6 +477,14 @@ x_r=\frac{-b\pm\sqrt{b^2-4ac}}{2a},
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install termcolor
 <span class="kn">from</span> <span class="nn">termcolor</span> <span class="kn">import</span> <span class="n">colored</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">termcolor</span> <span class="kn">import</span> <span class="n">colored</span>
+<span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+    <span class="c1"># Error handling</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install --upgrade termcolor
+    <span class="kn">from</span> <span class="nn">termcolor</span> <span class="kn">import</span> <span class="n">colored</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
 </div>
@@ -475,10 +498,7 @@ Requirement already satisfied: termcolor in /Users/jamesthrelfall/Library/Python
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Ignoring invalid distribution -lotly (/usr/local/lib/python3.9/site-packages)</span>
-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
+<span class=" -Color -Color-Yellow">DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621</span>
 
 </pre></div>
 </div>
@@ -596,10 +616,7 @@ F_1(x)=\frac{1}{3}\left(x^2+1\right)~~~~{\rm{and}}~~~~ F_2(x)=3-\frac{1}{x}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 2.6666666666666665 2.625 2.619047619047619 2.618181818181818
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0 2.6666666666666665 2.625 2.619047619047619 2.618181818181818
 </pre></div>
 </div>
 </div>
@@ -911,10 +928,10 @@ x = 1.4 - \frac{1.4^2 - 2}{2(1.4)} = 1.4142857142857144
             <p class="prev-next-title"><span class="section-number">6. </span>2D Oblique Sphere Collisions</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../methods/MAT201M_PartialDerivs.html" title="next page">
+    <a class='right-next' id="next-link" href="MAT201N_DE1.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Partial Derivatives</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Differential Equation Solving 1</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

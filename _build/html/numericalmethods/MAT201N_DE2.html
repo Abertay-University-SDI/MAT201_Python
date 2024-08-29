@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Differential Equation Solving 2 &#8212; MAT201 Applied Mathematics with Python</title>
+    <title>3. Differential Equation Solving 2 &#8212; MAT201 Applied Mathematics with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,6 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Differential Equation Solving 3" href="MAT201N_DE3.html" />
+    <link rel="prev" title="2. Differential Equation Solving 1" href="MAT201N_DE1.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -144,13 +146,28 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Dynamics
+  Numerical Methods
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201N_IterTech.html">
    1. Iterative Techiques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201N_DE1.html">
+   2. Euler and Midpoint Method
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3. Runge Kutta Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201N_DE3.html">
+   4. Verlet Algorithm
   </a>
  </li>
 </ul>
@@ -333,27 +350,27 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#th-order-runge-kutta-algorithm">
-   4th Order Runge Kutta Algorithm
+   3.1. 4th Order Runge Kutta Algorithm
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#linear-population-equation">
-     1. Linear Population Equation
+     3.1.1. 1. Linear Population Equation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#non-linear-population-equation">
-     2. Non-Linear Population Equation
+     3.1.2. 2. Non-Linear Population Equation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#non-linear-population-equation-with-an-oscillation">
-     3. Non-Linear Population Equation with an oscillation
+     3.1.3. 3. Non-Linear Population Equation with an oscillation
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#setting-up-libraries">
-       Setting up Libraries
+       3.1.3.1. Setting up Libraries
       </a>
      </li>
     </ul>
@@ -362,88 +379,88 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#discrete-interval">
-   Discrete Interval
+   3.2. Discrete Interval
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
-   1. Linear Population Equation
+   3.3. 1. Linear Population Equation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tailoring-our-4th-order-runge-kutta-scheme">
-     Tailoring our 4th Order Runge Kutta scheme
+     3.3.1. Tailoring our 4th Order Runge Kutta scheme
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exact-solution">
-     Exact Solution
+     3.3.2. Exact Solution
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#plotting-results">
-     Plotting Results
+     3.3.3. Plotting Results
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tablulating-our-results">
-     Tablulating our results
+     3.3.4. Tablulating our results
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#non-linear-differential-equation">
-   2. Non-Linear Differential Equation
+   3.4. 2. Non-Linear Differential Equation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#implementing-rk4">
-     Implementing RK4
+     3.4.1. Implementing RK4
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#results-and-graph">
-     Results and Graph
+     3.4.2. Results and Graph
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#results-table">
-     Results Table
+     3.4.3. Results Table
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   3. Non-Linear Population Equation with an oscillation
+   3.5. 3. Non-Linear Population Equation with an oscillation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id3">
-     Implementing RK4
+     3.5.1. Implementing RK4
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#results-graph">
-     Results Graph
+     3.5.2. Results Graph
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id4">
-     Results Table
+     3.5.3. Results Table
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#python-ode-solvers">
-   Python ODE solvers
+   3.6. Python ODE solvers
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#further-work">
-   Further work
+   3.7. Further work
   </a>
  </li>
 </ul>
@@ -468,27 +485,27 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#th-order-runge-kutta-algorithm">
-   4th Order Runge Kutta Algorithm
+   3.1. 4th Order Runge Kutta Algorithm
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#linear-population-equation">
-     1. Linear Population Equation
+     3.1.1. 1. Linear Population Equation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#non-linear-population-equation">
-     2. Non-Linear Population Equation
+     3.1.2. 2. Non-Linear Population Equation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#non-linear-population-equation-with-an-oscillation">
-     3. Non-Linear Population Equation with an oscillation
+     3.1.3. 3. Non-Linear Population Equation with an oscillation
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#setting-up-libraries">
-       Setting up Libraries
+       3.1.3.1. Setting up Libraries
       </a>
      </li>
     </ul>
@@ -497,88 +514,88 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#discrete-interval">
-   Discrete Interval
+   3.2. Discrete Interval
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
-   1. Linear Population Equation
+   3.3. 1. Linear Population Equation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tailoring-our-4th-order-runge-kutta-scheme">
-     Tailoring our 4th Order Runge Kutta scheme
+     3.3.1. Tailoring our 4th Order Runge Kutta scheme
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exact-solution">
-     Exact Solution
+     3.3.2. Exact Solution
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#plotting-results">
-     Plotting Results
+     3.3.3. Plotting Results
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tablulating-our-results">
-     Tablulating our results
+     3.3.4. Tablulating our results
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#non-linear-differential-equation">
-   2. Non-Linear Differential Equation
+   3.4. 2. Non-Linear Differential Equation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#implementing-rk4">
-     Implementing RK4
+     3.4.1. Implementing RK4
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#results-and-graph">
-     Results and Graph
+     3.4.2. Results and Graph
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#results-table">
-     Results Table
+     3.4.3. Results Table
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   3. Non-Linear Population Equation with an oscillation
+   3.5. 3. Non-Linear Population Equation with an oscillation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id3">
-     Implementing RK4
+     3.5.1. Implementing RK4
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#results-graph">
-     Results Graph
+     3.5.2. Results Graph
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id4">
-     Results Table
+     3.5.3. Results Table
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#python-ode-solvers">
-   Python ODE solvers
+   3.6. Python ODE solvers
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#further-work">
-   Further work
+   3.7. Further work
   </a>
  </li>
 </ul>
@@ -591,10 +608,10 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="differential-equation-solving-2">
-<h1>Differential Equation Solving 2<a class="headerlink" href="#differential-equation-solving-2" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">3. </span>Differential Equation Solving 2<a class="headerlink" href="#differential-equation-solving-2" title="Permalink to this headline">¶</a></h1>
 <p>Implementing 4th Order Runge Kutta Algorithm as part of MAT201.</p>
 <div class="section" id="th-order-runge-kutta-algorithm">
-<h2>4th Order Runge Kutta Algorithm<a class="headerlink" href="#th-order-runge-kutta-algorithm" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.1. </span>4th Order Runge Kutta Algorithm<a class="headerlink" href="#th-order-runge-kutta-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>As seen in lectures, a highly common approach to solve differential equations is to use the RK4 algorithm. This is one of a family of Runge-Kutta (RK) algorithms, which are based on the same mathematical ideas. RK4 is an industry standard, representing a good trade-off between accuracy and complexity.</p>
 <p>We apply Runge-Kutta algorithms to differential equations which take the same form, namely:</p>
 <div class="math notranslate nohighlight">
@@ -623,7 +640,7 @@ k_3&amp;=f\left(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_2\right),~k_4=f\left(x_n+h, 
 <p>We have already seen in the lectures how the method can be applied to different differential equations. However, the real power of this method lies in its iterative behaviour; we can use computers to crank up the number of steps of calculation (or decrease the step size) to calculate an (approximate) solution over a large range of <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <p>To illustrate how this method can be implemented numerically, we will apply it to three initial value problems. These happen to be models of population growth over time, but could in reality be for any type of ordinary differential equation (ODE, or indeed for a system of several coupled ODEs). I have selected these equations because they are broadly related, but gradually increase in complexity. The equations which we will investigate are the following:</p>
 <div class="section" id="linear-population-equation">
-<h3>1. Linear Population Equation<a class="headerlink" href="#linear-population-equation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.1.1. </span>1. Linear Population Equation<a class="headerlink" href="#linear-population-equation" title="Permalink to this headline">¶</a></h3>
 <p>Our first ODE will be linear:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -636,7 +653,7 @@ y(2000)=6.
 \]</div>
 </div>
 <div class="section" id="non-linear-population-equation">
-<h3>2. Non-Linear Population Equation<a class="headerlink" href="#non-linear-population-equation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.1.2. </span>2. Non-Linear Population Equation<a class="headerlink" href="#non-linear-population-equation" title="Permalink to this headline">¶</a></h3>
 <p>Our second ODE will contain more terms and a higher power in <span class="math notranslate nohighlight">\(y\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -649,7 +666,7 @@ y(2000)=6.
 \]</div>
 </div>
 <div class="section" id="non-linear-population-equation-with-an-oscillation">
-<h3>3. Non-Linear Population Equation with an oscillation<a class="headerlink" href="#non-linear-population-equation-with-an-oscillation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.1.3. </span>3. Non-Linear Population Equation with an oscillation<a class="headerlink" href="#non-linear-population-equation-with-an-oscillation" title="Permalink to this headline">¶</a></h3>
 <p>Our final ODE will include an extra complication of an oscillatory part added to the previous ODE:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -662,7 +679,7 @@ y(2000)=6.
 \]</div>
 <p>We will tackle each of these equations in turn, applying the RK4 algorithm to each problem and comparing results with any known analytical solutions of the problem.</p>
 <div class="section" id="setting-up-libraries">
-<h4>Setting up Libraries<a class="headerlink" href="#setting-up-libraries" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">3.1.3.1. </span>Setting up Libraries<a class="headerlink" href="#setting-up-libraries" title="Permalink to this headline">¶</a></h4>
 <p>As always, we’ll make use of some clever python tools for plotting and maths, so our first step is to load in the libraries that store these tools:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -681,7 +698,7 @@ y(2000)=6.
 </div>
 </div>
 <div class="section" id="discrete-interval">
-<h2>Discrete Interval<a class="headerlink" href="#discrete-interval" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.2. </span>Discrete Interval<a class="headerlink" href="#discrete-interval" title="Permalink to this headline">¶</a></h2>
 <p>The independent variable, which for these equations is time, <span class="math notranslate nohighlight">\(t\)</span>, has a particular range <span class="math notranslate nohighlight">\(a\leq t \leq b \)</span>. We divide this interval into <span class="math notranslate nohighlight">\(N\)</span> points separated by a constant stepsize using the equation stated in our lectures:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -732,9 +749,9 @@ t_n=2000+0.1n, \ \ \ n=0,1,...,200.
 <p>So it looks like our time range works, starting and ending at the correct values and with the correct step size.</p>
 </div>
 <div class="section" id="id1">
-<h2>1. Linear Population Equation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.3. </span>1. Linear Population Equation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="tailoring-our-4th-order-runge-kutta-scheme">
-<h3>Tailoring our 4th Order Runge Kutta scheme<a class="headerlink" href="#tailoring-our-4th-order-runge-kutta-scheme" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.3.1. </span>Tailoring our 4th Order Runge Kutta scheme<a class="headerlink" href="#tailoring-our-4th-order-runge-kutta-scheme" title="Permalink to this headline">¶</a></h3>
 <p>To write the specific 4th Order Runge Kutta method for the linear population equation we need</p>
 <div class="math notranslate nohighlight">
 \[
@@ -785,7 +802,7 @@ k_2&amp;=f\left(x_n+\frac{h}{2},y_n+\frac{h}{2}k_1\right)=0.1\left(y_n+0.05k_1\r
 </div>
 </div>
 <div class="section" id="exact-solution">
-<h3>Exact Solution<a class="headerlink" href="#exact-solution" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.3.2. </span>Exact Solution<a class="headerlink" href="#exact-solution" title="Permalink to this headline">¶</a></h3>
 <p>From MAT201 mathematics, we should also know that this equation can be separated and integrated, using the initial conditions to evaluate any constants of integration.</p>
 <p>This simple separable first order ODE</p>
 <div class="math notranslate nohighlight">
@@ -805,7 +822,7 @@ y(t)=6e^{0.1(t-2000)},
 <p>which you should be able to derive analytically yourself - see MAT201 notes for a refresher on this!</p>
 </div>
 <div class="section" id="plotting-results">
-<h3>Plotting Results<a class="headerlink" href="#plotting-results" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.3.3. </span>Plotting Results<a class="headerlink" href="#plotting-results" title="Permalink to this headline">¶</a></h3>
 <p>We’ll now plot the approximate Runge-Kutta solution against the exact solution over time, to see how they behave:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -826,7 +843,7 @@ y(t)=6e^{0.1(t-2000)},
 <p>Rather than zoom in to any part of the graph, it can be easier to assess how accurate our scheme is using a table.</p>
 </div>
 <div class="section" id="tablulating-our-results">
-<h3>Tablulating our results<a class="headerlink" href="#tablulating-our-results" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.3.4. </span>Tablulating our results<a class="headerlink" href="#tablulating-our-results" title="Permalink to this headline">¶</a></h3>
 <p>The table below shows the time, the Runge Kutta numerical approximation, <span class="math notranslate nohighlight">\(y\)</span>,  the exact solution, <span class="math notranslate nohighlight">\(y_{\rm{true}}\)</span>, and the exact error <span class="math notranslate nohighlight">\(|y_{\rm{true}}(t_n)-y_n|\)</span> for the linear population equation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -941,7 +958,7 @@ y(t)=6e^{0.1(t-2000)},
 </div>
 </div>
 <div class="section" id="non-linear-differential-equation">
-<h2>2. Non-Linear Differential Equation<a class="headerlink" href="#non-linear-differential-equation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.4. </span>2. Non-Linear Differential Equation<a class="headerlink" href="#non-linear-differential-equation" title="Permalink to this headline">¶</a></h2>
 <p>Our second equation will be a non-linear differential equation (effectively still an ordinary differential equation but with a higher order power of the dependent variable <span class="math notranslate nohighlight">\(y\)</span>).</p>
 <p>Since our first equation was an equation describing population evolution over time, we’ll choose another differential equation describing population behaviour:</p>
 <div class="math notranslate nohighlight">
@@ -954,7 +971,7 @@ y^{'}=0.2y-0.01y^2, \ \ (2000 \leq t \leq 2020),
 y(2000)=6.
 \]</div>
 <div class="section" id="implementing-rk4">
-<h3>Implementing RK4<a class="headerlink" href="#implementing-rk4" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.1. </span>Implementing RK4<a class="headerlink" href="#implementing-rk4" title="Permalink to this headline">¶</a></h3>
 <p>To write the specific 4th Order Runge Kutta method we need</p>
 <div class="math notranslate nohighlight">
 \[
@@ -992,7 +1009,7 @@ k_1=f_2(x_n,y_n)=0.2y_n-0.01y_n^2.
 </div>
 </div>
 <div class="section" id="results-and-graph">
-<h3>Results and Graph<a class="headerlink" href="#results-and-graph" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.2. </span>Results and Graph<a class="headerlink" href="#results-and-graph" title="Permalink to this headline">¶</a></h3>
 <p>While this ODE is more complicated, it also has an analytical solution; by again separating and integrating and making use of the standard integral result that</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1028,7 +1045,7 @@ c=-5\ln{\left(\frac{0.14\exp{(400)}}{6}\right)}.
 <p>Once more the plots are indistinguishable, again suggesting that our numerical scheme has found an approximate solution which closely matches the true solution. Once more, a table should again highlight exactly how accurate the approximation is.</p>
 </div>
 <div class="section" id="results-table">
-<h3>Results Table<a class="headerlink" href="#results-table" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.3. </span>Results Table<a class="headerlink" href="#results-table" title="Permalink to this headline">¶</a></h3>
 <p>The table below shows the time and the Runge Kutta numerical approximation, <span class="math notranslate nohighlight">\(w\)</span>,  for the non-linear population equation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1144,7 +1161,7 @@ c=-5\ln{\left(\frac{0.14\exp{(400)}}{6}\right)}.
 </div>
 </div>
 <div class="section" id="id2">
-<h2>3. Non-Linear Population Equation with an oscillation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.5. </span>3. Non-Linear Population Equation with an oscillation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>In our final differential equation, lets yet again use a more complex population model and evaluate how well RK4 does. The population model is essentially the previous model with an additional sine term (representing shorter fluctuations in population than the long term behaviour):</p>
 <div class="math notranslate nohighlight">
 \[ 
@@ -1156,7 +1173,7 @@ y^{'}=0.2y-0.01y^2+\sin(2\pi t), \ \ (2000 \leq t \leq 2020),
 y(2000)=6.
 \]</div>
 <div class="section" id="id3">
-<h3>Implementing RK4<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.5.1. </span>Implementing RK4<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>As with the previous cases, lets express the right hand side of the ODE as a function</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1191,7 +1208,7 @@ This time though, you can see that <span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="section" id="results-graph">
-<h3>Results Graph<a class="headerlink" href="#results-graph" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.5.2. </span>Results Graph<a class="headerlink" href="#results-graph" title="Permalink to this headline">¶</a></h3>
 <p>This final ODE is quite a lot more complicated than the two previous ones (note for example, that it’s not separable). We could employ more advanced mathematical techniques to derive an analytical solution, but that isn’t the focus of our work here, so for now we’ll just focus on the RK4 solution that we obtain from our numerical technique</p>
 <p>The plot below shows the 4th order Runge Kutta numerical approximation, <span class="math notranslate nohighlight">\(y\)</span> (circles) for the non-linear population equation:</p>
 <div class="cell docutils container">
@@ -1211,7 +1228,7 @@ This time though, you can see that <span class="math notranslate nohighlight">\(
 <p>This emphasises the power of RK4: we have used it to solve an equation which has <strong>no simple analytical solution</strong>. Given our previous test case, we can be confident of a high degree of accuracy, despite having no solution to compare it too.</p>
 </div>
 <div class="section" id="id4">
-<h3>Results Table<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.5.3. </span>Results Table<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>The table below shows the time and RK4 solution, <span class="math notranslate nohighlight">\(yn3\)</span>,  for the non-linear population equation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1302,7 +1319,7 @@ This time though, you can see that <span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="section" id="python-ode-solvers">
-<h2>Python ODE solvers<a class="headerlink" href="#python-ode-solvers" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.6. </span>Python ODE solvers<a class="headerlink" href="#python-ode-solvers" title="Permalink to this headline">¶</a></h2>
 <p>Python is a clever bit of kit, with entire libraries dedicated to solving numerical problems like these. Some of these libraries even come with built in solvers to carry out the tasks we have just performed. If you feed a particular function, initial/final values, and even explicit grid-size to these solvers, we can obtain automated solutions to our problem:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1331,7 +1348,7 @@ This time though, you can see that <span class="math notranslate nohighlight">\(
 <p>Investigate the documentation of the <em>solve_ivp</em> function from the <em>scipy.integrate</em> package, to explore this process in detail.</p>
 </div>
 <div class="section" id="further-work">
-<h2>Further work<a class="headerlink" href="#further-work" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.7. </span>Further work<a class="headerlink" href="#further-work" title="Permalink to this headline">¶</a></h2>
 <p>Now its over to you:</p>
 <p>Try choosing a worked example seen in the lectures, or indeed a tutorial question <strong>once you have worked through the mathematical steps</strong> and see if you can create a new implementation of RK4 to verify the solution!</p>
 </div>
@@ -1361,7 +1378,21 @@ This time though, you can see that <span class="math notranslate nohighlight">\(
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="MAT201N_DE1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Differential Equation Solving 1</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="MAT201N_DE3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Differential Equation Solving 3</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>

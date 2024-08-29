@@ -41,7 +41,7 @@
 # 
 
 # To illustrate how this method can be implemented numerically, we will apply it to three initial value problems. These happen to be models of population growth over time, but could in reality be for any type of ordinary differential equation (ODE, or indeed for a system of several coupled ODEs). I have selected these equations because they are broadly related, but gradually increase in complexity. The equations which we will investigate are the following:
-# ### 1. Linear Population Equation
+# ### Linear Population Equation
 # Our first ODE will be linear:
 # 
 # $$
@@ -54,7 +54,7 @@
 # y(2000)=6.
 # $$
 # 
-# ### 2. Non-Linear Population Equation 
+# ### Non-Linear Population Equation 
 # Our second ODE will contain more terms and a higher power in $y$:
 # 
 # $$
@@ -67,7 +67,7 @@
 # y(2000)=6.
 # $$
 # 
-# ### 3. Non-Linear Population Equation with an oscillation 
+# ### Non-Linear Population Equation with an oscillation 
 # Our final ODE will include an extra complication of an oscillatory part added to the previous ODE: 
 # 
 # $$

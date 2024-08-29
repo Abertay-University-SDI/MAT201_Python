@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Differential Equation Solving 3 &#8212; MAT201 Applied Mathematics with Python</title>
+    <title>4. Differential Equation Solving 3 &#8212; MAT201 Applied Mathematics with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,6 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. Partial Derivatives" href="../methods/MAT201M_PartialDerivs.html" />
+    <link rel="prev" title="3. Differential Equation Solving 2" href="MAT201N_DE2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -144,13 +146,28 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Dynamics
+  Numerical Methods
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201N_IterTech.html">
    1. Iterative Techiques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201N_DE1.html">
+   2. Euler and Midpoint Method
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201N_DE2.html">
+   3. Runge Kutta Methods
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Verlet Algorithm
   </a>
  </li>
 </ul>
@@ -333,29 +350,29 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#verlet-algorithm">
-   Verlet algorithm
+   4.1. Verlet algorithm
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#setting-up-libraries">
-     Setting up Libraries
+     4.1.1. Setting up Libraries
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simple-attempt-euler">
-   Simple attempt: Euler
+   4.2. Simple attempt: Euler
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-9-4">
-   Example 9.4
+   4.3. Example 9.4
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#further-work">
-   Further work
+   4.4. Further work
   </a>
  </li>
 </ul>
@@ -380,29 +397,29 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#verlet-algorithm">
-   Verlet algorithm
+   4.1. Verlet algorithm
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#setting-up-libraries">
-     Setting up Libraries
+     4.1.1. Setting up Libraries
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simple-attempt-euler">
-   Simple attempt: Euler
+   4.2. Simple attempt: Euler
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-9-4">
-   Example 9.4
+   4.3. Example 9.4
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#further-work">
-   Further work
+   4.4. Further work
   </a>
  </li>
 </ul>
@@ -415,10 +432,10 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="differential-equation-solving-3">
-<h1>Differential Equation Solving 3<a class="headerlink" href="#differential-equation-solving-3" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">4. </span>Differential Equation Solving 3<a class="headerlink" href="#differential-equation-solving-3" title="Permalink to this headline">¶</a></h1>
 <p>Notebook to implement the Verlet algorithm to solve Newton-like equations of motion for Abertay University undergrad course MAT201 (JT, 2024).</p>
 <div class="section" id="verlet-algorithm">
-<h2>Verlet algorithm<a class="headerlink" href="#verlet-algorithm" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.1. </span>Verlet algorithm<a class="headerlink" href="#verlet-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>Our final type of numerical scheme is the <strong>Verlet algorithm</strong>, also known as Verlet Integration.</p>
 <p>This scheme is popular, particularly in Game Physics for solving equations of motion of the form</p>
 <div class="math notranslate nohighlight">
@@ -427,7 +444,7 @@ x''=\frac{{\rm d}^2x}{{\rm{d}}t^2}=a=\frac{F}{m},
 \]</div>
 <p>for displacement <span class="math notranslate nohighlight">\(x\)</span>, acceleration <span class="math notranslate nohighlight">\(a\)</span>, applied force <span class="math notranslate nohighlight">\(F\)</span> and mass <span class="math notranslate nohighlight">\(m\)</span>. We encountered several equations of this type in MAT201: these relate forces acting upon a body to the acceleration, and hence to the velocity and displacement of the body.</p>
 <div class="section" id="setting-up-libraries">
-<h3>Setting up Libraries<a class="headerlink" href="#setting-up-libraries" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.1.1. </span>Setting up Libraries<a class="headerlink" href="#setting-up-libraries" title="Permalink to this headline">¶</a></h3>
 <p>As always, we’ll make use of some clever python tools for plotting and maths, so our first step is to load in the libraries that store these tools:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -444,7 +461,7 @@ x''=\frac{{\rm d}^2x}{{\rm{d}}t^2}=a=\frac{F}{m},
 </div>
 </div>
 <div class="section" id="simple-attempt-euler">
-<h2>Simple attempt: Euler<a class="headerlink" href="#simple-attempt-euler" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.2. </span>Simple attempt: Euler<a class="headerlink" href="#simple-attempt-euler" title="Permalink to this headline">¶</a></h2>
 <p>One way to attempt problems of this kind is to use the <strong>Euler Method</strong> we were introduced to in a previous session:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -473,7 +490,7 @@ v_n=x_n'=\frac{1}{2h}\left(x_{n+1}-x_{n-1}\right).
 <p>A second complexity is that the velocity calculation requires knowledge of the <strong>next</strong> displacement in time, so calculation of this lags behind the displacement calculation. If the velocity is required after 5 steps, we would need to calculate the displacement over 6 steps to achieve the required solution.</p>
 </div>
 <div class="section" id="example-9-4">
-<h2>Example 9.4<a class="headerlink" href="#example-9-4" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3. </span>Example 9.4<a class="headerlink" href="#example-9-4" title="Permalink to this headline">¶</a></h2>
 <p>To see the algorithm in action, we will re-use Example 9.4 from the Lecture notes. In this example, a mass of <span class="math notranslate nohighlight">\(2\)</span>kg is propelled along a rough horizontal table which exerts a resistance of <span class="math notranslate nohighlight">\(0.4\)</span>N. The initial velocity of the mass is <span class="math notranslate nohighlight">\(8{\rm{ms}}^{-1}\)</span>. We are to use the Verlet algorithm with a step size of <span class="math notranslate nohighlight">\(h=0.1\)</span> to approximate the velocity and displacement of the mass after <span class="math notranslate nohighlight">\(0.5\)</span>s, assuming <span class="math notranslate nohighlight">\(x\left(t=0\right)=0\)</span>.</p>
 <p>My first step is to determine the acceleration at a given time. In this case the acceleration (force per unit mass) is constant, so we’ll store acceleration as a constant:</p>
 <div class="cell docutils container">
@@ -554,7 +571,7 @@ t= [0.  0.1 0.2 0.3 0.4 0.5]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_24142/117525382.py:1: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_25237/117525382.py:1: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
   plt.style.use(&#39;seaborn-poster&#39;)
 </pre></div>
 </div>
@@ -565,7 +582,7 @@ t= [0.  0.1 0.2 0.3 0.4 0.5]
 <p>Indeed, with a constant acceleration, this makes the solution easy to approximate with the Verlet algorithm. The major difference arises in the velocity arises from the Euler step, but it is worth noting that apart from this offset, the remaining velocity steps are a consistent difference from the true values. The initial error does not grow in time and cause further divergence of the solutions.</p>
 </div>
 <div class="section" id="further-work">
-<h2>Further work<a class="headerlink" href="#further-work" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.4. </span>Further work<a class="headerlink" href="#further-work" title="Permalink to this headline">¶</a></h2>
 <p>Try choosing a tutorial question or past paper exam question <strong>once you have worked through the mathematical steps</strong> and see if you can create a new implementation of RK4 to verify the solution!</p>
 </div>
 </div>
@@ -594,7 +611,21 @@ t= [0.  0.1 0.2 0.3 0.4 0.5]
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="MAT201N_DE2.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Differential Equation Solving 2</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../methods/MAT201M_PartialDerivs.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Partial Derivatives</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>

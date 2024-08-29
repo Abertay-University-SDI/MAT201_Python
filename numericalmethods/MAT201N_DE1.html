@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Differential Equation Solving 1 &#8212; MAT201 Applied Mathematics with Python</title>
+    <title>2. Differential Equation Solving 1 &#8212; MAT201 Applied Mathematics with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,6 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Differential Equation Solving 2" href="MAT201N_DE2.html" />
+    <link rel="prev" title="1. Iterative Solutions to Equations" href="MAT201N_IterTech.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -144,13 +146,28 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Dynamics
+  Numerical Methods
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201N_IterTech.html">
    1. Iterative Techiques
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Euler and Midpoint Method
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201N_DE2.html">
+   3. Runge Kutta Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201N_DE3.html">
+   4. Verlet Algorithm
   </a>
  </li>
 </ul>
@@ -333,41 +350,41 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#motivation">
-   Motivation
+   2.1. Motivation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#setting-up-libraries">
-     Setting up Libraries
+     2.1.1. Setting up Libraries
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#euler-s-method">
-   Euler’s method
+   2.2. Euler’s method
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-9-1">
-   Example 9.1
+   2.3. Example 9.1
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#midpoint-method">
-   Midpoint method
+   2.4. Midpoint method
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#modified-euler-euler-trapezium-method">
-     Modified Euler (Euler-Trapezium Method)
+     2.4.1. Modified Euler (Euler-Trapezium Method)
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#further-work">
-   Further work
+   2.5. Further work
   </a>
  </li>
 </ul>
@@ -392,41 +409,41 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#motivation">
-   Motivation
+   2.1. Motivation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#setting-up-libraries">
-     Setting up Libraries
+     2.1.1. Setting up Libraries
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#euler-s-method">
-   Euler’s method
+   2.2. Euler’s method
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-9-1">
-   Example 9.1
+   2.3. Example 9.1
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#midpoint-method">
-   Midpoint method
+   2.4. Midpoint method
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#modified-euler-euler-trapezium-method">
-     Modified Euler (Euler-Trapezium Method)
+     2.4.1. Modified Euler (Euler-Trapezium Method)
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#further-work">
-   Further work
+   2.5. Further work
   </a>
  </li>
 </ul>
@@ -439,10 +456,10 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="differential-equation-solving-1">
-<h1>Differential Equation Solving 1<a class="headerlink" href="#differential-equation-solving-1" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">2. </span>Differential Equation Solving 1<a class="headerlink" href="#differential-equation-solving-1" title="Permalink to this headline">¶</a></h1>
 <p>Many physical laws governing natural behaviour take the form of differential equations. These are often complicated, coupled equations where the behaviour of quantities in space and time depend on others. While some have analytical solutions, often it is quicker and easier to apply numerical tools to obtain approximate solutions.</p>
 <div class="section" id="motivation">
-<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
 <p>A <strong>differential equation</strong> is a relationship between a function, <span class="math notranslate nohighlight">\(f(x)\)</span>, its independent variable, <span class="math notranslate nohighlight">\(x\)</span>, and any number of its derivatives. An <strong>ordinary differential equation</strong> or <strong>ODE</strong> is a differential equation where the independent variable, and therefore also the derivatives, is in one dimension. For our purposes, we can assume that an ODE can be written</p>
 <div class="math notranslate nohighlight">
 \[
@@ -464,7 +481,7 @@ ml\frac{{\rm d}^2\theta(t)}{{\rm d}t^2} = -mg \sin(\theta(t)).
 </ol>
 <p>This notebook will apply each of these methods to a specific problem, to illustrate how they can be implemented numerically. Remember that MAT301 aims to give you a mathematical underpinning of each of these methods.</p>
 <div class="section" id="setting-up-libraries">
-<h3>Setting up Libraries<a class="headerlink" href="#setting-up-libraries" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.1.1. </span>Setting up Libraries<a class="headerlink" href="#setting-up-libraries" title="Permalink to this headline">¶</a></h3>
 <p>As always, we’ll make use of some clever Python tools for plotting and maths, so our first step is to load in the libraries that store these tools:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -480,7 +497,7 @@ ml\frac{{\rm d}^2\theta(t)}{{\rm d}t^2} = -mg \sin(\theta(t)).
 </div>
 </div>
 <div class="section" id="euler-s-method">
-<h2>Euler’s method<a class="headerlink" href="#euler-s-method" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2. </span>Euler’s method<a class="headerlink" href="#euler-s-method" title="Permalink to this headline">¶</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(\frac{dS(t)}{dt} = F(t,S(t))\)</span> be an explicitly defined first order ODE. That is, <span class="math notranslate nohighlight">\(F\)</span> is a function that returns the derivative at a given time. Also, let <span class="math notranslate nohighlight">\(t\)</span> be a numerical grid of the interval <span class="math notranslate nohighlight">\([t_0, t_f]\)</span> with spacing <span class="math notranslate nohighlight">\(h\)</span>. Assuming that <span class="math notranslate nohighlight">\(t_0 = 0\)</span>, and that <span class="math notranslate nohighlight">\(t_f = Nh\)</span> for some positive integer, <span class="math notranslate nohighlight">\(N\)</span>, we can linearly approximate <span class="math notranslate nohighlight">\(S(t)\)</span> around <span class="math notranslate nohighlight">\(t_j\)</span> at <span class="math notranslate nohighlight">\(t_{j+1}\)</span> as:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -494,7 +511,7 @@ S(t_{j+1}) = S(t_j) + hF(t_j, S(t_j)).
 <p>This formula is called the <strong>Explicit Euler Formula</strong>, and allows us to approximate the state at <span class="math notranslate nohighlight">\(S(t_{j+1})\)</span> given the state at <span class="math notranslate nohighlight">\(S(t_j)\)</span>. Starting from a given initial value of <span class="math notranslate nohighlight">\(S_0 = S(t_0)\)</span>, we can use this formula to integrate the states up to <span class="math notranslate nohighlight">\(S(t_f)\)</span>; these <span class="math notranslate nohighlight">\(S(t)\)</span> values are then an approximation for the solution of the differential equation. The Euler formula is the simplest and most intuitive method for solving initial value problems. At any state <span class="math notranslate nohighlight">\((t_j, S(t_j))\)</span> it uses <span class="math notranslate nohighlight">\(F\)</span> at that state to “point” toward the next state and then moves in that direction a distance of <span class="math notranslate nohighlight">\(h\)</span>. Although there are more sophisticated and accurate methods for solving these problems, they all have the same fundamental structure. As such, we enumerate explicitly the steps for solving an initial value problem using the Explicit Euler formula.</p>
 <img src="https://pythonnumericalmethods.berkeley.edu/_images/22.03.01-Euler-method-illustration.png" alt="explicit Euler" title="The illustration of the explicit Euler method." width="500"/></div>
 <div class="section" id="example-9-1">
-<h2>Example 9.1<a class="headerlink" href="#example-9-1" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.3. </span>Example 9.1<a class="headerlink" href="#example-9-1" title="Permalink to this headline">¶</a></h2>
 <p>To see this in action, we will use the equation and question posed in from Example 9.1 in the lectures:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -587,7 +604,7 @@ x= [0.  0.1 0.2 0.3 0.4 0.5]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_24125/2040643597.py:1: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_25224/2040643597.py:1: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
   plt.style.use(&#39;seaborn-poster&#39;)
 </pre></div>
 </div>
@@ -619,7 +636,7 @@ x= [0.  0.1 0.2 0.3 0.4 0.5]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_24125/4080072740.py:8: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_25224/4080072740.py:8: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
   plt.style.use(&#39;seaborn-poster&#39;)
 </pre></div>
 </div>
@@ -629,7 +646,7 @@ x= [0.  0.1 0.2 0.3 0.4 0.5]
 <p>As expected, cranking up the number of steps improves the accuracy of the solution. However, in practice, we often have a finite amount of numerical resources (e.g. CPU speed, number of nodes, memory size), so we can’t always rely on the ability to simply decrease <span class="math notranslate nohighlight">\(h\)</span>. In those cases, we have to be smarter, and apply other techniques.</p>
 </div>
 <div class="section" id="midpoint-method">
-<h2>Midpoint method<a class="headerlink" href="#midpoint-method" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.4. </span>Midpoint method<a class="headerlink" href="#midpoint-method" title="Permalink to this headline">¶</a></h2>
 <p>In the lectures, we were introduced to a more accurate scheme, the Midpoint method. This essentially estimates the gradient of the tangent at the midpoint between steps <span class="math notranslate nohighlight">\(x_n+\frac{1}{2}h\)</span>, which lies halfway between <span class="math notranslate nohighlight">\(x_n\)</span> and <span class="math notranslate nohighlight">\(x_{n+1}\)</span>. Using Euler’s method, we then determine <span class="math notranslate nohighlight">\(y_{n+1}=y_n+hk_2,\)</span> where</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -663,7 +680,7 @@ k_2&amp;=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_1).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_24125/2590250041.py:7: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_25224/2590250041.py:7: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
   plt.style.use(&#39;seaborn-poster&#39;)
 </pre></div>
 </div>
@@ -672,7 +689,7 @@ k_2&amp;=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_1).
 </div>
 <p>We quickly see that the midpoint method is more accurate than the Euler method for the same step size. The trade-off is the additional calculation required to evaluate <span class="math notranslate nohighlight">\(k_1\)</span> and <span class="math notranslate nohighlight">\(k_2\)</span>.</p>
 <div class="section" id="modified-euler-euler-trapezium-method">
-<h3>Modified Euler (Euler-Trapezium Method)<a class="headerlink" href="#modified-euler-euler-trapezium-method" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.4.1. </span>Modified Euler (Euler-Trapezium Method)<a class="headerlink" href="#modified-euler-euler-trapezium-method" title="Permalink to this headline">¶</a></h3>
 <p>Our methods to solve ODE problems are gradually becoming more complicated in our search for better accuracy.</p>
 <p>The final method we will encounter in this worksheet is the Modified Euler (or Euler Trapezium) method. This is classed as a predictor-corrector method, which uses the average of gradients of tangents at the endpoints of each interval to improve accuracy. The derivation of this method is beyond the scope of this course, but can easily be found in textbooks or online. The Modified Euler method is also an example of a 2nd order member of the family of Runge Kutta methods, developed around 1900 by Carl Runge and Wilhelm Kutta. We will see some higher order examples of these methods later.</p>
 <p>The method uses Euler’s method to predict <span class="math notranslate nohighlight">\(y_{n+1}\)</span>:</p>
@@ -714,7 +731,7 @@ y_{n+1}^c=y_n+\frac{h}{2}\left(y_n'+y_{n+1}'^p\right).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_24125/1612707178.py:7: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_25224/1612707178.py:7: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
   plt.style.use(&#39;seaborn-poster&#39;)
 </pre></div>
 </div>
@@ -726,7 +743,7 @@ y_{n+1}^c=y_n+\frac{h}{2}\left(y_n'+y_{n+1}'^p\right).
 </div>
 </div>
 <div class="section" id="further-work">
-<h2>Further work<a class="headerlink" href="#further-work" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5. </span>Further work<a class="headerlink" href="#further-work" title="Permalink to this headline">¶</a></h2>
 <p>Now its over to you:</p>
 <p>Try choosing a different worked example seen in the lectures, or indeed a tutorial question <strong>once you have worked through the mathematical steps</strong> and see if you can apply the schemes in this workbook to that problem.</p>
 </div>
@@ -756,7 +773,21 @@ y_{n+1}^c=y_n+\frac{h}{2}\left(y_n'+y_{n+1}'^p\right).
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="MAT201N_IterTech.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">1. </span>Iterative Solutions to Equations</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="MAT201N_DE2.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Differential Equation Solving 2</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>

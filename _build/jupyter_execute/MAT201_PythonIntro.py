@@ -115,7 +115,7 @@ print(onehalf)
 print("4*onehalf=", 4 * onehalf)
 
 
-# We can use symbolic constants like $pi$, $e$ (as in the exponential) or indeed infinity:
+# We can use symbolic constants like $\pi$, $e$ (as in the exponential) or indeed infinity:
 
 # In[6]:
 

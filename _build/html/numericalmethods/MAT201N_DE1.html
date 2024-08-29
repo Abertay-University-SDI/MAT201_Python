@@ -1,0 +1,781 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Differential Equation Solving 1 &#8212; MAT201 Applied Mathematics with Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/Abertay_Uni_Black.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MAT201 Applied Mathematics with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MAT201_PythonIntro.html">
+   Python Introduction
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_AccVelDist.html">
+   1. Linear Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_AirRes.html">
+   2. Air Resistance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_SHM.html">
+   3. Simple Harmonic Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_2DSWcols.html">
+   4. 2D Sphere/Wall Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_1Dcolls.html">
+   5. 1D Sphere/Sphere Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_2DSScols.html">
+   6. 2D Sphere/Sphere Collisions
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201N_IterTech.html">
+   1. Iterative Techiques
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_PartialDerivs.html">
+   1. Partial Derivatives
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_2DVT.html">
+   2. 2D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_3DVT.html">
+   3. 3D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_3DVT2.html">
+   4. More 3D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_Proj1.html">
+   5. Orthographic Projection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_Proj2.html">
+   6. Perspective Projection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_ComplexNos.html">
+   7. Complex Numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_Quats.html">
+   8. Quaternions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_RaysIntro.html">
+   9. Ray Tracing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_RaysBoxes.html">
+   10. Rays and Boxes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_RaysPlanes.html">
+   11. Rays and Planes
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../outro.html">
+   Summary
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/numericalmethods/MAT201N_DE1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Abertay-University-SDI/MAT201_Python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Abertay-University-SDI/MAT201_Python/issues/new?title=Issue%20on%20page%20%2Fnumericalmethods/MAT201N_DE1.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Abertay-University-SDI/MAT201_Python/main?urlpath=lab/tree/numericalmethods/MAT201N_DE1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Abertay-University-SDI/MAT201_Python/blob/main/numericalmethods/MAT201N_DE1.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-up-libraries">
+     Setting up Libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#euler-s-method">
+   Euler’s method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-9-1">
+   Example 9.1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#midpoint-method">
+   Midpoint method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modified-euler-euler-trapezium-method">
+     Modified Euler (Euler-Trapezium Method)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-work">
+   Further work
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Differential Equation Solving 1</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-up-libraries">
+     Setting up Libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#euler-s-method">
+   Euler’s method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-9-1">
+   Example 9.1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#midpoint-method">
+   Midpoint method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modified-euler-euler-trapezium-method">
+     Modified Euler (Euler-Trapezium Method)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-work">
+   Further work
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="differential-equation-solving-1">
+<h1>Differential Equation Solving 1<a class="headerlink" href="#differential-equation-solving-1" title="Permalink to this headline">¶</a></h1>
+<p>Many physical laws governing natural behaviour take the form of differential equations. These are often complicated, coupled equations where the behaviour of quantities in space and time depend on others. While some have analytical solutions, often it is quicker and easier to apply numerical tools to obtain approximate solutions.</p>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>differential equation</strong> is a relationship between a function, <span class="math notranslate nohighlight">\(f(x)\)</span>, its independent variable, <span class="math notranslate nohighlight">\(x\)</span>, and any number of its derivatives. An <strong>ordinary differential equation</strong> or <strong>ODE</strong> is a differential equation where the independent variable, and therefore also the derivatives, is in one dimension. For our purposes, we can assume that an ODE can be written</p>
+<div class="math notranslate nohighlight">
+\[
+F\left(x, f(x), \frac{{\rm d}f(x)}{{\rm d}x}, \frac{{\rm d}^2f(x)}{{\rm d}x^2}, \frac{{\rm d}^3f(x)}{{\rm d}x^3}, \ldots, \frac{{\rm d}^{n-1}f(x)}{{\rm d}x^{n-1}}\right) = \frac{{\rm d}^{n}f(x)}{{\rm d}x^{n}},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(F\)</span> is an arbitrary function that incorporates one or all of the input arguments, and <span class="math notranslate nohighlight">\(n\)</span> is the <strong>order</strong> of the differential equation. This equation is referred to as an <strong><span class="math notranslate nohighlight">\(n^{\mathrm{th}}\)</span> order ODE</strong>.</p>
+<img src="https://pythonnumericalmethods.berkeley.edu/_images/22.01.01-pendulum.png" alt="Pendulum system" title="Pendulum system." width="200"/>
+<p>One example of an ODE describes the system in the above picture, containing a pendulum of length <span class="math notranslate nohighlight">\(l\)</span> supporting a mass, <span class="math notranslate nohighlight">\(m\)</span> at the end of its length. The angle the pendulum makes with the vertical axis over time, <span class="math notranslate nohighlight">\(\theta(t)\)</span>, in the presence of gravity, <span class="math notranslate nohighlight">\(g\)</span>, can be described by an equation, which is the ODE</p>
+<div class="math notranslate nohighlight">
+\[
+ml\frac{{\rm d}^2\theta(t)}{{\rm d}t^2} = -mg \sin(\theta(t)).
+\]</div>
+<p>This equation can be derived by summing the forces in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> direction, and then converting to polar coordinates.</p>
+<p>We have learned several simple approaches to solving ODEs in lectures:</p>
+<ol class="simple">
+<li><p>Euler’s method.</p></li>
+<li><p>Midpoint method.</p></li>
+<li><p>Euler Trapezium.</p></li>
+</ol>
+<p>This notebook will apply each of these methods to a specific problem, to illustrate how they can be implemented numerically. Remember that MAT301 aims to give you a mathematical underpinning of each of these methods.</p>
+<div class="section" id="setting-up-libraries">
+<h3>Setting up Libraries<a class="headerlink" href="#setting-up-libraries" title="Permalink to this headline">¶</a></h3>
+<p>As always, we’ll make use of some clever Python tools for plotting and maths, so our first step is to load in the libraries that store these tools:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Libraries</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="euler-s-method">
+<h2>Euler’s method<a class="headerlink" href="#euler-s-method" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\frac{dS(t)}{dt} = F(t,S(t))\)</span> be an explicitly defined first order ODE. That is, <span class="math notranslate nohighlight">\(F\)</span> is a function that returns the derivative at a given time. Also, let <span class="math notranslate nohighlight">\(t\)</span> be a numerical grid of the interval <span class="math notranslate nohighlight">\([t_0, t_f]\)</span> with spacing <span class="math notranslate nohighlight">\(h\)</span>. Assuming that <span class="math notranslate nohighlight">\(t_0 = 0\)</span>, and that <span class="math notranslate nohighlight">\(t_f = Nh\)</span> for some positive integer, <span class="math notranslate nohighlight">\(N\)</span>, we can linearly approximate <span class="math notranslate nohighlight">\(S(t)\)</span> around <span class="math notranslate nohighlight">\(t_j\)</span> at <span class="math notranslate nohighlight">\(t_{j+1}\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[
+S(t_{j+1}) = S(t_j) + (t_{j+1} - t_j)\frac{dS(t_j)}{dt},
+\]</div>
+<p>which can also be written</p>
+<div class="math notranslate nohighlight">
+\[
+S(t_{j+1}) = S(t_j) + hF(t_j, S(t_j)).
+\]</div>
+<p>This formula is called the <strong>Explicit Euler Formula</strong>, and allows us to approximate the state at <span class="math notranslate nohighlight">\(S(t_{j+1})\)</span> given the state at <span class="math notranslate nohighlight">\(S(t_j)\)</span>. Starting from a given initial value of <span class="math notranslate nohighlight">\(S_0 = S(t_0)\)</span>, we can use this formula to integrate the states up to <span class="math notranslate nohighlight">\(S(t_f)\)</span>; these <span class="math notranslate nohighlight">\(S(t)\)</span> values are then an approximation for the solution of the differential equation. The Euler formula is the simplest and most intuitive method for solving initial value problems. At any state <span class="math notranslate nohighlight">\((t_j, S(t_j))\)</span> it uses <span class="math notranslate nohighlight">\(F\)</span> at that state to “point” toward the next state and then moves in that direction a distance of <span class="math notranslate nohighlight">\(h\)</span>. Although there are more sophisticated and accurate methods for solving these problems, they all have the same fundamental structure. As such, we enumerate explicitly the steps for solving an initial value problem using the Explicit Euler formula.</p>
+<img src="https://pythonnumericalmethods.berkeley.edu/_images/22.03.01-Euler-method-illustration.png" alt="explicit Euler" title="The illustration of the explicit Euler method." width="500"/></div>
+<div class="section" id="example-9-1">
+<h2>Example 9.1<a class="headerlink" href="#example-9-1" title="Permalink to this headline">¶</a></h2>
+<p>To see this in action, we will use the equation and question posed in from Example 9.1 in the lectures:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{{\rm{d}}y}{{\rm{d}}t}=xy,
+\]</div>
+<p>requires a solution at <span class="math notranslate nohighlight">\(x=0.5\)</span> subject to the initial condition <span class="math notranslate nohighlight">\(y(x=0)=1\)</span>, using a step size <span class="math notranslate nohighlight">\(h=0.1\)</span>.</p>
+<p>Euler’s method requires the re-evaluation of the right hand side of the function at different positions, so lets go ahead and create a function to return this value</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">ftw</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">ftw</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we need to create our <span class="math notranslate nohighlight">\(x\)</span>-range for the problem. We know that the range has to begin at <span class="math notranslate nohighlight">\(x=0\)</span> (because we know what <span class="math notranslate nohighlight">\(y\)</span> is there), and we have to step along until we reach the desired <span class="math notranslate nohighlight">\(x\)</span>-value (<span class="math notranslate nohighlight">\(x=0.5\)</span>) in steps of <span class="math notranslate nohighlight">\(h=0.1\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="n">h</span> <span class="p">)</span> <span class="c1"># number of steps</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;N=&quot;</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>  <span class="c1"># range of x</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x=&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>N= 5
+x= [0.  0.1 0.2 0.3 0.4 0.5]
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can see that this approach generates 5 steps <span class="math notranslate nohighlight">\(N=5\)</span>, and the <span class="math notranslate nohighlight">\(x\)</span> values are exactly what we would expect them to be using pen and paper.</p>
+<p>For each of these <span class="math notranslate nohighlight">\(x\)</span>-values, we’ll now have to create <span class="math notranslate nohighlight">\(y\)</span>-values. The first of these is already specified in the problem; we have been told the initial condition <span class="math notranslate nohighlight">\(y(0)=1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we need to calculate each <span class="math notranslate nohighlight">\(y\)</span>-value based on the previous value. To help us, we can loop over all the <span class="math notranslate nohighlight">\(x\)</span>-values and calculate the next in the sequence. The final value will be the one we need (the <span class="math notranslate nohighlight">\(n\)</span>th):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y=&quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y= [1.         1.         1.01       1.0302     1.061106   1.10355024]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This differential equation has an exact solution, <span class="math notranslate nohighlight">\(y_{\rm{exact}}=\exp{\left(\frac{x^2}{2}\right)}\)</span>, so lets go ahead and compare how our approximation does:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_exact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y_exact</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.         1.00501252 1.02020134 1.04602786 1.08328707 1.13314845]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our approximate solution seems to be behaving in the same way: lets visualise this with a plot:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-poster&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;bo--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Approximate: h=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">),</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Approximate and Exact Solution for Simple ODE&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_24125/2040643597.py:1: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
+  plt.style.use(&#39;seaborn-poster&#39;)
+</pre></div>
+</div>
+<img alt="../_images/MAT201N_DE1_17_1.png" src="../_images/MAT201N_DE1_17_1.png" />
+</div>
+</div>
+<p>So we see that our approximation displays similar behaviour, but doesn’t follow the trend exactly; in fact the graphs appear to be diverging as <span class="math notranslate nohighlight">\(x\)</span> increases. What if we make the step size ten times smaller?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h2</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">N2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="n">h2</span><span class="p">)</span> <span class="c1"># number of steps</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">+</span> <span class="n">h2</span><span class="p">,</span> <span class="n">h2</span><span class="p">)</span>  <span class="c1"># range of x</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
+<span class="n">y2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N2</span><span class="p">):</span>
+    <span class="n">y2</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y2</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h2</span> <span class="o">*</span> <span class="n">func</span><span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">y2</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-poster&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;bo--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Approx: h=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span><span class="s1">&#39;ro--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Approx: h=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">h2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">x2</span> <span class="o">*</span> <span class="n">x2</span><span class="p">),</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Approximate and Exact Solutions for Simple ODE&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_24125/4080072740.py:8: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
+  plt.style.use(&#39;seaborn-poster&#39;)
+</pre></div>
+</div>
+<img alt="../_images/MAT201N_DE1_19_1.png" src="../_images/MAT201N_DE1_19_1.png" />
+</div>
+</div>
+<p>As expected, cranking up the number of steps improves the accuracy of the solution. However, in practice, we often have a finite amount of numerical resources (e.g. CPU speed, number of nodes, memory size), so we can’t always rely on the ability to simply decrease <span class="math notranslate nohighlight">\(h\)</span>. In those cases, we have to be smarter, and apply other techniques.</p>
+</div>
+<div class="section" id="midpoint-method">
+<h2>Midpoint method<a class="headerlink" href="#midpoint-method" title="Permalink to this headline">¶</a></h2>
+<p>In the lectures, we were introduced to a more accurate scheme, the Midpoint method. This essentially estimates the gradient of the tangent at the midpoint between steps <span class="math notranslate nohighlight">\(x_n+\frac{1}{2}h\)</span>, which lies halfway between <span class="math notranslate nohighlight">\(x_n\)</span> and <span class="math notranslate nohighlight">\(x_{n+1}\)</span>. Using Euler’s method, we then determine <span class="math notranslate nohighlight">\(y_{n+1}=y_n+hk_2,\)</span> where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+k_1&amp;=f(x_n,y_n), \\
+k_2&amp;=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_1).
+\end{align}
+\end{split}\]</div>
+<p>This looks a bit weird, but all this means is that we start to evaluate the function not only at the grid point values, but also now at different locations in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p>Let’s go ahead and implement this, in exactly the same manner as the previous method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">y3</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">k1</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+    <span class="n">k2</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">k1</span><span class="p">)</span>
+    <span class="n">y3</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y3</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">k2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-poster&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;bo--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Euler: h=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="s1">&#39;o--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Midpoint: h=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">),</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Euler and Midpoint methods: ODE solving&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_24125/2590250041.py:7: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
+  plt.style.use(&#39;seaborn-poster&#39;)
+</pre></div>
+</div>
+<img alt="../_images/MAT201N_DE1_23_1.png" src="../_images/MAT201N_DE1_23_1.png" />
+</div>
+</div>
+<p>We quickly see that the midpoint method is more accurate than the Euler method for the same step size. The trade-off is the additional calculation required to evaluate <span class="math notranslate nohighlight">\(k_1\)</span> and <span class="math notranslate nohighlight">\(k_2\)</span>.</p>
+<div class="section" id="modified-euler-euler-trapezium-method">
+<h3>Modified Euler (Euler-Trapezium Method)<a class="headerlink" href="#modified-euler-euler-trapezium-method" title="Permalink to this headline">¶</a></h3>
+<p>Our methods to solve ODE problems are gradually becoming more complicated in our search for better accuracy.</p>
+<p>The final method we will encounter in this worksheet is the Modified Euler (or Euler Trapezium) method. This is classed as a predictor-corrector method, which uses the average of gradients of tangents at the endpoints of each interval to improve accuracy. The derivation of this method is beyond the scope of this course, but can easily be found in textbooks or online. The Modified Euler method is also an example of a 2nd order member of the family of Runge Kutta methods, developed around 1900 by Carl Runge and Wilhelm Kutta. We will see some higher order examples of these methods later.</p>
+<p>The method uses Euler’s method to predict <span class="math notranslate nohighlight">\(y_{n+1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+y_{n+1}^p=y_n+h y_n',
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(y_{n+1}^p\)</span> is an initial prediction. We then use the derivative prediction, <span class="math notranslate nohighlight">\(y_{n+1}'^p\)</span>, from</p>
+<div class="math notranslate nohighlight">
+\[
+y_{n+1}'^p=f\left(x_{n+1}, y_{n+1}^p\right),
+\]</div>
+<p>to correct the value</p>
+<div class="math notranslate nohighlight">
+\[
+y_{n+1}^c=y_n+\frac{h}{2}\left(y_n'+y_{n+1}'^p\right).
+\]</div>
+<p>Once again, we can apply this solution to the ODE problem from earlier in the following way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">y4</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">k1</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+    <span class="n">k2</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">k1</span><span class="p">)</span>
+    <span class="n">y4</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y4</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="n">k2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-poster&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;bo--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Euler: h=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y4</span><span class="p">,</span> <span class="s1">&#39;mo--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Modified Euler: h=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">),</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Euler and Modified Euler methods: ODE solving&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_24125/1612707178.py:7: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
+  plt.style.use(&#39;seaborn-poster&#39;)
+</pre></div>
+</div>
+<img alt="../_images/MAT201N_DE1_27_1.png" src="../_images/MAT201N_DE1_27_1.png" />
+</div>
+</div>
+<p>Once again, the Modified Euler does a much better job than the original Euler method, and (for this ODE) is comparable to the Midpoint method in accuracy.</p>
+<p>In the next worksheet we will explore a common higher order scheme, the RK4 algorithm, which is widely used in science and engineering (for example). This algorithm builds on some of the simple approaches used in these less accurate models.</p>
+</div>
+</div>
+<div class="section" id="further-work">
+<h2>Further work<a class="headerlink" href="#further-work" title="Permalink to this headline">¶</a></h2>
+<p>Now its over to you:</p>
+<p>Try choosing a different worked example seen in the lectures, or indeed a tutorial question <strong>once you have worked through the mathematical steps</strong> and see if you can apply the schemes in this workbook to that problem.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./numericalmethods"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By James Threlfall<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -23,6 +23,18 @@ parts:
     title: 1D Sphere/Sphere Collisions
   - file: dynamics/MAT201D_2DSScols.ipynb
     title: 2D Sphere/Sphere Collisions
+- caption: Dynamics
+  numbered: true
+  chapters:
+  - file: numericalmethods/MAT201N_IterTech.ipynb
+    title: Iterative Techiques
+  - file: numericalmethods/MAT201D_DE1.ipynb
+    title: Euler and Midpoint Method
+  - file: numericalmethods/MAT201D_DE2.ipynb
+    title: Runge Kutta Methods
+  - file: numericalmethods/MAT201D_DE3.ipynb
+    title: Verlet Algorithm
+    
 - caption: Methods
   numbered: true
   chapters:

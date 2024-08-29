@@ -28,11 +28,11 @@ parts:
   chapters:
   - file: numericalmethods/MAT201N_IterTech.ipynb
     title: Iterative Techiques
-  - file: numericalmethods/MAT201D_DE1.ipynb
+  - file: numericalmethods/MAT201N_DE1.ipynb
     title: Euler and Midpoint Method
-  - file: numericalmethods/MAT201D_DE2.ipynb
+  - file: numericalmethods/MAT201N_DE2.ipynb
     title: Runge Kutta Methods
-  - file: numericalmethods/MAT201D_DE3.ipynb
+  - file: numericalmethods/MAT201N_DE3.ipynb
     title: Verlet Algorithm
 - caption: Methods
   numbered: true

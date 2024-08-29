@@ -477,6 +477,14 @@ x_r=\frac{-b\pm\sqrt{b^2-4ac}}{2a},
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install termcolor
 <span class="kn">from</span> <span class="nn">termcolor</span> <span class="kn">import</span> <span class="n">colored</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">termcolor</span> <span class="kn">import</span> <span class="n">colored</span>
+<span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+    <span class="c1"># Error handling</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install --upgrade termcolor
+    <span class="kn">from</span> <span class="nn">termcolor</span> <span class="kn">import</span> <span class="n">colored</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
 </div>
@@ -737,9 +745,7 @@ no. of steps: 1      final x: 3.0
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>converged
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>no. of steps: 9      final x: 2.6180327868852458
+no. of steps: 9      final x: 2.6180327868852458
 </pre></div>
 </div>
 </div>

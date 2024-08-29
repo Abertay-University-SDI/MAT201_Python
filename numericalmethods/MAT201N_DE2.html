@@ -1,0 +1,1386 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Differential Equation Solving 2 &#8212; MAT201 Applied Mathematics with Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/Abertay_Uni_Black.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">MAT201 Applied Mathematics with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MAT201_PythonIntro.html">
+   Python Introduction
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_AccVelDist.html">
+   1. Linear Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_AirRes.html">
+   2. Air Resistance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_SHM.html">
+   3. Simple Harmonic Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_2DSWcols.html">
+   4. 2D Sphere/Wall Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_1Dcolls.html">
+   5. 1D Sphere/Sphere Collisions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamics/MAT201D_2DSScols.html">
+   6. 2D Sphere/Sphere Collisions
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201N_IterTech.html">
+   1. Iterative Techiques
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_PartialDerivs.html">
+   1. Partial Derivatives
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_2DVT.html">
+   2. 2D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_3DVT.html">
+   3. 3D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_3DVT2.html">
+   4. More 3D Viewing Transforms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_Proj1.html">
+   5. Orthographic Projection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_Proj2.html">
+   6. Perspective Projection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_ComplexNos.html">
+   7. Complex Numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_Quats.html">
+   8. Quaternions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_RaysIntro.html">
+   9. Ray Tracing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_RaysBoxes.html">
+   10. Rays and Boxes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_RaysPlanes.html">
+   11. Rays and Planes
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../outro.html">
+   Summary
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/numericalmethods/MAT201N_DE2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Abertay-University-SDI/MAT201_Python"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Abertay-University-SDI/MAT201_Python/issues/new?title=Issue%20on%20page%20%2Fnumericalmethods/MAT201N_DE2.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Abertay-University-SDI/MAT201_Python/main?urlpath=lab/tree/numericalmethods/MAT201N_DE2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Abertay-University-SDI/MAT201_Python/blob/main/numericalmethods/MAT201N_DE2.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#th-order-runge-kutta-algorithm">
+   4th Order Runge Kutta Algorithm
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-population-equation">
+     1. Linear Population Equation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-linear-population-equation">
+     2. Non-Linear Population Equation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-linear-population-equation-with-an-oscillation">
+     3. Non-Linear Population Equation with an oscillation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#setting-up-libraries">
+       Setting up Libraries
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discrete-interval">
+   Discrete Interval
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1. Linear Population Equation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tailoring-our-4th-order-runge-kutta-scheme">
+     Tailoring our 4th Order Runge Kutta scheme
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exact-solution">
+     Exact Solution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-results">
+     Plotting Results
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tablulating-our-results">
+     Tablulating our results
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-linear-differential-equation">
+   2. Non-Linear Differential Equation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implementing-rk4">
+     Implementing RK4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results-and-graph">
+     Results and Graph
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results-table">
+     Results Table
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   3. Non-Linear Population Equation with an oscillation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Implementing RK4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results-graph">
+     Results Graph
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Results Table
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-ode-solvers">
+   Python ODE solvers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-work">
+   Further work
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Differential Equation Solving 2</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#th-order-runge-kutta-algorithm">
+   4th Order Runge Kutta Algorithm
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-population-equation">
+     1. Linear Population Equation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-linear-population-equation">
+     2. Non-Linear Population Equation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-linear-population-equation-with-an-oscillation">
+     3. Non-Linear Population Equation with an oscillation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#setting-up-libraries">
+       Setting up Libraries
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discrete-interval">
+   Discrete Interval
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1. Linear Population Equation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tailoring-our-4th-order-runge-kutta-scheme">
+     Tailoring our 4th Order Runge Kutta scheme
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exact-solution">
+     Exact Solution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-results">
+     Plotting Results
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tablulating-our-results">
+     Tablulating our results
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-linear-differential-equation">
+   2. Non-Linear Differential Equation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implementing-rk4">
+     Implementing RK4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results-and-graph">
+     Results and Graph
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results-table">
+     Results Table
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   3. Non-Linear Population Equation with an oscillation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Implementing RK4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results-graph">
+     Results Graph
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Results Table
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-ode-solvers">
+   Python ODE solvers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-work">
+   Further work
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="differential-equation-solving-2">
+<h1>Differential Equation Solving 2<a class="headerlink" href="#differential-equation-solving-2" title="Permalink to this headline">¶</a></h1>
+<p>Implementing 4th Order Runge Kutta Algorithm as part of MAT201.</p>
+<div class="section" id="th-order-runge-kutta-algorithm">
+<h2>4th Order Runge Kutta Algorithm<a class="headerlink" href="#th-order-runge-kutta-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>As seen in lectures, a highly common approach to solve differential equations is to use the RK4 algorithm. This is one of a family of Runge-Kutta (RK) algorithms, which are based on the same mathematical ideas. RK4 is an industry standard, representing a good trade-off between accuracy and complexity.</p>
+<p>We apply Runge-Kutta algorithms to differential equations which take the same form, namely:</p>
+<div class="math notranslate nohighlight">
+\[ 
+y^{'} = f(x,y). 
+\]</div>
+<p>The algorithm uses the values of the independent variable <span class="math notranslate nohighlight">\(x\)</span> and dependent variable <span class="math notranslate nohighlight">\(y\)</span> at specific values (<span class="math notranslate nohighlight">\(x_n\)</span> and <span class="math notranslate nohighlight">\(y_n\)</span>) in order to approximate the next value of <span class="math notranslate nohighlight">\(y\)</span> using:</p>
+<div class="math notranslate nohighlight">
+\[ 
+y_{n+1}=y_n+hk,
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(n=0,...,N-1\)</span>. The form of the coeffient <span class="math notranslate nohighlight">\(k\)</span> varies depending on the particular RK scheme used; for RK4 we note:</p>
+<div class="math notranslate nohighlight">
+\[
+k=\frac{1}{6}\left[ k_1+2k_2+2k_3+k_4\right],
+\]</div>
+<p>and individual components <span class="math notranslate nohighlight">\(k_1\rightarrow k_4\)</span> are determined by evaluating the function at different locations according to:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+k_1&amp;=f\left(x_n,y_n\right),~~~~~~~~ k_2=f\left(x_n+\frac{1}{2}h,y_n+\frac{1}{2}hk_1\right), \\
+k_3&amp;=f\left(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_2\right),~k_4=f\left(x_n+h, y_n+hk_3\right).
+\end{align}
+\end{split}\]</div>
+<p>In all of these examples <span class="math notranslate nohighlight">\(h\)</span> is the stepsize with which we step along in <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>We have already seen in the lectures how the method can be applied to different differential equations. However, the real power of this method lies in its iterative behaviour; we can use computers to crank up the number of steps of calculation (or decrease the step size) to calculate an (approximate) solution over a large range of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>To illustrate how this method can be implemented numerically, we will apply it to three initial value problems. These happen to be models of population growth over time, but could in reality be for any type of ordinary differential equation (ODE, or indeed for a system of several coupled ODEs). I have selected these equations because they are broadly related, but gradually increase in complexity. The equations which we will investigate are the following:</p>
+<div class="section" id="linear-population-equation">
+<h3>1. Linear Population Equation<a class="headerlink" href="#linear-population-equation" title="Permalink to this headline">¶</a></h3>
+<p>Our first ODE will be linear:</p>
+<div class="math notranslate nohighlight">
+\[
+y^{'}=0.1y, \ \ (2000 \leq t \leq 2020), 
+\]</div>
+<p>with the initial condition,</p>
+<div class="math notranslate nohighlight">
+\[
+y(2000)=6.
+\]</div>
+</div>
+<div class="section" id="non-linear-population-equation">
+<h3>2. Non-Linear Population Equation<a class="headerlink" href="#non-linear-population-equation" title="Permalink to this headline">¶</a></h3>
+<p>Our second ODE will contain more terms and a higher power in <span class="math notranslate nohighlight">\(y\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+y^{'}=0.2y-0.01y^2, \ \ (2000 \leq t \leq 2020), 
+\]</div>
+<p>with the initial condition,</p>
+<div class="math notranslate nohighlight">
+\[
+y(2000)=6.
+\]</div>
+</div>
+<div class="section" id="non-linear-population-equation-with-an-oscillation">
+<h3>3. Non-Linear Population Equation with an oscillation<a class="headerlink" href="#non-linear-population-equation-with-an-oscillation" title="Permalink to this headline">¶</a></h3>
+<p>Our final ODE will include an extra complication of an oscillatory part added to the previous ODE:</p>
+<div class="math notranslate nohighlight">
+\[
+y^{'}=0.2y-0.01y^2+\sin(2\pi t), \ \ (2000 \leq t \leq 2020), 
+\]</div>
+<p>with the initial condition,</p>
+<div class="math notranslate nohighlight">
+\[
+y(2000)=6.
+\]</div>
+<p>We will tackle each of these equations in turn, applying the RK4 algorithm to each problem and comparing results with any known analytical solutions of the problem.</p>
+<div class="section" id="setting-up-libraries">
+<h4>Setting up Libraries<a class="headerlink" href="#setting-up-libraries" title="Permalink to this headline">¶</a></h4>
+<p>As always, we’ll make use of some clever python tools for plotting and maths, so our first step is to load in the libraries that store these tools:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Libraries</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span> 
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1">#good library for tables</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="discrete-interval">
+<h2>Discrete Interval<a class="headerlink" href="#discrete-interval" title="Permalink to this headline">¶</a></h2>
+<p>The independent variable, which for these equations is time, <span class="math notranslate nohighlight">\(t\)</span>, has a particular range <span class="math notranslate nohighlight">\(a\leq t \leq b \)</span>. We divide this interval into <span class="math notranslate nohighlight">\(N\)</span> points separated by a constant stepsize using the equation stated in our lectures:</p>
+<div class="math notranslate nohighlight">
+\[
+h=\frac{b-a}{N}.
+\]</div>
+<p>Here, the interval is <span class="math notranslate nohighlight">\(2000\leq t \leq 2020,\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+h=\frac{2020-2000}{200}=0.1.
+\]</div>
+<p>This gives the 201 discrete points:</p>
+<div class="math notranslate nohighlight">
+\[ 
+t_0=2000, \ t_1=2000.1, \ ... t_{200}=2020, 
+\]</div>
+<p>which we can generalise to</p>
+<div class="math notranslate nohighlight">
+\[ 
+t_n=2000+0.1n, \ \ \ n=0,1,...,200.
+\]</div>
+<p>Let’s go ahead and set this range of <span class="math notranslate nohighlight">\(t\)</span> values as a list in Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">t_end</span> <span class="o">=</span> <span class="mf">2020.0</span>
+<span class="n">t_start</span> <span class="o">=</span> <span class="mf">2000.0</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">((</span><span class="n">t_end</span> <span class="o">-</span> <span class="n">t_start</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_start</span><span class="p">,</span> <span class="n">t_end</span> <span class="o">+</span> <span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Normally, I’d print these, but for this massive range of times I think it would be better to visualise these with a plot:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">t</span><span class="p">,</span><span class="s1">&#39;o:&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Illustration of discrete time range for h=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MAT201N_DE2_8_0.png" src="../_images/MAT201N_DE2_8_0.png" />
+</div>
+</div>
+<p>So it looks like our time range works, starting and ending at the correct values and with the correct step size.</p>
+</div>
+<div class="section" id="id1">
+<h2>1. Linear Population Equation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="tailoring-our-4th-order-runge-kutta-scheme">
+<h3>Tailoring our 4th Order Runge Kutta scheme<a class="headerlink" href="#tailoring-our-4th-order-runge-kutta-scheme" title="Permalink to this headline">¶</a></h3>
+<p>To write the specific 4th Order Runge Kutta method for the linear population equation we need</p>
+<div class="math notranslate nohighlight">
+\[
+f(x,y)=0.1y.
+\]</div>
+<p>(where I’ve switched back to calling the dependent variable ‘x’ rather than time ‘t’ for consistency with lecture notes).</p>
+<p>So lets go ahead and create a function which returns the right hand side of this equation for a given value of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">l_fun</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">ftw</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">ftw</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now need to evaluate each of the coefficients, beginning with <span class="math notranslate nohighlight">\(k_1\)</span>. In the lectures we manually calculated formulae to describe each coefficient and evaluate these in a table before combining.</p>
+<p>The first coefficient, <span class="math notranslate nohighlight">\(k_1\)</span>, would look like:</p>
+<div class="math notranslate nohighlight">
+\[
+k_1=f\left(x_n,y_n\right)=0.1 y_n.
+\]</div>
+<p>Subsequent coefficients are more complicated to evaluate mathematically, e.g. <span class="math notranslate nohighlight">\(k_2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+k_2&amp;=f\left(x_n+\frac{h}{2},y_n+\frac{h}{2}k_1\right)=0.1\left(y_n+0.05k_1\right) \\
+&amp;=0.1\left(y_n+0.05(0.1y_n)\right)=0.1y_n(1+0.005) \\
+&amp;=0.1y_n(1.005)=0.1005y_n.
+\end{align}
+\end{split}\]</div>
+<p>This is a lot of mathematical effort to then plug into our calculators!</p>
+<p>The beauty of this method relies on making the computer to do the hard work for us! Now that we’ve defined a function to spit out values of <span class="math notranslate nohighlight">\(f(x,y)\)</span>, we can also evaluate <em>shifted values</em> of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> as input into that function to evaluate <span class="math notranslate nohighlight">\(k_1-k_4\)</span>, and hence the next iteration of the solution, <span class="math notranslate nohighlight">\(y_{n+1}\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">yn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">6.0</span>
+<span class="c1">## 4th Order Runge Kutta</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">k1</span> <span class="o">=</span> <span class="n">l_fun</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">yn</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+    <span class="n">k2</span> <span class="o">=</span> <span class="n">l_fun</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span><span class="p">,</span> <span class="n">yn</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">k1</span><span class="p">)</span>
+    <span class="n">k3</span> <span class="o">=</span> <span class="n">l_fun</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span><span class="p">,</span> <span class="n">yn</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">k2</span><span class="p">)</span>
+    <span class="n">k4</span> <span class="o">=</span> <span class="n">l_fun</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">yn</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">k3</span><span class="p">)</span>
+    <span class="n">yn</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span><span class="n">yn</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span> <span class="o">/</span> <span class="mf">6.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exact-solution">
+<h3>Exact Solution<a class="headerlink" href="#exact-solution" title="Permalink to this headline">¶</a></h3>
+<p>From MAT201 mathematics, we should also know that this equation can be separated and integrated, using the initial conditions to evaluate any constants of integration.</p>
+<p>This simple separable first order ODE</p>
+<div class="math notranslate nohighlight">
+\[ 
+y^{'}=0.1y, \ \ (2000 \leq t \leq 2020),
+\]</div>
+<p>with the initial condition,</p>
+<div class="math notranslate nohighlight">
+\[ 
+y(2000)=6.
+\]</div>
+<p>has a simple exact (analytic) solution</p>
+<div class="math notranslate nohighlight">
+\[ 
+y(t)=6e^{0.1(t-2000)},
+\]</div>
+<p>which you should be able to derive analytically yourself - see MAT201 notes for a refresher on this!</p>
+</div>
+<div class="section" id="plotting-results">
+<h3>Plotting Results<a class="headerlink" href="#plotting-results" title="Permalink to this headline">¶</a></h3>
+<p>We’ll now plot the approximate Runge-Kutta solution against the exact solution over time, to see how they behave:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_true</span> <span class="o">=</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mi">2000</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">yn</span><span class="p">,</span><span class="s1">&#39;ro:&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Runge Kutta&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y_true</span><span class="p">,</span><span class="s1">&#39;b--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MAT201N_DE2_16_0.png" src="../_images/MAT201N_DE2_16_0.png" />
+</div>
+</div>
+<p>As one might expect, because of the fourth order accuracy of the RK4 algorithm, both solutions are incredibly well matched when viewed this way.</p>
+<p>Rather than zoom in to any part of the graph, it can be easier to assess how accurate our scheme is using a table.</p>
+</div>
+<div class="section" id="tablulating-our-results">
+<h3>Tablulating our results<a class="headerlink" href="#tablulating-our-results" title="Permalink to this headline">¶</a></h3>
+<p>The table below shows the time, the Runge Kutta numerical approximation, <span class="math notranslate nohighlight">\(y\)</span>,  the exact solution, <span class="math notranslate nohighlight">\(y_{\rm{true}}\)</span>, and the exact error <span class="math notranslate nohighlight">\(|y_{\rm{true}}(t_n)-y_n|\)</span> for the linear population equation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;time t_n&#39;</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">],</span>    <span class="s1">&#39;Runge Kutta (y_n)&#39;</span><span class="p">:</span><span class="n">yn</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">],</span><span class="s1">&#39;Exact (y_true)&#39;</span><span class="p">:</span><span class="n">y_true</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">],</span><span class="s1">&#39;Exact Error&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">y_true</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="o">-</span><span class="n">yn</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">],</span><span class="mi">10</span><span class="p">))}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time t_n</th>
+      <th>Runge Kutta (y_n)</th>
+      <th>Exact (y_true)</th>
+      <th>Exact Error</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2000.0</td>
+      <td>6.000000</td>
+      <td>6.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2000.1</td>
+      <td>6.060301</td>
+      <td>6.060301</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2000.2</td>
+      <td>6.121208</td>
+      <td>6.121208</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2000.3</td>
+      <td>6.182727</td>
+      <td>6.182727</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2000.4</td>
+      <td>6.244865</td>
+      <td>6.244865</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2000.5</td>
+      <td>6.307627</td>
+      <td>6.307627</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2000.6</td>
+      <td>6.371019</td>
+      <td>6.371019</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2000.7</td>
+      <td>6.435049</td>
+      <td>6.435049</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2000.8</td>
+      <td>6.499722</td>
+      <td>6.499722</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2000.9</td>
+      <td>6.565046</td>
+      <td>6.565046</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>You’ll hopefully note that the error in the final column is zero. This is because the RK4 algorithm is highly accurate and we’ve used a very complicated algorithm for a very simple ODE (we’ve taken a sledgehammer to a problem that really only needed a tiny push!).</p>
+<p>Lets now explore two other Differential Equations where we will slowly crank up the complexity to see if that makes any noticeable difference to our iterative RK4 answers.</p>
+</div>
+</div>
+<div class="section" id="non-linear-differential-equation">
+<h2>2. Non-Linear Differential Equation<a class="headerlink" href="#non-linear-differential-equation" title="Permalink to this headline">¶</a></h2>
+<p>Our second equation will be a non-linear differential equation (effectively still an ordinary differential equation but with a higher order power of the dependent variable <span class="math notranslate nohighlight">\(y\)</span>).</p>
+<p>Since our first equation was an equation describing population evolution over time, we’ll choose another differential equation describing population behaviour:</p>
+<div class="math notranslate nohighlight">
+\[ 
+y^{'}=0.2y-0.01y^2, \ \ (2000 \leq t \leq 2020), 
+\]</div>
+<p>with the same initial condition as before, namely that</p>
+<div class="math notranslate nohighlight">
+\[
+y(2000)=6.
+\]</div>
+<div class="section" id="implementing-rk4">
+<h3>Implementing RK4<a class="headerlink" href="#implementing-rk4" title="Permalink to this headline">¶</a></h3>
+<p>To write the specific 4th Order Runge Kutta method we need</p>
+<div class="math notranslate nohighlight">
+\[
+f_2(x,y)=0.2y-0.01y^2.
+\]</div>
+<p>Again we could, if we choose to, calculate <span class="math notranslate nohighlight">\(k_1, k_2, k_3, k_4\)</span> by hand, e.g.</p>
+<div class="math notranslate nohighlight">
+\[
+k_1=f_2(x_n,y_n)=0.2y_n-0.01y_n^2.
+\]</div>
+<p>However, we can again take advantage of the computer, and define a function to return the right hand side of the population equation, and feed in the correct values of <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">nl_fun</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">ftw</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">y</span> <span class="o">-</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">ftw</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yn2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">yn2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">6.0</span>
+<span class="c1">## 4th Order Runge Kutta</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">k1</span> <span class="o">=</span> <span class="n">nl_fun</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">yn2</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+    <span class="n">k2</span> <span class="o">=</span> <span class="n">nl_fun</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span> <span class="p">,</span> <span class="n">yn2</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">k1</span><span class="p">)</span>
+    <span class="n">k3</span> <span class="o">=</span> <span class="n">nl_fun</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span> <span class="p">,</span> <span class="n">yn2</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">k2</span><span class="p">)</span>
+    <span class="n">k4</span> <span class="o">=</span> <span class="n">nl_fun</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">yn2</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">k3</span><span class="p">)</span>
+    <span class="n">yn2</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">yn2</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span> <span class="o">/</span> <span class="mf">6.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="results-and-graph">
+<h3>Results and Graph<a class="headerlink" href="#results-and-graph" title="Permalink to this headline">¶</a></h3>
+<p>While this ODE is more complicated, it also has an analytical solution; by again separating and integrating and making use of the standard integral result that</p>
+<div class="math notranslate nohighlight">
+\[
+\int{\frac{\rm{d}x}{x\left(a+bx\right)}}=\frac{1}{a}\ln{\left|\frac{a+bx}{x}\right|}+c,
+\]</div>
+<p>we can therefore find:</p>
+<div class="math notranslate nohighlight">
+\[
+y(t)=\left({5e^{\dfrac{-(t+c)}{5}}+0.05}\right)^{-1}, 
+\]</div>
+<p>with a contant of integration</p>
+<div class="math notranslate nohighlight">
+\[
+c=-5\ln{\left(\frac{0.14\exp{(400)}}{6}\right)}.
+\]</div>
+<p>The plot below again shows the RK4 numerical approximation, <span class="math notranslate nohighlight">\(y_n\)</span> (circles) and the analytical solution to the non-linear population equation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">5.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">0.14</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span> <span class="o">/</span> <span class="mf">6.0</span><span class="p">)</span>
+<span class="n">y_nltrue</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="n">c1</span><span class="p">))</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">fig2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">yn2</span><span class="p">,</span><span class="s1">&#39;ro:&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Runge Kutta&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y_nltrue</span><span class="p">,</span><span class="s1">&#39;b--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MAT201N_DE2_25_0.png" src="../_images/MAT201N_DE2_25_0.png" />
+</div>
+</div>
+<p>Once more the plots are indistinguishable, again suggesting that our numerical scheme has found an approximate solution which closely matches the true solution. Once more, a table should again highlight exactly how accurate the approximation is.</p>
+</div>
+<div class="section" id="results-table">
+<h3>Results Table<a class="headerlink" href="#results-table" title="Permalink to this headline">¶</a></h3>
+<p>The table below shows the time and the Runge Kutta numerical approximation, <span class="math notranslate nohighlight">\(w\)</span>,  for the non-linear population equation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;time t_n&#39;</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">],</span><span class="s1">&#39;Runge Kutta (y_n)&#39;</span><span class="p">:</span><span class="n">yn2</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">],</span><span class="s1">&#39;Exact (y_true)&#39;</span><span class="p">:</span><span class="n">y_nltrue</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">],</span>
+     <span class="s1">&#39;Exact Error&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">y_nltrue</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="o">-</span><span class="n">yn2</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">],</span><span class="mi">10</span><span class="p">))}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time t_n</th>
+      <th>Runge Kutta (y_n)</th>
+      <th>Exact (y_true)</th>
+      <th>Exact Error</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2000.0</td>
+      <td>6.000000</td>
+      <td>6.000000</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2000.1</td>
+      <td>6.084335</td>
+      <td>6.084335</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2000.2</td>
+      <td>6.169332</td>
+      <td>6.169332</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2000.3</td>
+      <td>6.254983</td>
+      <td>6.254983</td>
+      <td>1.000000e-10</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2000.4</td>
+      <td>6.341278</td>
+      <td>6.341278</td>
+      <td>1.000000e-10</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2000.5</td>
+      <td>6.428207</td>
+      <td>6.428207</td>
+      <td>1.000000e-10</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2000.6</td>
+      <td>6.515759</td>
+      <td>6.515759</td>
+      <td>1.000000e-10</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2000.7</td>
+      <td>6.603924</td>
+      <td>6.603924</td>
+      <td>1.000000e-10</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2000.8</td>
+      <td>6.692689</td>
+      <td>6.692689</td>
+      <td>1.000000e-10</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2000.9</td>
+      <td>6.782043</td>
+      <td>6.782043</td>
+      <td>2.000000e-10</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The table illustrates that for this equation, a very small (but nevertheless non-zero) error creeps in after a few timesteps, and appears to grow every few steps.</p>
+<p>The first few steps in the table are likely to be zero due to rounding: this worksheet displays numbers to a preset number of decimal places.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>3. Non-Linear Population Equation with an oscillation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>In our final differential equation, lets yet again use a more complex population model and evaluate how well RK4 does. The population model is essentially the previous model with an additional sine term (representing shorter fluctuations in population than the long term behaviour):</p>
+<div class="math notranslate nohighlight">
+\[ 
+y^{'}=0.2y-0.01y^2+\sin(2\pi t), \ \ (2000 \leq t \leq 2020), 
+\]</div>
+<p>with the initial condition,</p>
+<div class="math notranslate nohighlight">
+\[
+y(2000)=6.
+\]</div>
+<div class="section" id="id3">
+<h3>Implementing RK4<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>As with the previous cases, lets express the right hand side of the ODE as a function</p>
+<div class="math notranslate nohighlight">
+\[
+f_3(x,y)=0.2y-0.01y^2+\sin(2\pi x),
+\]</div>
+<p>Once again, we could mathematically calculate expressions for <span class="math notranslate nohighlight">\(k_1\rightarrow k_4\)</span>.
+This time though, you can see that <span class="math notranslate nohighlight">\(f_3(x,y)\)</span> now contains terms that depend on <span class="math notranslate nohighlight">\(y\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(t\)</span>!</p>
+<p>Now that we’re more familiar with how to implement RK4 numerically, we’ll simply move on to define our function representing <span class="math notranslate nohighlight">\(f_3(x,y)\)</span> and let the code evaluate the coefficients:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">nlo_fun</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">ftw</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">y</span> <span class="o">-</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ftw</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yn3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">yn3</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">6.0</span>
+<span class="c1">## 4th Order Runge Kutta</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">k1</span> <span class="o">=</span> <span class="n">nlo_fun</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">yn3</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+    <span class="n">k2</span> <span class="o">=</span> <span class="n">nlo_fun</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span><span class="p">,</span> <span class="n">yn3</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">k1</span><span class="p">)</span>
+    <span class="n">k3</span> <span class="o">=</span> <span class="n">nlo_fun</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span><span class="p">,</span> <span class="n">yn3</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">k2</span><span class="p">)</span>
+    <span class="n">k4</span> <span class="o">=</span> <span class="n">nlo_fun</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">yn3</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">k3</span><span class="p">)</span>
+    <span class="n">yn3</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">yn3</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span> <span class="o">/</span> <span class="mf">6.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="results-graph">
+<h3>Results Graph<a class="headerlink" href="#results-graph" title="Permalink to this headline">¶</a></h3>
+<p>This final ODE is quite a lot more complicated than the two previous ones (note for example, that it’s not separable). We could employ more advanced mathematical techniques to derive an analytical solution, but that isn’t the focus of our work here, so for now we’ll just focus on the RK4 solution that we obtain from our numerical technique</p>
+<p>The plot below shows the 4th order Runge Kutta numerical approximation, <span class="math notranslate nohighlight">\(y\)</span> (circles) for the non-linear population equation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">yn3</span><span class="p">,</span><span class="s1">&#39;bo:&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;RK4&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MAT201N_DE2_34_0.png" src="../_images/MAT201N_DE2_34_0.png" />
+</div>
+</div>
+<p>The graph shows the behaviour of the solution; as we might expect the overal population increase that we witnessed in case 2 has been modified by a shorter oscillatory pattern.</p>
+<p>This emphasises the power of RK4: we have used it to solve an equation which has <strong>no simple analytical solution</strong>. Given our previous test case, we can be confident of a high degree of accuracy, despite having no solution to compare it too.</p>
+</div>
+<div class="section" id="id4">
+<h3>Results Table<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>The table below shows the time and RK4 solution, <span class="math notranslate nohighlight">\(yn3\)</span>,  for the non-linear population equation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;time t_n&#39;</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">],</span> <span class="s1">&#39;Runge Kutta&#39;</span><span class="p">:</span><span class="n">yn3</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time t_n</th>
+      <th>Runge Kutta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2000.0</td>
+      <td>6.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2000.1</td>
+      <td>6.114813</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2000.2</td>
+      <td>6.279909</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2000.3</td>
+      <td>6.465115</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2000.4</td>
+      <td>6.632805</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2000.5</td>
+      <td>6.752294</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2000.6</td>
+      <td>6.811571</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2000.7</td>
+      <td>6.821875</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2000.8</td>
+      <td>6.813379</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2000.9</td>
+      <td>6.823656</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="python-ode-solvers">
+<h2>Python ODE solvers<a class="headerlink" href="#python-ode-solvers" title="Permalink to this headline">¶</a></h2>
+<p>Python is a clever bit of kit, with entire libraries dedicated to solving numerical problems like these. Some of these libraries even come with built in solvers to carry out the tasks we have just performed. If you feed a particular function, initial/final values, and even explicit grid-size to these solvers, we can obtain automated solutions to our problem:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">nlo_fun</span><span class="p">,</span> <span class="p">[</span><span class="n">t_start</span><span class="p">,</span> <span class="n">t_end</span><span class="p">],</span> <span class="p">[</span><span class="mf">6.0</span><span class="p">],</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+<span class="n">sol2</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">nlo_fun</span><span class="p">,</span> <span class="p">[</span><span class="n">t_start</span><span class="p">,</span> <span class="n">t_end</span><span class="p">],</span> <span class="p">[</span><span class="mf">6.0</span><span class="p">],</span>  <span class="n">method</span><span class="o">=</span><span class="s1">&#39;DOP853&#39;</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;b:&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;ivpRK45&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol2</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol2</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;r:&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;ivpDOP853&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MAT201N_DE2_40_0.png" src="../_images/MAT201N_DE2_40_0.png" />
+</div>
+</div>
+<p>Note that the native RK45 routine in this package finds a slightly different solution to the 8th order accurate <em>DOP853</em> method. If you opt to use intrinsic functions, you need to take care that they are set up correctly, preferably testing them on some simple examples first!</p>
+<p>Investigate the documentation of the <em>solve_ivp</em> function from the <em>scipy.integrate</em> package, to explore this process in detail.</p>
+</div>
+<div class="section" id="further-work">
+<h2>Further work<a class="headerlink" href="#further-work" title="Permalink to this headline">¶</a></h2>
+<p>Now its over to you:</p>
+<p>Try choosing a worked example seen in the lectures, or indeed a tutorial question <strong>once you have worked through the mathematical steps</strong> and see if you can create a new implementation of RK4 to verify the solution!</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./numericalmethods"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By James Threlfall<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

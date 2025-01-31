@@ -1,0 +1,180 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 1093, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/local/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/usr/local/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/local/Cellar/python@3.9/3.9.21/Frameworks/Python.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 559, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 854, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/usr/local/lib/python3.9/site-packages/nbclient/client.py", line 756, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#define symbols and 3D parametric functions
+r, theta  = sym.Symbol('r'), sym.Symbol('theta') #parameters
+s  = [ r*sym.cos(theta), r*sym.sin(theta), r**2 ] #position r(t)
+dsdr = [ sym.diff(s[0],r), sym.diff(s[1],r), sym.diff(s[2],r) ] #tangent, ds/dr
+dsdtheta = [ sym.diff(s[0],theta), sym.diff(s[1],theta), sym.diff(s[2],theta) ] #tangent, ds/dtheta
+
+v1 = sym.Matrix(dsdr)
+v2 = sym.Matrix(dsdtheta)
+cp = v1.cross(v2)
+
+# tangent location in parameter space (degrees)
+r1 = 1.0
+theta1 = math.radians(200)
+
+#turn rx and ry into functions to plot them
+xf = lambdify([r,theta],s[0])
+yf = lambdify([r,theta],s[1])
+zf = lambdify([r,theta],s[2])
+
+#set up parameter ranges
+rvals = np.linspace(0,2, 21)  #range of parameter r
+thetavals = np.linspace(0, 2*np.pi, 21) #range of parameter theta
+myr, myt = np.meshgrid(rvals,thetavals) # make a grid of values
+
+# calculate x,y,z arrays of positions based on r and theta
+xvals, yvals, zvals = xf(myr,myt), yf(myr,myt), zf(myr,myt)
+
+#point on surface
+xp = float(s[0].subs({r:r1, theta:theta1}))
+yp = float(s[1].subs({r:r1, theta:theta1}))
+zp = float(s[2].subs({r:r1, theta:theta1}))
+p = [xp,yp,zp]
+
+# unit normal to surface
+nx = float(cp[0].subs({r: r1, theta: theta1}))
+ny = float(cp[1].subs({r: r1, theta: theta1}))
+nz = float(cp[2].subs({r: r1, theta: theta1}))
+n = [nx,ny,nz]
+n = n/np.linalg.norm(n)
+
+#tangent plane
+d = -np.sum(n * p)
+tpeqn = "tangent plane eqn: {:.2f}x+{:.2f}y+{:.2f}z={:.3f}".format(n[0],n[1],n[2],d)
+
+xlim = -4,4
+ylim = -4,4
+zlim = -2,6
+xx, yy = np.meshgrid(np.arange(*xlim), np.arange(*ylim))
+zz = -(n[0] * xx + n[1] * yy + d) / n[2]
+#zz[zz>6] = np.nan
+#zz[zz<-2] = np.nan
+
+# plot
+fig, ax = plt.subplots(subplot_kw={"projection": "3d"}, figsize=(12,6))
+ax.set_zlim(*zlim)
+surf = ax.plot_wireframe(xvals, yvals, zvals, rstride=2, cstride=2, label='parabolic bowl')
+ax.scatter(xp, yp, zp, color='r', s=50, label='location')
+arrow_prop_dict = dict(mutation_scale=20, arrowstyle='-|>', color='k', shrinkA=0, shrinkB=0, linewidth=1)
+b = Arrow3D([xp, xp-n[0]], [yp, yp-n[1]], [zp, zp-n[2]], **arrow_prop_dict)
+ax.add_artist(b)
+ax.plot_surface(xx, yy, zz, alpha=0.3, label='tangent plane')
+ax.title.set_text(tpeqn)
+ax.legend(loc="best")
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.set_zlabel("z")
+plt.show()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+Cell [0;32mIn[7], line 63[0m
+[1;32m     61[0m ax[38;5;241m.[39mplot_surface(xx, yy, zz, alpha[38;5;241m=[39m[38;5;241m0.3[39m, label[38;5;241m=[39m[38;5;124m'[39m[38;5;124mtangent plane[39m[38;5;124m'[39m)
+[1;32m     62[0m ax[38;5;241m.[39mtitle[38;5;241m.[39mset_text(tpeqn)
+[0;32m---> 63[0m [43max[49m[38;5;241;43m.[39;49m[43mlegend[49m[43m([49m[43mloc[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mbest[39;49m[38;5;124;43m"[39;49m[43m)[49m
+[1;32m     64[0m ax[38;5;241m.[39mset_xlabel([38;5;124m"[39m[38;5;124mx[39m[38;5;124m"[39m)
+[1;32m     65[0m ax[38;5;241m.[39mset_ylabel([38;5;124m"[39m[38;5;124my[39m[38;5;124m"[39m)
+
+File [0;32m~/Library/Python/3.9/lib/python/site-packages/matplotlib/axes/_axes.py:318[0m, in [0;36mAxes.legend[0;34m(self, *args, **kwargs)[0m
+[1;32m    316[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(extra_args):
+[1;32m    317[0m     [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m([38;5;124m'[39m[38;5;124mlegend only accepts two non-keyword arguments[39m[38;5;124m'[39m)
+[0;32m--> 318[0m [38;5;28mself[39m[38;5;241m.[39mlegend_ [38;5;241m=[39m [43mmlegend[49m[38;5;241;43m.[39;49m[43mLegend[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mhandles[49m[43m,[49m[43m [49m[43mlabels[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    319[0m [38;5;28mself[39m[38;5;241m.[39mlegend_[38;5;241m.[39m_remove_method [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_remove_legend
+[1;32m    320[0m [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39mlegend_
+
+File [0;32m~/Library/Python/3.9/lib/python/site-packages/matplotlib/_api/deprecation.py:454[0m, in [0;36mmake_keyword_only.<locals>.wrapper[0;34m(*args, **kwargs)[0m
+[1;32m    448[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(args) [38;5;241m>[39m name_idx:
+[1;32m    449[0m     warn_deprecated(
+[1;32m    450[0m         since, message[38;5;241m=[39m[38;5;124m"[39m[38;5;124mPassing the [39m[38;5;132;01m%(name)s[39;00m[38;5;124m [39m[38;5;132;01m%(obj_type)s[39;00m[38;5;124m [39m[38;5;124m"[39m
+[1;32m    451[0m         [38;5;124m"[39m[38;5;124mpositionally is deprecated since Matplotlib [39m[38;5;132;01m%(since)s[39;00m[38;5;124m; the [39m[38;5;124m"[39m
+[1;32m    452[0m         [38;5;124m"[39m[38;5;124mparameter will become keyword-only [39m[38;5;132;01m%(removal)s[39;00m[38;5;124m.[39m[38;5;124m"[39m,
+[1;32m    453[0m         name[38;5;241m=[39mname, obj_type[38;5;241m=[39m[38;5;124mf[39m[38;5;124m"[39m[38;5;124mparameter of [39m[38;5;132;01m{[39;00mfunc[38;5;241m.[39m[38;5;18m__name__[39m[38;5;132;01m}[39;00m[38;5;124m()[39m[38;5;124m"[39m)
+[0;32m--> 454[0m [38;5;28;01mreturn[39;00m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m~/Library/Python/3.9/lib/python/site-packages/matplotlib/legend.py:583[0m, in [0;36mLegend.__init__[0;34m(self, parent, handles, labels, loc, numpoints, markerscale, markerfirst, reverse, scatterpoints, scatteryoffsets, prop, fontsize, labelcolor, borderpad, labelspacing, handlelength, handleheight, handletextpad, borderaxespad, columnspacing, ncols, mode, fancybox, shadow, title, title_fontsize, framealpha, edgecolor, facecolor, bbox_to_anchor, bbox_transform, frameon, handler_map, title_fontproperties, alignment, ncol, draggable)[0m
+[1;32m    580[0m [38;5;28mself[39m[38;5;241m.[39m_alignment [38;5;241m=[39m alignment
+[1;32m    582[0m [38;5;66;03m# init with null renderer[39;00m
+[0;32m--> 583[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_init_legend_box[49m[43m([49m[43mhandles[49m[43m,[49m[43m [49m[43mlabels[49m[43m,[49m[43m [49m[43mmarkerfirst[49m[43m)[49m
+[1;32m    585[0m tmp [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_loc_used_default
+[1;32m    586[0m [38;5;28mself[39m[38;5;241m.[39m_set_loc(loc)
+
+File [0;32m~/Library/Python/3.9/lib/python/site-packages/matplotlib/legend.py:867[0m, in [0;36mLegend._init_legend_box[0;34m(self, handles, labels, markerfirst)[0m
+[1;32m    864[0m         text_list[38;5;241m.[39mappend(textbox[38;5;241m.[39m_text)
+[1;32m    865[0m         [38;5;66;03m# Create the artist for the legend which represents the[39;00m
+[1;32m    866[0m         [38;5;66;03m# original artist/handle.[39;00m
+[0;32m--> 867[0m         handle_list[38;5;241m.[39mappend([43mhandler[49m[38;5;241;43m.[39;49m[43mlegend_artist[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43morig_handle[49m[43m,[49m
+[1;32m    868[0m [43m                                                 [49m[43mfontsize[49m[43m,[49m[43m [49m[43mhandlebox[49m[43m)[49m)
+[1;32m    869[0m         handles_and_labels[38;5;241m.[39mappend((handlebox, textbox))
+[1;32m    871[0m columnbox [38;5;241m=[39m []
+
+File [0;32m~/Library/Python/3.9/lib/python/site-packages/matplotlib/legend_handler.py:130[0m, in [0;36mHandlerBase.legend_artist[0;34m(self, legend, orig_handle, fontsize, handlebox)[0m
+[1;32m    106[0m [38;5;124;03m"""[39;00m
+[1;32m    107[0m [38;5;124;03mReturn the artist that this HandlerBase generates for the given[39;00m
+[1;32m    108[0m [38;5;124;03moriginal artist/handle.[39;00m
+[0;32m   (...)[0m
+[1;32m    123[0m 
+[1;32m    124[0m [38;5;124;03m"""[39;00m
+[1;32m    125[0m xdescent, ydescent, width, height [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39madjust_drawing_area(
+[1;32m    126[0m          legend, orig_handle,
+[1;32m    127[0m          handlebox[38;5;241m.[39mxdescent, handlebox[38;5;241m.[39mydescent,
+[1;32m    128[0m          handlebox[38;5;241m.[39mwidth, handlebox[38;5;241m.[39mheight,
+[1;32m    129[0m          fontsize)
+[0;32m--> 130[0m artists [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcreate_artists[49m[43m([49m[43mlegend[49m[43m,[49m[43m [49m[43morig_handle[49m[43m,[49m
+[1;32m    131[0m [43m                              [49m[43mxdescent[49m[43m,[49m[43m [49m[43mydescent[49m[43m,[49m[43m [49m[43mwidth[49m[43m,[49m[43m [49m[43mheight[49m[43m,[49m
+[1;32m    132[0m [43m                              [49m[43mfontsize[49m[43m,[49m[43m [49m[43mhandlebox[49m[38;5;241;43m.[39;49m[43mget_transform[49m[43m([49m[43m)[49m[43m)[49m
+[1;32m    134[0m [38;5;66;03m# create_artists will return a list of artists.[39;00m
+[1;32m    135[0m [38;5;28;01mfor[39;00m a [38;5;129;01min[39;00m artists:
+
+File [0;32m~/Library/Python/3.9/lib/python/site-packages/matplotlib/legend_handler.py:815[0m, in [0;36mHandlerPolyCollection.create_artists[0;34m(self, legend, orig_handle, xdescent, ydescent, width, height, fontsize, trans)[0m
+[1;32m    810[0m [38;5;28;01mdef[39;00m [38;5;21mcreate_artists[39m([38;5;28mself[39m, legend, orig_handle,
+[1;32m    811[0m                    xdescent, ydescent, width, height, fontsize, trans):
+[1;32m    812[0m     [38;5;66;03m# docstring inherited[39;00m
+[1;32m    813[0m     p [38;5;241m=[39m Rectangle(xy[38;5;241m=[39m([38;5;241m-[39mxdescent, [38;5;241m-[39mydescent),
+[1;32m    814[0m                   width[38;5;241m=[39mwidth, height[38;5;241m=[39mheight)
+[0;32m--> 815[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mupdate_prop[49m[43m([49m[43mp[49m[43m,[49m[43m [49m[43morig_handle[49m[43m,[49m[43m [49m[43mlegend[49m[43m)[49m
+[1;32m    816[0m     p[38;5;241m.[39mset_transform(trans)
+[1;32m    817[0m     [38;5;28;01mreturn[39;00m [p]
+
+File [0;32m~/Library/Python/3.9/lib/python/site-packages/matplotlib/legend_handler.py:89[0m, in [0;36mHandlerBase.update_prop[0;34m(self, legend_handle, orig_handle, legend)[0m
+[1;32m     87[0m [38;5;28;01mdef[39;00m [38;5;21mupdate_prop[39m([38;5;28mself[39m, legend_handle, orig_handle, legend):
+[0;32m---> 89[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_update_prop[49m[43m([49m[43mlegend_handle[49m[43m,[49m[43m [49m[43morig_handle[49m[43m)[49m
+[1;32m     91[0m     legend[38;5;241m.[39m_set_artist_props(legend_handle)
+[1;32m     92[0m     legend_handle[38;5;241m.[39mset_clip_box([38;5;28;01mNone[39;00m)
+
+File [0;32m~/Library/Python/3.9/lib/python/site-packages/matplotlib/legend_handler.py:795[0m, in [0;36mHandlerPolyCollection._update_prop[0;34m(self, legend_handle, orig_handle)[0m
+[1;32m    791[0m         [38;5;28;01mreturn[39;00m [38;5;28;01mNone[39;00m
+[1;32m    793[0m [38;5;66;03m# orig_handle is a PolyCollection and legend_handle is a Patch.[39;00m
+[1;32m    794[0m [38;5;66;03m# Directly set Patch color attributes (must be RGBA tuples).[39;00m
+[0;32m--> 795[0m legend_handle[38;5;241m.[39m_facecolor [38;5;241m=[39m [43mfirst_color[49m[43m([49m[43morig_handle[49m[38;5;241;43m.[39;49m[43mget_facecolor[49m[43m([49m[43m)[49m[43m)[49m
+[1;32m    796[0m legend_handle[38;5;241m.[39m_edgecolor [38;5;241m=[39m first_color(orig_handle[38;5;241m.[39mget_edgecolor())
+[1;32m    797[0m legend_handle[38;5;241m.[39m_original_facecolor [38;5;241m=[39m orig_handle[38;5;241m.[39m_original_facecolor
+
+File [0;32m~/Library/Python/3.9/lib/python/site-packages/matplotlib/legend_handler.py:783[0m, in [0;36mHandlerPolyCollection._update_prop.<locals>.first_color[0;34m(colors)[0m
+[1;32m    782[0m [38;5;28;01mdef[39;00m [38;5;21mfirst_color[39m(colors):
+[0;32m--> 783[0m     [38;5;28;01mif[39;00m [43mcolors[49m[38;5;241;43m.[39;49m[43msize[49m [38;5;241m==[39m [38;5;241m0[39m:
+[1;32m    784[0m         [38;5;28;01mreturn[39;00m ([38;5;241m0[39m, [38;5;241m0[39m, [38;5;241m0[39m, [38;5;241m0[39m)
+[1;32m    785[0m     [38;5;28;01mreturn[39;00m [38;5;28mtuple[39m(colors[[38;5;241m0[39m])
+
+[0;31mAttributeError[0m: 'tuple' object has no attribute 'size'
+AttributeError: 'tuple' object has no attribute 'size'
+

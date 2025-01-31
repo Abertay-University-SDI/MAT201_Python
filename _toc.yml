@@ -49,6 +49,8 @@ parts:
     title: Orthographic Projection
   - file: methods/MAT201M_Proj2.ipynb
     title: Perspective Projection
+  - file: methods/MAT201M_CurvesandSurfaces.ipynb
+    title: Curves and Surfaces
   - file: methods/MAT201M_ComplexNos.ipynb
     title: Complex Numbers
   - file: methods/MAT201M_Quats.ipynb

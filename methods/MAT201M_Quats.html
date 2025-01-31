@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>8. Quaternions (and rotations!) &#8212; MAT201 Applied Mathematics with Python</title>
+    <title>9. Quaternions (and rotations!) &#8212; MAT201 Applied Mathematics with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. Ray Tracing" href="MAT201M_RaysIntro.html" />
-    <link rel="prev" title="7. Complex Numbers" href="MAT201M_ComplexNos.html" />
+    <link rel="next" title="10. Ray Tracing" href="MAT201M_RaysIntro.html" />
+    <link rel="prev" title="8. Complex Numbers" href="MAT201M_ComplexNos.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -208,28 +208,33 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="MAT201M_CurvesAndSurfaces.html">
+   7. Curves and Surfaces
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_ComplexNos.html">
-   7. Complex Numbers
+   8. Complex Numbers
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   8. Quaternions
+   9. Quaternions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysIntro.html">
-   9. Ray Tracing
+   10. Ray Tracing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysBoxes.html">
-   10. Rays and Boxes
+   11. Rays and Boxes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysPlanes.html">
-   11. Rays and Planes
+   12. Rays and Planes
   </a>
  </li>
 </ul>
@@ -350,46 +355,46 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   8.1. Introduction
+   9.1. Introduction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-the-quaternions-package-to-do-maths">
-   8.2. Using the quaternions package to do maths
+   9.2. Using the quaternions package to do maths
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-1-rotation-using-quaternions">
-     8.2.1. Example 1: rotation using quaternions
+     9.2.1. Example 1: rotation using quaternions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-2">
-     8.2.2. Example 2
+     9.2.2. Example 2
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-3-rotation-axis-not-through-origin">
-     8.2.3. Example 3: rotation axis not through origin
+     9.2.3. Example 3: rotation axis not through origin
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#concatenation">
-   8.3. Concatenation
+   9.3. Concatenation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#concatenation-example-1">
-     8.3.1. Concatenation Example 1
+     9.3.1. Concatenation Example 1
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#over-to-you">
-   8.4. Over to you
+   9.4. Over to you
   </a>
  </li>
 </ul>
@@ -414,46 +419,46 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   8.1. Introduction
+   9.1. Introduction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-the-quaternions-package-to-do-maths">
-   8.2. Using the quaternions package to do maths
+   9.2. Using the quaternions package to do maths
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-1-rotation-using-quaternions">
-     8.2.1. Example 1: rotation using quaternions
+     9.2.1. Example 1: rotation using quaternions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-2">
-     8.2.2. Example 2
+     9.2.2. Example 2
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-3-rotation-axis-not-through-origin">
-     8.2.3. Example 3: rotation axis not through origin
+     9.2.3. Example 3: rotation axis not through origin
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#concatenation">
-   8.3. Concatenation
+   9.3. Concatenation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#concatenation-example-1">
-     8.3.1. Concatenation Example 1
+     9.3.1. Concatenation Example 1
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#over-to-you">
-   8.4. Over to you
+   9.4. Over to you
   </a>
  </li>
 </ul>
@@ -466,7 +471,7 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="quaternions-and-rotations">
-<h1><span class="section-number">8. </span>Quaternions (and rotations!)<a class="headerlink" href="#quaternions-and-rotations" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">9. </span>Quaternions (and rotations!)<a class="headerlink" href="#quaternions-and-rotations" title="Permalink to this headline">¶</a></h1>
 <p>Having learned about complex numbers and their properties, it’s really time to kick it up a notch: Quaternions are like an extended complex number, in that they have not one but three hyper-imaginary components. Quaternions are an industry standard way to perform rotations in 3D graphics, but they operate very differently to matrix transformations.</p>
 <p>In this notebook we will explore some of the properties of quaternions, and then apply those properties to rotate objects in 3D space.</p>
 <div class="cell docutils container">
@@ -485,7 +490,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="introduction">
-<h2><span class="section-number">8.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Quaternions are like an extended form of complex number. They have one real and <em>three</em> hyperimaginary components, for example:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -510,7 +515,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="using-the-quaternions-package-to-do-maths">
-<h2><span class="section-number">8.2. </span>Using the quaternions package to do maths<a class="headerlink" href="#using-the-quaternions-package-to-do-maths" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.2. </span>Using the quaternions package to do maths<a class="headerlink" href="#using-the-quaternions-package-to-do-maths" title="Permalink to this headline">¶</a></h2>
 <p>Now we can store and play with quaternions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -612,7 +617,7 @@ quaternion(0.0333333333333333, -0.0666666666666667, -0.1, -0.133333333333333)
 </div>
 <p>Let us now put these processes to the test. In our lectures we encountered several examples.</p>
 <div class="section" id="example-1-rotation-using-quaternions">
-<h3><span class="section-number">8.2.1. </span>Example 1: rotation using quaternions<a class="headerlink" href="#example-1-rotation-using-quaternions" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.2.1. </span>Example 1: rotation using quaternions<a class="headerlink" href="#example-1-rotation-using-quaternions" title="Permalink to this headline">¶</a></h3>
 <p>The point <span class="math notranslate nohighlight">\((2,3,1)\)</span> is to be rotated about the <span class="math notranslate nohighlight">\(x\)</span>-axis by <span class="math notranslate nohighlight">\(90^o\)</span> using quaternions.</p>
 <p>In only a few lines we can use Python to carry out the same rotation:</p>
 <div class="cell docutils container">
@@ -707,7 +712,7 @@ To display an axis, we could create a type of arrow to indicate size and directi
 <p>Example 2 in the lectures can also be evaluated this way, and displayed using the same tools:</p>
 </div>
 <div class="section" id="example-2">
-<h3><span class="section-number">8.2.2. </span>Example 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.2.2. </span>Example 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h3>
 <p>The point <span class="math notranslate nohighlight">\((1,0,-2)\)</span> is to be rotated by <span class="math notranslate nohighlight">\(60^o\)</span> about the axis <span class="math notranslate nohighlight">\(\vec{i}+2\vec{j}-\vec{k}\)</span>. Carry out the rotation using quaternions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -723,10 +728,7 @@ To display an axis, we could create a type of arrow to indicate size and directi
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image coords:
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> [-0.664213562373095, 0.8535533905932737, -1.9571067811865477]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image coords: [-0.664213562373095, 0.8535533905932737, -1.9571067811865477]
 </pre></div>
 </div>
 </div>
@@ -767,7 +769,7 @@ To display an axis, we could create a type of arrow to indicate size and directi
 </div>
 </div>
 <div class="section" id="example-3-rotation-axis-not-through-origin">
-<h3><span class="section-number">8.2.3. </span>Example 3: rotation axis not through origin<a class="headerlink" href="#example-3-rotation-axis-not-through-origin" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.2.3. </span>Example 3: rotation axis not through origin<a class="headerlink" href="#example-3-rotation-axis-not-through-origin" title="Permalink to this headline">¶</a></h3>
 <p>Example 3 used the same direction for the axis of rotation as in Example 1, but now passing through a specific point. To carry out this example, we must first translate the point before carrying out the rotation, then translating the point back by the same amount at the end:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -788,11 +790,11 @@ To display an axis, we could create a type of arrow to indicate size and directi
 </div>
 </div>
 <div class="section" id="concatenation">
-<h2><span class="section-number">8.3. </span>Concatenation<a class="headerlink" href="#concatenation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.3. </span>Concatenation<a class="headerlink" href="#concatenation" title="Permalink to this headline">¶</a></h2>
 <p>One of the most powerful aspects of quaternion rotations involves concatenation: the idea that multiple rotations in sequence can be represented by a single equivalent quaternion.</p>
 <p>To follow a rotation <span class="math notranslate nohighlight">\(q_1pq_1^{-1}\)</span> by a second rotation <span class="math notranslate nohighlight">\(q_2\)</span>, we would form <span class="math notranslate nohighlight">\(q_2(q_1pq_1^{-1})q_2^{-1}\)</span>. All the information about both rotations is stored in a quaternion <span class="math notranslate nohighlight">\(q_2q_1\)</span> (and it’s inverse, <span class="math notranslate nohighlight">\((q_2q_1)^{-1}\)</span>, since <span class="math notranslate nohighlight">\(q_1^{-1}q_2^{-1}=(q_2q_1)^{-1}\)</span>). By multiplying the two quaternions together to form one new quaternion, we have stored all the information about two rotations in one <em>concatenated</em> quaternion.</p>
 <div class="section" id="concatenation-example-1">
-<h3><span class="section-number">8.3.1. </span>Concatenation Example 1<a class="headerlink" href="#concatenation-example-1" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.3.1. </span>Concatenation Example 1<a class="headerlink" href="#concatenation-example-1" title="Permalink to this headline">¶</a></h3>
 <p>In the lectures, this was illsutated by an example. The point <span class="math notranslate nohighlight">\((-1,0,1)\)</span> was to be rotated about the <span class="math notranslate nohighlight">\(z\)</span>-axis by <span class="math notranslate nohighlight">\(120^o\)</span>, followed by a rotation of <span class="math notranslate nohighlight">\(-90^o\)</span> about an axis parallel to <span class="math notranslate nohighlight">\(\underset{\bar{}}{i}-\underset{\bar{}}{k}\)</span>.</p>
 <p>To carry this out using Python, we can create the two required quaternions, multiply them, find the inverse of the result, then perform the rotation.</p>
 <div class="cell docutils container">
@@ -832,7 +834,7 @@ To display an axis, we could create a type of arrow to indicate size and directi
 </div>
 </div>
 <div class="section" id="over-to-you">
-<h2><span class="section-number">8.4. </span>Over to you<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.4. </span>Over to you<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
 <p>Examine some of the examples you completed in the tutorial questions, and see if Python is able to confirm your tactics and solutions.</p>
 <p>What do the old and new locations look like in 3D after you have performed the rotations?</p>
 </div>
@@ -867,13 +869,13 @@ To display an axis, we could create a type of arrow to indicate size and directi
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">7. </span>Complex Numbers</p>
+            <p class="prev-next-title"><span class="section-number">8. </span>Complex Numbers</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="MAT201M_RaysIntro.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>Ray Tracing</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Ray Tracing</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

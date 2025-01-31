@@ -328,7 +328,7 @@ b = Arrow3D([xp, xp-n[0]], [yp, yp-n[1]], [zp, zp-n[2]], **arrow_prop_dict)
 ax.add_artist(b)
 ax.plot_surface(xx, yy, zz, alpha=0.3, label='tangent plane')
 ax.title.set_text(tpeqn)
-ax.legend(loc="best")
+#ax.legend()
 ax.set_xlabel("x")
 ax.set_ylabel("y")
 ax.set_zlabel("z")
@@ -337,7 +337,7 @@ plt.show()
 
 # In the result you can see the bowl, with the tangent plane grazing the bowl at the chosen location.
 # 
-# **Challenge: re-run this example for a different value of $r$ or $theta$, to see if the code successfully calculates the tangent plane and normal (confirm visually)**
+# **Challenge: re-run this example for a different value of $r$ or $\theta$, to see if the code successfully calculates the tangent plane and normal (confirm visually)**
 # 
 # Thus, we have verified that Python carries out the same mathematical operations we learned in the lectures, if we want to calculate a normal to a surface or its tangent plane.
 

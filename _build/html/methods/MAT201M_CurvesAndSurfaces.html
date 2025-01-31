@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Curves and Surfaces &#8212; MAT201 Applied Mathematics with Python</title>
+    <title>7. Curves and Surfaces &#8212; MAT201 Applied Mathematics with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,6 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. Complex Numbers" href="MAT201M_ComplexNos.html" />
+    <link rel="prev" title="6. Projection 2" href="MAT201M_Proj2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -174,7 +176,7 @@ const thebe_selector_output = ".output, .cell_output"
   Methods
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_PartialDerivs.html">
    1. Partial Derivatives
@@ -205,29 +207,34 @@ const thebe_selector_output = ".output, .cell_output"
    6. Perspective Projection
   </a>
  </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   7. Curves and Surfaces
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_ComplexNos.html">
-   7. Complex Numbers
+   8. Complex Numbers
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_Quats.html">
-   8. Quaternions
+   9. Quaternions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysIntro.html">
-   9. Ray Tracing
+   10. Ray Tracing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysBoxes.html">
-   10. Rays and Boxes
+   11. Rays and Boxes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MAT201M_RaysPlanes.html">
-   11. Rays and Planes
+   12. Rays and Planes
   </a>
  </li>
 </ul>
@@ -348,39 +355,39 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parameterisation">
-   Parameterisation
+   7.1. Parameterisation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-parameterising-a-circle">
-     Example: parameterising a circle
+     7.1.1. Example: parameterising a circle
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-tangent-and-normal-to-circle">
-     Example: tangent and normal to circle
+     7.1.2. Example: tangent and normal to circle
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-tangent-to-a-parabola">
-     Example: tangent to a parabola?
+     7.1.3. Example: tangent to a parabola?
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#d-objects">
-   3D objects
+   7.2. 3D objects
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-parabolic-bowl">
-   Example: Parabolic bowl
+   7.3. Example: Parabolic bowl
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#over-to-you">
-   Over to you
+   7.4. Over to you
   </a>
  </li>
 </ul>
@@ -405,39 +412,39 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parameterisation">
-   Parameterisation
+   7.1. Parameterisation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-parameterising-a-circle">
-     Example: parameterising a circle
+     7.1.1. Example: parameterising a circle
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-tangent-and-normal-to-circle">
-     Example: tangent and normal to circle
+     7.1.2. Example: tangent and normal to circle
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-tangent-to-a-parabola">
-     Example: tangent to a parabola?
+     7.1.3. Example: tangent to a parabola?
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#d-objects">
-   3D objects
+   7.2. 3D objects
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-parabolic-bowl">
-   Example: Parabolic bowl
+   7.3. Example: Parabolic bowl
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#over-to-you">
-   Over to you
+   7.4. Over to you
   </a>
  </li>
 </ul>
@@ -450,7 +457,7 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="curves-and-surfaces">
-<h1>Curves and Surfaces<a class="headerlink" href="#curves-and-surfaces" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">7. </span>Curves and Surfaces<a class="headerlink" href="#curves-and-surfaces" title="Permalink to this headline">¶</a></h1>
 <p>Games programming typically includes many objects of various types in game environments.</p>
 <p>In this workbook, we will examine how to construct different types of curves and surfaces using mathematical expressions. We will use the ideas of parameterisation to calculate tangents to curves in 2D and tangent planes and normals to surfaces in 3D.</p>
 <div class="cell docutils container">
@@ -487,14 +494,14 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="parameterisation">
-<h2>Parameterisation<a class="headerlink" href="#parameterisation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.1. </span>Parameterisation<a class="headerlink" href="#parameterisation" title="Permalink to this headline">¶</a></h2>
 <p>Parameterisation is a tool that we can use to simplify the expression of many curves and surfaces.</p>
 <p>Mapping curves in 2D requires us to store two positions in Cartesian space: <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <p>However, curves are continuous: often the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> positions are related, and are functions of one single parameter. By working with parameters, and knowing that we can convert these back to real space, we can often reduce the complexity of the problem.</p>
 <p>Computationally, this is equivalent to using a single function to generate a range of positions on a curve, rather than storing two (possibly large) arrays of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> positions.</p>
 <p>Parameterisation has another advantage: tangents to curves (in 2D) and tangent planes and normals (in 3D) can be easily calculated using the parameterised form of the curve or surface.</p>
 <div class="section" id="example-parameterising-a-circle">
-<h3>Example: parameterising a circle<a class="headerlink" href="#example-parameterising-a-circle" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.1.1. </span>Example: parameterising a circle<a class="headerlink" href="#example-parameterising-a-circle" title="Permalink to this headline">¶</a></h3>
 <p>Let’s say we want to plot the circle <span class="math notranslate nohighlight">\(x^2+y^2=4\)</span>.
 We need to create, store and plot every pair of positions <span class="math notranslate nohighlight">\((x,y)\)</span> which satisfy this equation.
 This will create two arrays of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> values as seen below:</p>
@@ -544,7 +551,7 @@ x = 2\cos{(t)},~~~ y = 2\sin{(t)}.
 <p>In the above plot, we have overlaid the parameterised versions of the curve onto a contour of the original equation, and they are identical.</p>
 </div>
 <div class="section" id="example-tangent-and-normal-to-circle">
-<h3>Example: tangent and normal to circle<a class="headerlink" href="#example-tangent-and-normal-to-circle" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.1.2. </span>Example: tangent and normal to circle<a class="headerlink" href="#example-tangent-and-normal-to-circle" title="Permalink to this headline">¶</a></h3>
 <p>What is even neater is that this parameterisation allows us to also calculate a tangent to the circle at any given position. From this we can also easily calculate the normal to the curve at any point.</p>
 <p>The tangent vector at a given point depends on the rate of change of the position vector with respect to the parameter. The normal takes the slope of the tangent and inverts it.</p>
 <div class="cell docutils container">
@@ -599,7 +606,7 @@ x = 2\cos{(t)},~~~ y = 2\sin{(t)}.
 Let’s prove this by making up a parameterised curve and attempting to evaluate the tangent to the curve at a specific point:</p>
 </div>
 <div class="section" id="example-tangent-to-a-parabola">
-<h3>Example: tangent to a parabola?<a class="headerlink" href="#example-tangent-to-a-parabola" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.1.3. </span>Example: tangent to a parabola?<a class="headerlink" href="#example-tangent-to-a-parabola" title="Permalink to this headline">¶</a></h3>
 <p><strong>Determine the tangent vector and normal vector for the curve <span class="math notranslate nohighlight">\(\vec{\mathbf{r}} = (1-u){\vec{\mathbf{i}}}+2u^2{\vec{\mathbf{j}}}\)</span> at the point <span class="math notranslate nohighlight">\(u=1\)</span>.</strong></p>
 <p>(note this example is inspired by Tutorial Q1(i) on Curves and Surfaces: Q1(i) is actually a straight line and hence its tangent is a bit boring to pick as an example - feel free to modify this example as you see fit, if you want to check the answer of Q1(i) for yourself!)</p>
 <div class="cell docutils container">
@@ -652,7 +659,7 @@ Let’s prove this by making up a parameterised curve and attempting to evaluate
 </div>
 </div>
 <div class="section" id="d-objects">
-<h2>3D objects<a class="headerlink" href="#d-objects" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.2. </span>3D objects<a class="headerlink" href="#d-objects" title="Permalink to this headline">¶</a></h2>
 <p>In 2D, we have seen that a parameterised curve (which has a position vector as a function of a single parameter) can yield an expression which describes the tangent to the curve (by ordinary differentiation of the function with respect to the parameter).</p>
 <p>In 3D, surfaces are commonly described as a function of two parameters (commonly described using the letters <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span>), and have the form:</p>
 <div class="math notranslate nohighlight">
@@ -695,7 +702,7 @@ d = ax(u_1,v_1)+by(u_1,v_1)+cz(u_1,v_1).
 \]</div>
 </div>
 <div class="section" id="example-parabolic-bowl">
-<h2>Example: Parabolic bowl<a class="headerlink" href="#example-parabolic-bowl" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.3. </span>Example: Parabolic bowl<a class="headerlink" href="#example-parabolic-bowl" title="Permalink to this headline">¶</a></h2>
 <p>We will use the example from the lectures of the parabolic bowl, whose surface is governed by the equation:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -767,7 +774,7 @@ d = ax(u_1,v_1)+by(u_1,v_1)+cz(u_1,v_1).
 <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">zz</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;tangent plane&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">tpeqn</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
+<span class="c1">#ax.legend()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
@@ -776,107 +783,15 @@ d = ax(u_1,v_1)+by(u_1,v_1)+cz(u_1,v_1).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">63</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">zz</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;tangent plane&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="n">ax</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">tpeqn</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">63</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~/Library/Python/3.9/lib/python/site-packages/matplotlib/axes/_axes.py:318,</span> in <span class="ni">Axes.legend</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">316</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">extra_args</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;legend only accepts two non-keyword arguments&#39;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">318</span> <span class="bp">self</span><span class="o">.</span><span class="n">legend_</span> <span class="o">=</span> <span class="n">mlegend</span><span class="o">.</span><span class="n">Legend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handles</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span> <span class="bp">self</span><span class="o">.</span><span class="n">legend_</span><span class="o">.</span><span class="n">_remove_method</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_remove_legend</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">legend_</span>
-
-<span class="nn">File ~/Library/Python/3.9/lib/python/site-packages/matplotlib/_api/deprecation.py:454,</span> in <span class="ni">make_keyword_only.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">448</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">name_idx</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">449</span>     <span class="n">warn_deprecated</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">450</span>         <span class="n">since</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Passing the </span><span class="si">%(name)s</span><span class="s2"> </span><span class="si">%(obj_type)s</span><span class="s2"> &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">451</span>         <span class="s2">&quot;positionally is deprecated since Matplotlib </span><span class="si">%(since)s</span><span class="s2">; the &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">452</span>         <span class="s2">&quot;parameter will become keyword-only </span><span class="si">%(removal)s</span><span class="s2">.&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">453</span>         <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">obj_type</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;parameter of </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">()&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">454</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~/Library/Python/3.9/lib/python/site-packages/matplotlib/legend.py:583,</span> in <span class="ni">Legend.__init__</span><span class="nt">(self, parent, handles, labels, loc, numpoints, markerscale, markerfirst, reverse, scatterpoints, scatteryoffsets, prop, fontsize, labelcolor, borderpad, labelspacing, handlelength, handleheight, handletextpad, borderaxespad, columnspacing, ncols, mode, fancybox, shadow, title, title_fontsize, framealpha, edgecolor, facecolor, bbox_to_anchor, bbox_transform, frameon, handler_map, title_fontproperties, alignment, ncol, draggable)</span>
-<span class="g g-Whitespace">    </span><span class="mi">580</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alignment</span> <span class="o">=</span> <span class="n">alignment</span>
-<span class="g g-Whitespace">    </span><span class="mi">582</span> <span class="c1"># init with null renderer</span>
-<span class="ne">--&gt; </span><span class="mi">583</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_legend_box</span><span class="p">(</span><span class="n">handles</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">markerfirst</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">585</span> <span class="n">tmp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loc_used_default</span>
-<span class="g g-Whitespace">    </span><span class="mi">586</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_loc</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
-
-<span class="nn">File ~/Library/Python/3.9/lib/python/site-packages/matplotlib/legend.py:867,</span> in <span class="ni">Legend._init_legend_box</span><span class="nt">(self, handles, labels, markerfirst)</span>
-<span class="g g-Whitespace">    </span><span class="mi">864</span>         <span class="n">text_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">textbox</span><span class="o">.</span><span class="n">_text</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">865</span>         <span class="c1"># Create the artist for the legend which represents the</span>
-<span class="g g-Whitespace">    </span><span class="mi">866</span>         <span class="c1"># original artist/handle.</span>
-<span class="ne">--&gt; </span><span class="mi">867</span>         <span class="n">handle_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">handler</span><span class="o">.</span><span class="n">legend_artist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orig_handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">868</span>                                                  <span class="n">fontsize</span><span class="p">,</span> <span class="n">handlebox</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">869</span>         <span class="n">handles_and_labels</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">handlebox</span><span class="p">,</span> <span class="n">textbox</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">871</span> <span class="n">columnbox</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="nn">File ~/Library/Python/3.9/lib/python/site-packages/matplotlib/legend_handler.py:130,</span> in <span class="ni">HandlerBase.legend_artist</span><span class="nt">(self, legend, orig_handle, fontsize, handlebox)</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span> <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span><span class="sd"> Return the artist that this HandlerBase generates for the given</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span><span class="sd"> original artist/handle.</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">123</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">124</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">125</span> <span class="n">xdescent</span><span class="p">,</span> <span class="n">ydescent</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adjust_drawing_area</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">126</span>          <span class="n">legend</span><span class="p">,</span> <span class="n">orig_handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">127</span>          <span class="n">handlebox</span><span class="o">.</span><span class="n">xdescent</span><span class="p">,</span> <span class="n">handlebox</span><span class="o">.</span><span class="n">ydescent</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">128</span>          <span class="n">handlebox</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">handlebox</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">129</span>          <span class="n">fontsize</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">130</span> <span class="n">artists</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_artists</span><span class="p">(</span><span class="n">legend</span><span class="p">,</span> <span class="n">orig_handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">131</span>                               <span class="n">xdescent</span><span class="p">,</span> <span class="n">ydescent</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">132</span>                               <span class="n">fontsize</span><span class="p">,</span> <span class="n">handlebox</span><span class="o">.</span><span class="n">get_transform</span><span class="p">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="c1"># create_artists will return a list of artists.</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">artists</span><span class="p">:</span>
-
-<span class="nn">File ~/Library/Python/3.9/lib/python/site-packages/matplotlib/legend_handler.py:815,</span> in <span class="ni">HandlerPolyCollection.create_artists</span><span class="nt">(self, legend, orig_handle, xdescent, ydescent, width, height, fontsize, trans)</span>
-<span class="g g-Whitespace">    </span><span class="mi">810</span> <span class="k">def</span> <span class="nf">create_artists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">orig_handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">811</span>                    <span class="n">xdescent</span><span class="p">,</span> <span class="n">ydescent</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">fontsize</span><span class="p">,</span> <span class="n">trans</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">812</span>     <span class="c1"># docstring inherited</span>
-<span class="g g-Whitespace">    </span><span class="mi">813</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">xdescent</span><span class="p">,</span> <span class="o">-</span><span class="n">ydescent</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">814</span>                   <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">815</span>     <span class="bp">self</span><span class="o">.</span><span class="n">update_prop</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">orig_handle</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">816</span>     <span class="n">p</span><span class="o">.</span><span class="n">set_transform</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">817</span>     <span class="k">return</span> <span class="p">[</span><span class="n">p</span><span class="p">]</span>
-
-<span class="nn">File ~/Library/Python/3.9/lib/python/site-packages/matplotlib/legend_handler.py:89,</span> in <span class="ni">HandlerBase.update_prop</span><span class="nt">(self, legend_handle, orig_handle, legend)</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span> <span class="k">def</span> <span class="nf">update_prop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">legend_handle</span><span class="p">,</span> <span class="n">orig_handle</span><span class="p">,</span> <span class="n">legend</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">89</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_update_prop</span><span class="p">(</span><span class="n">legend_handle</span><span class="p">,</span> <span class="n">orig_handle</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span>     <span class="n">legend</span><span class="o">.</span><span class="n">_set_artist_props</span><span class="p">(</span><span class="n">legend_handle</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">92</span>     <span class="n">legend_handle</span><span class="o">.</span><span class="n">set_clip_box</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-
-<span class="nn">File ~/Library/Python/3.9/lib/python/site-packages/matplotlib/legend_handler.py:795,</span> in <span class="ni">HandlerPolyCollection._update_prop</span><span class="nt">(self, legend_handle, orig_handle)</span>
-<span class="g g-Whitespace">    </span><span class="mi">791</span>         <span class="k">return</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">793</span> <span class="c1"># orig_handle is a PolyCollection and legend_handle is a Patch.</span>
-<span class="g g-Whitespace">    </span><span class="mi">794</span> <span class="c1"># Directly set Patch color attributes (must be RGBA tuples).</span>
-<span class="ne">--&gt; </span><span class="mi">795</span> <span class="n">legend_handle</span><span class="o">.</span><span class="n">_facecolor</span> <span class="o">=</span> <span class="n">first_color</span><span class="p">(</span><span class="n">orig_handle</span><span class="o">.</span><span class="n">get_facecolor</span><span class="p">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">796</span> <span class="n">legend_handle</span><span class="o">.</span><span class="n">_edgecolor</span> <span class="o">=</span> <span class="n">first_color</span><span class="p">(</span><span class="n">orig_handle</span><span class="o">.</span><span class="n">get_edgecolor</span><span class="p">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">797</span> <span class="n">legend_handle</span><span class="o">.</span><span class="n">_original_facecolor</span> <span class="o">=</span> <span class="n">orig_handle</span><span class="o">.</span><span class="n">_original_facecolor</span>
-
-<span class="nn">File ~/Library/Python/3.9/lib/python/site-packages/matplotlib/legend_handler.py:783,</span> in <span class="ni">HandlerPolyCollection._update_prop.&lt;locals&gt;.first_color</span><span class="nt">(colors)</span>
-<span class="g g-Whitespace">    </span><span class="mi">782</span> <span class="k">def</span> <span class="nf">first_color</span><span class="p">(</span><span class="n">colors</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">783</span>     <span class="k">if</span> <span class="n">colors</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">784</span>         <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">785</span>     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-<span class="ne">AttributeError</span>: &#39;tuple&#39; object has no attribute &#39;size&#39;
-</pre></div>
-</div>
-<img alt="../_images/MAT201M_CurvesAndSurfaces_18_1.png" src="../_images/MAT201M_CurvesAndSurfaces_18_1.png" />
+<img alt="../_images/MAT201M_CurvesAndSurfaces_18_0.png" src="../_images/MAT201M_CurvesAndSurfaces_18_0.png" />
 </div>
 </div>
 <p>In the result you can see the bowl, with the tangent plane grazing the bowl at the chosen location.</p>
-<p><strong>Challenge: re-run this example for a different value of <span class="math notranslate nohighlight">\(r\)</span> or <span class="math notranslate nohighlight">\(theta\)</span>, to see if the code successfully calculates the tangent plane and normal (confirm visually)</strong></p>
+<p><strong>Challenge: re-run this example for a different value of <span class="math notranslate nohighlight">\(r\)</span> or <span class="math notranslate nohighlight">\(\theta\)</span>, to see if the code successfully calculates the tangent plane and normal (confirm visually)</strong></p>
 <p>Thus, we have verified that Python carries out the same mathematical operations we learned in the lectures, if we want to calculate a normal to a surface or its tangent plane.</p>
 </div>
 <div class="section" id="over-to-you">
-<h2>Over to you<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.4. </span>Over to you<a class="headerlink" href="#over-to-you" title="Permalink to this headline">¶</a></h2>
 <p>What about some different surfaces? Can you use the calculation and plotting tools you have been given to examine spheres, or cones, or cylinders?</p>
 <p>What about importing the parametric expressions from the tutorial questions to examine what they look like visually, and if they return the correct normals and plane equations using Python as found by hand?</p>
 </div>
@@ -906,7 +821,21 @@ d = ax(u_1,v_1)+by(u_1,v_1)+cz(u_1,v_1).
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="MAT201M_Proj2.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Projection 2</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="MAT201M_ComplexNos.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Complex Numbers</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>

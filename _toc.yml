@@ -51,6 +51,8 @@ parts:
     title: Perspective Projection
   - file: methods/MAT201M_CurvesAndSurfaces.ipynb
     title: Curves and Surfaces
+  - file: methods/MAT201M_BilinearPatches.ipynb
+    title: Bilinear Patches
   - file: methods/MAT201M_ComplexNos.ipynb
     title: Complex Numbers
   - file: methods/MAT201M_Quats.ipynb

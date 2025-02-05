@@ -64,7 +64,7 @@ parts:
   - file: methods/MAT201M_RaysPlanes.ipynb
     title: Rays and Planes
   - file: methods/MAT201M_Reflection.ipynb
-    title: Rays and Planes
+    title: Reflection
 - numbered: false
   chapters:
   - file: outro.md

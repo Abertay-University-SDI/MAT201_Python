@@ -65,6 +65,8 @@ parts:
     title: Rays and Planes
   - file: methods/MAT201M_Reflection.ipynb
     title: Reflection
+  - file: methods/MAT201M_Refraction.ipynb
+    title: Refraction
 - numbered: false
   chapters:
   - file: outro.md

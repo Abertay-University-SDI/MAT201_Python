@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Summary" href="../outro.html" />
+    <link rel="next" title="15. Ray refraction" href="MAT201M_Refraction.html" />
     <link rel="prev" title="13. Rays Intersecting Planes" href="MAT201M_RaysPlanes.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -244,7 +244,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   14. Rays and Planes
+   14. Reflection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MAT201M_Refraction.html">
+   15. Refraction
   </a>
  </li>
 </ul>
@@ -599,6 +604,34 @@ const thebe_selector_output = ".output, .cell_output"
 intersection occurs at (-0.556,-1.333,1.111)
 </pre></div>
 </div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">14</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;intersection occurs at (</span><span class="si">{:0.3f}</span><span class="s2">,</span><span class="si">{:0.3f}</span><span class="s2">,</span><span class="si">{:0.3f}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">is1a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">is1a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">is1a</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">r1vv</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r1v</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">14</span> <span class="n">rr_o</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">is1a</span><span class="p">])</span>
+
+<span class="nn">File ~/Library/Python/3.9/lib/python/site-packages/sympy/matrices/repmatrix.py:317,</span> in <span class="ni">MutableRepMatrix.__new__</span><span class="nt">(cls, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">316</span> <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">317</span>     <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_new</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/Library/Python/3.9/lib/python/site-packages/sympy/matrices/repmatrix.py:328,</span> in <span class="ni">MutableRepMatrix._new</span><span class="nt">(cls, copy, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span>     <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">flat_list</span> <span class="o">=</span> <span class="n">args</span>
+<span class="g g-Whitespace">    </span><span class="mi">327</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">328</span>     <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">flat_list</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_handle_creation_inputs</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">329</span>     <span class="n">flat_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">flat_list</span><span class="p">)</span> <span class="c1"># create a shallow copy</span>
+<span class="g g-Whitespace">    </span><span class="mi">331</span> <span class="n">rep</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_flat_list_to_DomainMatrix</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">flat_list</span><span class="p">)</span>
+
+<span class="nn">File ~/Library/Python/3.9/lib/python/site-packages/sympy/matrices/matrices.py:1032,</span> in <span class="ni">MatrixBase._handle_creation_inputs</span><span class="nt">(cls, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1029</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1030</span>         <span class="n">dat</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_explicit_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dat</span><span class="p">]</span>
+<span class="ne">-&gt; </span><span class="mi">1032</span> <span class="k">if</span> <span class="n">dat</span> <span class="o">==</span> <span class="p">[]</span> <span class="ow">or</span> <span class="n">dat</span> <span class="o">==</span> <span class="p">[[]]:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1033</span>     <span class="n">rows</span> <span class="o">=</span> <span class="n">cols</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="g g-Whitespace">   </span><span class="mi">1034</span>     <span class="n">flat_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="ne">ValueError</span>: operands could not be broadcast together with shapes (3,) (0,) 
+</pre></div>
+</div>
 </div>
 </div>
 <p>Now that we have located the intersection point, we can use this as the origin for a new ray equation, generating the direction of this new ray using the subroutine we defined earlier <code class="docutils literal notranslate"><span class="pre">v(u,n)</span></code>:</p>
@@ -832,10 +865,10 @@ reflected ray eq:
             <p class="prev-next-title"><span class="section-number">13. </span>Rays Intersecting Planes</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../outro.html" title="next page">
+    <a class='right-next' id="next-link" href="MAT201M_Refraction.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Summary</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Ray refraction</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

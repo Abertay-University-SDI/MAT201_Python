@@ -208,28 +208,48 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_CurvesAndSurfaces.html">
+   7. Curves and Surfaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_BilinearPatches.html">
+   8. Bilinear Patches
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_ComplexNos.html">
-   7. Complex Numbers
+   9. Complex Numbers
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_Quats.html">
-   8. Quaternions
+   10. Quaternions
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_RaysIntro.html">
-   9. Ray Tracing
+   11. Ray Tracing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_RaysBoxes.html">
-   10. Rays and Boxes
+   12. Rays and Boxes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../methods/MAT201M_RaysPlanes.html">
-   11. Rays and Planes
+   13. Rays and Planes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_Reflection.html">
+   14. Reflection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../methods/MAT201M_Refraction.html">
+   15. Refraction
   </a>
  </li>
 </ul>
@@ -590,7 +610,7 @@ x= [0.  0.1 0.2 0.3 0.4 0.5]
 <p>Our approximate solution seems to be behaving in the same way: lets visualise this with a plot:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-poster&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-poster&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;bo--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Approximate: h=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">),</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact&#39;</span><span class="p">)</span>
@@ -604,11 +624,7 @@ x= [0.  0.1 0.2 0.3 0.4 0.5]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_30598/2040643597.py:1: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
-  plt.style.use(&#39;seaborn-poster&#39;)
-</pre></div>
-</div>
-<img alt="../_images/MAT201N_DE1_17_1.png" src="../_images/MAT201N_DE1_17_1.png" />
+<img alt="../_images/MAT201N_DE1_17_0.png" src="../_images/MAT201N_DE1_17_0.png" />
 </div>
 </div>
 <p>So we see that our approximation displays similar behaviour, but doesn’t follow the trend exactly; in fact the graphs appear to be diverging as <span class="math notranslate nohighlight">\(x\)</span> increases. What if we make the step size ten times smaller?</p>
@@ -621,7 +637,7 @@ x= [0.  0.1 0.2 0.3 0.4 0.5]
 <span class="n">y2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N2</span><span class="p">):</span>
     <span class="n">y2</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y2</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h2</span> <span class="o">*</span> <span class="n">func</span><span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">y2</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-poster&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-poster&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;bo--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Approx: h=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span><span class="s1">&#39;ro--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Approx: h=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">h2</span><span class="p">))</span>
@@ -636,11 +652,7 @@ x= [0.  0.1 0.2 0.3 0.4 0.5]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_30598/4080072740.py:8: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
-  plt.style.use(&#39;seaborn-poster&#39;)
-</pre></div>
-</div>
-<img alt="../_images/MAT201N_DE1_19_1.png" src="../_images/MAT201N_DE1_19_1.png" />
+<img alt="../_images/MAT201N_DE1_19_0.png" src="../_images/MAT201N_DE1_19_0.png" />
 </div>
 </div>
 <p>As expected, cranking up the number of steps improves the accuracy of the solution. However, in practice, we often have a finite amount of numerical resources (e.g. CPU speed, number of nodes, memory size), so we can’t always rely on the ability to simply decrease <span class="math notranslate nohighlight">\(h\)</span>. In those cases, we have to be smarter, and apply other techniques.</p>
@@ -665,7 +677,7 @@ k_2&amp;=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_1).
     <span class="n">k1</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
     <span class="n">k2</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">k1</span><span class="p">)</span>
     <span class="n">y3</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y3</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">k2</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-poster&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-poster&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;bo--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Euler: h=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="s1">&#39;o--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Midpoint: h=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
@@ -680,11 +692,7 @@ k_2&amp;=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_1).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_30598/2590250041.py:7: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
-  plt.style.use(&#39;seaborn-poster&#39;)
-</pre></div>
-</div>
-<img alt="../_images/MAT201N_DE1_23_1.png" src="../_images/MAT201N_DE1_23_1.png" />
+<img alt="../_images/MAT201N_DE1_23_0.png" src="../_images/MAT201N_DE1_23_0.png" />
 </div>
 </div>
 <p>We quickly see that the midpoint method is more accurate than the Euler method for the same step size. The trade-off is the additional calculation required to evaluate <span class="math notranslate nohighlight">\(k_1\)</span> and <span class="math notranslate nohighlight">\(k_2\)</span>.</p>
@@ -716,7 +724,7 @@ y_{n+1}^c=y_n+\frac{h}{2}\left(y_n'+y_{n+1}'^p\right).
     <span class="n">k1</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
     <span class="n">k2</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">k1</span><span class="p">)</span>
     <span class="n">y4</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y4</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="n">k2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-poster&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-poster&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;bo--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Euler: h=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y4</span><span class="p">,</span> <span class="s1">&#39;mo--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Modified Euler: h=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
@@ -731,11 +739,7 @@ y_{n+1}^c=y_n+\frac{h}{2}\left(y_n'+y_{n+1}'^p\right).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/9y/379gbxjx3255qz9rg64kh7mm0000gn/T/ipykernel_30598/1612707178.py:7: MatplotlibDeprecationWarning: The seaborn styles shipped by Matplotlib are deprecated since 3.6, as they no longer correspond to the styles shipped by seaborn. However, they will remain available as &#39;seaborn-v0_8-&lt;style&gt;&#39;. Alternatively, directly use the seaborn API instead.
-  plt.style.use(&#39;seaborn-poster&#39;)
-</pre></div>
-</div>
-<img alt="../_images/MAT201N_DE1_27_1.png" src="../_images/MAT201N_DE1_27_1.png" />
+<img alt="../_images/MAT201N_DE1_27_0.png" src="../_images/MAT201N_DE1_27_0.png" />
 </div>
 </div>
 <p>Once again, the Modified Euler does a much better job than the original Euler method, and (for this ODE) is comparable to the Midpoint method in accuracy.</p>
